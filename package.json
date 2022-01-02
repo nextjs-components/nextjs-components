@@ -1,0 +1,23 @@
+{
+  "name": "nextjs-components",
+  "author": {
+    "name": "Kevin Wang",
+    "url": "https://thekevinwang.com"
+  },
+  "version": "0.1.0-rc1",
+  "description": "React components transcribed from the Vercel design system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nextjs-components/nextjs-components.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nextjs-components/nextjs-components/issues"
+  },
+  "homepage": "https://github.com/nextjs-components/nextjs-components#readme"
+}
