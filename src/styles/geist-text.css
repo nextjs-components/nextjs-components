@@ -1,0 +1,165 @@
+/* geist-text styles */
+.geist-text {
+  line-height: 1.5;
+  font-family: var(--font-sans);
+}
+
+.geist-text.geist-text-no-margin {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.geist-text.geist-text-mono {
+  font-family: var(--font-mono);
+}
+
+.geist-text.geist-text-upper {
+  text-transform: uppercase;
+}
+
+.geist-text.geist-text-capitalize {
+  text-transform: capitalize;
+}
+
+.geist-text.geist-text-center {
+  text-align: center;
+}
+
+.geist-text.geist-themed {
+  color: var(--themed-fg, var(--geist-foreground));
+}
+
+.geist-text.h1 {
+  font-size: 3rem;
+  letter-spacing: -0.066875rem;
+  font-weight: 700;
+}
+
+.geist-text.h2 {
+  font-size: 2.25rem;
+  letter-spacing: -0.049375rem;
+  font-weight: 600;
+}
+
+.geist-text.h3 {
+  font-size: 1.5rem;
+  letter-spacing: -0.029375rem;
+  font-weight: 600;
+}
+
+.geist-text.h4 {
+  font-size: 1.25rem;
+  letter-spacing: -0.020625rem;
+  font-weight: 600;
+}
+
+.geist-text.h5 {
+  font-size: 1rem;
+  letter-spacing: -0.01125rem;
+  font-weight: 600;
+}
+
+.geist-text.h6 {
+  font-size: 0.875rem;
+  letter-spacing: -0.005625rem;
+  font-weight: 600;
+}
+
+.geist-text.p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.geist-text.body-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.geist-text.body-1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.geist-text.body-2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.geist-text.small {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.geist-text.label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.geist-text.w-100 {
+  font-weight: 100;
+}
+
+.geist-text.w-200 {
+  font-weight: 200;
+}
+
+.geist-text.w-300 {
+  font-weight: 300;
+}
+
+.geist-text.w-400 {
+  font-weight: 400;
+}
+
+.geist-text.w-500 {
+  font-weight: 500;
+}
+
+.geist-text.w-600 {
+  font-weight: 600;
+}
+
+.geist-text.w-700 {
+  font-weight: 700;
+}
+
+.geist-text.w-800 {
+  font-weight: 800;
+}
+
+.geist-text.w-900 {
+  font-weight: 900;
+}
+
+.geist-text.geist-themed {
+  color: var(--themed-fg);
+}
+.geist-text.geist-text-no-margin {
+  margin: 0;
+}
+.geist-text-no-margin > :last-child {
+  margin-bottom: 0;
+}
+.geist-text-no-margin > :first-child {
+  margin-top: 0;
+}
+
+.geist-themed.geist-secondary {
+  --themed-fg: var(--geist-secondary);
+  --themed-bg: var(--geist-background);
+  --themed-border: var(--themed-fg);
+}
+
+.geist-ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+  max-width: 100%;
+  min-width: 0;
+}

@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToastConsumer should render without any errors 1`] = `
+<DocumentFragment>
+  <button>
+    Show toast
+  </button>
+  <div
+    class="toast-area toastArea"
+  />
+</DocumentFragment>
+`;

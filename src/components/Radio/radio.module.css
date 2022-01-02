@@ -1,0 +1,73 @@
+.item {
+  display: inline-flex;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  --radio-color: var(--accents-5);
+}
+
+.check {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  margin: -2px;
+}
+
+.icon {
+  position: relative;
+  border: 1px solid var(--radio-color);
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.icon:after {
+  content: "";
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: var(--radio-color);
+  transition: transform 0.15s ease;
+}
+
+.text {
+  margin-left: var(--geist-gap-quarter);
+}
+
+.item.disabled {
+  cursor: not-allowed;
+  color: var(--accents-3);
+  --radio-color: var(--accents-3);
+}
+
+.item.disabled .check {
+  cursor: not-allowed;
+}
+
+@media (hover: hover) {
+  .item:not(.disabled):hover {
+    --radio-color: var(--geist-foreground);
+  }
+}
+
+.item:not(.disabled) .input:active + .icon {
+  --radio-color: var(--accents-3);
+}
+
+.item:not(.disabled) .input:checked + .icon {
+  --radio-color: var(--geist-foreground);
+}
+
+.input[data-focus-visible-added] + .icon {
+  box-shadow: 0 0 0 2px var(--geist-background), 0 0 0 4px var(--accents-5);
+}
+
+.input:checked + .icon:after {
+  transform: translate(-50%, -50%) scale(1);
+}

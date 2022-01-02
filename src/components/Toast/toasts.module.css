@@ -1,0 +1,107 @@
+.toastArea {
+  --offset-bottom: 0px;
+  position: fixed;
+  bottom: calc(var(--geist-gap) + var(--offset-bottom));
+  right: var(--geist-gap);
+  max-width: 420px;
+  z-index: 5000;
+  transition: transform 0.4s ease, bottom 0.4s ease;
+}
+.toastArea.center {
+  right: calc(50% - 210px);
+}
+@media (hover: hover) {
+  .toastArea.multiple:hover {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+@media (max-width: 440px) {
+  .toastArea {
+    max-width: 90vw;
+    right: 5vw;
+  }
+}
+.toastContainer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: var(--shadow-small);
+  border-radius: var(--geist-radius);
+  background: var(--geist-background);
+  color: var(--geist-foreground);
+  padding: var(--geist-gap);
+  opacity: 0;
+  transform: translate3d(0, 100%, 150px) scale(1);
+  transition: all 0.4s ease;
+  z-index: 5000;
+}
+.toastContainer.error {
+  background-color: var(--geist-error);
+  color: #fff;
+}
+.toastContainer.success {
+  background-color: var(--geist-success);
+  color: #fff;
+}
+.toastContainer.violet {
+  background-color: var(--geist-violet);
+  color: #fff;
+}
+.toastContainer.visible {
+  opacity: 1;
+  transform: none;
+}
+.toastArea .toastContainer:not(:last-child) .toast .message {
+  opacity: 0;
+}
+@media (hover: hover) {
+  .toastArea:hover .toastContainer .toast .message {
+    opacity: 1;
+  }
+  .toastArea:hover .toastContainer:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 1px);
+    width: 100%;
+    height: 20px;
+    background: transparent;
+  }
+}
+.toastArea .toastContainer:nth-last-child(n + 4) {
+  opacity: 0;
+  pointer-events: none;
+}
+.toast {
+  max-width: 100%;
+  width: 420px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  display: flex;
+  transition: all 0.4s ease;
+}
+.message {
+  margin-top: -1px;
+  width: 100%;
+  opacity: 1;
+  height: 100%;
+  transition: opacity 0.4s ease;
+  word-break: break-word;
+}
+.message.action {
+  width: 70%;
+}
+.message.cancel {
+  margin-right: var(--geist-gap);
+}
+@media (max-width: 440px) {
+  .toastContainer {
+    width: 90vw;
+  }
+  .toastArea .toastContainer:nth-last-child(n + 3) {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

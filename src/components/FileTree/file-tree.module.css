@@ -1,0 +1,88 @@
+.tree {
+  font-size: 0.75rem;
+}
+.tree [data-tree-indent] {
+  display: inline-block;
+  width: 30px;
+  height: 28px;
+  background-image: linear-gradient(
+    to right,
+    transparent 11.5px,
+    var(--accents-2) 11.5px,
+    var(--accents-2) 12.5px,
+    transparent 12.5px
+  );
+  background-repeat: no-repeat;
+  vertical-align: top;
+}
+.file,
+.folder {
+  list-style: none;
+  line-height: 28px;
+}
+.file,
+.file a,
+.folder,
+.folder a {
+  color: var(--accents-8);
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.file a,
+.folder a {
+  line-height: 1;
+  display: block;
+  padding-right: 1em;
+  text-decoration: none;
+  cursor: pointer;
+}
+.folder ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.file a .name,
+.folder a .name {
+  vertical-align: text-bottom;
+  transition: opacity 0.1s ease;
+}
+@media (hover: hover) {
+  .file a:hover .name,
+  .folder a:hover .name {
+    opacity: 0.7;
+  }
+}
+.folder > a > [data-tree-indent]:nth-last-child(3) {
+  background: none;
+}
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 28px;
+  line-height: 28px;
+  margin-right: 8px;
+  text-align: center;
+}
+.icon svg {
+  vertical-align: middle;
+}
+.status {
+  background: var(--geist-background);
+  margin-left: -24px;
+  margin-right: 14px;
+  vertical-align: middle;
+  padding: 7px 0;
+  font-size: 0;
+}
+.status svg {
+  vertical-align: middle;
+}
+.active a .name {
+  font-weight: 700;
+}
+.file .icon {
+  margin-left: 2px;
+}

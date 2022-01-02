@@ -1,0 +1,25 @@
+.avatar {
+  width: var(--size);
+  height: var(--size);
+  flex-shrink: 0;
+  border-radius: 100%;
+  display: inline-block;
+  overflow: hidden;
+  border: 1px solid var(--accents-2);
+  line-height: 0;
+  vertical-align: top;
+  -webkit-mask-image: -webkit-radial-gradient(circle, #fff, #000);
+  background: var(--geist-background);
+  transition: border 0.2s ease, background 0.2s ease;
+  box-sizing: border-box;
+}
+
+.avatar img.ready {
+  opacity: 1;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}

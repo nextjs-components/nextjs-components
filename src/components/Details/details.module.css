@@ -1,0 +1,41 @@
+.summary {
+  list-style: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
+
+.summary div {
+  display: flex;
+  align-items: center;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.icon {
+  display: inline-flex;
+  margin-right: 10px;
+  transition: transform 0.2s ease;
+}
+
+.details[open] .icon {
+  transform: rotate(90deg);
+}
+
+.details {
+  overflow: hidden;
+  transition: max-height 0.2s ease;
+}
+
+.details:not([open]).animate {
+  max-height: var(--details-closed-height, unset);
+}
+
+.details[open].animate {
+  max-height: var(--details-open-height, unset);
+}

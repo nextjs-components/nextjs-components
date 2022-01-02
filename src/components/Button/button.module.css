@@ -1,0 +1,275 @@
+.base {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: none;
+}
+
+.button {
+  border-radius: var(--geist-radius);
+  color: var(--themed-fg, var(--geist-background));
+  background: var(--themed-bg, var(--geist-foreground));
+  border: 1px solid var(--themed-border, var(--geist-foreground));
+  font-weight: 500;
+  padding: 0 var(--geist-gap-half);
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition-property: border-color, background, color, transform, box-shadow;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+  font-size: var(--geist-form-font);
+  line-height: var(--geist-form-line-height);
+  height: var(--geist-form-height);
+}
+
+.content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.content.flex {
+  display: flex;
+}
+
+.button svg {
+  vertical-align: text-top;
+}
+
+.base::-moz-focus-inner {
+  border: 0;
+}
+
+.content.start {
+  margin-right: auto;
+}
+
+.content.grow {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.base[data-focus] {
+  box-shadow: 0 0 0 1px var(--geist-background),
+    0 0 0 3px var(--themed-bg, var(--geist-foreground));
+}
+
+.button.loading,
+.button[disabled] {
+  background: var(--accents-1);
+  color: var(--accents-3);
+  border-color: var(--accents-2);
+  cursor: not-allowed;
+}
+
+.circle {
+  border-radius: 100%;
+}
+
+.shape {
+  padding: 0;
+  width: var(--geist-form-height);
+}
+
+.large {
+  height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+  line-height: var(--geist-form-large-line-height);
+}
+
+.large.shape {
+  width: var(--geist-form-large-height);
+}
+
+.small {
+  font-size: var(--geist-form-small-font);
+  height: var(--geist-form-small-height);
+}
+
+.small.shape {
+  width: var(--geist-form-small-height);
+}
+
+.button .prefix,
+.button .suffix {
+  display: flex;
+}
+
+.prefix {
+  margin-right: var(--geist-gap-quarter);
+}
+
+.suffix {
+  margin-left: var(--geist-gap-quarter);
+}
+
+.invert[data-active],
+.invert[data-hover] {
+  box-shadow: none;
+  background: transparent;
+  color: var(--themed-bg);
+  --themed-border: var(--themed-bg);
+}
+
+.invert[data-active] {
+  background: var(--accents-2);
+}
+
+.shadow {
+  box-shadow: var(--shadow-small);
+}
+
+:global(.dark-theme) .button.shadow {
+  box-shadow: none;
+}
+
+.shadow[data-hover] {
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.shadow[data-active] {
+  box-shadow: var(--shadow-small);
+  transform: translateY(1px);
+}
+
+.shadow[data-active][data-hover] {
+  transform: none;
+}
+
+.ghost {
+  background: none;
+  border-color: transparent;
+  color: var(--themed-bg);
+  --lighten-color: hsla(0, 0%, 100%, 0.8);
+}
+
+:global(.dark-theme) .ghost {
+  --lighten-color: rgba(0, 0, 0, 0.75);
+}
+
+.ghost {
+  background-image: linear-gradient(
+    to right,
+    var(--lighten-color),
+    var(--lighten-color)
+  );
+}
+
+.ghost[data-hover] {
+  background-color: var(--themed-bg, var(--accents-4));
+}
+
+.ghost[data-active] {
+  --lighten-color: hsla(0, 0%, 100%, 0.7);
+}
+
+:global(.dark-theme) .ghost[data-active] {
+  --lighten-color: rgba(0, 0, 0, 0.7);
+}
+
+.secondary {
+  --themed-bg: var(--geist-background);
+  --themed-fg: var(--geist-secondary);
+  --themed-border: var(--accents-2);
+}
+
+.secondary.invert[data-hover] {
+  background: var(--geist-background);
+  color: var(--geist-foreground);
+  border-color: var(--geist-foreground);
+}
+
+.secondary.invert[data-active] {
+  box-shadow: none;
+  color: var(--geist-foreground);
+  background: var(--accents-2);
+}
+
+.secondary[data-focus] {
+  box-shadow: 0 0 0 1px var(--geist-background),
+    0 0 0 3px var(--geist-secondary);
+}
+
+.secondary.shadow {
+  border-color: var(--geist-background);
+}
+
+.secondary.shadow[data-focus][data-active] {
+  box-shadow: var(--shadow-small);
+}
+
+.secondary.ghost {
+  color: var(--themed-fg);
+}
+
+.secondary.ghost[data-hover] {
+  background-color: var(--accents-4);
+}
+
+:global(.dark-theme) .secondary.shadow {
+  border-color: var(--accents-2);
+}
+
+.custom_button[data-custom-button]:not([disabled]) {
+  color: var(--button-custom-fg);
+  background: var(--button-custom-bg);
+  border-color: var(--button-custom-border);
+}
+
+.custom_button[data-custom-button][data-focus] {
+  box-shadow: 0 0 0 1px var(--geist-background),
+    0 0 0 3px
+      var(
+        --button-custom-bg-hover,
+        var(--button-custom-bg, var(--geist-foreground))
+      );
+}
+
+.custom_button[data-custom-button][data-focus],
+.custom_button[data-custom-button][data-hover] {
+  color: var(--button-custom-fg-hover);
+  background: var(--button-custom-bg-hover);
+  border-color: var(--button-custom-border-hover);
+}
+
+.custom_button[data-custom-button][data-active] {
+  box-shadow: none;
+  color: var(--button-custom-fg-active);
+  background: var(--button-custom-bg-active);
+  border-color: var(--button-custom-border-active);
+}
+
+.with-git-icon-background_background {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+.with-git-icon-background_background[data-git-type="bitbucket"] {
+  background-color: #0052cc;
+}
+
+.with-git-icon-background_background[data-git-type="bitbucket"] svg {
+  transform: scale(0.65);
+  color: #fff;
+}
+
+.with-git-icon-background_background[data-git-type="gitlab"] {
+  background-color: #6b4fbb;
+}
+
+.with-git-icon-background_background[data-git-type="gitlab"] svg {
+  transform: scale(0.75);
+}

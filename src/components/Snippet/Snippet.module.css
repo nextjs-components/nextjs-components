@@ -1,0 +1,75 @@
+.snippet {
+  --themed-fg: var(--geist-foreground);
+
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  max-width: 100%;
+  border-radius: var(--geist-radius);
+  border: 1px solid var(--themed-border, var(--themed-bg));
+  background: var(--themed-bg);
+  color: var(--themed-fg);
+  padding: 9px var(--geist-gap-double) 9px var(--geist-gap-half);
+}
+.snippet:not(:global(.geist-themed)) {
+  --themed-border: var(--accents-2);
+  --themed-bg: var(--geist-background);
+}
+.snippet pre {
+  text-align: left;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+}
+button.copy {
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 3px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  color: var(--themed-fg);
+  background: var(--themed-bg);
+  padding: 4px var(--geist-gap-half);
+  border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
+  transition: opacity 0.15s ease;
+}
+@media (hover: hover) {
+  .copy:hover {
+    opacity: 0.5;
+  }
+}
+
+.snippet pre {
+  text-align: left;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.snippet pre::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.snippet.prompt pre:before {
+  content: "$ ";
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.snippet pre::-moz-selection {
+  background: var(--geist-selection);
+}
+
+.snippet pre::selection {
+  background: var(--geist-selection);
+}

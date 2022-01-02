@@ -1,0 +1,82 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+.link[data-focus-visible-added] {
+  outline: 2px auto currentColor;
+  outline-offset: 4px;
+}
+.primary {
+  color: var(--geist-foreground);
+}
+@media (hover: hover) {
+  .primary:hover {
+    background-image: linear-gradient(
+      var(--geist-foreground),
+      var(--geist-foreground)
+    );
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+}
+.highlight {
+  color: var(--geist-link-color);
+}
+@media (hover: hover) {
+  .highlight:hover {
+    background-image: linear-gradient(
+      var(--geist-link-color),
+      var(--geist-link-color)
+    );
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+}
+.secondary {
+  color: var(--accents-5);
+  transition: color 0.1s ease;
+}
+@media (hover: hover) {
+  .secondary:hover {
+    color: var(--geist-foreground);
+  }
+}
+.blend {
+  color: inherit;
+  transition: opacity 0.1s ease;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  font-weight: 500;
+}
+@media (hover: hover) {
+  .blend:hover {
+    opacity: 0.6;
+  }
+}
+.error {
+  font-size: 0.875rem;
+  color: var(--geist-error);
+  font-size: var(--geist-form-font);
+  line-height: var(--geist-form-line-height);
+  display: flex;
+}
+.error .action {
+  display: inline-block;
+}
+.text {
+  margin-left: var(--geist-gap-quarter);
+  word-break: break-word;
+}
+.small {
+  font-size: var(--geist-form-small-font);
+}
+.large {
+  font-size: var(--geist-form-large-font);
+  line-height: var(--geist-form-large-line-height);
+}

@@ -1,0 +1,71 @@
+.menu_button {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}
+.menu {
+  --border-color: var(--accents-2);
+  z-index: 100;
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: var(--shadow-medium);
+  border-radius: var(--geist-radius);
+  font-size: 0.875rem;
+  outline: none;
+  background: var(--geist-background);
+  border: 1px solid var(--border-color);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu .arrow {
+  --triangle-color: var(--geist-background);
+  position: absolute;
+  width: 12px;
+  height: 12px;
+}
+
+.menu_item {
+  outline: none;
+  color: var(--accents-5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--geist-gap-half);
+  height: var(--geist-form-height);
+  user-select: none;
+}
+@media (max-width: 600px) {
+  .menu_item {
+    height: var(--geist-form-large-height);
+    font-size: 1rem;
+  }
+}
+.drawer {
+  /* this gets passed to MuiDrawer's PaperProps.className */
+  min-height: 150px;
+}
+
+.menu_item:not(.disabled):hover {
+  color: var(--geist-foreground);
+  background: var(--accents-1);
+}
+
+.menu_item.divide + .divide {
+  border-top: 1px solid var(--accents-2);
+}
+/* add .menu to raise specificity to .error{color} takes precedence over :hover{color} */
+.menu .menu_item.error,
+.drawer .menu_item.error {
+  color: var(--geist-error);
+}
+.menu .menu_item.disabled,
+.drawer .menu_item.disabled {
+  cursor: default;
+  color: var(--accents-3);
+}

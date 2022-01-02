@@ -1,0 +1,36 @@
+.note {
+  padding: 7px var(--geist-gap-half);
+  display: flex;
+  align-items: center;
+  min-height: var(--geist-form-height);
+  border-radius: var(--geist-radius);
+  color: var(--themed-fg);
+  background: var(--themed-bg);
+  border: 1px solid var(--themed-border, var(--accents-2));
+  font-size: 14px;
+  line-height: 24px;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+.small {
+  padding: 3px var(--geist-gap-half);
+  min-height: var(--geist-form-small-height);
+}
+
+.large {
+  padding: 11px var(--geist-gap-half);
+  min-height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+}
+
+.action {
+  margin-left: auto;
+  padding-left: var(--geist-gap-half);
+}
+
+.fill {
+  color: var(--themed-fg, var(--geist-background));
+  background: var(--themed-bg, var(--geist-foreground));
+  border: 1px solid var(--themed-border, var(--geist-foreground));
+}

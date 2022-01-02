@@ -1,0 +1,60 @@
+.loading {
+  display: inline-flex;
+  align-items: center;
+  --loading-dots-height: auto;
+  --loading-dots-size: 2px;
+  height: var(--loading-dots-height);
+}
+
+.loading span:nth-of-type(2) {
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+.loading span:nth-of-type(3) {
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.loading span {
+  -webkit-animation-name: blink;
+  animation-name: blink;
+  -webkit-animation-duration: 1.4s;
+  animation-duration: 1.4s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  width: var(--loading-dots-size);
+  height: var(--loading-dots-size);
+  border-radius: 50%;
+  background-color: var(--accents-6);
+  display: inline-block;
+  margin: 0 1px;
+}
+
+.loading .spacer {
+  margin-right: var(--geist-gap-half);
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.2;
+  }
+}

@@ -1,0 +1,43 @@
+.description,
+.description dd,
+.description dt {
+  margin: 0;
+}
+
+.description dt {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  height: 14px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accents-5);
+  margin-bottom: 8px;
+}
+
+.description dd {
+  font-size: 14px;
+  color: var(--geist-foreground);
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.icon {
+  vertical-align: -3px;
+  margin-left: 4pt;
+}
+
+.right {
+  text-align: right;
+}
+
+.ellipsis {
+  width: 100%;
+}
+
+.ellipsis dd,
+.ellipsis dt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

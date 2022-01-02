@@ -1,0 +1,117 @@
+.geist-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 1px;
+  max-width: 100%;
+  flex: var(--flex);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+}
+
+.geist-container.nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.geist-container.inline {
+  display: inline-flex;
+}
+
+.geist-wrapper {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: var(--geist-page-width-with-margin);
+  padding-left: var(--geist-page-margin);
+  padding-right: var(--geist-page-margin);
+
+  /* non-standard; NotionMenu */
+  transition: width 200ms ease-in-out;
+}
+
+.geist-wrapper.full {
+  width: calc(100vw - (100vw - 100%));
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media screen and (min-width: 961px) {
+  .geist-container.lg-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .geist-container:not(.lg-row) > .geist-container {
+    margin-top: 0;
+  }
+
+  .geist-container:not(.lg-row) > .geist-container ~ .geist-container {
+    margin-top: calc(var(--geist-gap) * var(--gap-ratio));
+  }
+
+  .geist-container.lg-row > .geist-container {
+    margin-left: 0;
+  }
+
+  .geist-container.lg-row > .geist-container ~ .geist-container {
+    margin-left: calc(var(--geist-gap) * var(--gap-ratio));
+  }
+
+  .geist-container:not(.lg-row) > .geist-container {
+    flex-basis: auto;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 960px) {
+  .geist-container.md-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .geist-container:not(.md-row) > .geist-container {
+    margin-top: 0;
+  }
+
+  .geist-container:not(.md-row) > .geist-container ~ .geist-container {
+    margin-top: calc(var(--geist-gap) * var(--gap-ratio));
+  }
+
+  .geist-container.md-row > .geist-container {
+    margin-left: 0;
+  }
+
+  .geist-container.md-row > .geist-container ~ .geist-container {
+    margin-left: calc(var(--geist-gap) * var(--gap-ratio));
+  }
+
+  .geist-container:not(.md-row) > .geist-container {
+    flex-basis: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .geist-container.sm-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .geist-container:not(.sm-row) > .geist-container {
+    margin-top: 0;
+  }
+
+  .geist-container:not(.sm-row) > .geist-container ~ .geist-container {
+    margin-top: calc(var(--geist-gap) * var(--gap-ratio));
+  }
+
+  .geist-container.sm-row > .geist-container {
+    margin-left: 0;
+  }
+
+  .geist-container.sm-row > .geist-container ~ .geist-container {
+    margin-left: calc(var(--geist-gap) * var(--gap-ratio));
+  }
+
+  .geist-container:not(.sm-row) > .geist-container {
+    flex-basis: auto;
+  }
+}

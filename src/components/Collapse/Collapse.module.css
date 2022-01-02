@@ -1,0 +1,54 @@
+.collapse {
+  text-align: left;
+  border-top: 1px solid var(--accents-2);
+  border-bottom: 1px solid var(--accents-2);
+  padding: var(--geist-gap) 0;
+}
+.collapse.card {
+  padding: var(--geist-gap);
+  box-shadow: var(--shadow-small);
+  border-radius: var(--geist-radius);
+  border: none;
+}
+.collapse.context {
+  border-top: none;
+}
+.collapseGroup {
+  border-top: 1px solid var(--accents-2);
+}
+
+.button {
+  color: var(--geist-foreground);
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+}
+.button > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button:focus:global(.focus-visible) {
+  border-radius: var(--geist-radius);
+  box-shadow: 0 0 0 2px var(--geist-background), 0 0 0 4px var(--accents-3);
+}
+
+.icon {
+  display: flex;
+  transition: transform 0.2s ease;
+}
+.icon.open {
+  transform: rotate(-180deg);
+}
+
+.collapseContent {
+  font-size: 16px;
+  line-height: 26px;
+  overflow-y: hidden;
+  will-change: height;
+  transition: height 0.2s ease;
+}
+.collapseContent > div {
+  overflow-y: hidden;
+}

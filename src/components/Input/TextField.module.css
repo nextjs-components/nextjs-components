@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  align-items: center;
+  font-size: var(--geist-form-font);
+  max-width: 100%;
+}
+.container:not(.geist-themed) .input:focus {
+  border-color: var(--accents-5);
+}
+.container.error {
+  --themed-fg: var(--geist-error);
+  --themed-bg: var(--geist-background);
+  --themed-border: var(--themed-fg);
+}
+.container.error .input::placeholder {
+  color: var(--themed-fg);
+  opacity: 0.6;
+}
+
+.prefix .input {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.suffix .input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.prefix > :nth-child(2),
+.suffix > :last-child {
+  flex-shrink: 0;
+  position: relative;
+  color: var(--accents-4);
+  background: var(--accents-1);
+  border: 1px solid var(--accents-2);
+  height: 2.5rem;
+  padding: 0 var(--geist-gap-half);
+  display: flex;
+  align-items: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.prefix > :nth-child(2) {
+  order: 0;
+  border-right: 0;
+  border-radius: var(--geist-radius) 0 0 var(--geist-radius);
+}
+
+.suffix > :last-child {
+  order: 2;
+  border-left: 0;
+  border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
+}
+
+.prefix.noPrefixStyle > :nth-child(2) {
+  background: var(--geist-background);
+  margin-right: var(--geist-gap-half-negative);
+  border-color: var(--themed-border, var(--accents-2));
+}
+.suffix.noSuffixStyle > :last-child {
+  background: var(--geist-background);
+  margin-left: var(--geist-gap-half-negative);
+  border-color: var(--themed-border, var(--accents-2));
+}
+
+.input {
+  font: inherit;
+  font-size: 100%;
+  width: 100%;
+  min-width: 0;
+  display: inline-flex;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid var(--themed-border, var(--accents-2));
+  border-radius: var(--geist-radius);
+  padding: 0 var(--geist-gap-half);
+  background: var(--themed-bg, var(--geist-background));
+  color: var(--themed-fg, var(--geist-foreground));
+  height: var(--geist-form-height);
+  line-height: normal;
+  order: 1;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.small {
+  font-size: var(--geist-form-small-font);
+  height: var(--geist-form-small-height);
+}
+.small.prefix > :nth-child(2),
+.small.suffix > :last-child {
+  padding: 0 var(--geist-gap-quarter);
+  height: var(--geist-form-small-height);
+  font-size: var(--geist-form-small-font);
+}
+
+.large {
+  font-size: var(--geist-form-large-font);
+  height: var(--geist-form-large-height);
+}
+.large.prefix > :nth-child(2),
+.large.suffix > :last-child {
+  height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+}
+
+.input:disabled {
+  background: var(--accents-1);
+  border-color: var(--accents-2);
+  color: var(--accents-5);
+  opacity: 1;
+  -webkit-text-fill-color: var(--accents-5);
+  cursor: not-allowed;
+}
+
+/* Non vercel hack? */
+.input:disabled::placeholder {
+  color: var(--accents-3);
+  -webkit-text-fill-color: var(--accents-3);
+}
+
+/* type="date" */
+/* meant to be used with the `suffix=` prop */
+.input:enabled:read-write::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  height: var(--geist-form-height);
+  width: var(--geist-form-height);
+  color: var(--geist-foreground);
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.input[type="file" i]::-webkit-file-upload-button {
+  vertical-align: middle;
+  height: 100%;
+  width: 0px !important;
+  padding: 0px !important;
+  margin: 0px;
+  border: none;
+  display: none;
+}
+
+.input[type="color" i]::-webkit-color-swatch-wrapper {
+  padding: var(--geist-gap-quarter) 0;
+}
+.input[type="color" i]::-webkit-color-swatch {
+  border: none;
+}

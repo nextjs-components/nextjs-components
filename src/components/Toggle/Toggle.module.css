@@ -1,0 +1,97 @@
+.wrapper {
+  align-items: middle;
+  display: inline-flex;
+  padding: 3px 0;
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  --checked-color: var(--geist-success);
+  --unchecked-color: var(--accents-2);
+  --duration: 150ms;
+}
+
+.toggle {
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-block;
+  height: 14px;
+  position: relative;
+  transition: background var(--duration) cubic-bezier(0, 0, 0.2, 1);
+  transition-property: background, border-color;
+  width: 28px;
+}
+
+.toggle.checked {
+  background: var(--checked-color);
+  border: 1px solid var(--checked-color);
+}
+
+.toggle:not(.checked) {
+  background: var(--unchecked-color);
+  border: 1px solid var(--unchecked-color);
+}
+
+.toggle.disabled,
+.toggle.disabled .thumb {
+  cursor: not-allowed;
+}
+
+.toggle.disabled {
+  background: var(--accents-1);
+}
+
+.toggle.disabled .thumb {
+  background: var(--accents-2);
+}
+
+.toggle.disabled.checked {
+  background: var(--accents-1);
+  border-color: var(--accents-2);
+}
+
+.thumb {
+  border-radius: 50%;
+  border: 1px solid transparent;
+  cursor: pointer;
+  height: 12px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  --left: 0;
+  transform: translate(var(--left), -50%);
+  transition: transform var(--duration) cubic-bezier(0, 0, 0.2, 1);
+  width: 12px;
+  background: var(--geist-background);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.thumb.checked {
+  --left: 14px;
+}
+
+.thumb:not(.checked) {
+  --left: 0;
+}
+
+.input:focus:global(.focus-visible) ~ .toggle {
+  box-shadow: 0 0 0 2px var(--geist-background), 0 0 0 4px var(--accents-3);
+}
+
+.large .toggle {
+  height: 24px;
+  width: 40px;
+}
+
+.large .thumb {
+  height: 22px;
+  width: 22px;
+}
+
+.large .thumb.checked {
+  --left: 16px;
+}

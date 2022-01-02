@@ -1,0 +1,83 @@
+.badge {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--themed-fg, var(--geist-background));
+  background: var(--themed-bg, var(--geist-foreground));
+  border: 1px solid
+    var(--themed-border, var(--themed-bg, var(--geist-foreground)));
+  border-radius: 16px;
+  padding: 2px 7px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1;
+  cursor: inherit;
+  font-feature-settings: "tnum";
+  font-variant: tabular-nums;
+}
+
+.success {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-success);
+  --themed-border: var(--geist-success);
+}
+.success.contrast {
+  --themed-fg: var(--geist-success-dark);
+  --themed-bg: var(--geist-success-lighter);
+  --themed-border: var(--geist-success);
+}
+
+.error {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-error);
+  --themed-border: var(--geist-error);
+}
+.error.contrast {
+  --themed-fg: var(--geist-error-dark);
+  --themed-bg: var(--geist-error-lighter);
+  --themed-border: var(--geist-error);
+}
+
+.warning {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-warning);
+  --themed-border: var(--geist-warning);
+}
+.warning.contrast {
+  --themed-fg: var(--geist-warning-dark);
+  --themed-bg: var(--geist-warning-lighter);
+  --themed-border: var(--geist-warning);
+}
+
+.violet {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-violet);
+  --themed-border: var(--geist-violet);
+}
+.violet.contrast {
+  --themed-fg: var(--geist-violet-dark);
+  --themed-bg: var(--geist-violet-lighter);
+  --themed-border: var(--geist-violet);
+}
+
+.secondary {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-secondary);
+  --themed-border: var(--geist-secondary);
+}
+.secondary.contrast {
+  --themed-fg: var(--geist-secondary-dark);
+  --themed-bg: var(--geist-secondary-lighter);
+  --themed-border: var(--geist-secondary);
+}
+.outline {
+  color: var(--themed-bg, var(--geist-foreground));
+  background: transparent;
+}
+.small {
+  padding: 3px 7px;
+  font-size: 12px;
+}
+.large {
+  padding: 3px 10px;
+  font-size: 16px;
+}

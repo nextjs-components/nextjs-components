@@ -1,0 +1,88 @@
+.container {
+  --themed-fg: var(--geist-foreground);
+  --themed-bg: var(--geist-background);
+  --themed-border: var(--accents-2);
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--themed-fg);
+}
+
+.container.disabled,
+.select:disabled {
+  background: var(--accents-1);
+  border-color: var(--accents-2);
+}
+.container.disabled select {
+  color: var(--accents-4);
+  cursor: not-allowed;
+}
+
+.container.error {
+  --themed-fg: var(--geist-error);
+  --themed-bg: var(--geist-background);
+  --themed-border: var(--themed-fg);
+}
+
+.container:not(.geist-themed):hover .select:not(:disabled), 
+/*.select:hover,*/ /* ❌ don't highlight when hovering over an htmlFor label*/
+.select:not(.geist-themed):focus-within {
+  border-color: var(--accents-5);
+}
+
+.prefix {
+  left: var(--geist-gap-half);
+}
+.suffix {
+  right: var(--geist-gap-half);
+}
+
+.prefix,
+.suffix {
+  display: inline-flex;
+  position: absolute;
+  pointer-events: none;
+  box-sizing: inherit;
+}
+
+.prefix + .select {
+  padding-left: calc(1.5 * var(--geist-gap));
+}
+
+.select {
+  font-size: 100%;
+  font: inherit;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: var(--geist-form-font);
+  height: var(--geist-form-height);
+  line-height: var(--geist-form-line-height);
+  text-rendering: auto;
+  width: 100%;
+  border-radius: var(--geist-radius);
+  border: 1px solid var(--themed-border);
+  background: var(--themed-bg);
+  color: var(--themed-fg);
+  padding: 0 var(--geist-gap-half);
+  padding-right: calc(1.5 * var(--geist-gap));
+  transition: border-color 0.15s ease;
+}
+
+.small {
+  font-size: var(--geist-form-small-font);
+  height: var(--geist-form-small-height);
+}
+
+.error_alert {
+  color: var(--geist-error);
+  font-size: small;
+  padding: 0;
+  border: none;
+}
+.error_alert svg {
+  fill: var(--geist-error);
+}

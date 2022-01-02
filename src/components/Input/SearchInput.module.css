@@ -1,0 +1,74 @@
+.wrapper {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid var(--accents-2);
+  display: inline-flex;
+  position: relative;
+  -webkit-transition: border 0.2s ease, color 0.2s ease;
+  transition: border 0.2s ease, color 0.2s ease;
+  width: 100%;
+  background: var(--geist-background);
+  height: 2.5rem;
+
+  max-width: 23rem;
+}
+.wrapper svg {
+  color: var(--accents-2) !important;
+  transition: color 0.2s ease;
+}
+.wrapper:focus,
+.wrapper:focus-within,
+.wrapper:focus-visible {
+  border: 1px solid var(--geist-foreground);
+}
+.wrapper:focus svg,
+.wrapper:focus-within svg,
+.wrapper:focus-visible svg {
+  color: inherit !important;
+}
+
+.icon {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding: 0 var(--geist-gap-half);
+  vertical-align: middle;
+}
+
+.input_wrapper {
+  display: block;
+  margin: 4px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  display: block;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 26px;
+  outline: 0;
+  width: 100%;
+  color: var(--geist-foreground);
+  background-color: transparent;
+  caret-color: var(--geist-foreground);
+  text-overflow: ellipsis;
+  -webkit-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

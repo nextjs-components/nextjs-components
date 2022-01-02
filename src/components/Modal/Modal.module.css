@@ -1,0 +1,125 @@
+.wrapper {
+  background-color: var(--geist-background);
+  border-radius: 8px;
+  box-shadow: var(--shadow-large);
+  color: var(--geist-foreground);
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  opacity: 0;
+  transform: translate3d(0, -40px, 0);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  overflow-y: auto;
+
+  width: 420px;
+}
+.wrapper.allowOverflow {
+  overflow: visible;
+}
+.wrapper.active {
+  opacity: 1;
+  transform: translateZ(0);
+}
+@media (max-width: 540px) {
+  .wrapper {
+    /* width: unset; */
+    max-width: calc(100vw - 20px);
+  }
+}
+.actions {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid var(--accents-2);
+  display: flex;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: hidden;
+}
+.action {
+  color: var(--accents-5);
+  background: var(--geist-background);
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  outline: none;
+  padding: var(--geist-gap) 0;
+  margin: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.action:not(:only-child):not(:last-child) {
+  border-right: 1px solid var(--accents-2);
+}
+.action:last-child {
+  color: var(--geist-foreground);
+}
+.action:not([disabled]):focus {
+  background: var(--accents-1);
+  color: var(--geist-foreground);
+}
+@media (hover: hover) {
+  .action:not([disabled]):hover {
+    background: var(--accents-1);
+    color: var(--geist-foreground);
+  }
+}
+.action[disabled] {
+  color: var(--accents-4);
+  background: var(--accents-1);
+  cursor: not-allowed;
+}
+.modalBody {
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 0;
+}
+.modalBody.padding {
+  padding: var(--geist-gap);
+}
+@media (max-width: 540px) {
+  .modalBody {
+    padding: 20px 25px;
+  }
+}
+
+.header {
+  background: var(--geist-background);
+  color: var(--geist-foreground);
+  padding: 19px 1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.modalParagraph {
+  line-height: 24px;
+  margin: 20px 0;
+}
+.modalParagraph:first-child {
+  margin-top: 0;
+}
+.modalParagraph:last-child {
+  margin-bottom: 0;
+}
+.inset {
+  margin: 0 var(--geist-gap-negative);
+  border-top: 1px solid var(--accents-2);
+  border-bottom: 1px solid var(--accents-2);
+  background: var(--accents-1);
+  padding: var(--geist-gap);
+}
+.inset.last {
+  margin-bottom: var(--geist-gap-negative);
+  border-bottom: none;
+}
+.outset {
+  margin-left: var(--geist-gap-negative);
+  margin-right: var(--geist-gap-negative);
+}

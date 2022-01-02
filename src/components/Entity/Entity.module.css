@@ -1,0 +1,114 @@
+.entity {
+  position: relative;
+  box-sizing: border-box;
+  padding: var(--geist-space-4x);
+  border: 1px solid var(--accents-2);
+  border-radius: var(--geist-radius);
+  background: var(--geist-background);
+}
+
+/* blend borders for adjacent Entity */
+.entity + .entity,
+.entity + .entity.form,
+.entity.form + .entity,
+.entity.form + .entity.form {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: -1px;
+}
+.entity.editing + .entity.entity:before,
+.entity.editing + .entity.form:before,
+.entity.form + .entity.entity:before,
+.entity.form + .entity.form:before {
+  background: var(--accents-1);
+}
+.entity.entity + .entity.entity:before,
+.entity.entity + .entity.for:before,
+.entity.for + .entity.entity:before,
+.entity.for + .entity.for:before {
+  content: "";
+  width: 100%;
+  height: 3px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: -4px;
+  background: var(--geist-background);
+  box-shadow: -1px 0 0 var(--accents-2), 1px 0 0 var(--accents-2);
+}
+/* end */
+
+.field {
+  display: grid;
+  grid-template-areas: "checkbox avatar content actions menu";
+  /* 
+    actual vercel implementation doesn't use minmax(), 
+    but this appears to help prevent <Switch/> from overflowing
+    in the "actions" grid-template-area
+  */
+  /* grid-template-columns: auto auto 1fr auto auto; */
+  grid-template-columns: auto auto 1fr minmax(0, auto) auto;
+  justify-content: stretch;
+  align-content: stretch;
+
+  /* Non vercel */
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .field + .field {
+    padding-top: var(--geist-space-4x);
+    border-top: 1px solid var(--accents-2);
+  }
+}
+@media screen and (max-width: 600px) {
+  .field {
+    flex: unset !important;
+    justify-content: flex-end;
+  }
+}
+
+.field .avatar {
+  display: flex;
+  grid-area: avatar;
+  margin-right: var(--geist-space-4x);
+
+  /* non vercel */
+  align-items: center;
+}
+.field .content {
+  grid-area: content;
+}
+
+.field .rightAligned {
+  text-align: right;
+  align-items: flex-end;
+}
+@media screen and (max-width: 600px) {
+  .field .rightAligned {
+    text-align: unset;
+    align-items: unset;
+  }
+}
+
+.field .label {
+  text-transform: uppercase;
+}
+
+.field .description,
+.field .label,
+.field .title {
+  line-height: 20px;
+}
+
+.field .actions {
+  display: none;
+  grid-area: actions;
+  margin-left: var(--geist-space-4x);
+}
+.field.last .actions,
+.field.last .menu {
+  display: unset;
+}
+
+.first {
+}

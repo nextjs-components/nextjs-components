@@ -1,0 +1,197 @@
+.fieldset {
+  background: var(--geist-background);
+  border-radius: var(--geist-radius);
+  border: 1px solid var(--accents-2);
+  position: relative;
+}
+.fieldset.shadow {
+  border: none;
+  box-shadow: var(--shadow-large);
+}
+.fieldset.borderless {
+  border: 0;
+  border-radius: 0;
+}
+.fieldset > .content:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.content {
+  position: relative;
+  background-color: var(--geist-background);
+  border-top-left-radius: var(--geist-radius);
+  border-top-right-radius: var(--geist-radius);
+  padding: var(--geist-gap);
+}
+.content.full {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+.content.disabled {
+  background: var(--accents-1);
+  color: var(--accents-4);
+}
+.footer {
+  position: relative;
+  min-height: 54px;
+  align-items: center;
+  background-color: var(--accents-1);
+  border-bottom-left-radius: var(--geist-radius);
+  border-bottom-right-radius: var(--geist-radius);
+  border-top: 1px solid var(--accents-2);
+  color: var(--accents-6);
+  display: flex;
+  font-size: 0.875rem;
+  padding: var(--geist-gap-half) var(--geist-gap);
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+.footer.disabled {
+  color: var(--accents-3);
+}
+.footer.highlight {
+  background-color: var(--bg);
+}
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--geist-gap);
+  }
+  .footer > * {
+    margin-bottom: var(--geist-gap-half);
+    border-bottom: 1px solid var(--accents-1);
+  }
+  .footer > :last-of-type {
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding: 0 7.5px;
+  }
+}
+.footer .status {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+}
+.footer .status.disabled {
+  pointer-events: none;
+}
+.footer .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
+@media (max-width: 768px) {
+  .footer .actions {
+    margin-left: 0;
+  }
+}
+@media (max-width: 420px) {
+  .footer .actions {
+    justify-content: space-between;
+  }
+}
+.footer .action {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+.footer .action:first-of-type {
+  margin-left: 0;
+}
+.footer .action:last-of-type {
+  margin-right: 0;
+}
+@media (max-width: 420px) {
+  .footer .action {
+    text-align: center;
+    width: 100%;
+  }
+}
+.title {
+  align-items: center;
+  display: inline-flex;
+  word-break: break-word;
+}
+.error {
+  color: var(--geist-error);
+}
+.tab {
+  height: 34px;
+  margin: 0 -1px -1px 0;
+  padding: 0 20px;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #999;
+  font-size: 14px;
+  overflow: hidden;
+  transition: border 0.2s ease, background 0.2s ease, color 0.2s ease;
+  border-radius: 0;
+  border: 1px solid var(--accents-2);
+  white-space: nowrap;
+  text-decoration: none;
+  text-transform: capitalize;
+  line-height: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  background: var(--accents-1);
+}
+.tab:first-of-type {
+  border-top-left-radius: 5px;
+}
+.tab:last-of-type {
+  border-top-right-radius: 5px;
+}
+.tab[disabled] {
+  position: relative;
+  z-index: 1;
+  color: var(--geist-foreground);
+  background: var(--geist-background);
+  border-bottom: 1px solid var(--geist-background);
+  cursor: default;
+}
+.tabs .fieldset {
+  border-top-left-radius: 0;
+  overflow: hidden;
+}
+.tabs.disabled {
+  pointer-events: none;
+}
+.tabs.disabled .tab {
+  background: var(--accents-1);
+  color: #999;
+  border-bottom: 1px solid var(--accents-1);
+}
+.tabsRow {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+  margin-bottom: -1px;
+}
+.tabs.borderless .tabsRow {
+  margin-bottom: 0;
+  box-shadow: 0 -1px var(--accents-2) inset;
+}
+.tabs.borderless .tab {
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  transition: border 0.2s ease, color 0.2s ease;
+  padding: 0;
+  margin-right: 25px;
+}
+.tabs.borderless .tab[disabled] {
+  border-color: var(--geist-foreground);
+  background: transparent;
+}
+.tabs.borderless.disabled .tab[disabled] {
+  border-color: var(--accents-3);
+  background: transparent;
+}

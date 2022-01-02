@@ -1,0 +1,48 @@
+.switch {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: var(--geist-radius);
+  max-width: 100%;
+  height: var(--geist-form-height);
+  font-size: var(--geist-form-font);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.switch.small {
+  height: var(--geist-form-small-height);
+  font-size: var(--geist-form-small-font);
+}
+.switch.large {
+  height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+}
+
+.button.active {
+  background-color: var(--accents-1);
+}
+.button.active {
+  font-weight: 700;
+}
+.switch > :first-child {
+  border-radius: var(--geist-radius) 0 0 var(--geist-radius);
+  border-left: 1px solid var(--accents-2);
+}
+.switch > :last-child {
+  border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
+  border-left: none;
+}
+.button {
+  margin: 0;
+  font-size: inherit;
+  height: 100%;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  z-index: 1;
+  border: 1px solid var(--accents-2);
+  border-left: none;
+  color: var(--geist-foreground);
+}
