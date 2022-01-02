@@ -1,12 +1,6 @@
-export * from './utils';
-
-export * from "./styles";
-
-export * from "./icons";
-
-export * from "./contexts/DisabledContext"
-export * from "./contexts/IconSizeContext"
-export * from "./contexts/ThemeContext"
+export { DisabledContext } from "./contexts/DisabledContext";
+export { IconSizeContext, useIconSize } from "./contexts/IconSizeContext";
+export { ThemeContextProvider, useTheme } from "./contexts/ThemeContext";
 
 export * from "./components/Avatar"
 export * from "./components/Badge"
