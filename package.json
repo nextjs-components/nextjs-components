@@ -4,11 +4,12 @@
     "name": "Kevin Wang",
     "url": "https://thekevinwang.com"
   },
-  "version": "0.1.0-rc2",
+  "version": "0.1.0-rc26",
   "description": "React components transcribed from the Vercel design system.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npx swc src --copy-files -d dist"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,8 @@
     "react-use-measure": "^2.1.1"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.55",
+    "@swc/core": "^1.2.124",
     "@testing-library/react": "^12.1.2",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
