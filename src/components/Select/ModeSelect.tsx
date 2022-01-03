@@ -1,7 +1,8 @@
+import React from "react";
 import clsx from "clsx";
-import { useTheme } from "contexts/ThemeContext";
-import { IconSizeContext } from "contexts/IconSizeContext";
-import { Sun, Moon, DisplayIcon, ChevronUpDown } from "icons";
+import { useTheme } from "../../contexts/ThemeContext";
+import { IconSizeContext } from "../../contexts/IconSizeContext";
+import { Sun, Moon, DisplayIcon, ChevronUpDown } from "../../icons";
 
 import styles from "./Select.module.css";
 

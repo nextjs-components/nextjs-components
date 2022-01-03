@@ -1,5 +1,5 @@
+import React from "react";
 import clsx from "clsx";
-import * as React from "react";
 import styles from "./skeleton.module.css";
 
 interface Props {

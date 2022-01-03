@@ -1,7 +1,8 @@
+import React from "react";
 import clsx from "clsx";
 import styles from "./TextField.module.css";
 
-import { Label } from "components/Label";
+import { Label } from "../../components/Label";
 
 type InputProps = Partial<
   React.DetailedHTMLProps<

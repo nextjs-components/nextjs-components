@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
 
-import { getContrast } from "utils/getContrast";
-import { useToasts } from "components/Toast";
+import { getContrast } from "../../utils/getContrast";
+import { useToasts } from "../../components/Toast";
 
-import { Color } from "styles/Color";
-import { useTheme } from "src/contexts/ThemeContext";
+import { Color } from "../../styles/Color";
+import { useTheme } from "../../contexts/ThemeContext";
 
 function componentToHex(c: string) {
   const hex = parseInt(c, 10).toString(16);

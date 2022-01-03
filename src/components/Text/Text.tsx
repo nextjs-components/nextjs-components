@@ -1,5 +1,6 @@
+import React from "react";
 import clsx from "clsx";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 // THIS APPEARS TO BE AN OLDER TEXT COMPONENT
 // new props 08/03/2021

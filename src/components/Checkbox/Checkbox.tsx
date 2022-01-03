@@ -1,3 +1,4 @@
+import React from "react";
 import clsx from "clsx";
 import { InputHTMLAttributes } from "react";
 import styles from "./Checkbox.module.css";

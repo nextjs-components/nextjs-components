@@ -1,4 +1,4 @@
-import { useIconSize } from "contexts/IconSizeContext";
+import { useIconSize } from "../contexts/IconSizeContext";
 
 const LinkIcon = ({ color = "currentColor" }) => {
   const { size } = useIconSize();

@@ -1,3 +1,4 @@
+import React from "react";
 // <MenuWrapper>
 //   <MenuButton>Actions</MenuButton>
 //   <Menu width={200}>
@@ -12,8 +13,8 @@ import clsx from "clsx";
 import Popover from "@material-ui/core/Popover";
 import useMediaQuery from "hooks/useMediaQuery";
 
-import { Button } from "components/Button";
-import Drawer from "components/Drawer";
+import { Button } from "../../components/Button";
+import Drawer from "../../components/Drawer";
 
 import styles from "./Menu.module.css";
 

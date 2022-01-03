@@ -1,13 +1,14 @@
+import React from "react";
 import { forwardRef, useState, useRef, useContext } from "react";
 import clsx from "clsx";
 import { useHover } from "@react-aria/interactions";
 import { useButton } from "@react-aria/button";
 
-import { Spinner } from "components/Spinner";
-import { IconSizeContext } from "contexts/IconSizeContext";
-import { DisabledContext } from "contexts/DisabledContext";
+import { Spinner } from "../../components/Spinner";
+import { IconSizeContext } from "../../contexts/IconSizeContext";
+import { DisabledContext } from "../../contexts/DisabledContext";
 
-import reset from "styles/reset/reset.module.css";
+import reset from "../../styles/reset/reset.module.css";
 import styles from "./button.module.css";
 
 type IntrinsicProps = React.DetailedHTMLProps<

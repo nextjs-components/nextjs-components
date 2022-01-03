@@ -1,4 +1,4 @@
-import { useIconSize } from "contexts/IconSizeContext";
+import { useIconSize } from "../contexts/IconSizeContext";
 
 export const Sun = ({ color = "currentColor" }) => {
   const { size } = useIconSize();

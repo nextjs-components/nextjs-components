@@ -1,3 +1,4 @@
+import React from "react";
 import { createContext, useState, useRef } from "react";
 
 type ToastType = "success" | "error" | "violet";

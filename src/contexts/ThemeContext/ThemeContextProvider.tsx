@@ -1,8 +1,8 @@
-import { isBrowser } from "utils/isBrowser";
-import { useMediaQuery } from "hooks";
+import { isBrowser } from "../../utils/isBrowser";
+import { useMediaQuery } from "../../hooks";
 import { Modes, ThemeContext } from "./ThemeContext";
 
-import { useContext, useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const STORAGE_KEY = "mode";
 
@@ -58,5 +58,3 @@ const ThemeContextProvider = ({ children }) => {
 };
 
 export default ThemeContextProvider;
-
-export const useTheme = () => useContext(ThemeContext);

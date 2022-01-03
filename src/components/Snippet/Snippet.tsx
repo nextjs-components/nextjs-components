@@ -1,7 +1,8 @@
+import React from "react";
 import clsx from "clsx";
 
-import { CopyIcon } from "icons";
-import { useToasts } from "components/Toast";
+import { CopyIcon } from "../../icons";
+import { useToasts } from "../../components/Toast";
 
 import styles from "./Snippet.module.css";
 

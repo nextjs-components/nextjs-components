@@ -1,3 +1,4 @@
+import React from "react";
 import clsx from "clsx";
 
 import {
@@ -9,10 +10,9 @@ import {
 } from "@react-aria/overlays";
 import { FocusScope } from "@react-aria/focus";
 
-import { Text } from "components/Text";
+import { Text } from "../../components/Text";
 import styles from "./Modal.module.css";
 import { useRef } from "react";
-import * as React from "react";
 
 export interface ModalProps {
   isOpen: boolean;

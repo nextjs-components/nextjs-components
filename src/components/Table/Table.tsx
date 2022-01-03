@@ -1,14 +1,15 @@
+import React from "react";
 import { useState, Children } from "react";
 import clsx from "clsx";
 
-import { Badge } from "components/Badge";
-import { Checkbox } from "components/Checkbox";
-import { MoreVertical } from "icons";
-import { Scroller } from "components/Scroller";
-import { MenuWrapper, MenuButton, Menu, MenuItem } from "components/Menu";
+import { Badge } from "../../components/Badge";
+import { Checkbox } from "../../components/Checkbox";
+import { MoreVertical } from "../../icons";
+import { Scroller } from "../../components/Scroller";
+import { MenuWrapper, MenuButton, Menu, MenuItem } from "../../components/Menu";
 
 import styles from "./Table.module.css";
-import reset from "styles/reset/reset.module.css";
+import reset from "../../styles/reset/reset.module.css";
 
 interface Cell<T extends any = any>
   extends React.FC<{

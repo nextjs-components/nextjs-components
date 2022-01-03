@@ -1,3 +1,4 @@
+import React from "react";
 import type { CSSProperties, ComponentType } from "react";
 import { useState, memo } from "react";
 import clsx from "clsx";

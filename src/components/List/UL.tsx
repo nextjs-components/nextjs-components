@@ -1,3 +1,4 @@
+import React from "react";
 /**
  * Notes
  * https://github.com/vercel/styled-jsx/issues/121#issuecomment-280332737

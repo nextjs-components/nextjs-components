@@ -1,8 +1,9 @@
+import React from "react";
 import { Children, useContext } from "react";
 import { isFragment } from "react-is";
 import Skeleton from "@material-ui/lab/Skeleton";
 
-import { Container } from "components/Container";
+import { Container } from "../../components/Container";
 
 import styles from "./Entity.module.css";
 

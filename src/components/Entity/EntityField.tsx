@@ -1,9 +1,10 @@
+import React from "react";
 import { useContext } from "react";
 import clsx from "clsx";
 import Skeleton from "@material-ui/lab/Skeleton";
 
-import { Container } from "components/Container";
-import { Text } from "components/Text";
+import { Container } from "../../components/Container";
+import { Text } from "../../components/Text";
 
 import { PlaceHolderContext } from "./index";
 import styles from "./Entity.module.css";

@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import {
   LiveProvider,
@@ -7,11 +8,11 @@ import {
   EditorProps,
 } from "react-live";
 
-import { Container } from "components/Container";
-import { Details } from "components/Details";
-import { CopyIcon, RotateCW } from "icons";
+import { Container } from "../../components/Container";
+import { Details } from "../../components/Details";
+import { CopyIcon, RotateCW } from "../../icons";
 
-import { useToasts } from "components/Toast";
+import { useToasts } from "../../components/Toast";
 
 import styles from "./editor.module.css";
 

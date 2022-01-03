@@ -1,3 +1,4 @@
+import React from "react";
 import clsx from "clsx";
 import useMeasure from "react-use-measure";
 import {
@@ -11,9 +12,9 @@ import {
 import { useId } from "@react-aria/utils";
 import { FocusRing } from "@react-aria/focus";
 
-import { Text } from "components/Text";
+import { Text } from "../../components/Text";
 import styles from "./Collapse.module.css";
-import { ChevronDown } from "icons";
+import { ChevronDown } from "../../icons";
 
 interface ICollapseContext {
   onChange?: (val: string | React.ReactNode) => void;
@@ -63,11 +64,10 @@ const Collapse: React.ComponentType<Props> = memo(
       [context]
     );
 
-    const isOpen = useMemo(() => title === context.selected || open, [
-      context.selected,
-      title,
-      open,
-    ]);
+    const isOpen = useMemo(
+      () => title === context.selected || open,
+      [context.selected, title, open]
+    );
 
     return (
       <div
