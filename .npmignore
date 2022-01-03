@@ -1,1 +1,6 @@
 node_modules
+*.test.tsx
+*.text.tsx.snap
+.swcrc
+*.md
+.gitignore
