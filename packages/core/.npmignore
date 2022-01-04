@@ -1,8 +1,10 @@
 node_modules
+*.test.ts
 *.test.tsx
+*.text.ts.snap
 *.text.tsx.snap
 .swcrc
-*.md
 .gitignore
+__
 
 docs
