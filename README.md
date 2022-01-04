@@ -40,3 +40,8 @@ export default function Home() {
   );
 }
 ```
+
+## Docs Preview
+
+![image](https://user-images.githubusercontent.com/26389321/148008111-2bde682a-991e-4fa8-b347-77aa9ec9fe49.png)
+
