@@ -9,6 +9,13 @@ A collection of React components, transcribed from https://vercel.com/design
 [![npm latest package](https://img.shields.io/npm/v/nextjs-components/latest.svg)](https://www.npmjs.com/package/nextjs-components)
 [![npm next package](https://img.shields.io/npm/v/nextjs-components/next.svg)](https://www.npmjs.com/package/nextjs-components)
 
+## Todo's
+
+- [ ] Unit test coverage
+- [ ] Unit tests in CI (Github workflows)
+- [ ] Add every component to the docs site
+- [ ] Deploy the docs site
+
 ## Installation
 
 ```bash
