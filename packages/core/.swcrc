@@ -15,7 +15,11 @@
     }
   },
   "module": {
-    "type": "commonjs"
+    "type": "commonjs",
+    "strict": false,
+    "strictMode": true,
+    "lazy": false,
+    "noInterop": false
   },
-  "minify": false
+  "minify": true
 }
