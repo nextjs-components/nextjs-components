@@ -15,6 +15,7 @@ A collection of React components, transcribed from https://vercel.com/design
 - [ ] Unit tests in CI (Github workflows)
 - [ ] Add every component to the docs site
 - [ ] Deploy the docs site
+- [ ] Bundle size?
 
 ## Installation
 
