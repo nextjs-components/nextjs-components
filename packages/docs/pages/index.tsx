@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { Badge } from "nextjs-components/src/components/Badge";
 
 export default function Home() {
@@ -10,7 +11,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Badge>asdas</Badge>
+      <Link href="/design/button">
+        <a>
+          <Badge>Go to Docs</Badge>
+        </a>
+      </Link>
     </div>
   );
 }

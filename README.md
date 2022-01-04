@@ -22,3 +22,21 @@ yarn add nextjs-components
 ```
 
 ## Usage
+
+```tsx
+// pages/_app.tsx
+import "nextjs-components/src/styles/globals.css";
+```
+
+```tsx
+// pages/home.tsx
+import { Badge } from "nextjs-components/src/components/Badge";
+
+export default function Home() {
+  return (
+    <div>
+      <Badge>A badge component</Badge>
+    </div>
+  );
+}
+```
