@@ -9,6 +9,7 @@ A collection of React components, transcribed from https://vercel.com/design.[^1
 [![npm latest package](https://img.shields.io/npm/v/nextjs-components/latest.svg)](https://www.npmjs.com/package/nextjs-components) [![npm next package](https://img.shields.io/npm/v/nextjs-components/next.svg)](https://www.npmjs.com/package/nextjs-components)
 
 ![](https://badgen.net/bundlephobia/min/nextjs-components) ![](https://badgen.net/bundlephobia/minzip/nextjs-components)
+
 ![](https://badgen.net/bundlephobia/dependency-count/nextjs-components) ![](https://badgen.net/bundlephobia/tree-shaking/nextjs-components)
 
 ## Motivation
@@ -21,7 +22,7 @@ TBD
 - [ ] Unit tests in CI (Github workflows)
 - [ ] Add every component to the docs site
 - [ ] Deploy the docs site
-- [ ] Bundle size?
+- [x] Report Bundle size
 - [ ] Figure out monorepo situation
   - Lerna? Turborepo?
   - 1 Large components-package or multiple per-component packages?
