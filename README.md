@@ -2,12 +2,14 @@
   <b>nextjs-components</b>
 </p>
 
-A collection of React components, transcribed from https://vercel.com/design
+A collection of React components, transcribed from https://vercel.com/design.[^1]
 
-**Note:** This is not affiliated with [Vercel](https://vercel.com)
+[^1]: This is not affiliated with [Vercel](https://vercel.com)
 
-[![npm latest package](https://img.shields.io/npm/v/nextjs-components/latest.svg)](https://www.npmjs.com/package/nextjs-components)
-[![npm next package](https://img.shields.io/npm/v/nextjs-components/next.svg)](https://www.npmjs.com/package/nextjs-components)
+[![npm latest package](https://img.shields.io/npm/v/nextjs-components/latest.svg)](https://www.npmjs.com/package/nextjs-components) [![npm next package](https://img.shields.io/npm/v/nextjs-components/next.svg)](https://www.npmjs.com/package/nextjs-components)
+
+![](https://badgen.net/bundlephobia/min/nextjs-components) ![](https://badgen.net/bundlephobia/minzip/nextjs-components)
+![](https://badgen.net/bundlephobia/dependency-count/nextjs-components) ![](https://badgen.net/bundlephobia/tree-shaking/nextjs-components)
 
 ## Motivation
 
