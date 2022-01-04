@@ -2,7 +2,7 @@
   <b>nextjs-components</b>
 </p>
 
-A collection of React components, transcribed from https://vercel.com/design.[^1]
+A collection of React components, transcribed from https://vercel.com/design. [^1]
 
 [^1]: This is not affiliated with [Vercel](https://vercel.com)
 
