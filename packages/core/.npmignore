@@ -5,6 +5,7 @@ node_modules
 *.text.tsx.snap
 .swcrc
 .gitignore
-__
-
+# --
 docs
+src
+tsconfig.tsbuildinfo
