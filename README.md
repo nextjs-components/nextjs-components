@@ -47,6 +47,9 @@ yarn add next-transpile-modules
 
 ## Usage
 
+![image](https://user-images.githubusercontent.com/26389321/148150047-7c3f530e-cfc5-4f29-8a61-eb08d4397851.png)
+
+
 ### With `Next.js`
 
 [CodeSandbox](https://codesandbox.io/s/nextjs-components-next-t7vil)
