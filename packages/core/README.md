@@ -45,9 +45,14 @@ yarn add next-transpile-modules
 
 ## Usage
 
+![image](https://user-images.githubusercontent.com/26389321/148150047-7c3f530e-cfc5-4f29-8a61-eb08d4397851.png)
+
 ### With `Next.js`
 
 [CodeSandbox](https://codesandbox.io/s/nextjs-components-next-t7vil)
+
+<details>
+  <summary>Hide/Show Example Code</summary>
 
 Transpile ♻️
 
@@ -135,9 +140,14 @@ export default function IndexPage() {
 }
 ```
 
+</details>
+
 ### With `create-react-app`
 
 [CodeSandbox](https://codesandbox.io/s/nextjs-components-zhbkv)
+
+<details>
+  <summary>Hide/Show Example Code</summary>
 
 ```jsx
 // App.js
@@ -196,6 +206,4 @@ export default function App() {
 }
 ```
 
-## Docs Preview
-
-![image](https://user-images.githubusercontent.com/26389321/148008111-2bde682a-991e-4fa8-b347-77aa9ec9fe49.png)
+</details>
