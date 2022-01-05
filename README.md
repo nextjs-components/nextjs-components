@@ -47,6 +47,10 @@ yarn add next-transpile-modules
 
 ## Usage
 
+### With `Next.js`
+
+[CodeSandbox](https://codesandbox.io/s/nextjs-components-next-t7vil)
+
 Transpile ♻️
 
 ```js
@@ -67,20 +71,107 @@ Import Global CSS 💅
 
 ```tsx
 // pages/_app.tsx
-import "nextjs-components/src/styles/globals.css";
+import "nextjs-components/dist/styles/globals.css";
+
+function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+
+export default App;
 ```
 
 Import Components 🎉
 
 ```tsx
-// pages/home.tsx
-import { Badge } from "nextjs-components/src/components/Badge";
+// pages/index.tsx
+import { Button } from "nextjs-components/dist/components/Button";
+import { Checkbox } from "nextjs-components/dist/components/Checkbox";
+import { LoadingDots } from "nextjs-components/dist/components/LoadingDots";
+import { Spinner } from "nextjs-components/dist/components/Spinner";
+import { Spacer } from "nextjs-components/dist/components/Spacer";
+import { Text } from "nextjs-components/dist/components/Text";
+import { Container } from "nextjs-components/dist/components/Container";
 
-export default function Home() {
+export default function IndexPage() {
   return (
-    <div>
-      <Badge>A badge component</Badge>
-    </div>
+    <Container center>
+      <Text h1 noMargin>
+        Hello World
+      </Text>
+      <Text h2 noMargin>
+        Hello World
+      </Text>
+      <Text h3 noMargin>
+        Hello World
+      </Text>
+      <Text h4 noMargin>
+        Hello World
+      </Text>
+      <Text h5 noMargin>
+        Hello World
+      </Text>
+      <Text h6 noMargin>
+        Hello World
+      </Text>
+      <Spacer />
+      <Button>A button!</Button>
+      <Spacer />
+      <Checkbox>A checkbox</Checkbox>
+      <Spacer />
+      <LoadingDots size={8} />
+      <Spacer />
+      <Spinner />
+    </Container>
+  );
+}
+```
+
+### With `create-react-app`
+
+[CodeSandbox](https://codesandbox.io/s/nextjs-components-zhbkv)
+
+```jsx
+// App.js
+import "nextjs-components/dist/styles/globals.css";
+
+import { Button } from "nextjs-components/dist/components/Button";
+import { Checkbox } from "nextjs-components/dist/components/Checkbox";
+import { LoadingDots } from "nextjs-components/dist/components/LoadingDots";
+import { Spinner } from "nextjs-components/dist/components/Spinner";
+import { Spacer } from "nextjs-components/dist/components/Spacer";
+import { Text } from "nextjs-components/dist/components/Text";
+import { Container } from "nextjs-components/dist/components/Container";
+
+export default function IndexPage() {
+  return (
+    <Container center>
+      <Text h1 noMargin>
+        Hello World
+      </Text>
+      <Text h2 noMargin>
+        Hello World
+      </Text>
+      <Text h3 noMargin>
+        Hello World
+      </Text>
+      <Text h4 noMargin>
+        Hello World
+      </Text>
+      <Text h5 noMargin>
+        Hello World
+      </Text>
+      <Text h6 noMargin>
+        Hello World
+      </Text>
+      <Spacer />
+      <Button>A button!</Button>
+      <Spacer />
+      <Checkbox>A checkbox</Checkbox>
+      <Spacer />
+      <LoadingDots size={8} />
+      <Spacer />
+      <Spinner />
+    </Container>
   );
 }
 ```
