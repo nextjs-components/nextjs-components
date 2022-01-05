@@ -141,6 +141,7 @@ import { Spinner } from "nextjs-components/dist/components/Spinner";
 import { Spacer } from "nextjs-components/dist/components/Spacer";
 import { Text } from "nextjs-components/dist/components/Text";
 import { Container } from "nextjs-components/dist/components/Container";
+import { fs } from "nextjs-components/dist/components/Fieldset";
 
 export default function IndexPage() {
   return (
@@ -154,15 +155,25 @@ export default function IndexPage() {
       <Text h3 noMargin>
         Hello World
       </Text>
-      <Text h4 noMargin>
-        Hello World
-      </Text>
-      <Text h5 noMargin>
-        Hello World
-      </Text>
-      <Text h6 noMargin>
-        Hello World
-      </Text>
+
+      <Spacer />
+
+      <fs.Fieldset>
+        <fs.Content>
+          <fs.Title>The Holland lop over the Fence</fs.Title>
+          <fs.Subtitle>The Holland lop Jumped over the Fence</fs.Subtitle>
+        </fs.Content>
+        <fs.Footer>
+          <fs.Footer.Status>
+            The Holland lop Jumped over the Fence
+            <Spacer />
+          </fs.Footer.Status>
+          <fs.Footer.Actions>
+            <Button size="small">Action</Button>
+          </fs.Footer.Actions>
+        </fs.Footer>
+      </fs.Fieldset>
+
       <Spacer />
       <Button>A button!</Button>
       <Spacer />
