@@ -1,6 +1,4 @@
-<p align="center">
-  <b>nextjs-components</b>
-</p>
+# nextjs-components
 
 A collection of React components, transcribed from https://vercel.com/design. [^1]
 
