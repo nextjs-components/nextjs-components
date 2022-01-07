@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-interface IThemeContext {
+export interface IThemeContext {
   size: number;
 }
 

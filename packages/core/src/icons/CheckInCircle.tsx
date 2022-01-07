@@ -1,3 +1,5 @@
+import React from "react";
+
 export const CheckInCircle = ({
   width = 24,
   height = 24,

@@ -5,7 +5,7 @@ export enum Modes {
   DARK = "dark",
   SYSTEM = "system",
 }
-interface IThemeContext {
+export interface IThemeContext {
   selectTheme: (val: Modes | "light" | "dark" | "system" | string) => void;
   isDarkMode: null | boolean;
   mode: Modes | "light" | "dark" | "system";

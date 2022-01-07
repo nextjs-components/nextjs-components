@@ -1,3 +1,5 @@
+import React from "react";
+
 const ThumbsUp = ({
   width = 24,
   height = 24,

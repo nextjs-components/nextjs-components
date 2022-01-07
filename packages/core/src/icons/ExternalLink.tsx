@@ -1,3 +1,5 @@
+import React from "react";
+
 const ExternalLink = ({
   width = 24,
   height = 24,
