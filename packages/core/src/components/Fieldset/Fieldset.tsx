@@ -102,9 +102,9 @@ const ErrorText = ({ children }) => {
  *   </fs.Content>
  *   <fs.Footer>
  *     <fs.Footer.Status>fs.Footer.Status</fs.Footer.Status>
- *     <fs.Footer.Action>
+ *     <fs.Footer.Actions>
  *       <button>fs.Footer.Action</button>
- *     </fs.Footer.Action>
+ *     </fs.Footer.Actions>
  *   </fs.Footer>
  * </fs.Fieldset>
  * ```
