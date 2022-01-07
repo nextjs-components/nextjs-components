@@ -1,3 +1,5 @@
+import React from "react";
+
 export const XCircle = ({
   width = 24,
   height = 24,

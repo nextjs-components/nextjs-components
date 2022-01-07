@@ -1,3 +1,5 @@
+import React from "react";
+
 const Edit2Icon = ({
   width = 24,
   height = 24,

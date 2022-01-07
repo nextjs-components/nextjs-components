@@ -1,3 +1,5 @@
+import React from "react";
+
 export const ImageIcon = ({
   width = 24,
   height = 24,

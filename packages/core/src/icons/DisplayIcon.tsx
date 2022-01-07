@@ -1,3 +1,4 @@
+import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 
 export const DisplayIcon = ({ color = "currentColor" }) => {

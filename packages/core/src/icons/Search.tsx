@@ -1,3 +1,5 @@
+import React from "react";
+
 export const Search = () => (
   <svg
     viewBox="0 0 24 24"

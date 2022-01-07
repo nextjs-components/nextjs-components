@@ -1,3 +1,5 @@
+import React from "react";
+
 const MinusIcon = ({
   width = 24,
   height = 24,

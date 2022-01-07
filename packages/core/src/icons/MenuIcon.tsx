@@ -1,3 +1,4 @@
+import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 
 const MenuIcon = ({ color = "currentColor)" }) => {

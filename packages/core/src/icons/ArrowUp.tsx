@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useIconSize } from "../contexts/IconSizeContext";
 
 const ArrowUp = ({ color = "currentcolor" }) => {
