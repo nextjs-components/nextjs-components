@@ -5,10 +5,11 @@
       {
         "preset-env": {},
         "transform-runtime": {},
-        "styled-jsx": {},
-        "class-properties": {}
+        "styled-jsx": {}
       }
     ]
   ],
-  "plugins": []
+  "plugins": [
+    // ["styled-jsx/babel", { "optimizeForSpeed": true }]
+  ]
 }

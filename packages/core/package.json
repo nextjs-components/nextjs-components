@@ -1,6 +1,6 @@
 {
   "name": "nextjs-components",
-  "version": "0.1.0-rc35",
+  "version": "0.1.0-rc37",
   "author": {
     "name": "Kevin Wang",
     "url": "https://thekevinwang.com"
@@ -57,7 +57,8 @@
   },
   "peerDependencies": {
     "next": ">=10.x",
-    "react": ">=16.8"
+    "react": ">=16.8",
+    "styled-jsx": ">=4.x"
   },
   "overrides": {
     "react-simple-code-editor": {
