@@ -7,9 +7,11 @@
   "version": "0.0.0",
   "description": "React components transcribed from the Vercel design system.",
   "scripts": {
-    "dev": "npm run dev -w docs",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run prepublish -w nextjs-components"
+    "build:core-swc": "npm run build:swc --workspace=nextjs-components",
+    "build:core-babel": "npm run build:babel --workspace=nextjs-components",
+    "clean": "npm run clean --workspace=nextjs-components",
+    "docs": "npm run dev --workspace=docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "resolutions": {
     "react": "17.0.2",
@@ -24,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/nextjs-components/nextjs-components/issues"
   },
-  "homepage": "https://github.com/nextjs-components/nextjs-components#readme"
+  "homepage": "https://github.com/nextjs-components/nextjs-components#readme",
+  "workspaces": [
+    "packages/*"
+  ]
 }
