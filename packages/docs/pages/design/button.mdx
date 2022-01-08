@@ -1,9 +1,12 @@
-import { Button } from "nextjs-components/src/components/Button";
-import { Container } from "nextjs-components/src/components/Container";
-import { Spacer } from "nextjs-components/src/components/Spacer";
-import { Text } from "nextjs-components/src/components/Text";
-
 import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
+
+export default function Wrapper({ children }) {
+  return (
+    <DesignLayout>
+      <DesignLayoutInner>{children}</DesignLayoutInner>
+    </DesignLayout>
+  );
+}
 
 # Button
 
@@ -385,11 +388,3 @@ import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
 ### Other
 
 <Spacer y={2} />
-
-export default function Wrapper({ children }) {
-  return (
-    <DesignLayout>
-      <DesignLayoutInner>{children}</DesignLayoutInner>
-    </DesignLayout>
-  );
-}

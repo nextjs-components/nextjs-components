@@ -12,8 +12,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx swc src --copy-files -d dist && npx tsc",
-    "build2": "babel src --extensions '.ts','.tsx' --copy-files -d dist --ignore '**/*.test.*' && npx tsc"
+    "build:swc": "npx swc src --copy-files -d dist && npx tsc",
+    "build:babel": "babel src --extensions '.ts','.tsx' --copy-files -d dist --ignore '**/*.test.*' && npx tsc",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",

@@ -1,9 +1,12 @@
----
-componentNames:
-  - fs
-  - Text
-  - Button
----
+import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
+
+export default function Wrapper({ children }) {
+  return (
+    <DesignLayout>
+      <DesignLayoutInner>{children}</DesignLayoutInner>
+    </DesignLayout>
+  );
+}
 
 # Fieldset
 

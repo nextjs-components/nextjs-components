@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Badge } from "nextjs-components/src/components/Badge";
+import { Badge } from "nextjs-components";
 
 export default function Home() {
   return (
