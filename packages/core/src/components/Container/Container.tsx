@@ -1,30 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-// import from "./module.css";
-
-// e.row
-// e.direction
-// e.left
-// e.right
-// e.top
-// e.bottom
-// e.hcenter
-// e.vcenter
-// e.vbaseline
-// e.center
-// e.noWrap
-// e.wrapper
-// e.halfGap
-// e.gap
-// e.children
-// e.flex
-// e.inline
-// e.full
-// e.classNames
-// e.styleSets
-// e.Component
-// e.className
-// e.style
 
 type Direction = "column" | "row";
 export interface Props {
@@ -85,16 +60,44 @@ const Container: React.ComponentType<Props> = ({
   noWrap,
   wrapper,
 }) => {
-  const __flex = flex;
-  const __justify_content = center || vcenter ? "center" : "flex-start";
-  const __align_items =
-    center || hcenter
-      ? "center"
-      : left
-      ? "flex-start"
-      : right
-      ? "flex-end"
-      : "stretch";
+  let __flex = flex;
+  let __justify_content = "flex-start";
+  let __align_items = "stretch";
+  if (row) {
+    if (center) {
+      __justify_content = "center";
+      __align_items = "center";
+    }
+    if (vcenter) {
+      __align_items = "center";
+    }
+    if (hcenter) {
+      __justify_content = "center";
+    }
+    if (right) {
+      __justify_content = "flex-end";
+    }
+    if (left) {
+      __justify_content = "flex-start";
+    }
+  } /* column */ else {
+    if (center) {
+      __justify_content = "center";
+      __align_items = "center";
+    }
+    if (vcenter) {
+      __justify_content = "center";
+    }
+    if (hcenter) {
+      __align_items = "center";
+    }
+    if (right) {
+      __align_items = "flex-end";
+    }
+    if (left) {
+      __align_items = "flex-start";
+    }
+  }
 
   const container = (
     <div
