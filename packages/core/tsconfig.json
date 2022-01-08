@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "packages/core/src/*"]
+      "*": ["*", "src/*"]
     },
     "outDir": "dist",
     "target": "es5",
