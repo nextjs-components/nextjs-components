@@ -1,0 +1,28 @@
+.button {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.container.disabled {
+  cursor: not-allowed;
+}
+
+.container.disabled .menu {
+  color: var(--accents-3);
+  pointer-events: none;
+}
+
+.menu {
+  color: var(--geist-foreground);
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  height: 20px;
+  justify-content: center;
+  width: 20px;
+}

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
+import Link from "next/link";
 
+import { Avatar } from "nextjs-components";
 import { Button } from "nextjs-components";
 import { Editor } from "nextjs-components/dist/components/Editor";
+import { Checkbox } from "nextjs-components";
 import { ColorCard } from "nextjs-components/dist/components/ColorCard";
 import { Container } from "nextjs-components";
 import { fs } from "nextjs-components";
@@ -13,8 +16,18 @@ import { Spacer } from "nextjs-components";
 import { Spinner } from "nextjs-components";
 import { Text } from "nextjs-components";
 import { useToasts } from "nextjs-components";
+import {
+  Entity,
+  EntityField,
+  EntityThumbnail,
+} from "nextjs-components/dist/components/Entity";
 
-import { ArrowUp as Up } from "nextjs-components/dist/icons";
+import {
+  ArrowUp as Up,
+  GitHub,
+  FacebookIcon,
+  GoogleIcon,
+} from "nextjs-components/dist/icons";
 
 const BlueContainer = ({ style, children, ...props }) => (
   <Container
@@ -35,20 +48,32 @@ const BlueContainer = ({ style, children, ...props }) => (
  * This components fulfill in-MDX code blocks that use JSX.
  */
 const editorScope = {
-  Container,
-  Button,
-  Up,
+  Avatar,
   BlueContainer,
-  Text,
-  fs,
-  Tree,
-  Folder,
+  Button,
+  Checkbox,
+  Container,
+  Entity,
+  EntityField,
+  EntityThumbnail,
+  Facebook: FacebookIcon,
   File,
+  Folder,
+  fs,
+  GitHub,
+  Google: GoogleIcon,
+  isMounted: true,
+  Link,
   LoadingDots,
-  useState,
+  MenuItem: () => <span>todo</span>,
+  Spacer,
   Spinner,
-  useToasts,
+  Text,
   Toggle,
+  Tree,
+  Up,
+  useState,
+  useToasts,
 };
 
 const mdxComponents = {

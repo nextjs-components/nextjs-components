@@ -1,11 +1,13 @@
 import React from "react";
+import { useIconSize } from "../contexts/IconSizeContext";
 
-export const FacebookIcon = () => {
+export const FacebookIcon = ({ size = 24 }) => {
+  const iconSize = useIconSize();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width={size || iconSize.size}
+      height={size || iconSize.size}
       viewBox="0 0 216 216"
       // color="#ffffff"
     >
