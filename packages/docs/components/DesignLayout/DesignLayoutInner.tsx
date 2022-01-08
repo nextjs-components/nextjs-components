@@ -1,21 +1,58 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
 
-import { Button } from "nextjs-components/src/components/Button";
-import { Editor } from "nextjs-components/src/components/Editor";
-import { Container } from "nextjs-components/src/components/Container";
-import { fs } from "nextjs-components/src/components/Fieldset";
-import { Tree, Folder, File } from "nextjs-components/src/components/FileTree";
-import { LoadingDots } from "nextjs-components/src/components/LoadingDots";
-import { Spacer } from "nextjs-components/src/components/Spacer";
-import { Spinner } from "nextjs-components/src/components/Spinner";
-import { Text } from "nextjs-components/src/components/Text";
-import { useToasts } from "nextjs-components/src/components/Toast";
-import { Toggle } from "nextjs-components/src/components/Toggle";
+import { Button } from "nextjs-components";
+import { Editor } from "nextjs-components/dist/components/Editor";
+import { ColorCard } from "nextjs-components/dist/components/ColorCard";
+import { Container } from "nextjs-components";
+import { fs } from "nextjs-components";
+import { Tree, Folder, File } from "nextjs-components";
+import { LoadingDots } from "nextjs-components";
+import { Toggle } from "nextjs-components";
+import { Spacer } from "nextjs-components";
+import { Spinner } from "nextjs-components";
+import { Text } from "nextjs-components";
+import { useToasts } from "nextjs-components";
 
-import { ArrowUp as Up } from "nextjs-components/src/icons";
+import { ArrowUp as Up } from "nextjs-components/dist/icons";
 
-const components = {
+const BlueContainer = ({ style, children, ...props }) => (
+  <Container
+    style={{
+      ...style,
+      background: "var(--geist-success)",
+      color: "rgb(255, 255, 255)",
+      padding: "var(--geist-gap-half)",
+      borderRadius: "var(--geist-radius)",
+    }}
+    {...props}
+  >
+    {children}
+  </Container>
+);
+
+/**
+ * This components fulfill in-MDX code blocks that use JSX.
+ */
+const editorScope = {
+  Container,
+  Button,
+  Up,
+  BlueContainer,
+  Text,
+  fs,
+  Tree,
+  Folder,
+  File,
+  LoadingDots,
+  useState,
+  Spinner,
+  useToasts,
+  Toggle,
+};
+
+const mdxComponents = {
+  Text,
   h1: (props) => <Text h1 {...props} />,
   h2: (props) => <Text h2 {...props} />,
   h3: (props) => <Text h3 {...props} />,
@@ -24,57 +61,12 @@ const components = {
   h6: (props) => <Text h6 {...props} />,
   p: (props) => <Text p {...props} />,
   pre: ({ children }) => {
-    return (
-      <Editor
-        scope={{ Container, Button, Up }}
-        code={children.props.children}
-      />
-    );
+    return <Editor scope={editorScope} code={children.props.children} />;
   },
-};
-
-const componentCatalogueForLiveEditor = {
-  Text,
+  ColorCard,
   Spacer,
-  Button,
-  Container,
-  Tree,
-  Folder,
-  File,
-  LoadingDots,
-  Spinner,
-  Up,
-  useToasts,
-  useState,
-  Toggle,
-  fs,
-  BlueContainer: ({ style, ...props }) => (
-    <Container
-      style={{
-        ...style,
-        background: "var(--geist-success)",
-        color: "rgb(255, 255, 255)",
-        padding: "var(--geist-gap-half)",
-        borderRadius: "var(--geist-radius)",
-      }}
-      {...props}
-    />
-  ),
-};
-
-const getLiveEditorWithScope = (componentNames: string[] = []) => {
-  const scope = componentNames.reduce((acc, next) => {
-    acc[next] = componentCatalogueForLiveEditor[next];
-    return acc;
-  }, {});
-  return {
-    /* transform ```codeblock``` into live editor*/
-    pre: ({ children }) => {
-      return <Editor scope={scope} code={children.props.children} />;
-    },
-  };
 };
 
 export default function DesignLayoutInner({ children }) {
-  return <MDXProvider components={components}>{children}</MDXProvider>;
+  return <MDXProvider components={mdxComponents}>{children}</MDXProvider>;
 }

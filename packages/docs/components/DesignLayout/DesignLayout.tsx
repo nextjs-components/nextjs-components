@@ -3,17 +3,17 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 
-import { Container } from "nextjs-components/src/components/Container";
-import { Details } from "nextjs-components/src/components/Details";
-import { Text } from "nextjs-components/src/components/Text";
-import { Toggle } from "nextjs-components/src/components/Toggle";
+import { Container } from "nextjs-components/dist/components/Container";
+import { Details } from "nextjs-components/dist/components/Details";
+import { Text } from "nextjs-components/dist/components/Text";
+import { Toggle } from "nextjs-components/dist/components/Toggle";
 
-import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
-import { IconSizeContext } from "nextjs-components/src/contexts/IconSizeContext";
+import { useTheme } from "nextjs-components/dist/contexts/ThemeContext";
+import { IconSizeContext } from "nextjs-components/dist/contexts/IconSizeContext";
 
-import { Sun, Moon } from "nextjs-components/src/icons";
+import { Sun, Moon } from "nextjs-components/dist/icons";
 
-// import Menu from "nextjs-components/src/components/Menu";
+// import Menu from "nextjs-components/dist/components/Menu";
 import styles from "./design.module.css";
 
 interface Props {
@@ -89,12 +89,18 @@ interface Node {
 }
 
 const DesignLayout: React.FC<Props> = ({
-  title = "Design System",
-  description,
-  ogImage,
-  ogUrl,
   children,
-  paths = [],
+  paths = [
+    "/design/button",
+    "/design/color",
+    "/design/fieldset",
+    "/design/file-tree",
+    "/design/grid",
+    "/design/loading-dots",
+    "/design/spinner",
+    "/design/toast",
+    "/design/toggle",
+  ],
 }) => {
   const [expanded, setExpanded] = useState(false);
   const { selectTheme, isDarkMode } = useTheme();
