@@ -10,8 +10,7 @@ A collection of React components, transcribed from https://vercel.com/design. [^
 
 ![](https://badgen.net/bundlephobia/dependency-count/nextjs-components) ![](https://badgen.net/bundlephobia/tree-shaking/nextjs-components)
 
-![image](https://user-images.githubusercontent.com/26389321/148666442-01896de9-0ec6-46f4-aca8-8ec844b3f8ef.png)
-
+![image](https://user-images.githubusercontent.com/26389321/148666532-b74520e6-a41c-48a0-a3c6-82cf0674d68a.png)
 
 ## Motivation
 
