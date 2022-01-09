@@ -10,6 +10,9 @@ A collection of React components, transcribed from https://vercel.com/design. [^
 
 ![](https://badgen.net/bundlephobia/dependency-count/nextjs-components) ![](https://badgen.net/bundlephobia/tree-shaking/nextjs-components)
 
+![image](https://user-images.githubusercontent.com/26389321/148666442-01896de9-0ec6-46f4-aca8-8ec844b3f8ef.png)
+
+
 ## Motivation
 
 TBD
@@ -44,8 +47,6 @@ yarn add next-transpile-modules
 ```
 
 ## Usage
-
-![image](https://user-images.githubusercontent.com/26389321/148150047-7c3f530e-cfc5-4f29-8a61-eb08d4397851.png)
 
 ### With `Next.js`
 
