@@ -1,47 +1,48 @@
-import React from "react";
 import { useContext } from "react";
 import clsx from "clsx";
-import Skeleton from "@material-ui/lab/Skeleton";
 
-import { Container } from "../Container";
-import { Text } from "../Text";
+import Skeleton from "../../components/Skeleton";
+import { Container } from "../../components/Container";
+import { Text } from "../../components/Text";
 
 import { PlaceHolderContext } from "./index";
 import styles from "./Entity.module.css";
+import dotsMenu from "./dots-menu.module.css";
+import button from "../Button/button.module.css";
+import reset from "../../styles/reset/reset.module.css";
 
-const EntityActions = ({ children }) => {
-  const placeholder = useContext(PlaceHolderContext);
-  if (placeholder)
-    return (
-      <div className={styles.actions}>
-        <Skeleton
-          animation="wave"
-          style={{
-            minHeight: 32,
-          }}
-        >
-          {children}
-        </Skeleton>
-      </div>
-    );
-  return <div className={styles.actions}>{children}</div>;
-};
+import { Spacer } from "../Spacer";
+import { MoreVertical } from "../../icons";
 
 interface EntityFieldProps {
   children?: React.ReactNode;
   description?: React.ReactNode;
   label?: boolean;
   right?: boolean;
+  active?: boolean;
   thumbnail?: React.ReactNode;
+  thumbnailSize?: number;
+  thumbnailWrapOnMobile?: boolean;
   title?: React.ReactNode;
   width?: React.CSSProperties["width"];
   isFirstItem?: boolean;
   isLastItem?: boolean;
   actions?: React.ReactNode;
+  avatar?: React.ReactNode;
+  menuItems?: React.ReactNode;
+  checkbox?: React.ReactNode;
+  checkboxSize?: number;
+  //
+  titleSkeletonWidth?: string;
+  descriptionSkeletonWidth?: string;
 }
-export const EntityField = ({
+
+const EntityField = ({
   thumbnail,
+  thumbnailSize = 36,
+  thumbnailWrapOnMobile,
   actions,
+  active,
   description,
   label,
   right,
@@ -49,15 +50,39 @@ export const EntityField = ({
   width,
   isLastItem,
   isFirstItem,
+  avatar,
+  menuItems,
+  checkbox,
+  titleSkeletonWidth,
+  descriptionSkeletonWidth,
 }: EntityFieldProps) => {
   const placeholder = useContext(PlaceHolderContext);
+
+  const _description = (
+    <Text
+      p
+      noMargin
+      className={clsx(
+        styles.description,
+        "geist-themed",
+        "geist-ellipsis",
+        "geist-secondary",
+        "body-2"
+      )}
+    >
+      {description}
+    </Text>
+  );
+
   return (
     <Container
       gap={2 / 3}
       row
+      vcenter
       className={clsx(styles.field, {
         [styles.last]: isLastItem,
-        [styles.first]: isFirstItem, //???
+        [styles.first]: isFirstItem,
+        [styles.avatarWrap]: thumbnailWrapOnMobile,
       })}
       style={
         width && {
@@ -67,91 +92,115 @@ export const EntityField = ({
         }
       }
     >
+      {checkbox && (
+        <div className={styles.checkbox}>
+          {placeholder ? (
+            <Skeleton
+              {...{
+                vcenter: true,
+                height: 16,
+                width: 16,
+              }}
+            />
+          ) : (
+            checkbox
+          )}
+        </div>
+      )}
+
       {thumbnail}
+
+      {/* entity_content */}
+
       <Container
         className={clsx(styles.content, {
           [styles.rightAligned]: right,
         })}
+        style={undefined}
+        vcenter
       >
-        {placeholder ? (
-          <TitlePlaceholder />
-        ) : (
-          <Text
-            p
-            noMargin
-            className={clsx(
-              "geist-themed",
-              "geist-ellipsis",
-              "body-2",
-              label ? "label" : "w-600",
-              {
-                [styles.title]: !label,
-                [styles.label]: label,
-                ["geist-secondary"]: label,
-              }
-            )}
-          >
-            {title}
-          </Text>
-        )}
-        {placeholder ? (
-          <DescriptionPlacehohlder />
-        ) : (
-          <Text
-            p
-            noMargin
-            className={clsx(
-              styles.description,
-              "geist-themed",
-              "geist-ellipsis",
-              "geist-secondary",
-              "body-2"
-            )}
-          >
-            {description}
-          </Text>
-        )}
+        {/* Title */}
+        {title &&
+          (placeholder ? (
+            <Skeleton
+              vcenter
+              height={16}
+              boxHeight={20}
+              width={titleSkeletonWidth || "40%"}
+            />
+          ) : (
+            <Text
+              p
+              noMargin
+              className={clsx(
+                "geist-themed",
+                {
+                  ["geist-default"]: !label && active !== false,
+                  ["geist-secondary"]: label || active === false,
+                },
+                "geist-ellipsis",
+                "body-2",
+                label ? "label" : "w-600",
+                {
+                  [styles.title]: !label,
+                  [styles.label]: label,
+                }
+              )}
+            >
+              {title}
+            </Text>
+          ))}
+
+        {/* Description */}
+
+        {description &&
+          (placeholder ? (
+            <Skeleton
+              vcenter
+              height={16}
+              boxHeight={20}
+              width={descriptionSkeletonWidth || "60%"}
+            />
+          ) : avatar ? (
+            <div className={clsx(styles.descriptionWithAvatar)}>
+              {_description}
+              <Spacer x={0.5} />
+              {avatar}
+            </div>
+          ) : (
+            _description
+          ))}
       </Container>
-      {actions && <EntityActions>{actions}</EntityActions>}
+
+      {/* menuitems */}
+      {menuItems && (
+        <div className={styles.menu}>
+          {placeholder ? (
+            <Skeleton width={20} height={20} />
+          ) : (
+            <button
+              className={clsx([button.base, reset.reset, dotsMenu.button])}
+              onClick={() => alert("TODO: implement me")}
+            >
+              <span className={button.content}>
+                <span className={dotsMenu.container}>
+                  <span className={dotsMenu.menu}>
+                    <MoreVertical size={18} weight={"light"} />
+                  </span>
+                </span>
+              </span>
+            </button>
+          )}
+        </div>
+      )}
+
+      {actions && (
+        <div className={styles.actions}>
+          {placeholder ? <Skeleton show>{actions}</Skeleton> : actions}
+        </div>
+      )}
     </Container>
   );
 };
-export default EntityField;
 
-const AvatarPlaceholder = () => (
-  <Skeleton
-    animation="wave"
-    variant="circle"
-    style={{
-      width: "36px",
-      minHeight: "36px",
-      marginBottom: "calc(0px)",
-    }}
-  />
-);
-const TitlePlaceholder = () => (
-  <Skeleton
-    animation="wave"
-    variant="rect"
-    style={{
-      width: "40%",
-      minHeight: "16px",
-      height: 0,
-      marginBottom: "calc(2px)",
-      marginTop: "calc(2px)",
-    }}
-  />
-);
-const DescriptionPlacehohlder = () => (
-  <Skeleton
-    animation="wave"
-    variant="rect"
-    style={{
-      width: "60%",
-      minHeight: "16px",
-      height: 0,
-      marginBottom: "calc(2px)",
-      marginTop: "calc(2px)",
-    }}
-  />
-);
+export default EntityField;

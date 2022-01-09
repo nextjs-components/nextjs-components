@@ -2,31 +2,39 @@
   0% {
     background-position: 200% 0;
   }
+
   to {
     background-position: -200% 0;
   }
 }
+
 @keyframes loading {
   0% {
     background-position: 200% 0;
   }
+
   to {
     background-position: -200% 0;
   }
 }
+
 .skeleton {
   display: block;
   border-radius: 5px;
 }
+
 .skeleton.loaded {
   width: unset !important;
 }
+
 .skeleton:not(.wrapper):not(.show) {
   display: none;
 }
+
 .wrapper:not(.show):before {
   content: none;
 }
+
 .skeleton:not(.wrapper):not(.loaded) {
   border-radius: var(--geist-radius);
   background-image: linear-gradient(
@@ -40,10 +48,12 @@
   -webkit-animation: loading 8s ease-in-out infinite;
   animation: loading 8s ease-in-out infinite;
 }
+
 .wrapper {
   display: block;
   position: relative;
 }
+
 .wrapper:before {
   content: "";
   position: absolute;
@@ -64,13 +74,16 @@
   -webkit-animation: loading 8s ease-in-out infinite;
   animation: loading 8s ease-in-out infinite;
 }
+
 .inline {
   display: inline-block !important;
 }
+
 .squared,
 .squared.wrapper:before {
   border-radius: 0 !important;
 }
+
 .rounded,
 .rounded.wrapper:before {
   border-radius: 50% !important;

@@ -11,7 +11,7 @@ import React from "react";
 import { useState, createContext, useContext, MouseEventHandler } from "react";
 import clsx from "clsx";
 import Popover from "@material-ui/core/Popover";
-import useMediaQuery from "packages/core/src/hooks/useMediaQuery";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 import { Button } from "../Button";
 import Drawer from "../Drawer";

@@ -1,31 +1,95 @@
+.header {
+  background: var(--accents-1);
+  display: flex;
+  padding: var(--geist-gap-half) var(--geist-space-4x);
+}
+
+.entity,
+.header {
+  border: 1px solid var(--accents-2);
+  border-radius: var(--geist-radius);
+}
+
 .entity {
+  position: relative;
+  box-sizing: border-box;
+  padding: var(--geist-space-4x);
+  background: var(--geist-background);
+}
+
+.entity.disabled,
+.entity.editing {
+  background: var(--accents-1);
+}
+
+.entity.disabled [data-geist-avatar],
+.entity.editing [data-geist-avatar] {
+  opacity: 0.7;
+}
+
+.form {
   position: relative;
   box-sizing: border-box;
   padding: var(--geist-space-4x);
   border: 1px solid var(--accents-2);
   border-radius: var(--geist-radius);
-  background: var(--geist-background);
+  background: var(--accents-1);
 }
 
-/* blend borders for adjacent Entity */
+.form .formTitle {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-bottom: var(--geist-space-4x);
+  margin-bottom: var(--geist-space-4x);
+  border-bottom: 1px solid var(--accents-2);
+}
+
+.form .formTitle .title {
+  flex: 1 1;
+}
+
+.form .formFooter {
+  display: flex;
+  box-sizing: content-box;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--geist-space-8x);
+  padding-top: var(--geist-space-4x);
+}
+
+.form .formFooter .formFooterPrimaryAction {
+  grid-area: primary;
+  margin-left: var(--geist-space-4x);
+}
+
+.form .formFooterNote {
+  padding-top: var(--geist-space-4x);
+}
+
+.form .separator {
+  margin-top: var(--geist-space-4x);
+  border-top: 1px solid var(--accents-2);
+}
+
 .entity + .entity,
-.entity + .entity.form,
-.entity.form + .entity,
-.entity.form + .entity.form {
+.entity + .form,
+.form + .entity,
+.form + .form,
+.header + .entity,
+.header + .form {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   margin-top: -1px;
 }
-.entity.editing + .entity.entity:before,
-.entity.editing + .entity.form:before,
-.entity.form + .entity.entity:before,
-.entity.form + .entity.form:before {
-  background: var(--accents-1);
-}
-.entity.entity + .entity.entity:before,
-.entity.entity + .entity.for:before,
-.entity.for + .entity.entity:before,
-.entity.for + .entity.for:before {
+
+.entity + .entity:before,
+.entity + .form:before,
+.form + .entity:before,
+.form + .form:before,
+.header + .entity:before,
+.header + .form:before {
   content: "";
   width: 100%;
   height: 3px;
@@ -36,62 +100,84 @@
   background: var(--geist-background);
   box-shadow: -1px 0 0 var(--accents-2), 1px 0 0 var(--accents-2);
 }
-/* end */
+
+.disabled + .entity:before,
+.disabled + .form:before,
+.editing + .entity:before,
+.editing + .form:before,
+.form + .entity:before,
+.form + .form:before,
+.header + .entity:before,
+.header + .form:before {
+  background: var(--accents-1);
+}
+
+.thumbnail {
+  display: flex;
+  align-items: center;
+  margin-right: var(--geist-space-4x);
+}
+
+.footer {
+  box-sizing: content-box;
+  min-height: var(--height);
+  margin-top: var(--geist-space-4x);
+  padding-top: var(--geist-space-4x);
+  border-top: 1px solid var(--accents-2);
+  margin-left: var(--indent);
+}
+
+.footer .form {
+  padding: 0;
+  border: 0;
+  width: 100%;
+  --themed-bg: var(--geist-background);
+  --themed-fg: var(--geist-foreground);
+  --themed-border: initial;
+}
+
+.footer .form .formTitle {
+  display: none;
+}
 
 .field {
   display: grid;
   grid-template-areas: "checkbox avatar content actions menu";
-  /* 
-    actual vercel implementation doesn't use minmax(), 
-    but this appears to help prevent <Switch/> from overflowing
-    in the "actions" grid-template-area
-  */
-  /* grid-template-columns: auto auto 1fr auto auto; */
-  grid-template-columns: auto auto 1fr minmax(0, auto) auto;
+  grid-template-columns: auto auto 1fr auto auto;
   justify-content: stretch;
   align-content: stretch;
+}
 
-  /* Non vercel */
-  align-items: center;
-}
-@media screen and (max-width: 600px) {
-  .field + .field {
-    padding-top: var(--geist-space-4x);
-    border-top: 1px solid var(--accents-2);
-  }
-}
-@media screen and (max-width: 600px) {
-  .field {
-    flex: unset !important;
-    justify-content: flex-end;
-  }
+.field .checkbox {
+  grid-area: checkbox;
+  margin-right: var(--geist-space-4x);
 }
 
 .field .avatar {
   display: flex;
   grid-area: avatar;
   margin-right: var(--geist-space-4x);
-
-  /* non vercel */
-  align-items: center;
 }
+
 .field .content {
   grid-area: content;
+}
+
+.field .actions {
+  display: none;
+  grid-area: actions;
+  margin-left: var(--geist-space-4x);
+}
+
+.field .menu {
+  display: none;
+  grid-area: menu;
+  margin-left: var(--geist-space-4x);
 }
 
 .field .rightAligned {
   text-align: right;
   align-items: flex-end;
-}
-@media screen and (max-width: 600px) {
-  .field .rightAligned {
-    text-align: unset;
-    align-items: unset;
-  }
-}
-
-.field .label {
-  text-transform: uppercase;
 }
 
 .field .description,
@@ -100,15 +186,102 @@
   line-height: 20px;
 }
 
-.field .actions {
-  display: none;
-  grid-area: actions;
-  margin-left: var(--geist-space-4x);
+.field .label {
+  text-transform: uppercase;
 }
+
+.field .descriptionWithAvatar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.field .rightAligned .descriptionWithAvatar {
+  justify-content: flex-end;
+}
+
 .field.last .actions,
 .field.last .menu {
   display: unset;
 }
 
-.first {
+@media screen and (max-width: 600px) {
+  .field + .field {
+    padding-top: var(--geist-space-4x);
+    border-top: 1px solid var(--accents-2);
+  }
+
+  .field {
+    flex: unset !important;
+    justify-content: flex-end;
+  }
+
+  .field .rightAligned {
+    text-align: unset;
+    align-items: unset;
+  }
+
+  .field .rightAligned .descriptionWithAvatar {
+    justify-content: space-between;
+  }
+
+  .field.avatarWrap {
+    grid-template-areas: "checkbox avatar actions menu" "content content content content";
+    grid-template-columns: auto 1fr auto auto;
+    grid-row-gap: var(--geist-space-4x);
+    row-gap: var(--geist-space-4x);
+  }
+
+  .field.first .actions,
+  .field.first .menu {
+    display: unset !important;
+  }
+
+  .field.last .actions,
+  .field.last .menu {
+    display: none;
+  }
+
+  .footer {
+    margin-left: 0;
+  }
+
+  .avatarRow {
+    margin-bottom: var(--geist-space-4x);
+    justify-content: space-between;
+  }
+
+  .form .formFooter {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form .formFooter > div:last-of-type {
+    margin-top: 0;
+  }
+
+  .form .formFooter .formFooterDestructiveAction,
+  .form .formFooter .formFooterPrimaryAction,
+  .form .formFooter .formFooterSecondaryAction {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--geist-space-2x);
+  }
+
+  .form .formFooter .formFooterPrimaryAction {
+    margin-left: 0;
+  }
+
+  .form .formFooter .formFooterSpacer {
+    display: none;
+  }
+
+  .form .formFooter .formFooterNoteInline {
+    order: 1;
+  }
+
+  .form .formFooter .formFooterNoteInline ~ div:last-of-type {
+    margin-top: var(--geist-space-4x);
+  }
 }

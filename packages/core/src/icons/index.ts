@@ -12,6 +12,7 @@ export { default as CopyIcon } from "./CopyIcon";
 export { default as DividerIcon } from "./DividerIcon";
 export { default as Edit2Icon } from "./Edit2Icon";
 export { default as ExternalLink } from "./ExternalLink";
+export { default as GitHub } from "./GitHub";
 export { default as HashIcon } from "./HashIcon";
 export { default as HeartIcon } from "./HeartIcon";
 export { default as HomeIcon } from "./HomeIcon";

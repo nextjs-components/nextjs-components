@@ -93,6 +93,7 @@ const DesignLayout: React.FC<Props> = ({
   paths = [
     "/design/button",
     "/design/color",
+    "/design/entity",
     "/design/fieldset",
     "/design/file-tree",
     "/design/grid",
