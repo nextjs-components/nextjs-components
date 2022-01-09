@@ -15,6 +15,10 @@ interface Props {
   show?: boolean;
 }
 
+const isChildNull = (children) => {
+  return !React.Children.count(children);
+};
+
 const Skeleton: React.FC<Props> = ({
   children,
   width = 24,
@@ -26,13 +30,14 @@ const Skeleton: React.FC<Props> = ({
 }) => {
   return (
     <span
-      className={clsx(styles.skeleton, styles.show, {
-        [styles.wrapper]: show,
+      className={clsx(styles.skeleton, {
+        [styles.show]: show !== false,
+        [styles.wrapper]: !isChildNull(children),
         [styles.rounded]: "rounded" in props,
         [styles.squared]: "squared" in props,
       })}
       style={
-        show
+        !isChildNull(children) || show
           ? undefined
           : {
               width: width || 160,
