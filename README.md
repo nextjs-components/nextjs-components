@@ -76,8 +76,21 @@ Import Global CSS 💅
 // pages/_app.tsx
 import "nextjs-components/dist/styles/globals.css";
 
+import {
+  ThemeContextProvider,
+  ToastsProvider,
+  ToastArea,
+} from "nextjs-components";
+
 function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  return (
+    <ThemeContextProvider>
+      <ToastsProvider>
+        <Component {...pageProps} />
+        <ToastArea />
+      </ToastsProvider>
+    </ThemeContextProvider>
+  );
 }
 
 export default App;
@@ -87,18 +100,46 @@ Import Components 🎉
 
 ```tsx
 // pages/index.tsx
-import { Button } from "nextjs-components/dist/components/Button";
-import { Checkbox } from "nextjs-components/dist/components/Checkbox";
-import { LoadingDots } from "nextjs-components/dist/components/LoadingDots";
-import { Spinner } from "nextjs-components/dist/components/Spinner";
-import { Spacer } from "nextjs-components/dist/components/Spacer";
-import { Text } from "nextjs-components/dist/components/Text";
-import { Container } from "nextjs-components/dist/components/Container";
-import { fs } from "nextjs-components/dist/components/Fieldset";
+import {
+  Button,
+  Checkbox,
+  Container,
+  fs,
+  LoadingDots,
+  Spacer,
+  Spinner,
+  Text,
+  useTheme,
+  useToasts,
+  IconSizeContext,
+  Toggle,
+} from "nextjs-components";
+
+import { Sun, Moon } from "nextjs-components/dist/icons";
 
 export default function IndexPage() {
+  const { selectTheme, isDarkMode } = useTheme();
+  const toast = useToasts();
+
   return (
     <Container center>
+      <Container row vcenter>
+        <IconSizeContext.Provider value={{ size: 18 }}>
+          <Sun />
+          <Spacer x={0.4} />
+          <Toggle
+            checked={isDarkMode}
+            onChange={(checked) => {
+              selectTheme(checked ? "dark" : "light");
+              toast.current.message(
+                `Theme has been set to ${checked ? "dark" : "light"}`
+              );
+            }}
+          />
+          <Spacer x={0.4} />
+          <Moon />
+        </IconSizeContext.Provider>
+      </Container>
       <Text h1 noMargin>
         Hello World
       </Text>
@@ -150,21 +191,76 @@ export default function IndexPage() {
   <summary>Hide/Show Example Code</summary>
 
 ```jsx
-// App.js
+// index.js
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+
 import "nextjs-components/dist/styles/globals.css";
 
-import { Button } from "nextjs-components/dist/components/Button";
-import { Checkbox } from "nextjs-components/dist/components/Checkbox";
-import { LoadingDots } from "nextjs-components/dist/components/LoadingDots";
-import { Spinner } from "nextjs-components/dist/components/Spinner";
-import { Spacer } from "nextjs-components/dist/components/Spacer";
-import { Text } from "nextjs-components/dist/components/Text";
-import { Container } from "nextjs-components/dist/components/Container";
-import { fs } from "nextjs-components/dist/components/Fieldset";
+import {
+  ThemeContextProvider,
+  ToastsProvider,
+  ToastArea,
+} from "nextjs-components";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(
+  <StrictMode>
+    <ThemeContextProvider>
+      <ToastsProvider>
+        <App />
+        <ToastArea />
+      </ToastsProvider>
+    </ThemeContextProvider>
+  </StrictMode>,
+  rootElement
+);
+```
+
+```jsx
+// App.js
+import {
+  Button,
+  Checkbox,
+  Container,
+  fs,
+  LoadingDots,
+  Spacer,
+  Spinner,
+  Text,
+  useTheme,
+  useToasts,
+  IconSizeContext,
+  Toggle,
+} from "nextjs-components";
+
+import { Sun, Moon } from "nextjs-components/dist/icons";
 
 export default function App() {
+  const { selectTheme, isDarkMode } = useTheme();
+  const toast = useToasts();
+
   return (
     <Container center>
+      <Container row vcenter>
+        <IconSizeContext.Provider value={{ size: 18 }}>
+          <Sun />
+          <Spacer x={0.4} />
+          <Toggle
+            checked={isDarkMode}
+            onChange={(checked) => {
+              selectTheme(checked ? "dark" : "light");
+              toast.current.message(
+                `Theme has been set to ${checked ? "dark" : "light"}`
+              );
+            }}
+          />
+          <Spacer x={0.4} />
+          <Moon />
+        </IconSizeContext.Provider>
+      </Container>
       <Text h1 noMargin>
         Hello World
       </Text>

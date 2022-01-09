@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useRef, useState, useReducer, useCallback } from "react";
+import { useRef, useReducer } from "react";
 import clsx from "clsx";
 import { useHover } from "@react-aria/interactions";
 import { OverlayProvider, OverlayContainer } from "@react-aria/overlays";
