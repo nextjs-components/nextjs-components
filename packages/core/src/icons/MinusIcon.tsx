@@ -1,5 +1,5 @@
 import React from "react";
-import { useIconSize } from "contexts/IconSizeContext";
+import { useIconSize } from "../contexts/IconSizeContext";
 
 const MinusIcon = ({
   size,
