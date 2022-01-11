@@ -14,7 +14,7 @@ A collection of React components, transcribed from https://vercel.com/design. [^
 
 ## Motivation
 
-TBD
+[Blog post](https://thekevinwang.com/2022/01/09/nextjs-components/) from 01/09/2022
 
 ### Todo's
 
@@ -26,6 +26,7 @@ TBD
 - [ ] Figure out monorepo situation
   - Lerna? Turborepo?
   - 1 Large components-package or multiple per-component packages?
+- [ ] Move Todo's to [project board](https://github.com/nextjs-components/nextjs-components/projects?type=beta)
 
 ## Installation
 
