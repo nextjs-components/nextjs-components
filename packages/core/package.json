@@ -1,6 +1,6 @@
 {
   "name": "nextjs-components",
-  "version": "0.1.0-rc51",
+  "version": "0.1.0-rc52",
   "author": {
     "name": "Kevin Wang",
     "url": "https://thekevinwang.com"
@@ -12,9 +12,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:swc": "npx swc src --copy-files -d dist && npx tsc",
-    "build:babel": "babel src --extensions '.ts','.tsx' --copy-files -d dist --ignore '**/*.test.*' && npx tsc",
-    "clean": "rm -rf dist"
+    "emit-types": "npx tsc",
+    "build:swc": "npx swc src --copy-files -d dist && npm run emit-types",
+    "build:babel": "babel src --extensions '.ts','.tsx' --copy-files -d dist --ignore '**/*.test.*' && npm run emit-types",
+    "clean": "rm -rf dist/",
+    "prepublish": "npm run clean && npm run build:babel",
+    "publish:local": "npx yalc publish"
   },
   "repository": {
     "type": "git",
