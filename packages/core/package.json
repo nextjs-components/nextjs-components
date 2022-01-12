@@ -16,7 +16,7 @@
     "build:swc": "npx swc src --copy-files -d dist && npm run emit-types",
     "build:babel": "babel src --extensions '.ts','.tsx' --copy-files -d dist --ignore '**/*.test.*' && npm run emit-types",
     "clean": "rm -rf dist/",
-    "prepublish": "npm run clean && npm run build:babel",
+    "prepare": "npm run clean && npm run build:babel",
     "publish:local": "npx yalc publish"
   },
   "repository": {
