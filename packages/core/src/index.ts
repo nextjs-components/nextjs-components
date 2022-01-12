@@ -20,6 +20,7 @@ export * from "./components/Fieldset";
 export * from "./components/FileTree";
 // export * from "./components/Image";
 export * from "./components/Input";
+export { KBD } from "./components/KeyboardInput";
 export * from "./components/Label";
 export * from "./components/List";
 export * from "./components/LoadingDots";

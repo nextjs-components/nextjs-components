@@ -1,0 +1,27 @@
+.kbd {
+  color: var(--themed-fg, var(--accents-5));
+  background: var(--themed-bg, var(--accents-1));
+  border: 1px solid var(--themed-border, var(--accents-2));
+  display: inline-block;
+  text-align: center;
+  min-width: var(--geist-gap);
+  font-size: 0.875rem;
+  line-height: 2em;
+  padding: 0 var(--geist-gap-quarter);
+  border-radius: var(--geist-radius);
+  font-family: var(--font-sans);
+}
+
+.kbd.small {
+  font-size: 0.75rem;
+  min-width: var(--geist-gap);
+  padding: 0;
+}
+
+.kbd + kbd {
+  margin-left: 4px;
+}
+
+.kbd span + span {
+  margin-left: var(--geist-gap-quarter);
+}
