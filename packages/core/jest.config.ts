@@ -14,5 +14,8 @@ export default async (): Promise<Config.InitialOptions> => {
       "^.+\\.tsx?$": ["babel-jest", { presets: ["next/babel"] }],
       ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform",
     },
+    // skip coverage reporting
+    coveragePathIgnorePatterns: ["src/icons", "index.tsx"],
+    collectCoverageFrom: ["src/**/*.ts", "src/**/*.tsx"],
   };
 };
