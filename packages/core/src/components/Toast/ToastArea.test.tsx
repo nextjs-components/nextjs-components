@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import ToastArea from "./ToastArea";
 import { IToastsContext } from "./ToastsProvider";
 
-import { mocked } from "ts-jest/utils";
+import { mocked } from "jest-mock";
 import useToasts from "./useToasts";
 jest.mock("./useToasts");
 const useToastsMock = mocked(useToasts);
@@ -62,9 +62,9 @@ describe("ToastArea", () => {
   it("should be styled correctly, when there are multiple messages", () => {
     // WHEN
     useToastsMock.mockImplementationOnce(() => {
-      return ({
+      return {
         current: { messages: [{ key: 1 }, { key: 2 }] },
-      } as unknown) as IToastsContext;
+      } as unknown as IToastsContext;
     });
 
     const { container } = render(<ToastArea />);
@@ -78,9 +78,9 @@ describe("ToastArea", () => {
   it("should render ToastContainer children in the correct positions", () => {
     // WHEN
     useToastsMock.mockImplementation(() => {
-      return ({
+      return {
         current: { messages: [{ key: 1 }, { key: 2 }, { key: 3 }] },
-      } as unknown) as IToastsContext;
+      } as unknown as IToastsContext;
     });
 
     render(<ToastArea />);
@@ -110,9 +110,9 @@ describe("ToastArea", () => {
         isHovered: true,
       }));
       useToastsMock.mockImplementation(() => {
-        return ({
+        return {
           current: { messages: [{ key: 1 }] },
-        } as unknown) as IToastsContext;
+        } as unknown as IToastsContext;
       });
 
       const { container } = render(<ToastArea />);
