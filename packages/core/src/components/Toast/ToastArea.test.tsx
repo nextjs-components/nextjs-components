@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import ToastArea from "./ToastArea";
 import { IToastsContext } from "./ToastsProvider";
 
-import { mocked } from "jest-mock";
+import { mocked } from "ts-jest/utils";
 import useToasts from "./useToasts";
 jest.mock("./useToasts");
 const useToastsMock = mocked(useToasts);
