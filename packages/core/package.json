@@ -14,9 +14,10 @@
     "test": "jest",
     "emit-types": "npx tsc -p tsconfig.build.json",
     "build:swc": "npx swc src --copy-files -d dist && npm run emit-types",
-    "build:babel": "babel src --extensions '.ts','.tsx' --copy-files -d dist --ignore '**/*.test.*' && npm run emit-types",
+    "build:babel": "babel src --extensions '.ts','.tsx' --copy-files --no-copy-ignored -d dist --ignore '**/*.test.*' && npm run emit-types",
+    "prune-dist": "find dist -type f -name '*.test.*' -delete",
     "clean": "rm -rf dist/",
-    "prepublishOnly": "npm run clean && npm run build:babel",
+    "prepublishOnly": "npm run clean && npm run build:babel && npm run prune-dist",
     "publish:local": "npx yalc publish"
   },
   "repository": {
