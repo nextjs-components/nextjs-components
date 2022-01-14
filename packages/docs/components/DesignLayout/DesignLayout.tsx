@@ -97,6 +97,7 @@ const DesignLayout: React.FC<Props> = ({
     "/design/fieldset",
     "/design/file-tree",
     "/design/grid",
+    "/design/keyboard-input",
     "/design/loading-dots",
     "/design/spinner",
     "/design/toast",

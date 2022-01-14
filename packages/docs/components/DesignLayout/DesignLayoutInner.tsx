@@ -16,6 +16,7 @@ import { Spacer } from "nextjs-components";
 import { Spinner } from "nextjs-components";
 import { Text } from "nextjs-components";
 import { useToasts } from "nextjs-components";
+import { KBD } from "nextjs-components";
 import {
   Entity,
   EntityField,
@@ -63,6 +64,7 @@ const editorScope = {
   GitHub,
   Google: GoogleIcon,
   isMounted: true,
+  KBD,
   Link,
   LoadingDots,
   MenuItem: () => <span>todo</span>,

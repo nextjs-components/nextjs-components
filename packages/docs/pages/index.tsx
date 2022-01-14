@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { Badge } from "nextjs-components";
+import { Badge, Container } from "nextjs-components";
 
 export default function Home() {
   return (
@@ -10,12 +10,15 @@ export default function Home() {
         <meta name="description" content="Nextjs components" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Link href="/design/button">
-        <a>
-          <Badge>Go to Docs</Badge>
-        </a>
-      </Link>
+      <Container wrapper>
+        <Container center>
+          <Link href="/design/button">
+            <a>
+              <Badge>Go to Docs</Badge>
+            </a>
+          </Link>
+        </Container>
+      </Container>
     </div>
   );
 }
