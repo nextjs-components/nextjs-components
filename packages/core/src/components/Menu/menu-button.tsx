@@ -20,7 +20,6 @@ export const MenuButton: React.FC<ButtonProps> = ({
       data-geist-menu-button=""
       ref={buttonRef}
       onClick={() => {
-        console.log("CLICK");
         setOpen(true);
       }}
       {...props}
