@@ -1,0 +1,139 @@
+import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DesignLayout paths={paths}>
+      <DesignLayoutInner>{children}</DesignLayoutInner>
+    </DesignLayout>
+  );
+}
+
+export const getStaticProps = async () => {
+  const fs = await import("fs");
+  const path = await import("path");
+  const dir = path.join(process.cwd(), "pages/design");
+  const paths = fs
+    .readdirSync(dir)
+    .map((e) => path.join("/design", e.replace(".mdx", "")));
+  return {
+    props: {
+      paths,
+    },
+  };
+};
+
+# Menu
+
+<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
+  Dropdown menu opened via button. Supports typeahead and keyboard navigation.
+</Text>
+
+<Spacer y={2} />
+
+### Default
+
+<Text p type="secondary" style={{ fontWeight: 400 }}>
+  MenuButton extends the <Link href="/design/button">Button component</Link>.
+</Text>
+
+```
+<MenuWrapper>
+  <MenuButton>Actions</MenuButton>
+  <Menu width={200}>
+    <MenuItem onClick={() => alert('One')}>One</MenuItem>
+    <MenuItem onClick={() => alert('Two')}>Two</MenuItem>
+    <MenuItem onClick={() => alert('Three')}>Three</MenuItem>
+    <MenuItem onClick={() => alert('Delete')} type="error">Delete</MenuItem>
+  </Menu>
+</MenuWrapper>
+```
+
+<Spacer y={2} />
+
+### Disabled Items
+
+```
+<MenuWrapper>
+  <MenuButton>Actions</MenuButton>
+  <Menu width={200}>
+    <MenuItem disabled>One</MenuItem>
+    <MenuItem>Two</MenuItem>
+    <MenuItem disabled>Three</MenuItem>
+    <MenuItem>Four</MenuItem>
+  </Menu>
+</MenuWrapper>
+```
+
+<Spacer y={2} />
+
+### Link Items
+
+<Text p type="secondary" style={{ fontWeight: 400 }}>
+  MenuLink extends the <Link href="/design/link">Link component</Link>.
+</Text>
+
+```
+<MenuWrapper>
+  <MenuButton>Links</MenuButton>
+  <Menu width={200}>
+    <MenuLink href="/design/menu#custom-trigger">One</MenuLink>
+    <MenuLink href="#">Two</MenuLink>
+    <MenuLink href="#">Three</MenuLink>
+  </Menu>
+</MenuWrapper>
+```
+
+<Spacer y={2} />
+
+### Custom Trigger
+
+<Text p type="secondary" style={{ fontWeight: 400 }}>
+  The trigger is still wrapped by an unstyled button.
+</Text>
+
+```
+<MenuWrapper>
+  <MenuButton variant="unstyled">
+    <Avatar size={30} src="https://vercel.com/api/www/avatar/?u=thekevinwang&s=72" />
+  </MenuButton>
+  <Menu width={200}>
+    <MenuItem>One</MenuItem>
+    <MenuItem>Two</MenuItem>
+    <MenuItem>Three</MenuItem>
+  </Menu>
+</MenuWrapper>
+```
+
+<Spacer y={2} />
+
+### Prefix and Suffix
+
+```
+<Container row>
+  <Container>
+    <MenuWrapper>
+      <MenuButton size="small" shape="square" type="secondary">
+        <MoreHorizontal />
+      </MenuButton>
+      <Menu divide>
+        <MenuItem prefix={<AlignLeft />}>Left</MenuItem>
+        <MenuItem prefix={<AlignCenter />}>Center</MenuItem>
+        <MenuItem prefix={<AlignRight />}>Right</MenuItem>
+      </Menu>
+    </MenuWrapper>
+  </Container>
+
+  <Container>
+    <MenuWrapper>
+      <MenuButton size="small" shape="square" type="secondary">
+        <MoreHorizontal />
+      </MenuButton>
+      <Menu divide>
+        <MenuItem suffix={<AlignLeft />}>Left</MenuItem>
+        <MenuItem suffix={<AlignCenter />}>Center</MenuItem>
+        <MenuItem suffix={<AlignRight />}>Right</MenuItem>
+      </Menu>
+    </MenuWrapper>
+  </Container>
+</Container>
+```
