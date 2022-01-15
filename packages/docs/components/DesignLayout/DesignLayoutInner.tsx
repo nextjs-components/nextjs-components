@@ -2,33 +2,33 @@ import React, { useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
 
-import { Avatar } from "nextjs-components";
-import { Button } from "../../../core/src/components/Button";
-import { Editor } from "nextjs-components/dist/components/Editor";
-import { Checkbox } from "nextjs-components";
-import { ColorCard } from "nextjs-components/dist/components/ColorCard";
-import { Container } from "nextjs-components";
+import { Avatar } from "nextjs-components/src/components/Avatar";
+import { Button } from "nextjs-components/src/components/Button";
+import { Editor } from "nextjs-components/src/components/Editor";
+import { Checkbox } from "nextjs-components/src/components/Checkbox";
+import { ColorCard } from "nextjs-components/src/components/ColorCard";
+import { Container } from "nextjs-components/src/components/Container";
 import { fs } from "nextjs-components";
-import { Tree, Folder, File } from "nextjs-components";
-import { LoadingDots } from "nextjs-components";
-import { Toggle } from "nextjs-components";
-import { Spacer } from "nextjs-components";
-import { Spinner } from "nextjs-components";
-import { Text } from "nextjs-components";
-import { useToasts } from "nextjs-components";
-import { KBD } from "nextjs-components";
+import { Tree, Folder, File } from "nextjs-components/src/components/FileTree";
+import { LoadingDots } from "nextjs-components/src/components/LoadingDots";
+import { Toggle } from "nextjs-components/src/components/Toggle";
+import { Spacer } from "nextjs-components/src/components/Spacer";
+import { Spinner } from "nextjs-components/src/components/Spinner";
+import { Text } from "nextjs-components/src/components/Text";
+import { useToasts } from "nextjs-components/src/components/Toast";
+import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import {
   Entity,
   EntityField,
   EntityThumbnail,
-} from "nextjs-components/dist/components/Entity";
+} from "nextjs-components/src/components/Entity";
 import {
   Menu,
   MenuButton,
   MenuItem,
   MenuWrapper,
   MenuLink,
-} from "../../../core/src/components/Menu";
+} from "nextjs-components/dist/components/Menu";
 
 import {
   AlignCenter,
@@ -39,7 +39,7 @@ import {
   FacebookIcon,
   GoogleIcon,
   MoreHorizontal,
-} from "nextjs-components/src/icons";
+} from "nextjs-components/dist/icons";
 
 const BlueContainer = ({ style, children, ...props }) => (
   <Container

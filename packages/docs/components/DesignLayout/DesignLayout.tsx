@@ -13,7 +13,6 @@ import { IconSizeContext } from "nextjs-components/src/contexts/IconSizeContext"
 
 import { Sun, Moon } from "nextjs-components/src/icons";
 
-// import Menu from "nextjs-components/dist/components/Menu";
 import styles from "./design.module.css";
 
 interface Props {
