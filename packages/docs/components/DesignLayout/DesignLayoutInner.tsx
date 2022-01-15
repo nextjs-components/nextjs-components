@@ -27,6 +27,7 @@ import {
   MenuButton,
   MenuItem,
   MenuWrapper,
+  MenuLink,
 } from "../../../core/src/components/Menu";
 
 import {
@@ -77,6 +78,7 @@ const editorScope = {
   MenuButton,
   MenuItem,
   MenuWrapper,
+  MenuLink,
   Spacer,
   Spinner,
   Text,

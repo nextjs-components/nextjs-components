@@ -3,15 +3,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 
-import { Container } from "nextjs-components/dist/components/Container";
-import { Details } from "nextjs-components/dist/components/Details";
-import { Text } from "nextjs-components/dist/components/Text";
-import { Toggle } from "nextjs-components/dist/components/Toggle";
+import { Container } from "nextjs-components/src/components/Container";
+import { Details } from "nextjs-components/src/components/Details";
+import { Text } from "nextjs-components/src/components/Text";
+import { Toggle } from "nextjs-components/src/components/Toggle";
 
-import { useTheme } from "nextjs-components/dist/contexts/ThemeContext";
-import { IconSizeContext } from "nextjs-components/dist/contexts/IconSizeContext";
+import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
+import { IconSizeContext } from "nextjs-components/src/contexts/IconSizeContext";
 
-import { Sun, Moon } from "nextjs-components/dist/icons";
+import { Sun, Moon } from "nextjs-components/src/icons";
 
 // import Menu from "nextjs-components/dist/components/Menu";
 import styles from "./design.module.css";
