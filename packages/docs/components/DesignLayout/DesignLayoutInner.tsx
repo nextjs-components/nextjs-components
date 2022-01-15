@@ -31,11 +31,15 @@ import {
 } from "../../../core/src/components/Menu";
 
 import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
   ArrowUp as Up,
   GitHub,
   FacebookIcon,
   GoogleIcon,
-} from "nextjs-components/dist/icons";
+  MoreHorizontal,
+} from "nextjs-components/src/icons";
 
 const BlueContainer = ({ style, children, ...props }) => (
   <Container
@@ -56,6 +60,9 @@ const BlueContainer = ({ style, children, ...props }) => (
  * This components fulfill in-MDX code blocks that use JSX.
  */
 const editorScope = {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
   Avatar,
   BlueContainer,
   Button,
@@ -79,6 +86,7 @@ const editorScope = {
   MenuItem,
   MenuWrapper,
   MenuLink,
+  MoreHorizontal,
   Spacer,
   Spinner,
   Text,

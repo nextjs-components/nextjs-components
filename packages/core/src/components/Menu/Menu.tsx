@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import clsx from "clsx";
 import Portal from "@reach/portal";
 import { usePopper } from "react-popper";
+import { useId } from "@react-aria/utils";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
 
@@ -13,8 +14,7 @@ import MenuContext, { useMenu } from "./menu-context";
 
 /**
  *
- * @usage
- * ```tsx
+ * @example
  * <MenuWrapper>
  *   <MenuButton>Actions</MenuButton>
  *   <Menu width={200}>
@@ -24,7 +24,6 @@ import MenuContext, { useMenu } from "./menu-context";
  *     <MenuItem onClick={() => alert('Delete')} type="error">Delete</MenuItem>
  *   </Menu>
  * </MenuWrapper>
- * ```
  */
 export const MenuWrapper = ({ children }) => {
   const listRef = useRef<HTMLUListElement>(null);
@@ -32,6 +31,7 @@ export const MenuWrapper = ({ children }) => {
 
   const [popperElement, setPopperElement] = useState<HTMLDivElement>(null);
   const [arrowElement, setArrowElement] = useState<HTMLDivElement>(null);
+
   const popper = usePopper(buttonRef.current, popperElement, {
     placement: "bottom-start",
     modifiers: [
@@ -44,15 +44,16 @@ export const MenuWrapper = ({ children }) => {
 
   const [open, setOpen] = useState(false);
 
-  const menuId = open ? "simple-popover" : undefined;
+  const menuId = useId();
+  const buttonId = useId();
 
   return (
     <MenuContext.Provider
       value={{
         open,
         setOpen,
-        menuId,
-        buttonId: "",
+        menuId: `menu-${menuId}`,
+        buttonId: `button-${buttonId}`,
         buttonRef,
         listRef,
         arrow: setArrowElement,
@@ -84,81 +85,63 @@ export const MenuWrapper = ({ children }) => {
 
 interface MenuInnerProps {
   "aria-labelledby"?: string;
-  // children: MenuItem[]
   id?: string;
-  onKeyDown: any;
   width: number;
+  divide?: boolean;
 }
 
-const MenuInner: React.FC<MenuInnerProps> = ({
-  onKeyDown,
-  width,
-  children,
-}) => {
-  const { popper, listRef, arrow, popperStyles, popperAttributes, open } =
-    useMenu();
+const MenuInner: React.FC<MenuInnerProps> = ({ divide, width, children }) => {
+  const { listRef, menuId } = useMenu();
 
   const isActive = listRef.current?.contains(document.activeElement);
 
   return (
-    <div
-      ref={popper}
-      className={classes.wrapper}
-      hidden={!open}
-      style={popperStyles.popper}
-      {...popperAttributes.popper}
+    <ul
+      id={menuId}
+      data-geist-menu=""
+      role="menu"
+      tabIndex={-1}
+      className={clsx(classes.menu, {
+        [classes.divide]: divide,
+        ["focus-visible"]: isActive,
+      })}
+      data-focus-visible-added={isActive ? "" : undefined}
+      style={{ width }}
+      ref={listRef}
     >
-      <div
-        // force arrow position to update on
-        // initial paint
-        key={open && 1}
-        data-popper-arrow=""
-        className={classes.arrow}
-        style={popperStyles.arrow}
-        ref={arrow}
-        {...popperAttributes.arrow}
-      />
       {children}
-    </div>
+    </ul>
   );
 };
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
+interface MenuProps {
+  /** default: 150 */
+  width?: number;
+  divide?: boolean;
 }
-
-// Complex keyboard logic :(
-export const Menu = ({ children, width = 150 }) => {
+/**
+ * @see {@link MenuWrapper} for code sample usage
+ */
+export const Menu: React.FC<MenuProps> = ({
+  children,
+  width = 150,
+  divide,
+}) => {
   const { open, listRef, setOpen, buttonRef, selected, setSelected } =
     useMenu();
+
   const isSmall = useMediaQuery("(max-width:600px)");
-  console.log({ isSmall });
-  const prevFocusedEl = useRef<HTMLElement>();
-  // focus the menu
-  // - document.activeElement
-  // if (open) {
-  //   prevFocusedEl.current = document.activeElement;
-  //   listRef.current.focus();
-  // }
+
+  const prevFocusedEl = useRef<HTMLElement>(
+    document.activeElement as HTMLElement
+  );
 
   useEffect(() => {
     if (open) {
       // When the menu opens, focus it
-      // and store the previous focused element
       prevFocusedEl.current = document.activeElement as HTMLElement;
       listRef.current?.focus();
     }
-    return () => {
-      if (open) {
-        // When the menu is closing, focus the previous element
-        console.log("cleanup");
-        prevFocusedEl.current.focus();
-      }
-    };
   }, [open]);
 
   useEffect(() => {
@@ -179,16 +162,18 @@ export const Menu = ({ children, width = 150 }) => {
     };
   }, [open, buttonRef.current]);
 
+  // handle keyboard actions
   useEffect(() => {
     if (!listRef.current) return;
-    const len = listRef.current.children.length;
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case "Tab":
           e.preventDefault();
           break;
         case "Escape":
+          // close and focus the previous element. Likely the MenuButton.
           setOpen(false);
+          prevFocusedEl.current.focus();
           break;
         case "Enter":
         case " ":
@@ -198,15 +183,39 @@ export const Menu = ({ children, width = 150 }) => {
           setOpen(false);
           setSelected(0);
           break;
-        case "ArrowUp":
+        case "ArrowUp": {
           e.preventDefault();
-          if (selected === -1) return;
-          setSelected((s) => Math.max(s - 1, 0));
+          // prevent selecting a disabled sibling
+          let siblings = React.Children.toArray(children);
+          let step = 1;
+          let curr = selected;
+          if (curr <= 0) return;
+
+          // @ts-expect-error .props
+          while (siblings[curr - step]?.props?.disabled) {
+            step++;
+          }
+          if (curr - step < 0) break;
+          setSelected(curr - step);
           break;
-        case "ArrowDown":
+        }
+        case "ArrowDown": {
           e.preventDefault();
-          setSelected((s) => Math.min(s + 1, len - 1));
+          // prevent selecting a disabled sibling
+          let siblings = React.Children.toArray(children);
+          let step = 1;
+          let curr = selected;
+          let len = siblings.length;
+          if (curr >= len - 1) return;
+
+          // @ts-expect-error .props
+          while (siblings[curr + step]?.props?.disabled) {
+            step++;
+          }
+          if (curr + step >= len) break;
+          setSelected(curr + step);
           break;
+        }
       }
     };
 
@@ -228,48 +237,67 @@ export const Menu = ({ children, width = 150 }) => {
       }
     };
 
-    document.addEventListener("touchstart", handleClick);
-    document.addEventListener("mousedown", handleClick);
+    const handleFocusChange = (e: FocusEvent) => {
+      const isSelf =
+        e.target === listRef.current ||
+        e.target === buttonRef.current ||
+        listRef.current.contains(e.target as Node) ||
+        buttonRef.current.contains(e.target as Node);
+      if (!isSelf) setOpen(false);
+    };
+
+    document.addEventListener("focus", handleFocusChange, true);
+    document.addEventListener("touchstart", handleClick, true);
+    document.addEventListener("mousedown", handleClick, true);
 
     return () => {
-      document.removeEventListener("touchstart", handleClick);
-      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("focus", handleFocusChange, true);
+      document.removeEventListener("touchstart", handleClick, true);
+      document.removeEventListener("mousedown", handleClick, true);
     };
-  }, [open]);
-
-  const isActive = listRef.current?.contains(document.activeElement);
+  }, [open, buttonRef.current, listRef.current]);
 
   return (
     <Portal>
       {isSmall ? (
         <Drawer show={open}>
-          <ul
-            data-geist-menu=""
-            role="menu"
-            tabIndex={-1}
-            className={clsx(classes.menu, { ["focus-visible"]: isActive })}
-            data-focus-visible-added={isActive ? "" : undefined}
-            style={{ width }}
-            ref={listRef}
-          >
+          <MenuInner width={width} divide={divide}>
             {children}
-          </ul>
+          </MenuInner>
         </Drawer>
       ) : (
-        <MenuInner width={width} onKeyDown={() => {}}>
-          <ul
-            data-geist-menu=""
-            role="menu"
-            tabIndex={-1}
-            className={clsx(classes.menu, { ["focus-visible"]: isActive })}
-            data-focus-visible-added={isActive ? "" : undefined}
-            style={{ width }}
-            ref={listRef}
-          >
+        <Popper>
+          <MenuInner width={width} divide={divide}>
             {children}
-          </ul>
-        </MenuInner>
+          </MenuInner>
+        </Popper>
       )}
     </Portal>
+  );
+};
+
+const Popper = ({ children }) => {
+  const { open, popper, popperStyles, popperAttributes, arrow } = useMenu();
+
+  return (
+    <div
+      ref={popper}
+      className={classes.wrapper}
+      hidden={!open}
+      style={popperStyles.popper}
+      {...popperAttributes.popper}
+    >
+      <div
+        // force arrow position to update on
+        // initial paint
+        key={open ? 1 : 0}
+        ref={arrow}
+        data-popper-arrow=""
+        className={classes.arrow}
+        style={popperStyles.arrow}
+        {...popperAttributes.arrow}
+      />
+      {children}
+    </div>
   );
 };
