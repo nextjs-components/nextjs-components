@@ -3,7 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
 
 import { Avatar } from "nextjs-components";
-import { Button } from "nextjs-components";
+import { Button } from "../../../core/src/components/Button";
 import { Editor } from "nextjs-components/dist/components/Editor";
 import { Checkbox } from "nextjs-components";
 import { ColorCard } from "nextjs-components/dist/components/ColorCard";
@@ -22,6 +22,12 @@ import {
   EntityField,
   EntityThumbnail,
 } from "nextjs-components/dist/components/Entity";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuWrapper,
+} from "../../../core/src/components/Menu";
 
 import {
   ArrowUp as Up,
@@ -67,7 +73,10 @@ const editorScope = {
   KBD,
   Link,
   LoadingDots,
-  MenuItem: () => <span>todo</span>,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuWrapper,
   Spacer,
   Spinner,
   Text,
@@ -92,6 +101,7 @@ const mdxComponents = {
   },
   ColorCard,
   Spacer,
+  Link,
 };
 
 export default function DesignLayoutInner({ children }) {
