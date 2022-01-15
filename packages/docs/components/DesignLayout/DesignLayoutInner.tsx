@@ -3,7 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
 
 import { Avatar } from "nextjs-components";
-import { Button } from "nextjs-components";
+import { Button } from "../../../core/src/components/Button";
 import { Editor } from "nextjs-components/dist/components/Editor";
 import { Checkbox } from "nextjs-components";
 import { ColorCard } from "nextjs-components/dist/components/ColorCard";
@@ -22,13 +22,24 @@ import {
   EntityField,
   EntityThumbnail,
 } from "nextjs-components/dist/components/Entity";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuWrapper,
+  MenuLink,
+} from "../../../core/src/components/Menu";
 
 import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
   ArrowUp as Up,
   GitHub,
   FacebookIcon,
   GoogleIcon,
-} from "nextjs-components/dist/icons";
+  MoreHorizontal,
+} from "nextjs-components/src/icons";
 
 const BlueContainer = ({ style, children, ...props }) => (
   <Container
@@ -49,6 +60,9 @@ const BlueContainer = ({ style, children, ...props }) => (
  * This components fulfill in-MDX code blocks that use JSX.
  */
 const editorScope = {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
   Avatar,
   BlueContainer,
   Button,
@@ -67,7 +81,12 @@ const editorScope = {
   KBD,
   Link,
   LoadingDots,
-  MenuItem: () => <span>todo</span>,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuWrapper,
+  MenuLink,
+  MoreHorizontal,
   Spacer,
   Spinner,
   Text,
@@ -92,6 +111,7 @@ const mdxComponents = {
   },
   ColorCard,
   Spacer,
+  Link,
 };
 
 export default function DesignLayoutInner({ children }) {

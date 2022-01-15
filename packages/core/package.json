@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/nextjs-components/nextjs-components#readme",
   "dependencies": {
+    "@popperjs/core": "^2.11.2",
+    "@reach/portal": "^0.16.2",
     "@react-aria/button": "3.3.4",
     "@react-aria/dialog": "3.1.4",
     "@react-aria/focus": "3.5.0",
@@ -43,6 +45,8 @@
     "clsx": "^1.1.1",
     "react-is": "^17.0.2",
     "react-live": "^2.3.0",
+    "react-merge-refs": "^1.1.0",
+    "react-popper": "^2.2.5",
     "react-use-measure": "^2.1.1"
   },
   "devDependencies": {

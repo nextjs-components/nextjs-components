@@ -1,12 +1,26 @@
 import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
 
-export default function Wrapper({ children }) {
+export default function Wrapper({ children, paths }) {
   return (
-    <DesignLayout>
+    <DesignLayout paths={paths}>
       <DesignLayoutInner>{children}</DesignLayoutInner>
     </DesignLayout>
   );
 }
+
+export const getStaticProps = async () => {
+  const fs = await import("fs");
+  const path = await import("path");
+  const dir = path.join(process.cwd(), "pages/design");
+  const paths = fs
+    .readdirSync(dir)
+    .map((e) => path.join("/design", e.replace(".mdx", "")));
+  return {
+    props: {
+      paths,
+    },
+  };
+};
 
 # Toast
 

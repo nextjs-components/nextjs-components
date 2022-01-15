@@ -1,17 +1,17 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
 
-import { Container } from "nextjs-components/dist/components/Container";
-import { Details } from "nextjs-components/dist/components/Details";
-import { Text } from "nextjs-components/dist/components/Text";
-import { Toggle } from "nextjs-components/dist/components/Toggle";
+import { Container } from "nextjs-components/src/components/Container";
+import { Details } from "nextjs-components/src/components/Details";
+import { Text } from "nextjs-components/src/components/Text";
+import { Toggle } from "nextjs-components/src/components/Toggle";
 
-import { useTheme } from "nextjs-components/dist/contexts/ThemeContext";
-import { IconSizeContext } from "nextjs-components/dist/contexts/IconSizeContext";
+import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
+import { IconSizeContext } from "nextjs-components/src/contexts/IconSizeContext";
 
-import { Sun, Moon } from "nextjs-components/dist/icons";
+import { Sun, Moon } from "nextjs-components/src/icons";
 
 // import Menu from "nextjs-components/dist/components/Menu";
 import styles from "./design.module.css";
@@ -88,22 +88,7 @@ interface Node {
   path: string;
 }
 
-const DesignLayout: React.FC<Props> = ({
-  children,
-  paths = [
-    "/design/button",
-    "/design/color",
-    "/design/entity",
-    "/design/fieldset",
-    "/design/file-tree",
-    "/design/grid",
-    "/design/keyboard-input",
-    "/design/loading-dots",
-    "/design/spinner",
-    "/design/toast",
-    "/design/toggle",
-  ],
-}) => {
+const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
   const [expanded, setExpanded] = useState(false);
   const { selectTheme, isDarkMode } = useTheme();
 
@@ -134,6 +119,12 @@ const DesignLayout: React.FC<Props> = ({
   }, []);
   const nodes = constructNodesFromPaths(paths);
 
+  // This key is to force toggle to update between SSR and CSR
+  const [key, setKey] = useState<number>(0);
+  useEffect(() => {
+    setKey(+new Date());
+  }, []);
+
   return (
     <>
       <Container className={styles["design-page"]}>
@@ -148,6 +139,7 @@ const DesignLayout: React.FC<Props> = ({
                 <IconSizeContext.Provider value={{ size: 18 }}>
                   <Sun />
                   <Toggle
+                    key={key}
                     checked={isDarkMode}
                     onChange={(checked) => {
                       selectTheme(checked ? "dark" : "light");

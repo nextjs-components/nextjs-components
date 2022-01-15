@@ -1,7 +1,6 @@
 import React from "react";
 import { useCallback } from "react";
 import clsx from "clsx";
-import { useIsSSR } from "@react-aria/ssr";
 import { FocusRing } from "@react-aria/focus";
 
 import styles from "./Toggle.module.css";
@@ -30,11 +29,6 @@ const Toggle = ({
     !disabled && onChange?.(!checked);
   }, [disabled, onChange, checked]);
 
-  // isSSR + checked is a hack for
-  // 1. resolves the 'different server and client values warning'
-  // 2. fixes a bug where className doesn't update, despite changing
-  const isSSR = useIsSSR();
-
   return (
     <label
       onClick={(e) => {
@@ -55,12 +49,10 @@ const Toggle = ({
           type="checkbox"
         />
       </FocusRing>
-      <span
-        className={clsx(styles.toggle, { [styles.checked]: !isSSR && checked })}
-      >
+      <span className={clsx(styles.toggle, { [styles.checked]: checked })}>
         <div
           className={clsx(styles.thumb, {
-            [styles.checked]: !isSSR && checked,
+            [styles.checked]: checked,
             [styles.disabled]: disabled,
           })}
         ></div>

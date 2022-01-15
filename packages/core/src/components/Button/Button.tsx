@@ -3,6 +3,7 @@ import { forwardRef, useState, useRef, useContext } from "react";
 import clsx from "clsx";
 import { useHover } from "@react-aria/interactions";
 import { useButton } from "@react-aria/button";
+import mergeRefs from "react-merge-refs";
 
 import { Spinner } from "../Spinner";
 import { IconSizeContext } from "../../contexts/IconSizeContext";
@@ -22,7 +23,7 @@ export interface Props extends Omit<IntrinsicProps, "prefix" | "type"> {
   align?: "start" | "grow";
   type?: "secondary" | "success" | "error" | "warning" | "alert" | "violet";
   shape?: "square" | "circle";
-  variant?: "shadow" | "ghost";
+  variant?: "shadow" | "ghost" | "unstyled";
   loading?: boolean;
 }
 const Button: React.ComponentType<Props> = forwardRef(
@@ -41,6 +42,7 @@ const Button: React.ComponentType<Props> = forwardRef(
       children,
       disabled,
       loading,
+      onClick,
       ...props
     },
     externalRef
@@ -53,17 +55,31 @@ const Button: React.ComponentType<Props> = forwardRef(
     const ref = useRef<HTMLButtonElement>();
     const { buttonProps, isPressed } = useButton(
       {
+        type: "submit",
         isDisabled: isDisabled || loading,
         onFocusChange: setFocused,
         onKeyDown: (e) => {
           if (e.key === "Enter" || e.key === " ") {
+            onClick?.(e as any);
             setFocused(true);
           }
+          return e;
         },
+        // e.pointerType: "mouse" | "touch"
+        // finger executes click on press end
+        onPressEnd: (e) => {
+          if (e.pointerType === "touch") {
+            onClick?.(e as any);
+          }
+          return e;
+        },
+        // mouse executes click on press start
         onPressStart: (e) => {
           if (e.pointerType === "mouse") {
             setFocused(false);
+            onClick?.(e as any);
           }
+          return e;
         },
       },
       ref
@@ -87,7 +103,7 @@ const Button: React.ComponentType<Props> = forwardRef(
         className={clsx([
           reset.reset,
           styles.base,
-          styles.button,
+          { [styles.button]: variant !== "unstyled" },
           !variant && styles.invert,
           {
             [styles.ghost]: variant === "ghost",
@@ -130,7 +146,7 @@ const Button: React.ComponentType<Props> = forwardRef(
           className,
         ])}
         {...props}
-        ref={ref}
+        ref={mergeRefs([ref, externalRef])}
       >
         <IconSizeContext.Provider value={iconSizeContextValue}>
           {prefix && (
