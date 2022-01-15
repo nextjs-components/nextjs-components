@@ -3,6 +3,7 @@ import { forwardRef, useState, useRef, useContext } from "react";
 import clsx from "clsx";
 import { useHover } from "@react-aria/interactions";
 import { useButton } from "@react-aria/button";
+import mergeRefs from "react-merge-refs";
 
 import { Spinner } from "../Spinner";
 import { IconSizeContext } from "../../contexts/IconSizeContext";
@@ -41,6 +42,7 @@ const Button: React.ComponentType<Props> = forwardRef(
       children,
       disabled,
       loading,
+      onClick,
       ...props
     },
     externalRef
@@ -57,11 +59,13 @@ const Button: React.ComponentType<Props> = forwardRef(
         onFocusChange: setFocused,
         onKeyDown: (e) => {
           if (e.key === "Enter" || e.key === " ") {
+            onClick(e as any);
             setFocused(true);
           }
         },
         onPressStart: (e) => {
           if (e.pointerType === "mouse") {
+            onClick(e as any);
             setFocused(false);
           }
         },
@@ -130,7 +134,7 @@ const Button: React.ComponentType<Props> = forwardRef(
           className,
         ])}
         {...props}
-        ref={ref}
+        ref={mergeRefs([ref, externalRef])}
       >
         <IconSizeContext.Provider value={iconSizeContextValue}>
           {prefix && (
