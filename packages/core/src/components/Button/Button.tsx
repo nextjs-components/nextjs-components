@@ -55,6 +55,7 @@ const Button: React.ComponentType<Props> = forwardRef(
     const ref = useRef<HTMLButtonElement>();
     const { buttonProps, isPressed } = useButton(
       {
+        type: "submit",
         isDisabled: isDisabled || loading,
         onFocusChange: setFocused,
         onKeyDown: (e) => {
@@ -62,12 +63,23 @@ const Button: React.ComponentType<Props> = forwardRef(
             onClick?.(e as any);
             setFocused(true);
           }
+          return e;
         },
-        onPress: (e) => {
+        // e.pointerType: "mouse" | "touch"
+        // finger executes click on press end
+        onPressEnd: (e) => {
+          if (e.pointerType === "touch") {
+            onClick?.(e as any);
+          }
+          return e;
+        },
+        // mouse executes click on press start
+        onPressStart: (e) => {
           if (e.pointerType === "mouse") {
             setFocused(false);
+            onClick?.(e as any);
           }
-          onClick?.(e as any);
+          return e;
         },
       },
       ref
