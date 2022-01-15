@@ -23,7 +23,7 @@ export interface Props extends Omit<IntrinsicProps, "prefix" | "type"> {
   align?: "start" | "grow";
   type?: "secondary" | "success" | "error" | "warning" | "alert" | "violet";
   shape?: "square" | "circle";
-  variant?: "shadow" | "ghost";
+  variant?: "shadow" | "ghost" | "unstyled";
   loading?: boolean;
 }
 const Button: React.ComponentType<Props> = forwardRef(
@@ -59,15 +59,15 @@ const Button: React.ComponentType<Props> = forwardRef(
         onFocusChange: setFocused,
         onKeyDown: (e) => {
           if (e.key === "Enter" || e.key === " ") {
-            onClick(e as any);
+            onClick?.(e as any);
             setFocused(true);
           }
         },
-        onPressStart: (e) => {
+        onPress: (e) => {
           if (e.pointerType === "mouse") {
-            onClick(e as any);
             setFocused(false);
           }
+          onClick?.(e as any);
         },
       },
       ref
@@ -91,7 +91,7 @@ const Button: React.ComponentType<Props> = forwardRef(
         className={clsx([
           reset.reset,
           styles.base,
-          styles.button,
+          { [styles.button]: variant !== "unstyled" },
           !variant && styles.invert,
           {
             [styles.ghost]: variant === "ghost",
