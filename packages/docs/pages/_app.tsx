@@ -1,11 +1,11 @@
-import "nextjs-components/dist/styles/globals.css";
+import "nextjs-components/src/styles/globals.css";
 
 import Head from "next/head";
+import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
 import {
-  ThemeContextProvider,
   ToastsProvider,
   ToastArea,
-} from "nextjs-components";
+} from "nextjs-components/src/components/Toast";
 
 function MyApp({ Component, pageProps }) {
   return (
