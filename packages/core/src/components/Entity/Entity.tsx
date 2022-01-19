@@ -12,7 +12,6 @@ import EntityField from "./EntityField";
 import { PlaceHolderContext } from "./index";
 
 interface Props {
-  children?: React.ReactElement;
   placeholder?: boolean;
   thumbnail?: React.ReactElement;
   checkbox?: React.ReactElement;
@@ -21,7 +20,7 @@ interface Props {
   footer?: React.ReactElement;
 }
 
-const Entity: React.FC = ({
+const Entity: React.FC<Props> = ({
   children,
   placeholder,
   thumbnail,
@@ -29,7 +28,7 @@ const Entity: React.FC = ({
   checkbox,
   actions,
   footer,
-}: Props) => {
+}) => {
   const thumbnailWrapOnMobile = thumbnail?.props.wrap;
   return (
     <PlaceHolderContext.Provider value={placeholder}>
