@@ -112,6 +112,7 @@ th.center > .container {
 
 .table.selectable th:last-of-type,
 .table.selectable tr td:last-of-type {
+  position: -webkit-sticky;
   position: sticky;
   right: 0;
 }
@@ -149,6 +150,7 @@ th.center > .container {
 }
 
 .wrapper:not(.overflow).sticky .table tr th {
+  position: -webkit-sticky;
   position: sticky;
   top: var(--sticky-offset);
   z-index: 2;
@@ -157,6 +159,7 @@ th.center > .container {
 .wrapper:not(.overflow).sticky:before {
   content: "";
   display: block;
+  position: -webkit-sticky;
   position: sticky;
   width: 100%;
   height: 40px;

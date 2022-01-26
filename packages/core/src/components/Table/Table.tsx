@@ -22,6 +22,8 @@ type Column = {
   ellipsis?: boolean;
   expandable?: boolean;
   fixedWidth?: number;
+  align?: "right" | "center";
+  columnClassName?: string;
   /**
    * @example
    * ```tsx
@@ -37,11 +39,13 @@ type Data = any;
 
 type HeaderActionParams = { idsChecked: string[]; disabled: boolean };
 type RowActionParams = { row: any; rowIdx: number };
+
 interface Props {
   columns?: Column[];
   data?: Data[];
   caption?: string;
   overflow?: number;
+  header?: boolean;
   sticky?: boolean;
   sortable?: boolean;
   defaultRows?: number;
@@ -53,21 +57,14 @@ interface Props {
   height?: React.HTMLAttributes<HTMLDivElement>["style"]["height"];
   empty?: JSX.Element;
 }
-/**
- * @usage
- * ```tsx
- * <Table
- *   columns={columns}
- *   data={data}
- *   caption="A table with minimum with of 1000px."
- *   overflow={1000}
- * />
- * ```
- */
+
 const Table: React.ComponentType<Props> = ({
   selectable,
   columns = [],
   data = [],
+  caption = "A basic table",
+  overflow,
+  header = true,
   headerActions,
   rowActions,
   width = "100%",
@@ -85,7 +82,12 @@ const Table: React.ComponentType<Props> = ({
       {!!Children.count(children) && (
         <div className={clsx([styles.filter])}>{children}</div>
       )}
-      <div className={clsx([styles.wrapper, styles.overflow])}>
+      <div
+        className={clsx([styles.wrapper, styles.overflow])}
+        data-geist-table-wrapper=""
+        // @ts-expect-error
+        style={{ ...(overflow ? { "--overflow-width": `${1000}px` } : {}) }}
+      >
         <Scroller width={width} height={height}>
           <div className={clsx(styles.tableWrapper)}>
             <table
@@ -95,9 +97,10 @@ const Table: React.ComponentType<Props> = ({
                 [styles.sticky]: sticky,
                 [styles.fixed]: fixed,
               })}
+              data-geist-table=""
             >
               <caption className={clsx(styles.caption, reset.visuallyHidden)}>
-                A basic table
+                {caption}
               </caption>
               <colgroup>
                 {selectable && <col style={{ width: "40px" }} />}
@@ -106,49 +109,61 @@ const Table: React.ComponentType<Props> = ({
                 })}
                 {selectable && <col style={{ width: "40px" }} />}
               </colgroup>
-              <thead>
+              <thead
+                className={header === false && "geist-visually-hidden"}
+                data-geist-table-header="original"
+              >
                 <tr role="row">
                   {
                     // Generate Header Checkbox
                     selectable && (
-                      <th
-                        colSpan={1}
-                        role="columnheader"
-                        style={{ width: "40px" }}
-                      >
+                      <th colSpan={1} role="columnheader">
                         <div className={styles.container}>
-                          <div className={styles.container}>
-                            <Checkbox
-                              indeterminate={
-                                !(idsChecked.length === 0) &&
-                                idsChecked.length !== data?.length
+                          <Checkbox
+                            indeterminate={
+                              !(idsChecked.length === 0) &&
+                              idsChecked.length !== data?.length
+                            }
+                            checked={
+                              idsChecked.length === data?.length &&
+                              data?.length !== 0
+                            }
+                            disabled={data.length === 0}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setIdsChecked(data?.map((e) => e.id));
+                              } else {
+                                setIdsChecked([]);
                               }
-                              checked={
-                                idsChecked.length === data?.length &&
-                                data?.length !== 0
-                              }
-                              disabled={data.length === 0}
-                              onChange={(e) => {
-                                if (e.target.checked) {
-                                  setIdsChecked(data?.map((e) => e.id));
-                                } else {
-                                  setIdsChecked([]);
-                                }
-                              }}
-                            />
-                          </div>
+                            }}
+                          />
                         </div>
                       </th>
                     )
                   }
-                  {columns.map(({ Header, accessor, fixedWidth }, i) => {
-                    // Generate Header Columns
+                  {columns.map((column, i) => {
+                    const {
+                      Header,
+                      accessor,
+                      fixedWidth,
+                      align,
+                      columnClassName,
+                    } = column;
+
+                    // Generate column headers
                     return (
                       <th
                         colSpan={1}
                         role="columnheader"
                         key={`${accessor}${i}`}
                         style={{ width: fixedWidth }}
+                        className={clsx(
+                          {
+                            [styles.center]: align === "center",
+                            [styles.right]: align === "right",
+                          },
+                          columnClassName
+                        )}
                       >
                         <div className={styles.container}>{Header}</div>
                       </th>
@@ -212,12 +227,25 @@ const Table: React.ComponentType<Props> = ({
                           </td>
                         )
                       }
-                      {columns.map(({ accessor, Cell, ellipsis }, colIdx) => {
+                      {columns.map((column, colIdx) => {
+                        const {
+                          accessor,
+                          Cell,
+                          ellipsis,
+                          align,
+                          columnClassName,
+                        } = column;
+
                         // For each row,
                         // Generate each column value, by columns.accessor
-                        const cn = clsx({
-                          [styles.ellipsisCell]: ellipsis,
-                        });
+                        const cn = clsx(
+                          {
+                            [styles.ellipsisCell]: ellipsis,
+                            [styles.center]: align === "center",
+                            [styles.right]: align === "right",
+                          },
+                          columnClassName
+                        );
                         const key = `${accessor}${colIdx}`;
                         if (Cell) {
                           // accessor may be null if we want to use the `Cell`
@@ -268,15 +296,23 @@ const Table: React.ComponentType<Props> = ({
                 })}
               </tbody>
             </table>
+            {!data || data?.length === 0 ? (
+              empty ? (
+                <div
+                  style={{ "--rows": defaultRows } as any}
+                  className={styles.empty}
+                >
+                  <span>{empty}</span>
+                </div>
+              ) : (
+                <div
+                  aria-hidden="true"
+                  style={{ "--rows": defaultRows } as any}
+                  className={styles.placeholder}
+                />
+              )
+            ) : null}
           </div>
-          {(!data || data?.length === 0) && (
-            <div
-              style={{ "--rows": defaultRows } as any}
-              className={styles.empty}
-            >
-              {empty}
-            </div>
-          )}
         </Scroller>
       </div>
     </div>

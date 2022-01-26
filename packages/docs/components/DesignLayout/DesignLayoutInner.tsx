@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
 
@@ -14,6 +14,7 @@ import { LoadingDots } from "nextjs-components/src/components/LoadingDots";
 import { Toggle } from "nextjs-components/src/components/Toggle";
 import { Spacer } from "nextjs-components/src/components/Spacer";
 import { Spinner } from "nextjs-components/src/components/Spinner";
+import { Table } from "nextjs-components/src/components/Table";
 import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
@@ -41,7 +42,9 @@ import {
   FacebookIcon,
   GoogleIcon,
   MoreHorizontal,
-} from "nextjs-components/dist/icons";
+} from "nextjs-components/src/icons";
+
+import { Code } from "../code";
 
 const BlueContainer = ({ style, children, ...props }) => (
   <Container
@@ -57,6 +60,39 @@ const BlueContainer = ({ style, children, ...props }) => (
     {children}
   </Container>
 );
+
+const columns = [
+  {
+    Header: "First Name",
+    accessor: "first",
+  },
+  {
+    Header: "Last Name",
+    accessor: "last",
+  },
+  {
+    Header: "Email",
+    accessor: "email",
+  },
+];
+
+const data = [
+  {
+    first: "John",
+    last: "Doe",
+    email: "john@doe.com",
+  },
+  {
+    first: "Dorothy",
+    last: "Boe",
+    email: "dorothy@boe.com",
+  },
+  {
+    first: "Baby",
+    last: "Moe",
+    email: "baby@moe.com",
+  },
+];
 
 /**
  * This components fulfill in-MDX code blocks that use JSX.
@@ -93,10 +129,14 @@ const editorScope = {
   Spacer,
   Spinner,
   StatusDot,
+  Table,
+  columns,
+  data,
   Text,
   Toggle,
   Tree,
   Up,
+  useMemo,
   useState,
   useToasts,
 };
@@ -111,6 +151,10 @@ const mdxComponents = {
   h6: (props) => <Text h6 {...props} />,
   p: (props) => <Text p {...props} />,
   pre: ({ children }) => {
+    // render Code Block
+    if ("className" in children.props) {
+      return <Code>{children.props.children}</Code>;
+    }
     return <Editor scope={editorScope} code={children.props.children} />;
   },
   ColorCard,
