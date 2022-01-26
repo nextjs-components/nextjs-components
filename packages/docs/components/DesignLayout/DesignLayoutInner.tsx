@@ -17,6 +17,7 @@ import { Spinner } from "nextjs-components/src/components/Spinner";
 import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
+import { Capacity } from "nextjs-components/src/components/Capacity";
 import {
   Entity,
   EntityField,
@@ -66,6 +67,7 @@ const editorScope = {
   Avatar,
   BlueContainer,
   Button,
+  Capacity,
   Checkbox,
   Container,
   Entity,
