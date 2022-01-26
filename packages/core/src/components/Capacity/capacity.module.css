@@ -1,0 +1,13 @@
+.background {
+  width: var(--width);
+  height: var(--height);
+  border-radius: 4px;
+  background: var(--accents-2);
+  overflow: hidden;
+}
+
+.progress {
+  height: 10px;
+  background-color: var(--progress-color, var(--geist-foreground));
+  width: var(--progress-width, 0);
+}
