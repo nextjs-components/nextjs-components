@@ -35,6 +35,9 @@ export * from "./components/Skeleton";
 export * from "./components/Snippet";
 export * from "./components/Spacer";
 export * from "./components/Spinner";
+
+export { StatusDot } from "./components/status-dot";
+
 export * from "./components/Switch";
 // export * from "./components/Table";
 export * from "./components/Tabs";

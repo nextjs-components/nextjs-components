@@ -1,0 +1,29 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background: var(--accents-2);
+}
+
+.status.ready {
+  background: var(--geist-cyan);
+}
+
+.status.error {
+  background: var(--geist-error);
+}
+
+.status.building {
+  background: var(--geist-warning);
+}
+
+.status-label {
+  line-height: 16px;
+  margin-left: 8px;
+}
