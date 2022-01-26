@@ -29,7 +29,8 @@ import {
   MenuItem,
   MenuWrapper,
   MenuLink,
-} from "nextjs-components/dist/components/Menu";
+} from "nextjs-components/src/components/Menu";
+import { StatusDot } from "nextjs-components/src/components/status-dot";
 
 import {
   AlignCenter,
@@ -91,6 +92,7 @@ const editorScope = {
   MoreHorizontal,
   Spacer,
   Spinner,
+  StatusDot,
   Text,
   Toggle,
   Tree,
