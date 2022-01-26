@@ -6,6 +6,7 @@ export * from "./components/Avatar";
 export * from "./components/Badge";
 // export * from "./components/Banner";
 export * from "./components/Button";
+export { Capacity } from "./components/Capacity";
 export * from "./components/Checkbox";
 export * from "./components/Collapse";
 export * from "./components/ColorCard";
