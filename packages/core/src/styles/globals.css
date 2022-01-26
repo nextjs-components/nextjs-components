@@ -216,28 +216,6 @@ a.active {
   --shadow-hover: 0 0 0 1px var(--geist-foreground);
 }
 
-/* Darkmode CSS for MuiSkeleton */
-code {
-  font-family: var(--font-mono);
-}
-
-code.code,
-code:not([class*="language-"]) {
-  color: var(--geist-code);
-  font-size: 0.9em;
-  white-space: pre-wrap;
-
-  /* prevent mdx `code` from breaking narrow mobile layout */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-code:not([class*="language-"])::before,
-code:not([class*="language-"])::after,
-code.code::before,
-code.code::after {
-  content: "`";
-}
-
 /* Colors from Note */
 .geist-themed.geist-secondary {
   --themed-fg: var(--geist-secondary);
@@ -394,19 +372,6 @@ html:not(.dark-theme) .geist-themed.geist-error-fill.geist-error-contrast {
   outline: 0;
 }
 
-.mdx-window {
-  max-width: 640px;
-}
-/* Hide scrollbar for Chrome, Safari and Opera */
-.mdx-window pre::-webkit-scrollbar {
-  display: none;
-}
-/* Hide scrollbar for IE, Edge and Firefox */
-.mdx-window pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
 .geist-spacer {
   display: block;
   width: 1px;
@@ -506,26 +471,6 @@ html:not(.dark-theme) .geist-themed.geist-error-fill.geist-error-contrast {
   right: 0;
   bottom: 0;
   z-index: 1;
-}
-
-[__debug]:not(.__debug) {
-  position: relative;
-}
-
-[__debug]:not(.__debug)::after {
-  -webkit-animation: spin 1.2s linear infinite;
-  animation: spin 1.2s linear infinite;
-
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #bbbbff55;
-  transition: background 200ms ease;
-  border: 1px dashed var(--accents-8);
-  pointer-events: none;
 }
 
 @-webkit-keyframes spin {
