@@ -1,4 +1,4 @@
-import { render, RenderResult, screen, act } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import ToastArea from "./ToastArea";
@@ -18,11 +18,6 @@ jest.mock("@react-aria/interactions");
 const useHoverMock = mocked(useHover);
 
 jest.useFakeTimers();
-jest.mock("@react-aria/overlays", () => ({
-  __esModule: true,
-  OverlayContainer: ({ children }) => <>{children}</>,
-  OverlayProvider: ({ children }) => <>{children}</>,
-}));
 jest.mock("components/Button", () => ({
   __esModule: true,
   Button: (props) => <button {...props} />,
@@ -53,9 +48,9 @@ describe("ToastArea", () => {
   // GIVEN
   it("should render without any errors", () => {
     // WHEN
-    const { container } = render(<ToastArea />);
+    const { baseElement } = render(<ToastArea />);
     // THEN
-    expect(container).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
   });
 
   // GIVEN
@@ -67,8 +62,8 @@ describe("ToastArea", () => {
       } as unknown as IToastsContext;
     });
 
-    const { container } = render(<ToastArea />);
-    const toastArea = container.firstChild;
+    const { baseElement } = render(<ToastArea />);
+    const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
     // THEN
     expect(toastArea).toHaveClass("multiple");
