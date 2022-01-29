@@ -1,8 +1,6 @@
 @import url("./geist-container.css");
 @import url("./geist-text.css");
 @import url("./geist-globals.css");
-@import url("./Mui-override.css");
-@import url("./animated.css");
 
 html {
   height: 100%;
@@ -52,7 +50,8 @@ a.active {
   background: var(--geist-selection);
 }
 
-:root {
+:root,
+.__SPACING {
   --geist-space: 4px;
   --geist-space-2x: 8px;
   --geist-space-4x: 16px;

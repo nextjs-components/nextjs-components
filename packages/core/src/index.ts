@@ -9,7 +9,6 @@ export * from "./components/Button";
 export { Capacity } from "./components/Capacity";
 export * from "./components/Checkbox";
 export * from "./components/Collapse";
-export * from "./components/ColorCard";
 export * from "./components/Container";
 export * from "./components/Description";
 export * from "./components/Details";
