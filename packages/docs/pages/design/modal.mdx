@@ -1,0 +1,68 @@
+import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DesignLayout paths={paths}>
+      <DesignLayoutInner>{children}</DesignLayoutInner>
+    </DesignLayout>
+  );
+}
+export const getStaticProps = async () => {
+  const fs = await import("fs");
+  const path = await import("path");
+  const dir = path.join(process.cwd(), "pages/design");
+  const paths = fs
+    .readdirSync(dir)
+    .map((e) => path.join("/design", e.replace(".mdx", "")));
+  return {
+    props: {
+      paths,
+    },
+  };
+};
+
+# Modal
+
+<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
+  Display popup content that requires attention or provides additional
+  information.
+</Text>
+
+<Spacer y={2} />
+
+### Default
+
+```
+() => {
+  const [active, setActive] = useState(false)
+
+  return (
+    <>
+      <Button  onClick={() => setActive(true)}>Open Modal</Button>
+
+      <Modal.Modal active={active} onClickOutside={() => setActive(false)}>
+        <Modal.Body>
+          <Modal.Header>
+            <Modal.Title>Modal</Modal.Title>
+            <Modal.Subtitle>
+              This is a modal.
+            </Modal.Subtitle>
+          </Modal.Header>
+
+          <Text noMargin>Some content contained within the modal.</Text>
+        </Modal.Body>
+
+        <Modal.Actions>
+          <Modal.Action onClick={() => setActive(false)}>
+            Cancel
+          </Modal.Action>
+
+          <Modal.Action onClick={() => setActive(false)}>
+            Submit
+          </Modal.Action>
+        </Modal.Actions>
+      </Modal.Modal>
+    </>
+  )
+}
+```

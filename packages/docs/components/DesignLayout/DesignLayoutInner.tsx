@@ -19,6 +19,7 @@ import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Capacity } from "nextjs-components/src/components/Capacity";
+import Modal from "nextjs-components/src/components/Modal";
 import {
   Entity,
   EntityField,
@@ -125,6 +126,7 @@ const editorScope = {
   MenuItem,
   MenuWrapper,
   MenuLink,
+  Modal,
   MoreHorizontal,
   Spacer,
   Spinner,
