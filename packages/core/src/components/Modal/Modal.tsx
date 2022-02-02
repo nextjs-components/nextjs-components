@@ -1,13 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
-import {
-  useOverlay,
-  usePreventScroll,
-  useModal,
-  OverlayContainer,
-  OverlayProvider,
-} from "@react-aria/overlays";
+import Portal from "@reach/portal";
+import { usePreventScroll } from "@react-aria/overlays";
 import { FocusScope } from "@react-aria/focus";
 
 import { Text } from "../Text";
@@ -34,53 +29,60 @@ export interface ActionProps
     HTMLButtonElement
   > {}
 
-const isBrowser = typeof window !== "undefined";
-
 /**
  * https://vercel.com/design/modal
  * https://react-spectrum.adobe.com/react-aria/useDialog.html#example
  */
 export const Modal = (props) => {
-  const { children, open, onClose, disableBackdropClick, active } = props;
+  const { children, disableBackdropClick, active, onClickOutside } = props;
 
+  const [mounted, setMounted] = useState(() => active);
+  useEffect(() => {
+    setTimeout(() => {
+      setMounted(active);
+    }, 200);
+  }, [active]);
   // Handle interacting outside the dialog and pressing
   // the Escape key to close the modal.
-  let ref = useRef();
-  let { overlayProps } = useOverlay(props, ref);
 
   // Prevent scrolling while the modal is open, and hide content
   // outside the modal from screen readers.
-  usePreventScroll();
+  usePreventScroll({ isDisabled: active });
 
-  return isBrowser ? (
-    <OverlayProvider>
-      <OverlayContainer>
-        <div className={"geist-overlay"} {...overlayProps}>
-          <div className={clsx("geist-overlay-backdrop", { active: active })} />
-          <div className={clsx(styles.wrapper, { [styles.active]: active })}>
-            {/* focust-trap-wrapper */}
-            <FocusScope contain restoreFocus autoFocus>
-              <div aria-hidden="true" className="focus-trap-backdrop"></div>
-              <div ref={ref} tabIndex={0} className="focus-trap">
-                {children}
-              </div>
-            </FocusScope>
-          </div>
+  // Mount the portal for as long as `active` or `mounted` is true
+  // - `mounted` will _trail_ behind `active` state changes, by 200
+
+  return active || mounted ? (
+    <Portal>
+      <div className={"geist-overlay"}>
+        <div
+          className={clsx("geist-overlay-backdrop", {
+            active: active && mounted,
+          })}
+          onClick={onClickOutside}
+        />
+        <div
+          className={clsx(styles.wrapper, {
+            [styles.active]: active && mounted,
+          })}
+        >
+          <FocusScope contain restoreFocus autoFocus>
+            <div aria-hidden="true" className="focus-trap-backdrop"></div>
+            <div tabIndex={0} className="focus-trap">
+              {children}
+            </div>
+          </FocusScope>
         </div>
-      </OverlayContainer>
-    </OverlayProvider>
+      </div>
+    </Portal>
   ) : null;
 };
 
 export const Body = (props) => {
   const { children, ...rest } = props;
-  let { modalProps } = useModal();
+
   return (
-    <div
-      {...rest}
-      className={clsx(styles.modalBody, styles.padding)}
-      {...modalProps}
-    >
+    <div {...rest} className={clsx(styles.modalBody, styles.padding)}>
       {children}
     </div>
   );

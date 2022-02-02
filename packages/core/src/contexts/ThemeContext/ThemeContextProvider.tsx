@@ -1,24 +1,21 @@
 import { isBrowser } from "../../utils/isBrowser";
 import { useMediaQuery } from "../../hooks";
-import { Modes, ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 const STORAGE_KEY = "mode";
 
 const ThemeContextProvider = ({ children }) => {
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
 
-  const [mode, setMode] = useState<Modes>(() => {
+  const [mode, setMode] = useState<"light" | "dark" | "system">(() => {
     if (isBrowser()) {
       return (window as any).__mode;
     }
   });
 
-  const isDarkMode = useMemo(
-    () => (mode === Modes.SYSTEM ? prefersDark : mode === Modes.DARK),
-    [mode, prefersDark]
-  );
+  const isDarkMode = mode === "system" ? prefersDark : mode === "dark";
 
   useEffect(() => {
     if (isDarkMode) {
@@ -28,30 +25,13 @@ const ThemeContextProvider = ({ children }) => {
     }
   }, [isDarkMode]);
 
-  const selectTheme = async (val: Modes | "light" | "dark" | "system") => {
-    switch (val) {
-      case Modes.LIGHT:
-        setMode(Modes.LIGHT);
-        localStorage.setItem(STORAGE_KEY, Modes.LIGHT);
-        break;
-      case Modes.DARK:
-        setMode(Modes.DARK);
-        localStorage.setItem(STORAGE_KEY, Modes.DARK);
-        break;
-      case Modes.SYSTEM:
-        setMode(Modes.SYSTEM);
-        localStorage.setItem(STORAGE_KEY, Modes.SYSTEM);
-        break;
-    }
+  const selectTheme = (val: "light" | "dark" | "system") => {
+    setMode(val);
+    localStorage.setItem(STORAGE_KEY, val);
   };
 
-  const contextValue = useMemo(
-    () => ({ isDarkMode, mode, selectTheme }),
-    [isDarkMode, selectTheme]
-  );
-
   return (
-    <ThemeContext.Provider value={contextValue}>
+    <ThemeContext.Provider value={{ isDarkMode, mode, selectTheme }}>
       {children}
     </ThemeContext.Provider>
   );

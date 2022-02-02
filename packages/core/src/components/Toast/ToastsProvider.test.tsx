@@ -7,11 +7,7 @@ import useToasts from "./useToasts";
 import ToastArea from "./ToastArea";
 
 jest.useFakeTimers();
-jest.mock("@react-aria/overlays", () => ({
-  __esModule: true,
-  OverlayContainer: ({ children }) => <>{children}</>,
-  OverlayProvider: ({ children }) => <>{children}</>,
-}));
+
 jest.mock("components/Button", () => ({
   __esModule: true,
   Button: (props) => <button {...props} />,
@@ -49,9 +45,9 @@ describe("ToastConsumer", () => {
   // GIVEN
   it("should open a toast", () => {
     // WHEN
-    const { container } = render(<ToastConsumer />, { wrapper });
+    const { baseElement } = render(<ToastConsumer />, { wrapper });
     const button = screen.getByRole("button");
-    const toastArea = container.children[1];
+    const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
     // THEN
     expect(toastArea.children).toHaveLength(0);
@@ -71,9 +67,9 @@ describe("ToastConsumer", () => {
   // GIVEN
   it("should auto clear toasts", () => {
     // WHEN
-    const { container } = render(<ToastConsumer />, { wrapper });
+    const { baseElement } = render(<ToastConsumer />, { wrapper });
     const button = screen.getByRole("button");
-    const toastArea = container.children[1];
+    const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
     act(() => {
       userEvent.click(button);
@@ -104,9 +100,9 @@ describe("ToastConsumer", () => {
         </button>
       );
     };
-    const { container } = render(<ToastConsumer />, { wrapper });
+    const { baseElement } = render(<ToastConsumer />, { wrapper });
     const button = screen.getByRole("button");
-    const toastArea = container.children[1];
+    const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
     // WHEN
     act(() => {

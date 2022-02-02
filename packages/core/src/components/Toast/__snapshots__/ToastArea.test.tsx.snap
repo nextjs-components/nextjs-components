@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ToastArea should render without any errors 1`] = `
-<div>
-  <div
-    class="toast-area toastArea"
-  />
-</div>
+<body>
+  <div />
+  <reach-portal>
+    <div
+      class="toast-area toastArea"
+    />
+  </reach-portal>
+</body>
 `;

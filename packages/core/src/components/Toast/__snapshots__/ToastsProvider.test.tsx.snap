@@ -5,8 +5,5 @@ exports[`ToastConsumer should render without any errors 1`] = `
   <button>
     Show toast
   </button>
-  <div
-    class="toast-area toastArea"
-  />
 </DocumentFragment>
 `;
