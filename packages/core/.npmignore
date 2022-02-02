@@ -11,5 +11,8 @@ jest.setup.ts
 .gitignore
 # --
 docs
-src
 tsconfig.tsbuildinfo
+tsconfig.json
+tsconfig.build.json
+declaration.d.ts
+package-lock.json
