@@ -35,7 +35,7 @@ export * from "./components/Snippet";
 export * from "./components/Spacer";
 export * from "./components/Spinner";
 
-export { StatusDot } from "./components/status-dot";
+export { StatusDot } from "./components/StatusDot";
 
 export * from "./components/Switch";
 // export * from "./components/Table";
