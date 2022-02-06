@@ -3,9 +3,9 @@ import React from "react";
  * Notes
  * https://github.com/vercel/styled-jsx/issues/121#issuecomment-280332737
  */
-const UL: React.ComponentType = ({ children }) => {
+const UL: React.ComponentType = ({ children, ...props }) => {
   return (
-    <ul>
+    <ul {...props}>
       {children}
       <style jsx>{`
         ul {
