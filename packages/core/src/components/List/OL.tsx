@@ -1,7 +1,7 @@
 import React from "react";
-const OL: React.ComponentType = ({ children }) => {
+const OL: React.ComponentType = ({ children, ...props }) => {
   return (
-    <ol>
+    <ol {...props}>
       {children}
       <style jsx>{`
         ol {

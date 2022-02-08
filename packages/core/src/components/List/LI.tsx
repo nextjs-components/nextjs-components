@@ -1,7 +1,7 @@
 import React from "react";
-const LI: React.ComponentType = ({ children }) => {
+const LI: React.ComponentType = ({ children, ...props }) => {
   return (
-    <li>
+    <li {...props}>
       {children}
       <style jsx>{`
         li {
