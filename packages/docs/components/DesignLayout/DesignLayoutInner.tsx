@@ -32,7 +32,7 @@ import {
   MenuWrapper,
   MenuLink,
 } from "nextjs-components/src/components/Menu";
-import { StatusDot } from "nextjs-components/src/components/status-dot";
+import { StatusDot } from "nextjs-components/src/components/StatusDot";
 
 import {
   AlignCenter,
