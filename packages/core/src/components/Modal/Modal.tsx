@@ -47,7 +47,11 @@ export const Modal = (props) => {
 
   // Prevent scrolling while the modal is open, and hide content
   // outside the modal from screen readers.
-  usePreventScroll({ isDisabled: active });
+  usePreventScroll({ isDisabled: !active });
+  // Note: isDisabled
+  // - `true` means the scroll lock itself is disabled
+  // - `false` means the scroll lock itself enabled
+  // ...so this value should be the logical opposite of if the modal is open (`active`)
 
   // Mount the portal for as long as `active` or `mounted` is true
   // - `mounted` will _trail_ behind `active` state changes, by 200
