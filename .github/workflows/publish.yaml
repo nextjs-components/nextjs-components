@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.ref }}
-          path: "packages/core"
       - name: Set tag
         id: set_tag
         run: echo ::set-output name=tag::${GITHUB_REF#refs/*/v}
@@ -22,8 +21,11 @@ jobs:
         with:
           node-version: 16
       - run: npm install
+        working-directory: ./packages/core
       - run: npm run build:babel
+        working-directory: ./packages/core
       - uses: JS-DevTools/npm-publish@v1
         with:
+          package: ./packages/core
           token: ${{ secrets.NPM_TOKEN }}
           tag: ${{ steps.set_tag.outputs.tag }}
