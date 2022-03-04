@@ -1,0 +1,29 @@
+on:
+  # release:
+  #   types: [published]
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+          path: "packages/core"
+      - name: Set tag
+        id: set_tag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/v}
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+      - run: npm install
+      - run: npm run build:babel
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: ${{ steps.set_tag.outputs.tag }}
