@@ -24,8 +24,7 @@ jobs:
         working-directory: ./packages/core
       - run: npm run build:babel
         working-directory: ./packages/core
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          package: ./packages/core
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ steps.set_tag.outputs.tag }}
+      - run: npm publish --access public
+        working-directory: ./packages/core
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
