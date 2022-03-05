@@ -93,7 +93,9 @@ interface MenuInnerProps {
 const MenuInner: React.FC<MenuInnerProps> = ({ divide, width, children }) => {
   const { listRef, menuId } = useMenu();
 
-  const isActive = listRef.current?.contains(document.activeElement);
+  const isActive =
+    typeof window !== "undefined" &&
+    listRef.current?.contains(document.activeElement);
 
   return (
     <ul
