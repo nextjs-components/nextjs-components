@@ -44,7 +44,7 @@
     "@react-stately/radio": "^3.3.2",
     "clsx": "^1.1.1",
     "react-is": "^17.0.2",
-    "react-live": "^2.3.0",
+    "react-live": "^3.0.0",
     "react-merge-refs": "^1.1.0",
     "react-popper": "^2.2.5",
     "react-use-measure": "^2.1.1"
