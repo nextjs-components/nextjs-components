@@ -1,9 +1,9 @@
 on:
-  # release:
-  #   types: [published]
-  push:
-    tags:
-      - v*
+  release:
+    types: [published]
+  # push:
+  #   tags:
+  #     - v*
 
 jobs:
   publish:
@@ -27,7 +27,13 @@ jobs:
         working-directory: ./packages/core
       - run: npm run build:babel
         working-directory: ./packages/core
-      - run: npm publish --access public
+      # - run: npm version v${{steps.set_tag.outputs.tag}} || true
+      # - run: |
+      #     git checkout -b "ci-v${{steps.set_tag.outputs.tag}}"
+      #     git add .
+      #     git commit -m "ci: \`v${{steps.set_tag.outputs.tag}}\`"
+
+      - run: npm publish
         working-directory: ./packages/core
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
