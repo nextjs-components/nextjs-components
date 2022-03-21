@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
+import { useFocus } from "@react-aria/interactions";
 
 import { CopyIcon } from "../../icons";
 import { useToasts } from "../Toast";
@@ -22,6 +23,12 @@ const Snippet: React.ComponentType<Props> = ({
   fill,
 }) => {
   const toasts = useToasts();
+
+  const [focused, setFocused] = useState(false);
+  const { focusProps } = useFocus({
+    onFocusChange: setFocused,
+  });
+
   return (
     <div
       className={clsx(styles.snippet, {
@@ -46,8 +53,12 @@ const Snippet: React.ComponentType<Props> = ({
       )}
 
       <button
+        {...focusProps}
         aria-label="Copy text to clipboard"
-        className={clsx("geist-reset", styles.copy)}
+        className={clsx("geist-reset", styles.copy, {
+          ["focus-visible"]: focused,
+        })}
+        data-focus-visible-added={focused ? "" : undefined}
         onClick={() => {
           navigator.clipboard.writeText(
             Array.isArray(text) ? text.join("\n") : text

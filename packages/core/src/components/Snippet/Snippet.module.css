@@ -37,6 +37,11 @@ button.copy {
   border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
   transition: opacity 0.15s ease;
 }
+
+.copy:focus:global(.focus-visible) {
+  opacity: 0.5;
+}
+
 @media (hover: hover) {
   .copy:hover {
     opacity: 0.5;
