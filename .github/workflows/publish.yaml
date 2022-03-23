@@ -27,11 +27,24 @@ jobs:
         working-directory: ./packages/core
       - run: npm run build:babel
         working-directory: ./packages/core
-      # - run: npm version v${{steps.set_tag.outputs.tag}} || true
-      # - run: |
-      #     git checkout -b "ci-v${{steps.set_tag.outputs.tag}}"
-      #     git add .
-      #     git commit -m "ci: \`v${{steps.set_tag.outputs.tag}}\`"
+      - name: "PR version bump"
+        working-directory: ./packages/core
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
+          git checkout -b "ci-v${{steps.set_tag.outputs.tag}}"
+          npm version ${{steps.set_tag.outputs.tag}} || true
+          git add .
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -s -m "ci: \`v${{ steps.set_tag.outputs.tag }}\`"
+          git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
+          RELEASE_BODY=$(gh release view v${{ steps.set_tag.outputs.tag }} --json body --jq '.body')
+          gh pr create \
+            -B main \
+            -H $(git rev-parse --abbrev-ref HEAD) \
+            -t "🤖 ${{ steps.set_tag.outputs.tag }}" \
+            -b "$RELEASE_BODY" \
+            -r thiskevinwang
 
       - run: npm publish
         working-directory: ./packages/core
