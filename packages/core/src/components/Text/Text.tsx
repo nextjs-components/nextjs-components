@@ -47,6 +47,7 @@ type TColor =
   | "geist-violet-dark"
   | "geist-foreground"
   | "geist-background"
+  | "geist-secondary"
   | "wv-green"
   | "wv-orange"
   | "wv-red";
