@@ -24,17 +24,22 @@ export const getStaticProps = async () => {
 
 # Button
 
-<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
-  Used to trigger an operation.
-</Text>
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Used to trigger an operation.</Text>
 
 <Spacer y={2} />
 
 ### Sizes
 
-<Text p style={{ color: "var(--geist-secondary)" }}>
-  These sizes are standardized across form components.
-</Text>
+<Text size={16} style={{ color: "var(--geist-secondary)", margin: "revert" }}>These sizes are standardized across form components.</Text>
+
+<Spacer />
 
 ```
 <Container direction={['column', 'row', 'row']}>

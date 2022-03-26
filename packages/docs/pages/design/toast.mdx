@@ -24,9 +24,14 @@ export const getStaticProps = async () => {
 
 # Toast
 
-<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
-  Display an important message globally.
-</Text>
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display an important message globally.</Text>
 
 <Spacer y={2} />
 
@@ -80,7 +85,13 @@ export const getStaticProps = async () => {
 
 ### Preserve
 
-Preserved toasts will not automatically disappear.
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Preserved toasts will not automatically disappear.</Text>
+
+<Spacer />
 
 ```
 () => {

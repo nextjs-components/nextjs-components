@@ -24,9 +24,14 @@ export const getStaticProps = async () => {
 
 # Fieldset
 
-<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
-  Display a collection of related information in a single unit.
-</Text>
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display a collection of related information in a single unit.</Text>
 
 <Spacer y={2} />
 
@@ -182,4 +187,4 @@ export const getStaticProps = async () => {
 </fs.Fieldset>
 ```
 
-<Spacer y={2} />
+<Spacer y={5} />

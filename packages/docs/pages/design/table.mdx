@@ -24,10 +24,14 @@ export const getStaticProps = async () => {
 
 # Table
 
-<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
-  Display tabular data in row format. Some examples use the following variables
-  for brevity:
-</Text>
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display tabular data in row format. Some examples use the following variables for brevity:</Text>
 
 ```js
 const columns = [
@@ -68,9 +72,11 @@ const data = [
 
 ### Default
 
-<Text type="secondary" noMargin>
-  Always provide a caption. Columns and data <b>must</b> be memoized.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Always provide a caption. Columns and data <b>must</b> be memoized.</Text>
 
 <Spacer />
 
@@ -100,10 +106,11 @@ const data = [
 
 ### Empty
 
-<Text type="secondary" noMargin>
-  Use the same number of placeholder rows used while loading to avoid layout
-  shift.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Use the same number of placeholder rows used while loading to avoid layout shift.</Text>
 
 <Spacer />
 
@@ -128,9 +135,11 @@ const data = [
 
 ### Column Align
 
-<Text type="secondary" noMargin>
-  Set the align property to change text alignment. Left by default.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Set the align property to change text alignment. Left by default.</Text>
 
 <Spacer />
 
@@ -167,10 +176,11 @@ const data = [
 
 ### Overflow
 
-<Text type="secondary" noMargin>
-  Pass a number to change the minimum width of the table. Disable with a falsy
-  value.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Pass a number to change the minimum width of the table. Disable with a falsy value.</Text>
 
 <Spacer />
 
@@ -187,10 +197,11 @@ const data = [
 
 ### Column Class
 
-<Text type="secondary" noMargin>
-  Passing columnClassName applies the class to all headers and cells of the
-  column.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Passing columnClassName applies the class to all headers and cells of the column.</Text>
 
 <Spacer />
 
@@ -226,9 +237,11 @@ const data = [
 
 ### Fixed Layout
 
-<Text type="secondary" noMargin>
-  Ensures column widths are stable, regardless of cell contents.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Ensures column widths are stable, regardless of cell contents.</Text>
 
 <Spacer />
 
@@ -245,9 +258,11 @@ const data = [
 
 ### Fixed Column Widths
 
-<Text type="secondary" noMargin>
-  Manually set a column width.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Manually set a column width.</Text>
 
 <Spacer />
 
@@ -288,9 +303,11 @@ const data = [
 
 ### No Header
 
-<Text type="secondary" noMargin>
-  Columns are still required, fixed widths are respected.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Columns are still required, fixed widths are respected.</Text>
 
 <Spacer />
 
@@ -307,10 +324,11 @@ const data = [
 
 ### Ellipsis
 
-<Text type="secondary" noMargin>
-  Enabled per column, long cell values are automatically truncated. Requires
-  fixed layout.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Enabled per column, long cell values are automatically truncated. Requires fixed layout.</Text>
 
 <Spacer />
 
@@ -322,9 +340,11 @@ const data = [
 
 ### Sticky Header
 
-<Text type="secondary" noMargin>
-  Specify a number to change the offset from 0.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Specify a number to change the offset from 0.</Text>
 
 <Spacer />
 
@@ -336,9 +356,11 @@ const data = [
 
 ### Sortable rows
 
-<Text type="secondary" noMargin>
-  Hold shift to sort by multiple columns. Columns can disable sorting.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Hold shift to sort by multiple columns. Columns can disable sorting.</Text>
 
 <Spacer />
 
@@ -350,9 +372,11 @@ const data = [
 
 ### Custom sorted column
 
-<Text type="secondary" noMargin>
-  Sort function must be memoized. Sorts alphanumerically by default.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Sort function must be memoized. Sorts alphanumerically by default.</Text>
 
 <Spacer />
 
@@ -364,9 +388,11 @@ const data = [
 
 ### Selectable rows
 
-<Text type="secondary" noMargin>
-  Hold shift to toggle many rows.
-</Text>
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Hold shift to toggle many rows.</Text>
 
 <Spacer />
 
@@ -392,6 +418,4 @@ const data = [
 }
 ```
 
-<Spacer y={2} />
-
-<Spacer y={4} />
+<Spacer y={5} />
