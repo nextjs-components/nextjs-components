@@ -1,0 +1,46 @@
+.pre {
+    border: 1px solid var(--accents-2);
+    border-radius: var(--geist-radius);
+    padding: var(--geist-gap);
+    margin: var(--geist-space-8x) 0;
+    white-space: pre;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    color: var(--geist-foreground)
+}
+
+.pre.lite {
+    margin: 0;
+    padding: var(--geist-gap-half);
+    border: none;
+    background-color: var(--accents-1)
+}
+
+.pre :global(code) {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 20px
+}
+
+.code {
+    color: var(--geist-code);
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    word-break: break-word
+}
+
+.code.no-wrap {
+    white-space: nowrap
+}
+
+.code:after,.code:before {
+    content: "\`"
+}
+
+.code.no-ticks:after,.code.no-ticks:before {
+    content: ""
+}
+
+.code.disabled {
+    color: var(--accents-4)
+}

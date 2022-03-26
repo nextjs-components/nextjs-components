@@ -1,0 +1,14 @@
+.code {
+    display: inline-block;
+    color: var(--accents-6);
+    background: var(--accents-2);
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    padding: 0 4px;
+    line-height: 1.5;
+    white-space: pre-wrap
+}
+
+.nowrap {
+    white-space: nowrap
+}

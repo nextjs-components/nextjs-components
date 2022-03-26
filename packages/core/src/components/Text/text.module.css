@@ -1,0 +1,182 @@
+.wrapper {
+    font-family: var(--font-sans);
+    margin: 0;
+    color: var(--color)
+}
+
+.wrapper.uppercase {
+    text-transform: uppercase
+}
+
+.wrapper.capitalize {
+    text-transform: capitalize
+}
+
+.wrapper.lowercase {
+    text-transform: lowercase
+}
+
+.wrapper.initial {
+    text-transform: none
+}
+
+.wrapper.left {
+    text-align: left
+}
+
+.wrapper.center {
+    text-align: center
+}
+
+.wrapper.right {
+    text-align: right
+}
+
+.wrapper.truncate {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    max-width: 100%;
+    min-width: 0
+}
+
+.wrapper.clamp {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: var(--clamp);
+    -webkit-box-orient: vertical
+}
+
+.wrapper.nowrap {
+    white-space: nowrap
+}
+
+.wrapper.s-48 {
+    font-size: 3rem;
+    letter-spacing: -.066875rem;
+    font-weight: 700;
+    line-height: 3.5rem
+}
+
+.wrapper.s-40 {
+    font-size: 2.5rem;
+    letter-spacing: -.058125rem;
+    font-weight: 600;
+    line-height: 3.5rem
+}
+
+.wrapper.s-32 {
+    font-size: 2rem;
+    letter-spacing: -.049375rem;
+    font-weight: 600;
+    line-height: 2.5rem
+}
+
+.wrapper.s-24 {
+    font-size: 1.5rem;
+    letter-spacing: -.029375rem;
+    font-weight: 600;
+    line-height: 2rem
+}
+
+.wrapper.s-20 {
+    font-size: 1.25rem;
+    letter-spacing: -.020625rem;
+    font-weight: 600;
+    line-height: 1.5rem
+}
+
+.wrapper.s-16 {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5rem
+}
+
+.wrapper.s-14 {
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem
+}
+
+.wrapper.s-12 {
+    font-size: .75rem;
+    font-weight: 400;
+    line-height: 1rem
+}
+
+.wrapper.s-10 {
+    font-size: .625rem;
+    font-weight: 400;
+    line-height: .75rem
+}
+
+.wrapper.w-100 {
+    font-weight: 100
+}
+
+.wrapper.w-200 {
+    font-weight: 200
+}
+
+.wrapper.w-300 {
+    font-weight: 300
+}
+
+.wrapper.w-400 {
+    font-weight: 400
+}
+
+.wrapper.w-500 {
+    font-weight: 500
+}
+
+.wrapper.w-600 {
+    font-weight: 600
+}
+
+.wrapper.w-700 {
+    font-weight: 700
+}
+
+.wrapper.w-800 {
+    font-weight: 800
+}
+
+.wrapper.w-900 {
+    font-weight: 900
+}
+
+.wrapper.lh-12 {
+    line-height: .75rem
+}
+
+.wrapper.lh-16 {
+    line-height: 1rem
+}
+
+.wrapper.lh-20 {
+    line-height: 1.25rem
+}
+
+.wrapper.lh-24 {
+    line-height: 1.5rem
+}
+
+.wrapper.lh-32 {
+    line-height: 2rem
+}
+
+.wrapper.lh-40 {
+    line-height: 2.5rem
+}
+
+.wrapper.lh-48 {
+    line-height: 3rem
+}
+
+.wrapper.lh-56 {
+    line-height: 3.5rem
+}
