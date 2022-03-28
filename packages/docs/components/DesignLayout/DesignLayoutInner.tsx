@@ -16,7 +16,15 @@ import { Snippet } from "nextjs-components/src/components/Snippet";
 import { Spacer } from "nextjs-components/src/components/Spacer";
 import { Spinner } from "nextjs-components/src/components/Spinner";
 import { Table } from "nextjs-components/src/components/Table";
-import { Text, InlineCode, Code, OldCode} from "nextjs-components/src/components/Text";
+import {
+  Text,
+  InlineCode,
+  Code,
+  OldCode,
+  UL,
+  OL,
+  LI,
+} from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Capacity } from "nextjs-components/src/components/Capacity";
@@ -137,6 +145,9 @@ const editorScope = {
   columns,
   data,
   Text,
+  UL,
+  OL,
+  LI,
   Toggle,
   Tree,
   Up,
@@ -174,7 +185,7 @@ const mdxComponents = {
         />
         <style jsx>{`
           .table-container {
-            font-size: .875rem;
+            font-size: 0.875rem;
             margin: 40px -24px;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -279,13 +290,19 @@ const mdxComponents = {
   },
   Text: (props) => <Text {...props} />,
   // margin: "revert" allows margin to use the user agent stylesheet values
-  h1: (props) => <Text as="h1" size={48} style={{margin: "revert"}} {...props} />,
-  h2: (props) => <Text as="h2" size={24} style={{margin: "revert"}} {...props} />,
-  h3: (props) => <Text as="h3" size={24} style={{margin: "revert"}} {...props} />,
-  h4: (props) => <Text as="h4" style={{margin: "revert"}} {...props} />,
-  h5: (props) => <Text as="h5" style={{margin: "revert"}} {...props} />,
-  h6: (props) => <Text as="h6" style={{margin: "revert"}} {...props} />,
-  p: (props) => <Text as="p" style={{margin: "revert"}} {...props} />,
+  h1: (props) => (
+    <Text as="h1" size={48} style={{ margin: "revert" }} {...props} />
+  ),
+  h2: (props) => (
+    <Text as="h2" size={24} style={{ margin: "revert" }} {...props} />
+  ),
+  h3: (props) => (
+    <Text as="h3" size={24} style={{ margin: "revert" }} {...props} />
+  ),
+  h4: (props) => <Text as="h4" style={{ margin: "revert" }} {...props} />,
+  h5: (props) => <Text as="h5" style={{ margin: "revert" }} {...props} />,
+  h6: (props) => <Text as="h6" style={{ margin: "revert" }} {...props} />,
+  p: (props) => <Text as="p" style={{ margin: "revert" }} {...props} />,
   code: (props) => <OldCode noTicks {...props} />,
   pre: ({ children }) => {
     // render Code Block
