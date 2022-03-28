@@ -60,8 +60,7 @@ const EntityField = ({
 
   const _description = (
     <Text
-      p
-      noMargin
+      as={"p"}
       className={clsx(
         styles.description,
         "geist-themed",
@@ -130,8 +129,7 @@ const EntityField = ({
             />
           ) : (
             <Text
-              p
-              noMargin
+              as={"p"}
               className={clsx(
                 "geist-themed",
                 {
