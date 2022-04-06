@@ -26,8 +26,5 @@
   "bugs": {
     "url": "https://github.com/nextjs-components/nextjs-components/issues"
   },
-  "homepage": "https://github.com/nextjs-components/nextjs-components#readme",
-  "workspaces": [
-    "packages/*"
-  ]
+  "homepage": "https://github.com/nextjs-components/nextjs-components#readme"
 }
