@@ -84,11 +84,9 @@ const Entity: React.FC<Props> = ({
               />
             ) : (
               <Text
-                noMargin
                 className="geist-themed geist-secondary"
-                preset="body-2"
                 style={{ width: "100%" }}
-                type="secondary"
+                color={'geist-secondary'}
               >
                 {footer}
               </Text>

@@ -1,0 +1,29 @@
+.ul {
+    padding: 0;
+    list-style-type: none;
+    margin: var(--geist-gap-half);
+    margin-left: var(--geist-gap);
+    color: var(--geist-foreground)
+}
+
+.ul>:global(li):before {
+    content: "–";
+    display: inline-block;
+    color: var(--accents-4);
+    position: absolute;
+    margin-left: -15px
+}
+
+.ol {
+    padding: 0;
+    margin: var(--geist-gap-half);
+    margin-left: var(--geist-gap);
+    color: var(--geist-foreground)
+}
+
+.li {
+    font-size: 1em;
+    line-height: 1.625em;
+    margin-bottom: 10px;
+    color: var(--geist-foreground)
+}

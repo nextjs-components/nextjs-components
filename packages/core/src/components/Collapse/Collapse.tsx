@@ -78,11 +78,8 @@ const Collapse: React.ComponentType<Props> = memo(
         })}
       >
         <Text
-          Component="h3"
-          h5={isSmall}
-          h3={!size}
-          noMargin
-          className={clsx({ ["w-600"]: !size, ["w-500"]: isSmall })}
+          as={isSmall ? "h5" : "h3"}
+          weight={isSmall ? 500 : 600}
         >
           <FocusRing focusRingClass={"focus-visible"}>
             <button

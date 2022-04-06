@@ -9,13 +9,19 @@ import withMDX from "@next/mdx"
 import withTM from 'next-transpile-modules'
 import withPlugins from "next-compose-plugins"
 
+import remarkGfm from 'remark-gfm'
+
 
 const plugins = [
   withMDX({
     extension: /\.mdx?$/,
     options: {
-      remarkPlugins: [],
+      // remarkGfm is required to process syntax
+      // like tables
+      remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypeSlug],
+      // this is here since we're using `MDXProvider`
+      providerImportSource: "@mdx-js/react",
     },
   }),
   withTM(['nextjs-components', '../core'])

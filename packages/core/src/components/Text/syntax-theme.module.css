@@ -1,0 +1,190 @@
+.code {
+  color: #000;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 13px;
+  line-height: 20px;
+  font-family: var(--font-mono);
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.code :global(.token.cdata),
+.code :global(.token.comment),
+.code :global(.token.doctype),
+.code :global(.token.prolog){
+  color: #999;
+}
+
+.code :global(.token.namespace) {
+  opacity: 0.7;
+}
+
+.code :global(.token.attr-value),
+.code :global(.token.string) {
+  color: #028265;
+}
+
+.code :global(.token.operator),
+.code :global(.token.punctuation) {
+  color: #000;
+}
+
+.code :global(.token.boolean),
+.code :global(.token.constant),
+.code :global(.token.symbol),
+.code :global(.token.url),
+.code :global(.token.variable) {
+  color: #36acaa;
+}
+
+.code :global(.language-autohotkey) :global(.token.selector),
+.code :global(.language-json) :global(.token.boolean),
+.code :global(.token.atrule),
+.code :global(code[class*="language-css"]) {
+  font-weight: 600;
+}
+
+.code :global(.language-json) :global(.token.boolean) {
+  color: var(--geist-success);
+}
+
+.code :global(.token.keyword) {
+  color: #ff0078;
+  font-weight: bolder;
+}
+
+.code :global(.token.class-name),
+.code :global(.token.function),
+.code :global(.token.number),
+.code :global(.token.tag),
+.code :global(.token.tag) :global(.token.punctuation) {
+  color: var(--geist-success);
+}
+
+.code :global(.language-autohotkey) :global(.token.tag) {
+  color: #9a050f;
+}
+
+.code :global(.language-autohotkey) :global(.token.keyword),
+.code :global(.token.selector) {
+  color: #00009f;
+}
+
+.code :global(.token.bold),
+.code :global(.token.important) {
+  font-weight: 700;
+}
+
+.code :global(.token.italic) {
+  font-style: italic;
+}
+
+.code :global(.token.deleted) {
+  color: red;
+  font-weight: bolder;
+}
+
+.code :global(.token.inserted) {
+  color: var(--geist-success);
+  font-weight: bolder;
+}
+
+.code :global(.language-json) :global(.token.property),
+.code :global(.language-markdown) :global(.token.title) {
+  color: #000;
+  font-weight: bolder;
+}
+
+.code :global(.language-markdown) :global(.token.code) {
+  color: var(--geist-success);
+  font-weight: 400;
+}
+
+.code :global(.language-markdown) :global(.token.hr),
+.code :global(.language-markdown) :global(.token.list) {
+  color: #999;
+}
+
+.code :global(.language-markdown) :global(.token.url) {
+  color: #ff0078;
+  font-weight: bolder;
+}
+
+.code :global(.token.selector) {
+  color: #2b91af;
+}
+
+.code :global(.token.entity),
+.code :global(.token.property) {
+  color: red;
+}
+
+.code :global(.token.attr-name),
+.code :global(.token.regex) {
+  color: #d9931e;
+}
+
+.code :global(.token.directive.tag) :global(.tag) {
+  background: #ff0;
+  color: #393a34;
+}
+
+:global(.dark-theme) .code {
+  color: #fafbfc;
+}
+
+:global(.dark-theme) .code :global(.language-json) :global(.dark) :global(.token.boolean),
+:global(.dark-theme) .code :global(.language-json) :global(.token.boolean) {
+  color: var(--geist-success);
+}
+
+:global(.dark-theme) .code :global(.dark) :global(.token.string),
+:global(.dark-theme) .code :global(.token.string) {
+  color: #50e3c2;
+}
+
+:global(.dark-theme) .code :global(.dark) :global(.token.class-name),
+:global(.dark-theme) .code :global(.dark) :global(.token.function),
+:global(.dark-theme) .code :global(.dark) :global(.token.number),
+:global(.dark-theme) .code :global(.dark) :global(.token.tag),
+:global(.dark-theme) .code :global(.token.class-name),
+:global(.dark-theme) .code :global(.token.function),
+:global(.dark-theme) .code :global(.token.number),
+:global(.dark-theme) .code :global(.token.tag) {
+  color: #2ba8ff;
+}
+
+:global(.dark-theme) .code :global(.dark) :global(.token.attr-value),
+:global(.dark-theme) .code :global(.dark) :global(.token.operator),
+:global(.dark-theme) .code :global(.dark) :global(.token.punctuation),
+:global(.dark-theme) .code :global(.token.attr-value),
+:global(.dark-theme) .code :global(.token.operator),
+:global(.dark-theme) .code :global(.token.punctuation) {
+  color: #efefef;
+}
+
+:global(.dark-theme) .code :global(.dark) :global(.token.attr-name),
+:global(.dark-theme) .code :global(.dark) :global(.token.regex),
+:global(.dark-theme) .code :global(.token.attr-name),
+:global(.dark-theme) .code :global(.token.regex) {
+  color: #fac863;
+}
+
+:global(.dark-theme) .code :global(.language-json) :global(.dark) :global(.token.property),
+:global(.dark-theme) .code :global(.language-json) :global(.token.property),
+:global(.dark-theme) .code :global(.language-markdown) .dark :global(.token.title),
+:global(.dark-theme) .code :global(.language-markdown) :global(.token.title) {
+  color: #fff;
+}
+
+:global(.dark-theme) .code :global(.language-markdown) :global(.dark) :global(.token.code),
+:global(.dark-theme) .code :global(.language-markdown) :global(.token.code) {
+  color: #50e3c2;
+}

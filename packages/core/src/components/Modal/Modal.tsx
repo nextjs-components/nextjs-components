@@ -7,7 +7,6 @@ import { FocusScope } from "@react-aria/focus";
 
 import { Text } from "../Text";
 import styles from "./Modal.module.css";
-import { useRef } from "react";
 
 export interface ModalProps {
   isOpen: boolean;
@@ -97,17 +96,15 @@ export const Header = ({ children, ...props }) => (
   </header>
 );
 export const Title = ({ children, ...props }) => (
-  <Text noMargin h3 {...props} className={styles.title}>
+  <Text as="h3" weight={600} size={24} {...props} className={styles.title}>
     {children}
   </Text>
 );
 export const Subtitle = ({ children, ...props }) => (
   <Text
-    center
-    p
-    noMargin
-    preset={"body-2"}
+    align="center"
     {...props}
+    color="geist-secondary"
     className={clsx(styles.subtitle, "geist-themed", "geist-secondary")}
   >
     {children}

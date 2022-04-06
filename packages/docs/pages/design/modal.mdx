@@ -7,6 +7,7 @@ export default function Wrapper({ children, paths }) {
     </DesignLayout>
   );
 }
+
 export const getStaticProps = async () => {
   const fs = await import("fs");
   const path = await import("path");
@@ -23,10 +24,14 @@ export const getStaticProps = async () => {
 
 # Modal
 
-<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
-  Display popup content that requires attention or provides additional
-  information.
-</Text>
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display popup content that requires attention or provides additional information.</Text>
 
 <Spacer y={2} />
 
@@ -49,7 +54,7 @@ export const getStaticProps = async () => {
             </Modal.Subtitle>
           </Modal.Header>
 
-          <Text noMargin>Some content contained within the modal.</Text>
+          <Text size={16}>Some content contained within the modal.</Text>
         </Modal.Body>
 
         <Modal.Actions>

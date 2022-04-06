@@ -23,9 +23,14 @@ export const getStaticProps = async () => {
 
 # Entity
 
-<Text h4 Component="h2" type="secondary" style={{ fontWeight: 400 }}>
-  Display a collection of related information of a resource entity.
-</Text>
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display a collection of related information of a resource entity.</Text>
 
 <Spacer y={2} />
 
@@ -278,10 +283,12 @@ export const getStaticProps = async () => {
 <>Todo</>
 ```
 
+<Spacer y={2} />
+
 ### Form as Entity Footer
 
 ```
 <>Todo</>
 ```
 
-<Spacer y={2} />
+<Spacer y={5} />

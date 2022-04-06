@@ -24,9 +24,16 @@ export const getStaticProps = async () => {
 
 # Color
 
-See https://vercel.com/design/color
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Gallery of colors used across ∆ products.</Text>
 
-<!-- //<Text h4 Component="h2" style={{ fontWeight: 400 }}></Text> -->
+<Spacer y={2} />
 
 ### Primary
 
@@ -48,6 +55,8 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-foreground"} />
 </div>
 
+<Spacer y={2} />
+
 ### Error
 
 <div style={{ borderRadius: "var(--geist-radius)" }}>
@@ -56,6 +65,8 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-error"} />
   <ColorCard color={"--geist-error-dark"} />
 </div>
+
+<Spacer y={2} />
 
 ### Success
 
@@ -66,6 +77,8 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-success-dark"} />
 </div>
 
+<Spacer y={2} />
+
 ### Warning
 
 <div style={{ borderRadius: "var(--geist-radius)" }}>
@@ -74,6 +87,8 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-warning"} />
   <ColorCard color={"--geist-warning-dark"} />
 </div>
+
+<Spacer y={2} />
 
 ### Violet
 
@@ -84,6 +99,8 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-violet-dark"} />
 </div>
 
+<Spacer y={2} />
+
 ### Cyan
 
 <div style={{ borderRadius: "var(--geist-radius)" }}>
@@ -92,6 +109,8 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-cyan"} />
   <ColorCard color={"--geist-cyan-dark"} />
 </div>
+
+<Spacer y={2} />
 
 ### Highlight
 
@@ -102,4 +121,4 @@ See https://vercel.com/design/color
   <ColorCard color={"--geist-highlight-yellow"} />
 </div>
 
-<Spacer y={2} />
+<Spacer y={5} />
