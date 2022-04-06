@@ -52,7 +52,7 @@ type TColor =
   | "wv-orange"
   | "wv-red";
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   /** default: p */
   as?: TAs;
@@ -91,6 +91,7 @@ const Text = forwardRef<unknown, Props>(
       title,
       wrap,
       dangerouslySetInnerHTML,
+      ...rest
     },
     ref: any
   ) => {
@@ -102,19 +103,18 @@ const Text = forwardRef<unknown, Props>(
       <Tag
         {...{ ref }}
         {...{ align }}
-        className={clsx(
-          className,
-          styles.wrapper,
-          styles[s],
-          { 
-            [styles[w]]: !!weight,
-            [styles[lh]]: !!lh,
-            [styles.truncate]: !!truncate,
-            
-          },
-        )}
+        {...{ title }}
+        {...{ dangerouslySetInnerHTML }}
+        className={clsx(className, styles.wrapper, styles[s], {
+          [styles[w]]: !!weight,
+          [styles[lh]]: !!lh,
+          [styles.truncate]: !!truncate,
+          [styles[transform]]: !!transform,
+          [styles.nowrap]: wrap === false,
+        })}
         // @ts-expect-error
         style={{ ...style, "--color": `var(--${color})` }}
+        {...rest}
       >
         {children}
       </Tag>
