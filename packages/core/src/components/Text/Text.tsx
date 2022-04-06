@@ -52,7 +52,7 @@ type TColor =
   | "wv-orange"
   | "wv-red";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+interface Props extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   /** default: p */
   as?: TAs;
