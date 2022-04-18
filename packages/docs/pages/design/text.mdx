@@ -35,24 +35,24 @@ export const getStaticProps = async () => {
 
 ### Props
 
-| Name       | Type                                                          | Description                                                        | Default            |
-| ---------- | ------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------ |
-| children   | `ReactNode`                                                   | The content, duh.                                                  | -                  |
-| as         | `enum`                                                        | The root element.                                                  | `p`                |
-| size       | `10 \| 12 \| 14 \| 16 \| 20 \| 24 \| 32 \| 40 \| 48`          | The font size.                                                     | `14`               |
-| lineHeight | `12 \| 16 \| 20 \| 24 \| 32 \| 40 \| 48 \| 56`                | The line height.                                                   | -                  |
-| weight     | `100 \| 200 \| 300 \| 400 \| 500 \| 600 \| 700 \| 800 \| 900` | The font weight.                                                   | -                  |
-| transform  | `"capitalize" \| "uppercase" \| "lowercase" \| "initial"`     | Text transform short hand.                                         | -                  |
-| align      | `"left" \| "center" \| "right"`                               | Text alignment short hand.                                         | -                  |
-| color      | `enum`                                                        | The text color. Strictly limited to colors of the ∆ design system. | `geist-foreground` |
-| truncate | `number \| boolean` | Truncate a single or multiple line(s). If you pass truncate, make sure to pass `title` so that the full value is shown on hover. | - |
-| className | `string` | The root class name. | - |
-| style | `CSSRProperties` | The root element inline stlyes. | - |
-| title | `string` | If text is \`truncated\`, this should be the full text. | - |
-| wrap | `boolean` | 	Whether the text should wrap lines | `true` |
-| dangerouslySetInnerHTML | `{__html: string}` | 	See https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml | - |
+| Name                    | Type                                                          | Description                                                                                                                      | Default            |
+| ----------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| children                | `ReactNode`                                                   | The content, duh.                                                                                                                | -                  |
+| as                      | `enum`                                                        | The root element.                                                                                                                | `p`                |
+| size                    | `10 \| 12 \| 14 \| 16 \| 20 \| 24 \| 32 \| 40 \| 48`          | The font size.                                                                                                                   | `14`               |
+| lineHeight              | `12 \| 16 \| 20 \| 24 \| 32 \| 40 \| 48 \| 56`                | The line height.                                                                                                                 | -                  |
+| weight                  | `100 \| 200 \| 300 \| 400 \| 500 \| 600 \| 700 \| 800 \| 900` | The font weight.                                                                                                                 | -                  |
+| transform               | `"capitalize" \| "uppercase" \| "lowercase" \| "initial"`     | Text transform short hand.                                                                                                       | -                  |
+| align                   | `"left" \| "center" \| "right"`                               | Text alignment short hand.                                                                                                       | -                  |
+| color                   | `enum`                                                        | The text color. Strictly limited to colors of the ∆ design system.                                                               | `geist-foreground` |
+| truncate                | `number \| boolean`                                           | Truncate a single or multiple line(s). If you pass truncate, make sure to pass `title` so that the full value is shown on hover. | -                  |
+| className               | `string`                                                      | The root class name.                                                                                                             | -                  |
+| style                   | `CSSProperties`                                               | The root element inline stlyes.                                                                                                  | -                  |
+| title                   | `string`                                                      | If text is \`truncated\`, this should be the full text.                                                                          | -                  |
+| wrap                    | `boolean`                                                     | Whether the text should wrap lines                                                                                               | `true`             |
+| dangerouslySetInnerHTML | `{__html: string}`                                            | See https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml                                                           | -                  |
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Sizes
 
@@ -87,7 +87,7 @@ TODO: Swap `Container` with `Stack`
 </Container>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Weights
 
@@ -103,7 +103,7 @@ TODO: Swap `Container` with `Stack`
 </Container>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Color
 
@@ -113,7 +113,7 @@ TODO: Swap `Container` with `Stack`
 </Text>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Modifiers
 
@@ -124,7 +124,7 @@ TODO: Swap `Container` with `Stack`
 </Text>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Polymorphic
 
@@ -134,7 +134,7 @@ TODO: Swap `Container` with `Stack`
 </Text>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Truncate
 
@@ -144,7 +144,7 @@ TODO: Swap `Container` with `Stack`
 </div>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Clamp
 
@@ -159,7 +159,7 @@ TODO: Swap `Container` with `Stack`
 </div>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Align
 
@@ -179,7 +179,7 @@ TODO: Swap `Container` with `Stack`
 </div>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Unordered List
 
@@ -195,7 +195,7 @@ TODO: Swap `Container` with `Stack`
 </UL>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Ordered List
 
@@ -210,7 +210,7 @@ TODO: Swap `Container` with `Stack`
 </OL>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Code
 
@@ -221,7 +221,7 @@ TODO: Swap `Container` with `Stack`
 </Text>
 ```
 
-<Spacer y={2}/>
+<Spacer y={2} />
 
 ### Codeblock
 
@@ -229,4 +229,4 @@ TODO: Swap `Container` with `Stack`
 <Code>{`npm i vercel -g\nvercel init nextjs`}</Code>
 ```
 
-<Spacer y={5}/>
+<Spacer y={5} />
