@@ -27,6 +27,7 @@ export { default as Unlock } from "./Unlock";
 export { default as MinusIcon } from "./MinusIcon";
 export { default as MoreHorizontal } from "./MoreHorizontal";
 export { default as PlusIcon } from "./PlusIcon";
+export { default as Sort } from "./Sort";
 export { default as StopCircle } from "./StopCircle";
 export { default as ThumbsDown } from "./ThumbsDown";
 export { default as ThumbsUp } from "./ThumbsUp";
