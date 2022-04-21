@@ -134,9 +134,15 @@ const fs: Fs = {
       </DisabledContext.Provider>
     );
   },
-  Title: ({children, ...props}) => <Text as={"h4"} {...props} className={styles.title}>{children}</Text>,
-  Subtitle: ({children, ...props}) => (
-    <Text {...props} style={{ margin: "var(--geist-gap-half) 0" }}>{children}</Text>
+  Title: ({ children, ...props }) => (
+    <Text as={"h4"} size={20} {...props} className={styles.title}>
+      {children}
+    </Text>
+  ),
+  Subtitle: ({ children, ...props }) => (
+    <Text {...props} size={14} style={{ margin: "var(--geist-gap-half) 0" }}>
+      {children}
+    </Text>
   ),
   ErrorText: ErrorText,
   Footer: Footer,
