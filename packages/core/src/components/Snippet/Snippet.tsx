@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { useFocus } from "@react-aria/interactions";
 
-import { CopyIcon } from "../../icons";
+import CopyIcon from "../../icons/CopyIcon";
 import { useToasts } from "../Toast";
 
 import styles from "./Snippet.module.css";
@@ -66,7 +66,7 @@ const Snippet: React.ComponentType<Props> = ({
           toasts.current?.message({ text: "Copied to clipboard!" });
         }}
       >
-        <CopyIcon height={22} width={22} />
+        <CopyIcon size={22} />
       </button>
     </div>
   );

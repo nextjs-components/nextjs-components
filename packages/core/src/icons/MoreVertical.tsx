@@ -1,7 +1,7 @@
 import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 
-export const MoreVertical = ({
+const MoreVertical = ({
   color = "var(--geist-foreground)",
   size,
   weight = "",
@@ -26,3 +26,5 @@ export const MoreVertical = ({
     </svg>
   );
 };
+
+export default MoreVertical;

@@ -1,11 +1,15 @@
 import React from "react";
 
-export const ChevronDown = () => {
+import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
+
+const ChevronDown = ({ color = "currentcolor", size }: Props) => {
+  const iconSize = useIconSize();
   return (
     <svg
       viewBox="0 0 24 24"
-      width="24"
-      height="24"
+      width={size || iconSize.size}
+      height={size || iconSize.size}
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -18,3 +22,5 @@ export const ChevronDown = () => {
     </svg>
   );
 };
+
+export default ChevronDown;

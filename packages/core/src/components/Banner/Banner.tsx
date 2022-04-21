@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
 
-import { XIcon } from "../../icons";
+import XIcon from "../../icons/XIcon";
 
 import { default as useBanner } from "./useBanner";
 

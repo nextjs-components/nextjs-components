@@ -2,7 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
-import { Search } from "../../icons";
+import Search from "../../icons/Search";
 import styles from "./SearchInput.module.css";
 
 interface Props

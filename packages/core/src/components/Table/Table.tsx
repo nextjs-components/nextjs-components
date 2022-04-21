@@ -4,9 +4,8 @@ import clsx from "clsx";
 
 import { Badge } from "../Badge";
 import { Checkbox } from "../Checkbox";
-import { MoreVertical } from "../../icons";
+
 import { Scroller } from "../Scroller";
-import { MenuWrapper, MenuButton, Menu, MenuItem } from "../Menu";
 
 import styles from "./Table.module.css";
 import reset from "../../styles/reset/reset.module.css";

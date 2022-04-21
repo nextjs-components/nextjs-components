@@ -1,13 +1,9 @@
 import React from "react";
-import { useIconSize } from "../contexts/IconSizeContext";
 
-const PlusIcon = ({
-  size,
-  color = "currentColor",
-}: {
-  size?: number;
-  color?: string;
-}) => {
+import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
+
+const PlusIcon = ({ color = "currentcolor", size }: Props) => {
   const iconSize = useIconSize();
   return (
     <svg

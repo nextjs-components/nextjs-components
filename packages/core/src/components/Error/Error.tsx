@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { AlertCircle } from "../../icons";
+import AlertCircle from "../../icons/AlertCircle";
 import styles from "./error.module.css";
 
 interface ErrorProps {
@@ -20,7 +20,7 @@ const Error: React.ComponentType<ErrorProps> = ({
       })}
     >
       <div aria-hidden="true">
-        <AlertCircle color="var(--geist-error)" width={20} height={20} />
+        <AlertCircle color="var(--geist-error)" size={20} />
       </div>
       <div className={styles.text}>
         <b>{label}:</b>
