@@ -12,7 +12,7 @@ import button from "../Button/button.module.css";
 import reset from "../../styles/reset/reset.module.css";
 
 import { Spacer } from "../Spacer";
-import { MoreVertical } from "../../icons";
+import MoreVertical from "../../icons/MoreVertical";
 
 interface EntityFieldProps {
   children?: React.ReactNode;

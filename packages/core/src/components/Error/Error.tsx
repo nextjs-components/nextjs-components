@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { AlertCircle } from "../../icons";
+import AlertCircle from "../../icons/AlertCircle";
 import styles from "./error.module.css";
 
 interface ErrorProps {

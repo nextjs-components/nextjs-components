@@ -10,7 +10,8 @@ import {
 
 import { Container } from "../Container";
 import { Details } from "../Details";
-import { CopyIcon, RotateCW } from "../../icons";
+import CopyIcon from "../../icons/CopyIcon";
+import RotateCW from "../../icons/RotateCW";
 
 import { useToasts } from "../Toast";
 

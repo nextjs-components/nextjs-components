@@ -1,15 +1,14 @@
 import React from "react";
+import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
 
-export const Calendar = ({
-  width = 24,
-  height = 24,
-  color = "var(--geist-foreground)",
-}) => {
+const Calendar = ({ color = "currentcolor", size }: Props) => {
+  const iconSize = useIconSize();
   return (
     <svg
       viewBox="0 0 24 24"
-      width={width}
-      height={height}
+      width={size || iconSize.size}
+      height={size || iconSize.size}
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -25,3 +24,5 @@ export const Calendar = ({
     </svg>
   );
 };
+
+export default Calendar;

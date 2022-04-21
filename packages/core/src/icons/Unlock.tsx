@@ -1,13 +1,15 @@
 import React from "react";
-import { useIconSize } from "../contexts/IconSizeContext";
 
-const Unlock = ({ color = "currentColor" }) => {
-  const { size } = useIconSize();
+import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
+
+const Unlock = ({ color = "currentcolor", size }: Props) => {
+  const iconSize = useIconSize();
   return (
     <svg
       viewBox="0 0 24 24"
-      width={size}
-      height={size}
+      width={size || iconSize.size}
+      height={size || iconSize.size}
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"

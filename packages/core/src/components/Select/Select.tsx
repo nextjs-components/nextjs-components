@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { ChevronUpDown } from "../../icons";
+import ChevronUpDown from "../../icons/ChevronUpDown";
 
 import styles from "./Select.module.css";
 

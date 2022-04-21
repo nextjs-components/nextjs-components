@@ -2,7 +2,10 @@ import React from "react";
 import clsx from "clsx";
 import { useTheme } from "../../contexts/ThemeContext";
 import { IconSizeContext } from "../../contexts/IconSizeContext";
-import { Sun, Moon, DisplayIcon, ChevronUpDown } from "../../icons";
+import Sun from "../../icons/Sun";
+import Moon from "../../icons/Moon";
+import DisplayIcon from "../../icons/DisplayIcon";
+import ChevronUpDown from "../../icons/ChevronUpDown";
 
 import styles from "./Select.module.css";
 

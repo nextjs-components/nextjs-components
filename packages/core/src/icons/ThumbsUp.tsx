@@ -1,15 +1,15 @@
 import React from "react";
 
-const ThumbsUp = ({
-  width = 24,
-  height = 24,
-  color = "var(--geist-foreground)",
-}) => {
+import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
+
+const ThumbsUp = ({ color = "currentcolor", size }: Props) => {
+  const iconSize = useIconSize();
   return (
     <svg
       viewBox="0 0 24 24"
-      width={width}
-      height={height}
+      width={size || iconSize.size}
+      height={size || iconSize.size}
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"

@@ -1,15 +1,15 @@
 import React from "react";
 
-export const DeleteIcon = ({
-  width = 24,
-  height = 24,
-  color = "var(--geist-foreground)",
-}) => {
+import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
+
+const DeleteIcon = ({ color = "currentcolor", size }: Props) => {
+  const iconSize = useIconSize();
   return (
     <svg
       viewBox="0 0 24 24"
-      width={width}
-      height={height}
+      width={size || iconSize.size}
+      height={size || iconSize.size}
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
@@ -24,3 +24,4 @@ export const DeleteIcon = ({
     </svg>
   );
 };
+export default DeleteIcon;
