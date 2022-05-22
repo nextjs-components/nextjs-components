@@ -35,7 +35,7 @@ jobs:
         working-directory: ./packages/core
         if: ${{ !github.event.release.prerelease }}
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --with-token
+          echo ${{ secrets.ELEVATED_GITHUB_TOKEN }} | gh auth login --with-token
           git checkout -b "ci-v${{steps.set_tag.outputs.tag}}"
           git add .
           git config --local user.email "action@github.com"
