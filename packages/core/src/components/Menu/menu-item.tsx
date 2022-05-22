@@ -117,7 +117,7 @@ export const MenuItem: React.ComponentType<MenuItemProps> = ({
   //   listRef.current?.children &&
   //   Array.prototype.indexOf.call(listRef.current.children, itemRef.current);
   // equivalent to
-  // @ts-expect-error TODO: use `--downlevelIteration`
+  // @ts-ignore TODO: use `--downlevelIteration`
   const idx = [...(listRef.current?.childNodes.values() ?? [])].indexOf(
     itemRef.current
   );
@@ -177,7 +177,7 @@ export const MenuLink = ({
   //   listRef.current?.children &&
   //   Array.prototype.indexOf.call(listRef.current.children, itemRef.current);
   // equivalent to
-  // @ts-expect-error TODO: use `--downlevelIteration`
+  // @ts-ignore TODO: use `--downlevelIteration`
   const idx = [...(listRef.current?.childNodes.values() ?? [])].indexOf(
     itemRef.current
   );
