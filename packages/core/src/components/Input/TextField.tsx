@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import clsx from "clsx";
 import styles from "./TextField.module.css";
 
@@ -24,54 +24,59 @@ export interface Props extends Omit<InputProps, "size" | "prefix" | "suffix"> {
   error?: boolean;
 }
 
-export const TextField: React.ComponentType<Props> = ({
-  size,
-  className,
-  prefix,
-  prefixStyling = true,
-  prefixContainer = true,
-  suffix,
-  suffixStyling = true,
-  suffixContainer = true,
-  label,
-  error,
-  ...props
-}) => {
-  const containerClassName = clsx(styles.container, {
-    [styles[size]]: !!size,
-    [styles.prefix]: !!prefix,
-    [styles.suffix]: !!suffix,
-    [styles.noPrefixStyle]: !prefixStyling,
-    [styles.noSuffixStyle]: !suffixStyling,
-    [styles.error]: error,
-    [styles["geist-themed"]]: error,
-    [styles.disabled]: props.disabled,
-  });
+export const TextField = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      size,
+      className,
+      prefix,
+      prefixStyling = true,
+      prefixContainer = true,
+      suffix,
+      suffixStyling = true,
+      suffixContainer = true,
+      label,
+      error,
+      ...props
+    },
+    ref
+  ) => {
+    const containerClassName = clsx(styles.container, {
+      [styles[size]]: !!size,
+      [styles.prefix]: !!prefix,
+      [styles.suffix]: !!suffix,
+      [styles.noPrefixStyle]: !prefixStyling,
+      [styles.noSuffixStyle]: !suffixStyling,
+      [styles.error]: error,
+      [styles["geist-themed"]]: error,
+      [styles.disabled]: props.disabled,
+    });
 
-  const inputClassName = clsx(styles.input, className, {
-    [styles[size]]: !!size,
-  });
+    const inputClassName = clsx(styles.input, className, {
+      [styles[size]]: !!size,
+    });
 
-  const _prefix = prefixContainer ? <span>{prefix}</span> : prefix;
-  const _suffix = suffixContainer ? <span>{suffix}</span> : suffix;
+    const _prefix = prefixContainer ? <span>{prefix}</span> : prefix;
+    const _suffix = suffixContainer ? <span>{suffix}</span> : suffix;
 
-  if (label) {
+    if (label) {
+      return (
+        <Label htmlFor={props.id || props.name} label={label}>
+          <div className={containerClassName}>
+            <input {...props} ref={ref} className={inputClassName} />
+            {_prefix}
+            {_suffix}
+          </div>
+        </Label>
+      );
+    }
+
     return (
-      <Label htmlFor={props.id || props.name} label={label}>
-        <div className={containerClassName}>
-          <input {...props} className={inputClassName} />
-          {_prefix}
-          {_suffix}
-        </div>
-      </Label>
+      <div className={containerClassName}>
+        <input {...props} ref={ref} className={inputClassName} />
+        {_prefix}
+        {_suffix}
+      </div>
     );
   }
-
-  return (
-    <div className={containerClassName}>
-      <input {...props} className={inputClassName} />
-      {_prefix}
-      {_suffix}
-    </div>
-  );
-};
+);
