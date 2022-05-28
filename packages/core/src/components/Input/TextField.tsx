@@ -73,7 +73,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
 
     return (
       <div className={containerClassName}>
-        <input {...props} className={inputClassName} />
+        <input {...props} ref={ref} className={inputClassName} />
         {_prefix}
         {_suffix}
       </div>
