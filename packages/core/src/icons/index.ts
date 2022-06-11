@@ -22,6 +22,7 @@ export { default as HashIcon } from "./HashIcon";
 export { default as HeartIcon } from "./HeartIcon";
 export { default as HomeIcon } from "./HomeIcon";
 export { default as ImageIcon } from "./ImageIcon";
+export { default as Info } from "./Info";
 export { default as Link2Icon } from "./Link2Icon";
 export { default as LinkIcon } from "./LinkIcon";
 export { default as Lock } from "./Lock";
