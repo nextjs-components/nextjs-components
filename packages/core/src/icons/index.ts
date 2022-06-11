@@ -1,4 +1,4 @@
-export { AlertTriangle } from "./AlertTriangle";
+export { default as AlertTriangle } from "./AlertTriangle";
 export { default as AlertCircle } from "./AlertCircle";
 export { default as AlignCenter } from "./AlignCenter";
 export { default as AlignLeft } from "./AlignLeft";
