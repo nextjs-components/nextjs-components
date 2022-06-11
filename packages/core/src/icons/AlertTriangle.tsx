@@ -3,10 +3,7 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export const AlertTriangle = ({
-  color = "var(--geist-foreground)",
-  size,
-}: Props) => {
+const AlertTriangle = ({ color = "currentcolor", size }: Props) => {
   const iconSize = useIconSize();
   return (
     <svg
@@ -30,3 +27,5 @@ export const AlertTriangle = ({
     </svg>
   );
 };
+
+export default AlertTriangle;
