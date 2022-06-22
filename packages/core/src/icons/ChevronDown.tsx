@@ -16,7 +16,7 @@ const ChevronDown = ({ color = "currentcolor", size }: Props) => {
       strokeLinejoin="round"
       fill="none"
       shapeRendering="geometricPrecision"
-      style={{ color: "var(--geist-foreground)" }}
+      style={{ color }}
     >
       <path d="M6 9l6 6 6-6" />
     </svg>

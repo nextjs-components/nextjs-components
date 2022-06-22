@@ -1,38 +1,82 @@
 import React from "react";
 import clsx from "clsx";
-import ChevronUpDown from "../../icons/ChevronUpDown";
+import { useFocusRing } from "@react-aria/focus";
+
+import ChevronDown from "../../icons/ChevronDown";
+import ThemeContext from "../../contexts/IconSizeContext/IconSizeContext";
+import Label from "../Label/Label";
 
 import styles from "./Select.module.css";
 
-interface Props
-  extends React.DetailedHTMLProps<
+type BaseProps = Omit<
+  React.DetailedHTMLProps<
     React.SelectHTMLAttributes<HTMLSelectElement>,
     HTMLSelectElement
-  > {
-  small?: boolean;
+  >,
+  "size" | "prefix" | "suffix"
+>;
+
+interface Props extends BaseProps {
+  size?: "small" | "large";
   disabled?: boolean;
+  placeholder?: string;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  label?: string;
 }
 
-const Select: React.FC<Props> = ({ children, small, disabled, ...props }) => {
+const Select: React.FC<Props> = ({
+  children,
+  size,
+  disabled,
+  placeholder,
+  prefix,
+  suffix,
+  label,
+  ...props
+}) => {
+  const { isFocusVisible, focusProps } = useFocusRing();
+
   return (
-    <div
-      className={clsx(styles.container, {
-        [styles.disabled]: disabled,
-      })}
-    >
-      <select
-        disabled={disabled}
-        className={clsx(styles.select, {
-          [styles.small]: small,
+    <Label label={label} htmlFor={props.id}>
+      <div
+        className={clsx(styles.container, {
+          [styles.disabled]: disabled,
         })}
-        {...props}
       >
-        {children}
-      </select>
-      <span className={styles.suffix}>
-        <ChevronUpDown />
-      </span>
-    </div>
+        {prefix && (
+          <span className={styles.prefix}>
+            <ThemeContext.Provider value={{ size: 18 }}>
+              {prefix}
+            </ThemeContext.Provider>
+          </span>
+        )}
+
+        <select
+          {...focusProps}
+          disabled={disabled}
+          className={clsx(styles.select, {
+            [styles.small]: size === "small",
+            [styles.large]: size === "large",
+            ["focus-visible"]: isFocusVisible,
+          })}
+          {...props}
+        >
+          {placeholder && (
+            <option value={placeholder} label={placeholder} disabled selected>
+              {placeholder}
+            </option>
+          )}
+          {children}
+        </select>
+
+        <span className={styles.suffix}>
+          <ThemeContext.Provider value={{ size: 18 }}>
+            {suffix || <ChevronDown />}
+          </ThemeContext.Provider>
+        </span>
+      </div>
+    </Label>
   );
 };
 
