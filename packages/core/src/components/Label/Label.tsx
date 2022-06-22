@@ -7,7 +7,7 @@ interface Props
     React.LabelHTMLAttributes<HTMLLabelElement>,
     HTMLLabelElement
   > {
-  label: React.ReactNode;
+  label?: React.ReactNode;
 }
 
 const Label: React.ComponentType<Props> = ({
@@ -18,9 +18,11 @@ const Label: React.ComponentType<Props> = ({
 }) => {
   return (
     <label htmlFor={htmlFor}>
-      <div className={clsx(styles.label, styles.input)} {...{ style }}>
-        {label}
-      </div>
+      {label && (
+        <div className={clsx(styles.label, styles.input)} {...{ style }}>
+          {label}
+        </div>
+      )}
       {children}
     </label>
   );

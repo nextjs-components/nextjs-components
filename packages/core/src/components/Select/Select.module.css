@@ -1,57 +1,18 @@
 .container {
-  --themed-fg: var(--geist-foreground);
-  --themed-bg: var(--geist-background);
-  --themed-border: var(--accents-2);
-
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
   color: var(--themed-fg);
 }
 
-.container.disabled,
-.select:disabled {
-  background: var(--accents-1);
-  border-color: var(--accents-2);
-}
-.container.disabled select {
-  color: var(--accents-4);
-  cursor: not-allowed;
-}
-
-.container.error {
-  --themed-fg: var(--geist-error);
+.container:not(.geist-themed) {
+  --themed-fg: var(--geist-foreground);
   --themed-bg: var(--geist-background);
-  --themed-border: var(--themed-fg);
-}
-
-.container:not(.geist-themed):hover .select:not(:disabled), 
-/*.select:hover,*/ /* ❌ don't highlight when hovering over an htmlFor label*/
-.select:not(.geist-themed):focus-within {
-  border-color: var(--accents-5);
-}
-
-.prefix {
-  left: var(--geist-gap-half);
-}
-.suffix {
-  right: var(--geist-gap-half);
-}
-
-.prefix,
-.suffix {
-  display: inline-flex;
-  position: absolute;
-  pointer-events: none;
-  box-sizing: inherit;
-}
-
-.prefix + .select {
-  padding-left: calc(1.5 * var(--geist-gap));
+  --themed-border: var(--accents-2);
 }
 
 .select {
+  cursor: pointer;
   font-size: 100%;
   font: inherit;
   outline: none;
@@ -72,17 +33,71 @@
   transition: border-color 0.15s ease;
 }
 
+@media (hover: hover) {
+  .container:not(.disabled):hover .select {
+    border-color: var(--accents-5);
+  }
+
+  .container:not(.disabled):hover .prefix,
+  .container:not(.disabled):hover .suffix {
+    color: var(--geist-foreground);
+  }
+}
+
+.container:not(.geist-themed) .select:global(.focus-visible):focus {
+  border-color: var(--accents-5);
+}
+
+.select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 var(--geist-foreground);
+}
+
+.prefix,
+.suffix {
+  display: inline-flex;
+  position: absolute;
+  pointer-events: none;
+  color: var(--accents-5);
+  transition: color 0.15s ease;
+}
+
+.suffix {
+  right: var(--geist-gap-half);
+}
+
+.prefix {
+  left: var(--geist-gap-half);
+}
+
+.prefix + .select {
+  padding-left: calc(1.5 * var(--geist-gap));
+}
+
+.select[disabled] {
+  opacity: 1;
+}
+
+.disabled .prefix,
+.disabled .suffix,
+.select[disabled] {
+  cursor: not-allowed;
+  background: var(--accents-1);
+  color: var(--accents-3);
+  border-color: var(--accents-2);
+}
+
+.placeholder {
+  color: var(--accents-3);
+}
+
+.large {
+  font-size: var(--geist-form-large-font);
+  height: var(--geist-form-large-height);
+  line-height: var(--geist-form-large-line-height);
+}
+
 .small {
   font-size: var(--geist-form-small-font);
   height: var(--geist-form-small-height);
-}
-
-.error_alert {
-  color: var(--geist-error);
-  font-size: small;
-  padding: 0;
-  border: none;
-}
-.error_alert svg {
-  fill: var(--geist-error);
 }

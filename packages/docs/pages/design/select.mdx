@@ -1,0 +1,124 @@
+import { DesignLayout, DesignLayoutInner } from "../../components/DesignLayout";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DesignLayout paths={paths}>
+      <DesignLayoutInner>{children}</DesignLayoutInner>
+    </DesignLayout>
+  );
+}
+
+export const getStaticProps = async () => {
+  const fs = await import("fs");
+  const path = await import("path");
+  const dir = path.join(process.cwd(), "pages/design");
+  const paths = fs
+    .readdirSync(dir)
+    .map((e) => path.join("/design", e.replace(".mdx", "")));
+  return {
+    props: {
+      paths,
+    },
+  };
+};
+
+# Select
+
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display a dropdown list of items.</Text>
+
+<Spacer y={2} />
+
+### Sizes
+
+```
+<Container direction={['column', 'row', 'row']} top>
+  <Container left>
+    <Select size="small" placeholder="Small" />
+  </Container>
+
+  <Container left>
+    <Select placeholder="Default" />
+  </Container>
+
+  <Container left>
+    <Select size="large" placeholder="Large" />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />
+
+### Sizes, Prefix, and Suffix
+
+```
+<Container direction={['column', 'row', 'row']} top>
+  <Container left>
+    <Select
+      size="small"
+      placeholder="Small"
+      prefix={<Up />}
+      suffix={<Up />}
+    />
+  </Container>
+
+  <Container left>
+    <Select
+      placeholder="Default"
+      prefix={<Up />}
+      suffix={<Up />}
+    />
+  </Container>
+
+  <Container left>
+    <Select
+      size="large"
+      placeholder="Large"
+      prefix={<Up />}
+      suffix={<Up />}
+    />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />
+
+### Disabled
+
+```
+<Container direction={['column', 'row', 'row']} top>
+  <Container>
+    <Select placeholder="Disabled with placeholder" disabled />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />
+
+### Prefix and Suffix Disabled
+
+```
+<Container left>
+  <Container>
+    <Select placeholder="Default" prefix={<Up />} disabled />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />
+
+### Other
+
+```
+<Container>
+  <Select placeholder="With label" label="My label" />
+</Container>
+```
+
+<Spacer y={2} />
