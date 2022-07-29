@@ -48,7 +48,8 @@ jobs:
             -H $(git rev-parse --abbrev-ref HEAD) \
             -t "🤖 ${{ steps.set_tag.outputs.tag }}" \
             -b "$RELEASE_BODY" \
-            -r thiskevinwang
+            -r thiskevinwang \
+            -l ignore-for-release
       - run: npm publish
         working-directory: ./packages/core
         env:
