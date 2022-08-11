@@ -135,13 +135,6 @@
   margin: 1rem 0;
 }
 
-.darkmode-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 80px;
-}
-
 .module {
   border-radius: var(--geist-radius);
   border: 1px solid var(--accents-2);
@@ -244,11 +237,4 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.darkmode-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 80px;
 }
