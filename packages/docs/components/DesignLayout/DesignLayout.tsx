@@ -6,12 +6,9 @@ import clsx from "clsx";
 import { Container } from "nextjs-components/src/components/Container";
 import { Details } from "nextjs-components/src/components/Details";
 import { Text } from "nextjs-components/src/components/Text";
-import { Toggle } from "nextjs-components/src/components/Toggle";
+import { ModeSelect } from "nextjs-components/src/components/Select";
 
 import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
-import { IconSizeContext } from "nextjs-components/src/contexts/IconSizeContext";
-
-import { Sun, Moon } from "nextjs-components/src/icons";
 
 import styles from "./design.module.css";
 
@@ -49,7 +46,7 @@ const NavTree = ({
             <Link href={newpath} key={key}>
               <a className={classname}>
                 <li>
-                  <Text small>{node.name}</Text>
+                  <Text as="small">{node.name}</Text>
                 </li>
               </a>
             </Link>
@@ -59,7 +56,7 @@ const NavTree = ({
         // render another `ul` and its children
         return (
           <li key={key}>
-            <Details open summary={<Text small>{node.name}</Text>}>
+            <Details open summary={<Text as="small">{node.name}</Text>}>
               <ul>
                 <NavTree
                   nodes={node.children}
@@ -134,19 +131,7 @@ const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
             </Link>
 
             <div>
-              <div className={styles["darkmode-toggle"]}>
-                <IconSizeContext.Provider value={{ size: 18 }}>
-                  <Sun />
-                  <Toggle
-                    key={key}
-                    checked={isDarkMode}
-                    onChange={(checked) => {
-                      selectTheme(checked ? "dark" : "light");
-                    }}
-                  />
-                  <Moon />
-                </IconSizeContext.Provider>
-              </div>
+              <ModeSelect />
             </div>
 
             <div

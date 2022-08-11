@@ -13,6 +13,7 @@ import { Tree, Folder, File } from "nextjs-components/src/components/FileTree";
 import { LoadingDots } from "nextjs-components/src/components/LoadingDots";
 import { Toggle } from "nextjs-components/src/components/Toggle";
 import { Select } from "nextjs-components/src/components/Select";
+import { ShowMore } from "nextjs-components/src/components/ShowMore";
 import { Snippet } from "nextjs-components/src/components/Snippet";
 import { Spacer } from "nextjs-components/src/components/Spacer";
 import { Spinner } from "nextjs-components/src/components/Spinner";
@@ -139,6 +140,7 @@ const editorScope = {
   Modal,
   MoreHorizontal,
   Select,
+  ShowMore,
   Snippet,
   Spacer,
   Spinner,
