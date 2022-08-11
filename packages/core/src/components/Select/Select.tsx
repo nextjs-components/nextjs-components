@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import { useFocusRing } from "@react-aria/focus";
+import { useId } from "@react-aria/utils";
 
 import ChevronDown from "../../icons/ChevronDown";
 import ThemeContext from "../../contexts/IconSizeContext/IconSizeContext";
@@ -36,9 +37,9 @@ const Select: React.FC<Props> = ({
   ...props
 }) => {
   const { isFocusVisible, focusProps } = useFocusRing();
-
+  const id = useId(props.id);
   return (
-    <Label label={label} htmlFor={props.id}>
+    <Label label={label} htmlFor={id}>
       <div
         className={clsx(styles.container, {
           [styles.disabled]: disabled,
@@ -61,6 +62,7 @@ const Select: React.FC<Props> = ({
             ["focus-visible"]: isFocusVisible,
           })}
           {...props}
+          id={id}
         >
           {placeholder && (
             <option value={placeholder} label={placeholder} disabled selected>

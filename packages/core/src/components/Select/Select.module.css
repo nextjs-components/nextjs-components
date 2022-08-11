@@ -33,17 +33,6 @@
   transition: border-color 0.15s ease;
 }
 
-@media (hover: hover) {
-  .container:not(.disabled):hover .select {
-    border-color: var(--accents-5);
-  }
-
-  .container:not(.disabled):hover .prefix,
-  .container:not(.disabled):hover .suffix {
-    color: var(--geist-foreground);
-  }
-}
-
 .container:not(.geist-themed) .select:global(.focus-visible):focus {
   border-color: var(--accents-5);
 }
