@@ -1,14 +1,11 @@
-import { useState, useCallback, useEffect } from "react";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import clsx from "clsx";
-
 import { Container } from "nextjs-components/src/components/Container";
 import { Details } from "nextjs-components/src/components/Details";
 import { Text } from "nextjs-components/src/components/Text";
-import { ModeSelect } from "nextjs-components/src/components/Select";
-
 import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
+import { useCallback, useEffect, useState } from "react";
 
 import styles from "./design.module.css";
 
@@ -95,8 +92,8 @@ const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
     return paths.reduce(
       ([styleguideNode, componentsNode], nextPath) => {
         const node = {
-          name: titleCase(nextPath.replace("/design/", "")),
-          path: nextPath.replace("/design/", ""),
+          name: titleCase(nextPath.replace("/docs/", "")),
+          path: nextPath.replace("/docs/", ""),
         };
 
         if (nextPath.includes("color") || nextPath.includes("grid")) {
@@ -108,9 +105,9 @@ const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
         return [styleguideNode, componentsNode];
       },
       [
-        { path: "design/", name: "Styleguide", children: [] },
-        { path: "design/", name: "Components", children: [] },
-      ] as Node[]
+        { path: "docs/", name: "Styleguide", children: [] },
+        { path: "docs/", name: "Components", children: [] },
+      ] as Node[],
     );
   }, []);
   const nodes = constructNodesFromPaths(paths);
@@ -123,17 +120,9 @@ const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
 
   return (
     <>
-      <Container className={styles["design-page"]}>
+      <Container row className={styles["design-page"]}>
         <aside className={styles.aside}>
           <div className={styles["logo-container"]}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-
-            <div>
-              <ModeSelect />
-            </div>
-
             <div
               className={styles.burger}
               onClick={() => {

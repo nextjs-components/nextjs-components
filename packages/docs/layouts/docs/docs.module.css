@@ -1,0 +1,31 @@
+.header {
+  border-bottom: 1px solid var(--accents-2);
+}
+
+.inner {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 var(--geist-gap);
+
+  /* hide left/right on <=900 */
+  @media (max-width: 900px) {
+    & .left,
+    & .right {
+      display: none;
+    }
+  }
+
+  & .left {
+  }
+  & .mid {
+  }
+  & .right {
+  }
+  & .input {
+    max-width: 200px;
+  }
+}

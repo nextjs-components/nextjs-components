@@ -1,60 +1,58 @@
-import React, { useState, useMemo } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Link from "next/link";
-
+import { fs } from "nextjs-components";
 import { Avatar } from "nextjs-components/src/components/Avatar";
 import { Button } from "nextjs-components/src/components/Button";
-import { Editor } from "nextjs-components/src/components/Editor";
+import { Capacity } from "nextjs-components/src/components/Capacity";
 import { Checkbox } from "nextjs-components/src/components/Checkbox";
 import { ColorCard } from "nextjs-components/src/components/ColorCard";
 import { Container } from "nextjs-components/src/components/Container";
-import { fs } from "nextjs-components";
-import { Tree, Folder, File } from "nextjs-components/src/components/FileTree";
-import { LoadingDots } from "nextjs-components/src/components/LoadingDots";
-import { Toggle } from "nextjs-components/src/components/Toggle";
-import { Select } from "nextjs-components/src/components/Select";
-import { ShowMore } from "nextjs-components/src/components/ShowMore";
-import { Snippet } from "nextjs-components/src/components/Snippet";
-import { Spacer } from "nextjs-components/src/components/Spacer";
-import { Spinner } from "nextjs-components/src/components/Spinner";
-import { Table } from "nextjs-components/src/components/Table";
-import {
-  Text,
-  InlineCode,
-  Code,
-  OldCode,
-  UL,
-  OL,
-  LI,
-} from "nextjs-components/src/components/Text";
-import { useToasts } from "nextjs-components/src/components/Toast";
-import { KBD } from "nextjs-components/src/components/KeyboardInput";
-import { Capacity } from "nextjs-components/src/components/Capacity";
-import Modal from "nextjs-components/src/components/Modal";
+import { Editor } from "nextjs-components/src/components/Editor";
 import {
   Entity,
   EntityField,
   EntityThumbnail,
 } from "nextjs-components/src/components/Entity";
+import { File, Folder, Tree } from "nextjs-components/src/components/FileTree";
+import { KBD } from "nextjs-components/src/components/KeyboardInput";
+import { LoadingDots } from "nextjs-components/src/components/LoadingDots";
 import {
   Menu,
   MenuButton,
   MenuItem,
-  MenuWrapper,
   MenuLink,
+  MenuWrapper,
 } from "nextjs-components/src/components/Menu";
+import Modal from "nextjs-components/src/components/Modal";
+import { Select } from "nextjs-components/src/components/Select";
+import { ShowMore } from "nextjs-components/src/components/ShowMore";
+import { Snippet } from "nextjs-components/src/components/Snippet";
+import { Spacer } from "nextjs-components/src/components/Spacer";
+import { Spinner } from "nextjs-components/src/components/Spinner";
 import { StatusDot } from "nextjs-components/src/components/StatusDot";
-
+import { Table } from "nextjs-components/src/components/Table";
+import {
+  Code,
+  InlineCode,
+  LI,
+  OL,
+  OldCode,
+  Text,
+  UL,
+} from "nextjs-components/src/components/Text";
+import { useToasts } from "nextjs-components/src/components/Toast";
+import { Toggle } from "nextjs-components/src/components/Toggle";
 import {
   AlignCenter,
   AlignLeft,
   AlignRight,
-  ArrowUp as Up,
-  GitHub,
   FacebookIcon,
+  GitHub,
   GoogleIcon,
   MoreHorizontal,
+  ArrowUp as Up,
 } from "nextjs-components/src/icons";
+import React, { useMemo, useState } from "react";
 
 const BlueContainer = ({ style, children, ...props }) => (
   <Container

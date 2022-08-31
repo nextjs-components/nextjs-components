@@ -1,0 +1,61 @@
+.title,
+.subtitle {
+  max-width: 500px;
+}
+
+.title {
+  & h1 {
+    color: var(--geist-foreground);
+
+    font-size: 80px;
+    line-height: 0.85;
+    letter-spacing: max(min(-0.055em, -0.66vw), -0.07em);
+    margin: 0px;
+    font-weight: 700;
+
+    @media (max-width: 900px) {
+      font-size: min(max(var(--fontSizes-8), 11.2vw), var(--fontSizes-9));
+    }
+  }
+}
+
+.subtitle {
+  & p {
+    color: var(--geist-secondary);
+
+    font-size: 21px;
+    line-height: 30px;
+    letter-spacing: -0.016em;
+    margin: 0px;
+    font-weight: 400;
+  }
+}
+
+.gradient_bg {
+  background: radial-gradient(
+      ellipse at 100% 100%,
+      hsl(254 100% 6% / 0.07),
+      #7b26c911,
+      transparent
+    ),
+    linear-gradient(to bottom right, #ee989011, #ff008011, #7d28cc11, #6b66ff11);
+}
+
+.install {
+  align-items: center;
+  box-sizing: border-box;
+  user-select: none;
+  display: inline-flex;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  height: var(--geist-space-medium);
+  box-shadow: var(--shadow-medium);
+  padding-left: var(--geist-space-4x);
+  padding-right: var(--geist-space-4x);
+  font-weight: 500;
+  border-radius: var(--geist-radius);
+
+  cursor: pointer;
+
+  color: var(--geist-foreground);
+  background-color: var(--geist-background);
+}

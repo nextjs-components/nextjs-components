@@ -1,13 +1,24 @@
-import "nextjs-components/src/styles/globals.css";
-
+import type { NextPage } from "next";
+import type { AppProps } from "next/app";
 import Head from "next/head";
-import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
 import {
-  ToastsProvider,
   ToastArea,
+  ToastsProvider,
 } from "nextjs-components/src/components/Toast";
+import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
+import "nextjs-components/src/styles/globals.css";
+import type { ReactElement, ReactNode } from "react";
 
-function MyApp({ Component, pageProps }) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <>
       <Head>
@@ -20,7 +31,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <ThemeContextProvider>
         <ToastsProvider>
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
           <ToastArea />
         </ToastsProvider>
       </ThemeContextProvider>

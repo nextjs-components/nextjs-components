@@ -1,0 +1,37 @@
+import { DesignLayout, DesignLayoutInner } from "../../layouts/DesignLayout";
+import DocsLayout from "../../layouts/docs";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DocsLayout>
+      <DesignLayout paths={paths}>
+        <DesignLayoutInner>{children}</DesignLayoutInner>
+      </DesignLayout>
+    </DocsLayout>
+  );
+}
+
+export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+
+# Snippet
+
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display a snippet of copyable code for the command line.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+```
+<Snippet text="git clone https://github.com/nextjs-components/nextjs-components.git" width="300px" />
+```
+
+<Spacer y={2} />
+
+🚧 WIP

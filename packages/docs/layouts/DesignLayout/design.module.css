@@ -3,15 +3,16 @@
   max-width: 1250px;
   margin: 0 auto;
   padding: 0 var(--geist-gap);
+
+  display: flex;
 }
 
 .main {
-  margin-left: 250px;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .container {
@@ -28,9 +29,7 @@
 }
 
 .aside {
-  position: fixed;
-  top: 0;
-  padding-top: 3.25rem;
+  padding: var(--geist-gap) 0;
   height: 100vh;
   width: 200px;
   display: flex;
