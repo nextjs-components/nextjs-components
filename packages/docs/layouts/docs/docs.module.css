@@ -11,8 +11,8 @@
   margin: 0 auto;
   padding: 0 var(--geist-gap);
 
-  /* hide left/right on <=900 */
-  @media (max-width: 900px) {
+  /* hide left/right on <=960 */
+  @media (max-width: 960px) {
     & .left {
       display: none;
     }

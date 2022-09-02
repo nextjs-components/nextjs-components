@@ -7,6 +7,7 @@ import { Text } from "nextjs-components/src/components/Text";
 import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
 import { useCallback, useEffect, useState } from "react";
 
+import { Menu } from "../../components/menu";
 import styles from "./design.module.css";
 
 interface Props {
@@ -120,7 +121,8 @@ const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
 
   return (
     <>
-      <Container row className={styles["design-page"]}>
+      <div className={styles.hairline} />
+      <Container className={styles["design-page"]}>
         <aside className={styles.aside}>
           <div className={styles["logo-container"]}>
             <div
@@ -129,7 +131,7 @@ const DesignLayout: React.FC<Props> = ({ children, paths = [] }) => {
                 setExpanded((e) => !e);
               }}
             >
-              {/* <Menu expanded={expanded} /> */}
+              <Menu expanded={expanded} />
             </div>
           </div>
 

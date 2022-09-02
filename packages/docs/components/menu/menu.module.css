@@ -1,0 +1,35 @@
+.toggle_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.toggle_wrap:after,
+.toggle_wrap:before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 22px;
+  background-color: var(--geist-foreground);
+  transition: transform 0.15s ease;
+}
+
+.toggle_wrap:before {
+  transform: translateY(-4px) rotate(0deg);
+}
+
+.toggle_wrap:after {
+  transform: translateY(4px) rotate(0deg);
+}
+
+.toggle_wrap.toggle_expanded:before {
+  transform: translateY(1px) rotate(45deg);
+}
+
+.toggle_wrap.toggle_expanded:after {
+  transform: translateY(0) rotate(-45deg);
+}

@@ -13,7 +13,7 @@
     margin: 0px;
     font-weight: 700;
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       font-size: min(11.2vw, 80px);
     }
   }
