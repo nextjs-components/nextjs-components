@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+
 import Select from "./Select";
 
 describe("Select", () => {
@@ -23,7 +24,7 @@ describe("Select", () => {
   it("should render a placeholder", () => {
     const { container } = render(<Select placeholder="My Placeholder" />);
     expect(container.querySelector("option")).toHaveTextContent(
-      "My Placeholder"
+      "My Placeholder",
     );
   });
 
@@ -35,7 +36,7 @@ describe("Select", () => {
   it("should render a default suffix", () => {
     const { container } = render(<Select />);
     expect(container.querySelector(".suffix")).toContainElement(
-      document.querySelector("svg")
+      document.querySelector("svg"),
     );
   });
 

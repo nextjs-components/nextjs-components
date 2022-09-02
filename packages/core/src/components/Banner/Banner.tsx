@@ -1,13 +1,11 @@
-import React from "react";
-import Link from "next/link";
 import clsx from "clsx";
+import Link from "next/link";
+import React from "react";
 
-import XIcon from "../../icons/XIcon";
-
-import { default as useBanner } from "./useBanner";
-
-import styles from "./Banner.module.css";
 import { IconSizeContext } from "../../contexts/IconSizeContext";
+import XIcon from "../../icons/XIcon";
+import styles from "./Banner.module.css";
+import { default as useBanner } from "./useBanner";
 
 interface Props {
   title: string;

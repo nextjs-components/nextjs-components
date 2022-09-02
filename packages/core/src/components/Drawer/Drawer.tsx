@@ -1,8 +1,9 @@
-import React from "react";
-import clsx from "clsx";
-import useMeasure from "react-use-measure";
-import { usePreventScroll } from "@react-aria/overlays";
 import Portal from "@reach/portal";
+import { usePreventScroll } from "@react-aria/overlays";
+import clsx from "clsx";
+import React from "react";
+import useMeasure from "react-use-measure";
+
 // import { FocusScope } from "@react-aria/focus";
 
 interface Props {

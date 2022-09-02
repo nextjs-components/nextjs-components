@@ -1,21 +1,20 @@
+import clsx from "clsx";
 import React from "react";
 import type { CSSProperties, ComponentType } from "react";
-import { useState, memo } from "react";
-import clsx from "clsx";
+import { memo, useState } from "react";
 
-import styles from "./file-tree.module.css";
-import { useDepth, DepthContextProvider } from "./DepthContext";
-
+import { DepthContextProvider, useDepth } from "./DepthContext";
 import {
-  plusIcon,
-  minusIcon,
+  fileIcon,
   /**
    * TODO - convert to JSX icons
    */
   folderIcon,
-  fileIcon,
   lambdaIcon,
+  minusIcon,
+  plusIcon,
 } from "./file-tree-icons";
+import styles from "./file-tree.module.css";
 
 export const Tree = ({ children, style }) => {
   return (
@@ -57,7 +56,7 @@ export const Folder: ComponentType<FolderProps> = memo(
         </li>
       </DepthContextProvider>
     );
-  }
+  },
 );
 
 interface FileProps extends Props {
@@ -80,5 +79,5 @@ export const File: ComponentType<FileProps> = memo(
         </a>
       </li>
     );
-  }
+  },
 );

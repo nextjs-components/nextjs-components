@@ -1,4 +1,4 @@
-import { render, fireEvent, act } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 
 import Modal from "./";
 

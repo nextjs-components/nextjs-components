@@ -1,14 +1,12 @@
+import clsx from "clsx";
 import { Children } from "react";
 import { isFragment } from "react-is";
-import clsx from "clsx";
 
+import { Container } from "../../components/Container";
 import Skeleton from "../../components/Skeleton";
 import { Text } from "../../components/Text";
-import { Container } from "../../components/Container";
-
 import styles from "./Entity.module.css";
 import EntityField from "./EntityField";
-
 import { PlaceHolderContext } from "./index";
 
 interface Props {
@@ -59,7 +57,7 @@ const Entity: React.FC<Props> = ({
                   {...(isLastItem ? { actions } : {})}
                 ></EntityField>
               );
-            }
+            },
           )}
         </Container>
 
@@ -86,7 +84,7 @@ const Entity: React.FC<Props> = ({
               <Text
                 className="geist-themed geist-secondary"
                 style={{ width: "100%" }}
-                color={'geist-secondary'}
+                color={"geist-secondary"}
               >
                 {footer}
               </Text>

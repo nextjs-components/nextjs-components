@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Button, ButtonProps } from "../Button";
-
 import { useMenu } from "./menu-context";
 
 export const MenuButton: React.FC<ButtonProps> = ({

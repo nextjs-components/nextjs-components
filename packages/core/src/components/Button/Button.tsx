@@ -1,15 +1,14 @@
-import React from "react";
-import { forwardRef, useState, useRef, useContext } from "react";
-import clsx from "clsx";
-import { useHover } from "@react-aria/interactions";
 import { useButton } from "@react-aria/button";
+import { useHover } from "@react-aria/interactions";
+import clsx from "clsx";
+import React from "react";
+import { forwardRef, useContext, useRef, useState } from "react";
 import mergeRefs from "react-merge-refs";
 
-import { Spinner } from "../Spinner";
-import { IconSizeContext } from "../../contexts/IconSizeContext";
 import { DisabledContext } from "../../contexts/DisabledContext";
-
+import { IconSizeContext } from "../../contexts/IconSizeContext";
 import reset from "../../styles/reset/reset.module.css";
+import { Spinner } from "../Spinner";
 import styles from "./button.module.css";
 
 type IntrinsicProps = React.DetailedHTMLProps<
@@ -45,7 +44,7 @@ const Button: React.ComponentType<Props> = forwardRef(
       onClick,
       ...props
     },
-    externalRef
+    externalRef,
   ) => {
     const ctxDisabled = useContext(DisabledContext);
     const isDisabled = disabled ?? ctxDisabled;
@@ -82,7 +81,7 @@ const Button: React.ComponentType<Props> = forwardRef(
           return e;
         },
       },
-      ref
+      ref,
     );
 
     const iconSizeContextValue = {
@@ -170,7 +169,7 @@ const Button: React.ComponentType<Props> = forwardRef(
         </IconSizeContext.Provider>
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

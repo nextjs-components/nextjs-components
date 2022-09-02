@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * @usage `const sm_up = useMediaQuery('(min-width: 576px)');`

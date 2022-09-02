@@ -1,7 +1,7 @@
-import { renderHook, act } from "@testing-library/react-hooks";
-import useToasts from "./useToasts";
+import { act, renderHook } from "@testing-library/react-hooks";
 
 import ToastsProvider from "./ToastsProvider";
+import useToasts from "./useToasts";
 
 jest.useFakeTimers();
 
@@ -152,7 +152,7 @@ describe("useToasts", () => {
     // THEN
     act(() => {
       expect(() =>
-        result.current.current.message("This is a toast")
+        result.current.current.message("This is a toast"),
       ).toThrowError("Missing a ToastsProvider");
     });
   });

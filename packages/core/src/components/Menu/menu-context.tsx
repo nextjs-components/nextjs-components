@@ -1,5 +1,5 @@
-import { usePopper } from "react-popper";
 import React, { createContext, useContext } from "react";
+import { usePopper } from "react-popper";
 
 export interface IMenuContext {
   menuId: string;

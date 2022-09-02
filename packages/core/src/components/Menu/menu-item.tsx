@@ -1,17 +1,15 @@
-import React, {
-  useRef,
-  forwardRef,
-  PointerEventHandler,
-  Fragment,
-} from "react";
-import clsx from "clsx";
 import { useId } from "@react-aria/utils";
-
-import { useMenu } from "./menu-context";
-
-import classes from "./Menu.module.css";
+import clsx from "clsx";
+import React, {
+  Fragment,
+  PointerEventHandler,
+  forwardRef,
+  useRef,
+} from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
+import classes from "./Menu.module.css";
+import { useMenu } from "./menu-context";
 
 interface MenuItemInnerProps {
   children?: any;
@@ -38,7 +36,7 @@ export const MenuItemInner: React.ForwardRefExoticComponent<
       Component,
       ...props
     },
-    ref
+    ref,
   ) => {
     const { setOpen } = useMenu();
     if (Component) {
@@ -84,7 +82,7 @@ export const MenuItemInner: React.ForwardRefExoticComponent<
         {children}
       </li>
     );
-  }
+  },
 );
 MenuItemInner.displayName = "MenuItemInner";
 
@@ -119,7 +117,7 @@ export const MenuItem: React.ComponentType<MenuItemProps> = ({
   // equivalent to
   // @ts-ignore TODO: use `--downlevelIteration`
   const idx = [...(listRef.current?.childNodes.values() ?? [])].indexOf(
-    itemRef.current
+    itemRef.current,
   );
 
   const id = useId();
@@ -179,7 +177,7 @@ export const MenuLink = ({
   // equivalent to
   // @ts-ignore TODO: use `--downlevelIteration`
   const idx = [...(listRef.current?.childNodes.values() ?? [])].indexOf(
-    itemRef.current
+    itemRef.current,
   );
 
   const id = useId();

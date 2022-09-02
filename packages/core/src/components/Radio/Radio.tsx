@@ -1,9 +1,9 @@
-import React from "react";
-import { createContext, useContext, useRef, FC } from "react";
-import clsx from "clsx";
-import { useRadioGroup, useRadio } from "@react-aria/radio";
-import { useRadioGroupState } from "@react-stately/radio";
 import { useFocusRing } from "@react-aria/focus";
+import { useRadio, useRadioGroup } from "@react-aria/radio";
+import { useRadioGroupState } from "@react-stately/radio";
+import clsx from "clsx";
+import React from "react";
+import { FC, createContext, useContext, useRef } from "react";
 
 import styles from "./radio.module.css";
 

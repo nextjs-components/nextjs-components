@@ -1,12 +1,12 @@
-import React from "react";
-import { useRef, useReducer } from "react";
-import clsx from "clsx";
-import { useHover } from "@react-aria/interactions";
 import Portal from "@reach/portal";
+import { useHover } from "@react-aria/interactions";
+import clsx from "clsx";
+import React from "react";
+import { useReducer, useRef } from "react";
 
-import useToasts from "./useToasts";
-import styles from "./toasts.module.css";
 import ToastContainer from "./ToastContainer";
+import styles from "./toasts.module.css";
+import useToasts from "./useToasts";
 
 function useForceUpdate(): () => void {
   return useReducer(() => ({}), {})[1];

@@ -1,12 +1,11 @@
-import React from "react";
-import clsx from "clsx";
 import { useFocusRing } from "@react-aria/focus";
 import { useId } from "@react-aria/utils";
+import clsx from "clsx";
+import React from "react";
 
-import ChevronDown from "../../icons/ChevronDown";
 import ThemeContext from "../../contexts/IconSizeContext/IconSizeContext";
+import ChevronDown from "../../icons/ChevronDown";
 import Label from "../Label/Label";
-
 import styles from "./Select.module.css";
 
 type BaseProps = Omit<

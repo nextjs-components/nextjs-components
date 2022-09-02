@@ -1,5 +1,6 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
+
 import styles from "./list.module.css";
 
 type ULProps = React.HTMLAttributes<HTMLUListElement>;

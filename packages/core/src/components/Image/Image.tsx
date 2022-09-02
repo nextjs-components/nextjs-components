@@ -1,7 +1,7 @@
-import React from "react";
-import { useEffect, useState, memo } from "react";
-import NextImage from "next/image";
 import clsx from "clsx";
+import NextImage from "next/image";
+import React from "react";
+import { memo, useEffect, useState } from "react";
 
 interface ImageProps {
   alt?: string;
@@ -32,7 +32,7 @@ const Image = memo(({ src, alt, width, height }: ImageProps) => {
               // https://github.com/vercel/next.js/blob/canary/examples/image-component/pages/placeholder.js
               placeholder="blur"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(
-                shimmer(700, 475)
+                shimmer(700, 475),
               )}`}
               src={src}
               width={width}

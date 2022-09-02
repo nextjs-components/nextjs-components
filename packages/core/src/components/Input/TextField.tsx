@@ -1,8 +1,8 @@
-import React, { forwardRef } from "react";
 import clsx from "clsx";
-import styles from "./TextField.module.css";
+import React, { forwardRef } from "react";
 
 import { Label } from "../Label";
+import styles from "./TextField.module.css";
 
 type InputProps = Partial<
   React.DetailedHTMLProps<
@@ -39,7 +39,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
       error,
       ...props
     },
-    ref
+    ref,
   ) => {
     const containerClassName = clsx(styles.container, {
       [styles[size]]: !!size,
@@ -78,5 +78,5 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
         {_suffix}
       </div>
     );
-  }
+  },
 );
