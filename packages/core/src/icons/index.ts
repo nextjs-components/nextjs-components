@@ -6,6 +6,7 @@ export { default as AlignRight } from "./AlignRight";
 export { default as ArrowDownCircle } from "./ArrowDownCircle";
 export { default as ArrowUp } from "./ArrowUp";
 export { default as ArrowUpCircle } from "./ArrowUpCircle";
+export { default as ArrowUpRight } from "./ArrowUpRight";
 export { default as Calendar } from "./Calendar";
 export { default as CheckInCircle } from "./CheckInCircle";
 export { default as ChevronDown } from "./ChevronDown";
