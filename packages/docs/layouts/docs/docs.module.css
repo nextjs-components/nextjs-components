@@ -1,5 +1,5 @@
 .header {
-  border-bottom: 1px solid var(--accents-2);
+  /* border-bottom: 1px solid var(--accents-2); */
 }
 
 .inner {
@@ -13,7 +13,12 @@
 
   /* hide left/right on <=900 */
   @media (max-width: 900px) {
-    & .left,
+    & .left {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
     & .right {
       display: none;
     }

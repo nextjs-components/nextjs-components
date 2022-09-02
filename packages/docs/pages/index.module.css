@@ -14,7 +14,7 @@
     font-weight: 700;
 
     @media (max-width: 900px) {
-      font-size: min(max(var(--fontSizes-8), 11.2vw), var(--fontSizes-9));
+      font-size: min(11.2vw, 80px);
     }
   }
 }
@@ -33,12 +33,12 @@
 
 .gradient_bg {
   background: radial-gradient(
-      ellipse at 100% 100%,
-      hsl(254 100% 6% / 0.07),
-      #7b26c911,
+      ellipse at 10% 90%,
+      #f5a62333,
+      #7b26c940,
       transparent
     ),
-    linear-gradient(to bottom right, #ee989011, #ff008011, #7d28cc11, #6b66ff11);
+    linear-gradient(to bottom right, #ee989020, #ff008030, #7d28cc40, #6b66ff10);
 }
 
 .install {
