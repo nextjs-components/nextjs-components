@@ -1,0 +1,53 @@
+import { DesignLayout, DesignLayoutInner } from "../../layouts/DesignLayout";
+import DocsLayout from "../../layouts/docs";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DocsLayout>
+      <DesignLayout paths={paths}>
+        <DesignLayoutInner>{children}</DesignLayoutInner>
+      </DesignLayout>
+    </DocsLayout>
+  );
+}
+
+export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+
+# Loading Dots
+
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Indicate an action running in the background.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+```
+<Container>
+  <Container>
+    <LoadingDots />
+  </Container>
+
+  <Container>
+    <LoadingDots size={4} />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />
+
+### Text
+
+```
+<LoadingDots size={4}>
+  <Text type="secondary">Loading</Text>
+</LoadingDots>
+```
+
+<Spacer y={2} />

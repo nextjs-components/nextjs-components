@@ -1,0 +1,39 @@
+import { DesignLayout, DesignLayoutInner } from "../../layouts/DesignLayout";
+import DocsLayout from "../../layouts/docs";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DocsLayout>
+      <DesignLayout paths={paths}>
+        <DesignLayoutInner>{children}</DesignLayoutInner>
+      </DesignLayout>
+    </DocsLayout>
+  );
+}
+
+export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+
+# Show More
+
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Styling component to show expanded or collapsed content.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+```
+() => {
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />
+  )
+}
+```

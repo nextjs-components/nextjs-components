@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/nextjs-components/nextjs-components#readme",
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/docs"
   ],
   "dependencies": {
     "react": "17.0.2",

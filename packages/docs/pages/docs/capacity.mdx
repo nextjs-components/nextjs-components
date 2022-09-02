@@ -1,0 +1,59 @@
+import { DesignLayout, DesignLayoutInner } from "../../layouts/DesignLayout";
+import DocsLayout from "../../layouts/docs";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DocsLayout>
+      <DesignLayout paths={paths}>
+        <DesignLayoutInner>{children}</DesignLayoutInner>
+      </DesignLayout>
+    </DocsLayout>
+  );
+}
+
+export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+
+# Capacity
+
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display an capacity indicator.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+```
+<Container left>
+  <Container center>
+    <Capacity value={15} limit={100} />
+  </Container>
+
+  <Container center>
+    <Capacity value={45} limit={100} />
+  </Container>
+
+  <Container center>
+    <Capacity value={90} limit={100} />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />
+
+### Fixed color
+
+```
+<Container left>
+  <Container center>
+    <Capacity value={65} limit={100} color="var(--geist-success)" />
+  </Container>
+</Container>
+```
+
+<Spacer y={2} />

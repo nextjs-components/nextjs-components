@@ -1,0 +1,64 @@
+import { DesignLayout, DesignLayoutInner } from "../../layouts/DesignLayout";
+import DocsLayout from "../../layouts/docs";
+
+export default function Wrapper({ children, paths }) {
+  return (
+    <DocsLayout>
+      <DesignLayout paths={paths}>
+        <DesignLayoutInner>{children}</DesignLayoutInner>
+      </DesignLayout>
+    </DocsLayout>
+  );
+}
+
+export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+
+# Keyboard Input
+
+{/* prettier-ignore */}
+<Text
+  as="h2"
+  color="geist-secondary"
+  size={20}
+  weight={400}
+  style={{ margin: "revert" }}
+>Display keyboard input that triggers an action.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+```
+<KBD>f</KBD>
+```
+
+<Spacer y={2} />
+
+### Modifiers
+
+```
+<>
+  <KBD meta />
+  <KBD shift />
+  <KBD alt />
+  <KBD ctrl />
+</>
+```
+
+<Spacer y={2} />
+
+### Combination
+
+```
+<KBD meta shift>b</KBD>
+```
+
+<Spacer y={2} />
+
+### Small
+
+```
+<KBD small>/</KBD>
+```
+
+<Spacer y={2} />
