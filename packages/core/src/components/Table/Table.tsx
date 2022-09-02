@@ -1,14 +1,12 @@
-import React from "react";
-import { useState, Children } from "react";
 import clsx from "clsx";
+import React from "react";
+import { Children, useState } from "react";
 
+import reset from "../../styles/reset/reset.module.css";
 import { Badge } from "../Badge";
 import { Checkbox } from "../Checkbox";
-
 import { Scroller } from "../Scroller";
-
 import styles from "./Table.module.css";
-import reset from "../../styles/reset/reset.module.css";
 
 interface Cell<T extends any = any>
   extends React.FC<{
@@ -161,7 +159,7 @@ const Table: React.ComponentType<Props> = ({
                             [styles.center]: align === "center",
                             [styles.right]: align === "right",
                           },
-                          columnClassName
+                          columnClassName,
                         )}
                       >
                         <div className={styles.container}>{Header}</div>
@@ -217,7 +215,7 @@ const Table: React.ComponentType<Props> = ({
                                     setIdsChecked((ids) => [...ids, row.id]);
                                   } else {
                                     setIdsChecked((ids) =>
-                                      ids.filter((id) => id !== row.id)
+                                      ids.filter((id) => id !== row.id),
                                     );
                                   }
                                 }}
@@ -243,7 +241,7 @@ const Table: React.ComponentType<Props> = ({
                             [styles.center]: align === "center",
                             [styles.right]: align === "right",
                           },
-                          columnClassName
+                          columnClassName,
                         );
                         const key = `${accessor}${colIdx}`;
                         if (Cell) {

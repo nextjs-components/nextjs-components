@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 

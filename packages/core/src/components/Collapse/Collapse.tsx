@@ -1,20 +1,20 @@
-import React from "react";
+import { FocusRing } from "@react-aria/focus";
+import { useId } from "@react-aria/utils";
 import clsx from "clsx";
-import useMeasure from "react-use-measure";
+import React from "react";
 import {
   createContext,
-  useContext,
-  useCallback,
-  useState,
   memo,
+  useCallback,
+  useContext,
   useMemo,
+  useState,
 } from "react";
-import { useId } from "@react-aria/utils";
-import { FocusRing } from "@react-aria/focus";
+import useMeasure from "react-use-measure";
 
+import ChevronDown from "../../icons/ChevronDown";
 import { Text } from "../Text";
 import styles from "./Collapse.module.css";
-import ChevronDown from "../../icons/ChevronDown";
 
 interface ICollapseContext {
   onChange?: (val: string | React.ReactNode) => void;
@@ -61,12 +61,12 @@ const Collapse: React.ComponentType<Props> = memo(
           setOpen((s) => !s);
         }
       },
-      [context]
+      [context],
     );
 
     const isOpen = useMemo(
       () => title === context.selected || open,
-      [context.selected, title, open]
+      [context.selected, title, open],
     );
 
     return (
@@ -106,7 +106,7 @@ const Collapse: React.ComponentType<Props> = memo(
         </div>
       </div>
     );
-  }
+  },
 );
 
 Collapse.displayName = "Collapse";

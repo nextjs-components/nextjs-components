@@ -1,15 +1,12 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import clsx from "clsx";
 import Portal from "@reach/portal";
-import { usePopper } from "react-popper";
 import { useId } from "@react-aria/utils";
+import clsx from "clsx";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { usePopper } from "react-popper";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
-
 import Drawer from "../Drawer";
-
 import classes from "./Menu.module.css";
-
 import MenuContext, { useMenu } from "./menu-context";
 
 /**
@@ -135,7 +132,7 @@ export const Menu: React.FC<MenuProps> = ({
   const isSmall = useMediaQuery("(max-width:600px)");
 
   const prevFocusedEl = useRef<HTMLElement>(
-    document.activeElement as HTMLElement
+    document.activeElement as HTMLElement,
   );
 
   useEffect(() => {

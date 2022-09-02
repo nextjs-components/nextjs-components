@@ -1,10 +1,10 @@
+import { FocusRing } from "@react-aria/focus";
+import clsx from "clsx";
 import React from "react";
 import { useCallback } from "react";
-import clsx from "clsx";
-import { FocusRing } from "@react-aria/focus";
 
-import styles from "./Toggle.module.css";
 import reset from "../../styles/reset/reset.module.css";
+import styles from "./Toggle.module.css";
 
 interface Props {
   checked?: boolean;

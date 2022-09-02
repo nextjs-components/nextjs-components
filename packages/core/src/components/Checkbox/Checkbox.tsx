@@ -1,6 +1,7 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import { InputHTMLAttributes } from "react";
+
 import styles from "./Checkbox.module.css";
 
 interface Props {

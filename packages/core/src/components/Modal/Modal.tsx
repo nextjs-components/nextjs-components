@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-import clsx from "clsx";
-
 import Portal from "@reach/portal";
-import { usePreventScroll } from "@react-aria/overlays";
 import { FocusScope } from "@react-aria/focus";
+import { usePreventScroll } from "@react-aria/overlays";
+import clsx from "clsx";
+import React, { useEffect, useState } from "react";
 
 import { Text } from "../Text";
 import styles from "./Modal.module.css";

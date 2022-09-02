@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import clsx from "clsx";
 import { useFocus } from "@react-aria/interactions";
+import clsx from "clsx";
+import React, { useState } from "react";
 
 import CopyIcon from "../../icons/CopyIcon";
 import { useToasts } from "../Toast";
-
 import styles from "./Snippet.module.css";
 
 interface Props {
@@ -61,7 +60,7 @@ const Snippet: React.ComponentType<Props> = ({
         data-focus-visible-added={focused ? "" : undefined}
         onClick={() => {
           navigator.clipboard.writeText(
-            Array.isArray(text) ? text.join("\n") : text
+            Array.isArray(text) ? text.join("\n") : text,
           );
           toasts.current?.message({ text: "Copied to clipboard!" });
         }}

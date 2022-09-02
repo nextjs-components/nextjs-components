@@ -1,10 +1,9 @@
-import React from "react";
 import clsx from "clsx";
-
-import { Text } from "../Text";
-import { useState, Children, useContext } from "react";
+import React from "react";
+import { Children, useContext, useState } from "react";
 
 import { DisabledContext } from "../../contexts/DisabledContext";
+import { Text } from "../Text";
 import styles from "./Fieldset.module.css";
 
 const Status: React.FC = ({ children }) => {

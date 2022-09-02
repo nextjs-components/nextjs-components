@@ -1,5 +1,5 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 
 type Direction = "column" | "row";
 export interface Props {
@@ -126,9 +126,9 @@ const Container: React.ComponentType<Props> = ({
               ["sm-row"]: false,
               ["md-row"]: false,
               ["lg-row"]: false,
-            }
+            },
           ),
-        className
+        className,
       )}
       style={{
         ...style,

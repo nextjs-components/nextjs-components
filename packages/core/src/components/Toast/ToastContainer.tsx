@@ -1,9 +1,8 @@
-import React from "react";
-import { useEffect, useRef, useState, useReducer, useCallback } from "react";
 import clsx from "clsx";
+import React from "react";
+import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 
 import { Button } from "../Button";
-
 import type { IToast } from "./ToastsProvider";
 import styles from "./toasts.module.css";
 

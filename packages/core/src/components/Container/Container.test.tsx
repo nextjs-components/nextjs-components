@@ -21,7 +21,7 @@ describe("Container", () => {
       <Container>
         <h1>Hello</h1>
         <h2>World</h2>
-      </Container>
+      </Container>,
     );
     // THEN
     expect(getByText("Hello")).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe("Container", () => {
       const { container } = render(<Container row />);
       // THEN
       expect(container.firstChild).toHaveClass(
-        clsx(["sm-row", "md-row", "lg-row"])
+        clsx(["sm-row", "md-row", "lg-row"]),
       );
       expect(container.firstElementChild.classList).toHaveLength(5);
     });
@@ -47,7 +47,7 @@ describe("Container", () => {
         const { container } = render(<Container direction="row" />);
         // THEN
         expect(container.firstChild).toHaveClass(
-          clsx(["sm-row", "md-row", "lg-row"])
+          clsx(["sm-row", "md-row", "lg-row"]),
         );
         expect(container.firstElementChild.classList).toHaveLength(5);
       }
@@ -57,7 +57,7 @@ describe("Container", () => {
         const { container } = render(<Container direction={["row"]} />);
         // THEN
         expect(container.firstChild).toHaveClass(
-          clsx(["sm-row", "md-row", "lg-row"])
+          clsx(["sm-row", "md-row", "lg-row"]),
         );
         expect(container.firstElementChild.classList).toHaveLength(5);
       }
@@ -65,7 +65,7 @@ describe("Container", () => {
       {
         // WHEN
         const { container } = render(
-          <Container direction={["column", "row"]} />
+          <Container direction={["column", "row"]} />,
         );
         // THEN
         expect(container.firstChild).toHaveClass(clsx(["md-row", "lg-row"]));
@@ -75,7 +75,7 @@ describe("Container", () => {
       {
         // WHEN
         const { container } = render(
-          <Container direction={["column", "column", "row"]} />
+          <Container direction={["column", "column", "row"]} />,
         );
         // THEN
         expect(container.firstChild).toHaveClass(clsx(["lg-row"]));

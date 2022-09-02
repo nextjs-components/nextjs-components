@@ -1,5 +1,5 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import { forwardRef } from "react";
 
 import styles from "./text.module.css";
@@ -93,7 +93,7 @@ const Text = forwardRef<unknown, Props>(
       dangerouslySetInnerHTML,
       ...rest
     },
-    ref: any
+    ref: any,
   ) => {
     const Tag = as;
     const s = `s-${size}`;
@@ -119,7 +119,7 @@ const Text = forwardRef<unknown, Props>(
         {children}
       </Tag>
     );
-  }
+  },
 );
 
 export default Text;

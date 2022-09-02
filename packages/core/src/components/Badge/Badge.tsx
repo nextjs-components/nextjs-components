@@ -1,6 +1,7 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 import { HTMLAttributes } from "react";
+
 import styles from "./Badge.module.css";
 
 interface Props {
@@ -29,7 +30,7 @@ const Badge: React.FC<Props> = ({
           [styles.outline]: outline,
           [styles[size]]: !!size,
         },
-        className
+        className,
       )}
     >
       {children}

@@ -1,19 +1,19 @@
-import { render, act } from "@testing-library/react";
+import { useHover } from "@react-aria/interactions";
+import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { mocked } from "ts-jest/utils";
 
 import ToastArea from "./ToastArea";
+import ToastContainer from "./ToastContainer";
 import { IToastsContext } from "./ToastsProvider";
-
-import { mocked } from "ts-jest/utils";
 import useToasts from "./useToasts";
+
 jest.mock("./useToasts");
 const useToastsMock = mocked(useToasts);
 
-import ToastContainer from "./ToastContainer";
 jest.mock("./ToastContainer");
 const ToastContainerMock = mocked(ToastContainer);
 
-import { useHover } from "@react-aria/interactions";
 jest.mock("@react-aria/interactions");
 const useHoverMock = mocked(useHover);
 

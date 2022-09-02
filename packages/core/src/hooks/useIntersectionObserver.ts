@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { MutableRefObject } from "react";
 
 /**
@@ -6,7 +6,7 @@ import type { MutableRefObject } from "react";
  * `isIntersecting` to `true` and disconnect.
  */
 export default function useIntersectionObserver(
-  options: IntersectionObserverInit = {}
+  options: IntersectionObserverInit = {},
 ): [boolean, { ref: MutableRefObject<undefined> }] {
   const ref = useRef();
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -20,7 +20,7 @@ export default function useIntersectionObserver(
           observer.disconnect();
         }
       }, options),
-    []
+    [],
   );
 
   useEffect(() => {

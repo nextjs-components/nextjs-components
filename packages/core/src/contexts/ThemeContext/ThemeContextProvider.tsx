@@ -1,8 +1,8 @@
-import { isBrowser } from "../../utils/isBrowser";
-import { useMediaQuery } from "../../hooks";
-import { ThemeContext } from "./ThemeContext";
+import { useEffect, useState } from "react";
 
-import { useState, useEffect } from "react";
+import { useMediaQuery } from "../../hooks";
+import { isBrowser } from "../../utils/isBrowser";
+import { ThemeContext } from "./ThemeContext";
 
 const STORAGE_KEY = "mode";
 

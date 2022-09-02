@@ -1,18 +1,16 @@
-import { useContext } from "react";
 import clsx from "clsx";
+import { useContext } from "react";
 
-import Skeleton from "../../components/Skeleton";
 import { Container } from "../../components/Container";
+import Skeleton from "../../components/Skeleton";
 import { Text } from "../../components/Text";
-
-import { PlaceHolderContext } from "./index";
+import MoreVertical from "../../icons/MoreVertical";
+import reset from "../../styles/reset/reset.module.css";
+import button from "../Button/button.module.css";
+import { Spacer } from "../Spacer";
 import styles from "./Entity.module.css";
 import dotsMenu from "./dots-menu.module.css";
-import button from "../Button/button.module.css";
-import reset from "../../styles/reset/reset.module.css";
-
-import { Spacer } from "../Spacer";
-import MoreVertical from "../../icons/MoreVertical";
+import { PlaceHolderContext } from "./index";
 
 interface EntityFieldProps {
   children?: React.ReactNode;
@@ -66,7 +64,7 @@ const EntityField = ({
         "geist-themed",
         "geist-ellipsis",
         "geist-secondary",
-        "body-2"
+        "body-2",
       )}
     >
       {description}
@@ -142,7 +140,7 @@ const EntityField = ({
                 {
                   [styles.title]: !label,
                   [styles.label]: label,
-                }
+                },
               )}
             >
               {title}

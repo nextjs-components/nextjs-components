@@ -1,15 +1,14 @@
-import React from "react";
-import clsx from "clsx";
 import { useFocusRing } from "@react-aria/focus";
 import { useId } from "@react-aria/utils";
+import clsx from "clsx";
+import React from "react";
 
-import { useTheme } from "../../contexts/ThemeContext";
 import { IconSizeContext } from "../../contexts/IconSizeContext";
-import Sun from "../../icons/Sun";
-import Moon from "../../icons/Moon";
-import DisplayIcon from "../../icons/DisplayIcon";
+import { useTheme } from "../../contexts/ThemeContext";
 import ChevronUpDown from "../../icons/ChevronUpDown";
-
+import DisplayIcon from "../../icons/DisplayIcon";
+import Moon from "../../icons/Moon";
+import Sun from "../../icons/Sun";
 import Label from "../Label/Label";
 import styles from "./Select.module.css";
 

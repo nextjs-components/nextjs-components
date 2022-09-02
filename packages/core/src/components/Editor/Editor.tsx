@@ -1,20 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import {
-  LiveProvider,
+  EditorProps,
   LiveEditor,
   LiveError,
   LivePreview,
-  EditorProps,
+  LiveProvider,
 } from "react-live";
 
-import { Container } from "../Container";
-import { Details } from "../Details";
 import CopyIcon from "../../icons/CopyIcon";
 import RotateCW from "../../icons/RotateCW";
-
+import { Container } from "../Container";
+import { Details } from "../Details";
 import { useToasts } from "../Toast";
-
 import styles from "./editor.module.css";
 
 const DEFAULT_CODE = `

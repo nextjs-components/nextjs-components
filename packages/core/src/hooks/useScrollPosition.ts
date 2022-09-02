@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -15,7 +15,7 @@ function getScrollPosition(): ScrollPosition {
 
 const useScrollPosition = (): ScrollPosition => {
   const [position, setScrollPosition] = useState<ScrollPosition>(
-    getScrollPosition()
+    getScrollPosition(),
   );
 
   useEffect(() => {

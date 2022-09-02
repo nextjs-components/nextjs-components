@@ -18,7 +18,8 @@
     "prune-dist": "find dist -type f -name '*.test.*' -delete",
     "clean": "rm -rf dist/",
     "prepublishOnly": "npm run clean && npm run build:babel && npm run prune-dist",
-    "publish:local": "npx yalc publish"
+    "publish:local": "npx yalc publish",
+    "format": "prettier --write '**/*.{ts,tsx}'"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "@testing-library/react": "12.1.2",
     "@testing-library/react-hooks": "7.0.2",
     "@testing-library/user-event": "13.5.0",
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@types/jest": "27.4.0",
     "@types/react": "17.0.38",
     "@types/react-is": "17.0.3",

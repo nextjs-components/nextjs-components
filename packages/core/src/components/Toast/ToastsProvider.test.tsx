@@ -1,10 +1,10 @@
-import React from "react";
-import { render, act, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 
+import ToastArea from "./ToastArea";
 import ToastsProvider from "./ToastsProvider";
 import useToasts from "./useToasts";
-import ToastArea from "./ToastArea";
 
 jest.useFakeTimers();
 
