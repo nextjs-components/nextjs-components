@@ -29,6 +29,7 @@ import { ShowMore } from "nextjs-components/src/components/ShowMore";
 import { Snippet } from "nextjs-components/src/components/Snippet";
 import { Spacer } from "nextjs-components/src/components/Spacer";
 import { Spinner } from "nextjs-components/src/components/Spinner";
+import { Stack } from "nextjs-components/src/components/Stack";
 import { StatusDot } from "nextjs-components/src/components/StatusDot";
 import { Table } from "nextjs-components/src/components/Table";
 import {
@@ -142,6 +143,17 @@ const editorScope = {
   Snippet,
   Spacer,
   Spinner,
+  Stack,
+  Box: () => (
+    <div
+      style={{
+        background: "var(--geist-success)",
+        width: 50,
+        height: 50,
+        borderRadius: 4,
+      }}
+    />
+  ),
   StatusDot,
   Table,
   columns,
