@@ -4,6 +4,7 @@ export { default as AlignCenter } from "./AlignCenter";
 export { default as AlignLeft } from "./AlignLeft";
 export { default as AlignRight } from "./AlignRight";
 export { default as ArrowDownCircle } from "./ArrowDownCircle";
+export { default as ArrowRight } from "./ArrowRight";
 export { default as ArrowUp } from "./ArrowUp";
 export { default as ArrowUpCircle } from "./ArrowUpCircle";
 export { default as ArrowUpRight } from "./ArrowUpRight";
