@@ -1,0 +1,27 @@
+.stack {
+  display: flex;
+  flex-direction: var(--direction, column);
+  align-items: var(--align, stretch);
+  justify-content: var(--justify, flex-start);
+  flex: var(--flex, initial);
+}
+
+.debug {
+  background-color: var(--geist-success-lighter);
+}
+
+.debug .debug {
+  background-color: var(--geist-error-lighter);
+}
+
+.debug .debug .debug {
+  background-color: var(--geist-warning-lighter);
+}
+
+.debug .debug .debug .debug {
+  background-color: var(--geist-violet-lighter);
+}
+
+.debug .debug .debug .debug .debug {
+  background-color: var(--geist-cyan-lighter);
+}
