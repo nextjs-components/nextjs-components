@@ -11,10 +11,11 @@ type ResponsiveProp<T extends any> =
       md?: T;
       lg?: T;
     };
-type Direction = "row" | "column";
+type Direction = Property.FlexDirection;
 type Align = Property.AlignItems;
 type Justify = Property.JustifyContent;
-interface StackProps {
+
+export interface StackProps {
   as?: React.ElementType;
   gap?: ResponsiveProp<
     | 0
@@ -37,7 +38,7 @@ interface StackProps {
     | 17
     | 18
   >;
-  direction: ResponsiveProp<Direction>;
+  direction?: ResponsiveProp<Direction>;
   align?: ResponsiveProp<Align>;
   justify?: ResponsiveProp<Justify>;
   flex?: string | number;
@@ -50,7 +51,7 @@ const Stack: React.FC<StackProps> = (props) => {
   const {
     children,
     as: Component = "div",
-    gap,
+    gap = 0,
     direction = "column",
     align = "stretch",
     justify = "flex-start",
@@ -60,9 +61,9 @@ const Stack: React.FC<StackProps> = (props) => {
     style,
   } = props;
 
-  let smDirection: Direction;
-  let mdDirection: Direction;
-  let lgDirection: Direction;
+  let smDirection: StackProps["direction"];
+  let mdDirection: StackProps["direction"];
+  let lgDirection: StackProps["direction"];
 
   if (typeof direction === "object") {
     smDirection = direction.sm || "column";
@@ -74,9 +75,9 @@ const Stack: React.FC<StackProps> = (props) => {
     lgDirection = direction;
   }
 
-  let smAlign: Align;
-  let mdAlign: Align;
-  let lgAlign: Align;
+  let smAlign: StackProps["align"];
+  let mdAlign: StackProps["align"];
+  let lgAlign: StackProps["align"];
 
   if (typeof align === "object") {
     smAlign = align.sm || "stretch";
@@ -88,9 +89,9 @@ const Stack: React.FC<StackProps> = (props) => {
     lgAlign = align;
   }
 
-  let smJustify: Justify;
-  let mdJustify: Justify;
-  let lgJustify: Justify;
+  let smJustify: StackProps["justify"];
+  let mdJustify: StackProps["justify"];
+  let lgJustify: StackProps["justify"];
 
   if (typeof justify === "object") {
     smJustify = justify.sm || "flex-start";
@@ -126,18 +127,29 @@ const Stack: React.FC<StackProps> = (props) => {
       )}
       style={{
         "--flex": flex,
-        "--sm-direction": smDirection,
-        "--md-direction": mdDirection,
-        "--lg-direction": lgDirection,
-        "--direction": typeof direction === "string" && direction,
-        "--sm-align": smAlign,
-        "--md-align": mdAlign,
-        "--lg-align": lgAlign,
-        "--align": typeof align === "string" && align,
-        "--sm-justify": smJustify,
-        "--md-justify": mdJustify,
-        "--lg-justify": lgJustify,
-        "--justify": typeof justify === "string" && justify,
+        ...(typeof direction === "object"
+          ? {
+              "--sm-direction": smDirection,
+              "--md-direction": mdDirection,
+              "--lg-direction": lgDirection,
+            }
+          : { "--direction": direction }),
+        ...(typeof align === "object"
+          ? {
+              "--sm-align": smAlign,
+              "--md-align": mdAlign,
+              "--lg-align": lgAlign,
+            }
+          : {
+              "--align": align,
+            }),
+        ...(typeof justify === "object"
+          ? {
+              "--sm-justify": smJustify,
+              "--md-justify": mdJustify,
+              "--lg-justify": lgJustify,
+            }
+          : { "--justify": justify }),
         ...style,
       }}
     >
