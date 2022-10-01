@@ -1,8 +1,7 @@
-import { useButton } from "@react-aria/button";
-import { useHover } from "@react-aria/interactions";
 import clsx from "clsx";
 import React from "react";
 import { forwardRef, useContext, useRef, useState } from "react";
+import { useButton, useHover } from "react-aria";
 import mergeRefs from "react-merge-refs";
 
 import { DisabledContext } from "../../contexts/DisabledContext";

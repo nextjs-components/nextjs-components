@@ -1,7 +1,7 @@
 import Portal from "@reach/portal";
-import { useId } from "@react-aria/utils";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useId } from "react-aria";
 import { usePopper } from "react-popper";
 
 import useMediaQuery from "../../hooks/useMediaQuery";

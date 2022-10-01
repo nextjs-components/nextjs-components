@@ -1,6 +1,6 @@
-import { useHover } from "@react-aria/interactions";
 import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useHover } from "react-aria";
 import { mocked } from "ts-jest/utils";
 
 import ToastArea from "./ToastArea";
@@ -14,7 +14,7 @@ const useToastsMock = mocked(useToasts);
 jest.mock("./ToastContainer");
 const ToastContainerMock = mocked(ToastContainer);
 
-jest.mock("@react-aria/interactions");
+jest.mock("react-aria");
 const useHoverMock = mocked(useHover);
 
 jest.useFakeTimers();
@@ -30,7 +30,7 @@ describe("ToastArea", () => {
     // TODO This appears that it should work, but doesn't
     // - useHover.isHovered should be `false` but is `undefined`
     // useHoverMock.mockImplementation(() => {
-    //   const originalModule = jest.requireActual("@react-aria/interactions");
+    //   const originalModule = jest.requireActual("react-aria");
     //   return originalModule.useHover;
     // });
     useHoverMock.mockImplementation(() => ({

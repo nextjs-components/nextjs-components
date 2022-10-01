@@ -1,6 +1,6 @@
-import { useFocus } from "@react-aria/interactions";
 import clsx from "clsx";
 import React, { useState } from "react";
+import { useFocus } from "react-aria";
 
 import CopyIcon from "../../icons/CopyIcon";
 import { useToasts } from "../Toast";

@@ -1,5 +1,3 @@
-import { FocusRing } from "@react-aria/focus";
-import { useId } from "@react-aria/utils";
 import clsx from "clsx";
 import React from "react";
 import {
@@ -10,6 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
+import { FocusRing, useId } from "react-aria";
 import useMeasure from "react-use-measure";
 
 import ChevronDown from "../../icons/ChevronDown";
