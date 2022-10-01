@@ -1,11 +1,6 @@
-import { useId } from "@react-aria/utils";
 import clsx from "clsx";
-import React, {
-  Fragment,
-  PointerEventHandler,
-  forwardRef,
-  useRef,
-} from "react";
+import React, { PointerEventHandler, forwardRef, useRef } from "react";
+import { useId } from "react-aria";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import classes from "./Menu.module.css";

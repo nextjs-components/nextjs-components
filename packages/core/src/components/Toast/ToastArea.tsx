@@ -1,8 +1,8 @@
 import Portal from "@reach/portal";
-import { useHover } from "@react-aria/interactions";
 import clsx from "clsx";
 import React from "react";
 import { useReducer, useRef } from "react";
+import { useHover } from "react-aria";
 
 import ToastContainer from "./ToastContainer";
 import styles from "./toasts.module.css";

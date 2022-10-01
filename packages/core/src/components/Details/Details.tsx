@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { useFocusRing } from "react-aria";
 
 import styles from "./details.module.css";
 
@@ -18,6 +19,7 @@ const Details: React.FC<DetailsProps> = ({
   summary,
   open,
 }) => {
+  const { isFocusVisible, focusProps } = useFocusRing();
   return (
     <details
       open={open}
@@ -29,7 +31,9 @@ const Details: React.FC<DetailsProps> = ({
       }}
     >
       <summary
-        className={styles.summary}
+        {...focusProps}
+        data-focus-visible-added={isFocusVisible ? "" : undefined}
+        className={clsx(styles.summary, { ["focus-visible"]: isFocusVisible })}
         onClick={(e) => {
           if (typeof open !== "undefined") {
             e.preventDefault();

@@ -1,7 +1,6 @@
-import { useFocusRing } from "@react-aria/focus";
-import { useId } from "@react-aria/utils";
 import clsx from "clsx";
 import React from "react";
+import { useFocusRing, useId } from "react-aria";
 
 import ThemeContext from "../../contexts/IconSizeContext/IconSizeContext";
 import ChevronDown from "../../icons/ChevronDown";
