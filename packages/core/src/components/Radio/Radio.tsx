@@ -1,29 +1,31 @@
-import { useFocusRing } from "@react-aria/focus";
-import { useRadio, useRadioGroup } from "@react-aria/radio";
-import { useRadioGroupState } from "@react-stately/radio";
 import clsx from "clsx";
 import React from "react";
 import { FC, createContext, useContext, useRef } from "react";
+import { useFocusRing, useRadio, useRadioGroup } from "react-aria";
+import { useRadioGroupState } from "react-stately";
 
 import styles from "./radio.module.css";
 
-let RadioContext = createContext(null);
+const RadioContext = createContext(null);
 
 interface RadioGroupProps {
   label: string;
-  onChange?: (value: string) => void;
-  value?: string;
+  name?: string;
+  value: string | null;
+  onChange?: (value: string | null) => void;
+  required?: boolean;
+  disabled?: boolean;
 }
 
 export const RadioGroup: FC<RadioGroupProps> = (props) => {
-  let { children, label } = props;
-  let state = useRadioGroupState(props);
-  let { radioGroupProps, labelProps } = useRadioGroup(props, state);
+  const { children, label } = props;
+  const state = useRadioGroupState({ ...props, isDisabled: props.disabled });
+  const { radioGroupProps, labelProps } = useRadioGroup(props, state);
 
   return (
     <div {...radioGroupProps} data-geist-radio-group={""}>
       <span className="geist-sr-only" {...labelProps}>
-        Default Radio Example
+        {label || "Default Radio Example"}
       </span>
       <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
     </div>
@@ -31,23 +33,21 @@ export const RadioGroup: FC<RadioGroupProps> = (props) => {
 };
 
 interface RadioItemProps {
-  disabled?: boolean;
   value: string;
+  label?: boolean;
+  disabled?: boolean;
 }
 
 export const RadioItem: FC<RadioItemProps> = (props) => {
-  let { children, disabled } = props;
-
-  let { isFocusVisible, focusProps } = useFocusRing();
-
-  let state = useContext(RadioContext);
-  let ref = useRef(null);
-  let { inputProps } = useRadio(props, state, ref);
+  const { children } = props;
+  const state = useContext(RadioContext);
+  const ref = useRef(null);
+  const { inputProps, isDisabled } = useRadio(props, state, ref);
+  const { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <label className={clsx([styles.item, { [styles.disabled]: disabled }])}>
+    <label className={clsx([styles.item, { [styles.disabled]: isDisabled }])}>
       <span className={styles.check}>
-        ​
         <input
           className={clsx([styles.input, "geist-sr-only"])}
           {...inputProps}

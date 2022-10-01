@@ -24,6 +24,7 @@ import {
   MenuWrapper,
 } from "nextjs-components/src/components/Menu";
 import Modal from "nextjs-components/src/components/Modal";
+import { RadioGroup, RadioItem } from "nextjs-components/src/components/Radio";
 import { Select } from "nextjs-components/src/components/Select";
 import { ShowMore } from "nextjs-components/src/components/ShowMore";
 import { Snippet } from "nextjs-components/src/components/Snippet";
@@ -138,6 +139,8 @@ const editorScope = {
   MenuLink,
   Modal,
   MoreHorizontal,
+  RadioGroup,
+  RadioItem,
   Select,
   ShowMore,
   Snippet,
