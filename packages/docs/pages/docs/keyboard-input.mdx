@@ -1,16 +1,4 @@
-import { DesignLayout, DesignLayoutInner } from "../../layouts/DesignLayout";
-import DocsLayout from "../../layouts/docs";
-
-export default function Wrapper({ children, paths }) {
-  return (
-    <DocsLayout>
-      <DesignLayout paths={paths}>
-        <DesignLayoutInner>{children}</DesignLayoutInner>
-      </DesignLayout>
-    </DocsLayout>
-  );
-}
-
+export { default } from "../../views/docs";
 export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
 
 # Keyboard Input
