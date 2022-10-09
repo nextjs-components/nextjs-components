@@ -9,6 +9,8 @@ import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContex
 import "nextjs-components/src/styles/globals.css";
 import type { ReactElement, ReactNode } from "react";
 
+import "./globals.css";
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
