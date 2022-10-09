@@ -17,7 +17,9 @@ interface RadioGroupProps {
   disabled?: boolean;
 }
 
-export const RadioGroup: FC<RadioGroupProps> = (props) => {
+export const RadioGroup: FC<React.PropsWithChildren<RadioGroupProps>> = (
+  props,
+) => {
   const { children, label } = props;
   const state = useRadioGroupState({ ...props, isDisabled: props.disabled });
   const { radioGroupProps, labelProps } = useRadioGroup(props, state);
@@ -38,7 +40,9 @@ interface RadioItemProps {
   disabled?: boolean;
 }
 
-export const RadioItem: FC<RadioItemProps> = (props) => {
+export const RadioItem: FC<React.PropsWithChildren<RadioItemProps>> = (
+  props,
+) => {
   const { children } = props;
   const state = useContext(RadioContext);
   const ref = useRef(null);

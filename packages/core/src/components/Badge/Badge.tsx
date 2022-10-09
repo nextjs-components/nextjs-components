@@ -12,7 +12,7 @@ interface Props {
   size?: "small" | "large";
 }
 
-const Badge: React.FC<Props> = ({
+const Badge: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   className,
   type,

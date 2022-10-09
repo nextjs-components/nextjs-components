@@ -1,4 +1,4 @@
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
 import React from "react";
 import { useReducer, useRef } from "react";

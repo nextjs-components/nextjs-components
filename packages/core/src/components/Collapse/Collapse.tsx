@@ -40,7 +40,7 @@ interface Props {
   size?: "small";
   card?: boolean;
 }
-const Collapse: React.ComponentType<Props> = memo(
+const Collapse: React.ComponentType<React.PropsWithChildren<Props>> = memo(
   ({ title, subtitle, defaultExpanded, size, card, children }) => {
     const isSmall = size === "small";
     // gets ignored if context is present

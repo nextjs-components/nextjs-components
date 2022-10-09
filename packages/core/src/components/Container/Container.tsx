@@ -43,7 +43,7 @@ export interface Props {
   wrapper?: boolean;
 }
 
-const Container: React.ComponentType<Props> = ({
+const Container: React.ComponentType<React.PropsWithChildren<Props>> = ({
   children,
   flex = 1,
   row,

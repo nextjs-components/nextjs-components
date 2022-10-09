@@ -32,15 +32,13 @@
   },
   "homepage": "https://github.com/nextjs-components/nextjs-components#readme",
   "dependencies": {
-    "@popperjs/core": "2.11.2",
-    "@reach/portal": "0.16.2",
+    "@popperjs/core": "2.11.6",
+    "@radix-ui/react-portal": "^1.0.0",
     "clsx": "1.1.1",
     "react-aria": "^3.19.0",
-    "react-is": "17.0.2",
     "react-live": "3.0.0",
-    "react-merge-refs": "1.1.0",
-    "react-popper": "2.2.5",
-    "react-stately": "^3.17.0",
+    "react-popper": "2.3.0",
+    "react-stately": "^3.18.0",
     "react-use-measure": "2.1.1"
   },
   "devDependencies": {
@@ -54,7 +52,7 @@
     "@testing-library/user-event": "13.5.0",
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@types/jest": "27.4.0",
-    "@types/react": "17.0.38",
+    "@types/react": "18.0.21",
     "@types/react-is": "17.0.3",
     "jest": "27.4.7",
     "jest-css-modules-transform": "4.3.0",
@@ -66,6 +64,7 @@
     "next": ">=10.x",
     "react": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0",
     "react-dom": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0",
-    "styled-jsx": ">=4.x"
+    "react-is": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0",
+    "styled-jsx": ">=5.x"
   }
 }

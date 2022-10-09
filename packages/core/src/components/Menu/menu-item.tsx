@@ -92,15 +92,9 @@ interface MenuItemProps {
   suffix?: JSX.Element;
 }
 
-export const MenuItem: React.ComponentType<MenuItemProps> = ({
-  children,
-  onClick,
-  type,
-  error,
-  disabled,
-  prefix,
-  suffix,
-}) => {
+export const MenuItem: React.ComponentType<
+  React.PropsWithChildren<MenuItemProps>
+> = ({ children, onClick, type, error, disabled, prefix, suffix }) => {
   const { setOpen, listRef, selected, setSelected } = useMenu();
 
   const itemRef = useRef<HTMLLIElement>();

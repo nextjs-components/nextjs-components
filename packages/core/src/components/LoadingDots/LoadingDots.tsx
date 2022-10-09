@@ -19,7 +19,10 @@ interface Props {
  * <LoadingDots size={2}/>
  * ```
  */
-const LoadingDots: React.ComponentType<Props> = ({ size = 2, children }) => {
+const LoadingDots: React.ComponentType<React.PropsWithChildren<Props>> = ({
+  size = 2,
+  children,
+}) => {
   return (
     <span
       className={clsx(styles.loading)}

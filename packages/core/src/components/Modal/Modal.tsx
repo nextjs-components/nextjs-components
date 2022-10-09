@@ -1,4 +1,4 @@
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { FocusScope, usePreventScroll } from "react-aria";

@@ -31,7 +31,7 @@ const getLabel = (label?: false | string, type?: Props["type"]) => {
   if (type) return labelMap[type];
 };
 
-const Note: React.FC<Props> = ({
+const Note: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   size,
   label,

@@ -18,7 +18,7 @@ interface Props {
   footer?: React.ReactElement;
 }
 
-const Entity: React.FC<Props> = ({
+const Entity: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   placeholder,
   thumbnail,

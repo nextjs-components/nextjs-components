@@ -8,7 +8,7 @@ interface ErrorProps {
   label?: string;
   size?: "small" | "large";
 }
-const Error: React.ComponentType<ErrorProps> = ({
+const Error: React.ComponentType<React.PropsWithChildren<ErrorProps>> = ({
   label = "Error",
   children,
   size,

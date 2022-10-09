@@ -10,7 +10,11 @@ interface Props {
   width?: React.HTMLAttributes<HTMLDivElement>["style"]["width"];
   height?: React.HTMLAttributes<HTMLDivElement>["style"]["height"];
 }
-const Scroller: React.ComponentType<Props> = ({ width, height, children }) => {
+const Scroller: React.ComponentType<React.PropsWithChildren<Props>> = ({
+  width,
+  height,
+  children,
+}) => {
   const ref = useRef<HTMLDivElement>();
 
   const [top, setTop] = useState(false);

@@ -1,4 +1,4 @@
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
 import React from "react";
 import { usePreventScroll } from "react-aria";
@@ -9,7 +9,11 @@ interface Props {
   onDismiss?: () => void;
 }
 
-const Drawer: React.ComponentType<Props> = ({ children, show, onDismiss }) => {
+const Drawer: React.ComponentType<React.PropsWithChildren<Props>> = ({
+  children,
+  show,
+  onDismiss,
+}) => {
   usePreventScroll({ isDisabled: !show });
 
   // useMeasure will update through window resize

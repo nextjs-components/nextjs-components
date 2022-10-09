@@ -1,4 +1,4 @@
-import Portal from "@reach/portal";
+import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useId } from "react-aria";
@@ -87,7 +87,11 @@ interface MenuInnerProps {
   divide?: boolean;
 }
 
-const MenuInner: React.FC<MenuInnerProps> = ({ divide, width, children }) => {
+const MenuInner: React.FC<React.PropsWithChildren<MenuInnerProps>> = ({
+  divide,
+  width,
+  children,
+}) => {
   const { listRef, menuId } = useMenu();
 
   const isActive =
@@ -121,7 +125,7 @@ interface MenuProps {
 /**
  * @see {@link MenuWrapper} for code sample usage
  */
-export const Menu: React.FC<MenuProps> = ({
+export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
   children,
   width = 150,
   divide,
