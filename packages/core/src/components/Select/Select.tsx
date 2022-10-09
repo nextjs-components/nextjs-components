@@ -63,7 +63,7 @@ const Select: React.FC<Props> = ({
           id={id}
         >
           {placeholder && (
-            <option value={placeholder} label={placeholder} disabled selected>
+            <option value={placeholder} label={placeholder} disabled>
               {placeholder}
             </option>
           )}

@@ -3,10 +3,10 @@
 exports[`ToastArea should render without any errors 1`] = `
 <body>
   <div />
-  <reach-portal>
+  <div>
     <div
       class="toast-area toastArea"
     />
-  </reach-portal>
+  </div>
 </body>
 `;

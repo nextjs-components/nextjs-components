@@ -1,7 +1,7 @@
 import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { mocked } from "jest-mock";
 import { useHover } from "react-aria";
-import { mocked } from "ts-jest/utils";
 
 import ToastArea from "./ToastArea";
 import ToastContainer from "./ToastContainer";
