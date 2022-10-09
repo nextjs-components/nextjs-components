@@ -61,9 +61,9 @@ describe("ToastConsumer", () => {
     // WHEN
     await act(async () => {
       await user.click(button);
+      // advance timer so toasts can have unique IDs
       jest.advanceTimersByTime(10);
       await user.click(button);
-      jest.advanceTimersByTime(10);
     });
 
     // THEN
@@ -79,14 +79,17 @@ describe("ToastConsumer", () => {
 
     await act(async () => {
       await user.click(button);
-      jest.advanceTimersByTime(5000);
-
-      // THEN
-      // Note: because of fake timers being used, this
-      // assertion needs to be called inside this
-      // `act` block.
-      expect(toastArea.children).toHaveLength(0);
     });
+
+    // For some reason, this timer run needs to exist in a
+    // separate act block for the `setTimeout` to actually
+    // call its callback.
+    act(() => {
+      jest.advanceTimersByTime(4000);
+    });
+
+    // THEN
+    expect(toastArea.children).toHaveLength(0);
   });
 
   // GIVEN
@@ -116,6 +119,10 @@ describe("ToastConsumer", () => {
       await user.click(button);
       jest.advanceTimersByTime(10);
       await user.click(button);
+    });
+
+    // Run timers to clear non-preserve toasts
+    act(() => {
       jest.advanceTimersByTime(10000);
     });
 
