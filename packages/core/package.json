@@ -12,6 +12,7 @@
   "types": "src/index.ts",
   "scripts": {
     "test": "jest",
+    "test:e2e": "playwright test",
     "emit-types": "tsc -p tsconfig.build.json",
     "build:swc": "npx swc src --copy-files -d dist && npm run emit-types",
     "build:babel": "babel src --extensions '.ts','.tsx' --copy-files --no-copy-ignored -d dist --ignore '**/*.test.*' && npm run emit-types",
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@babel/cli": "7.16.7",
     "@babel/core": "7.16.7",
+    "@playwright/test": "^1.27.1",
     "@swc/cli": "0.1.55",
     "@swc/core": "1.2.124",
     "@testing-library/jest-dom": "5.16.5",
