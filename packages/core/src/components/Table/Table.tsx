@@ -55,7 +55,7 @@ interface Props {
   empty?: JSX.Element;
 }
 
-const Table: React.ComponentType<Props> = ({
+const Table: React.ComponentType<React.PropsWithChildren<Props>> = ({
   selectable,
   columns = [],
   data = [],

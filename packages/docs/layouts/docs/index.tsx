@@ -1,10 +1,19 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { TextField } from "nextjs-components/src/components/Input/TextField";
-import { ModeSelect } from "nextjs-components/src/components/Select";
 import { Text } from "nextjs-components/src/components/Text";
 import Search from "nextjs-components/src/icons/Search";
 
 import styles from "./docs.module.css";
+
+// Don't render this serverside. This avoids https://nextjs.org/docs/messages/react-hydration-error
+const ModeSelect = dynamic(
+  () =>
+    import("nextjs-components/src/components/Select").then(
+      (mod) => mod.ModeSelect,
+    ),
+  { ssr: false },
+);
 
 const DocsLayout = ({ children }) => {
   return (

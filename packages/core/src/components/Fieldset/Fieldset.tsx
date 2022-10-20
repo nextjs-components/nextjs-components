@@ -6,11 +6,11 @@ import { DisabledContext } from "../../contexts/DisabledContext";
 import { Text } from "../Text";
 import styles from "./Fieldset.module.css";
 
-const Status: React.FC = ({ children }) => {
+const Status: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <div className={styles.status}>{children}</div>;
 };
 
-const Actions: React.FC = ({ children }) => {
+const Actions: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <div className={styles.actions}>
       <div>{children}</div>
@@ -23,7 +23,7 @@ interface FooterProps {
   disabled?: boolean;
   highlight?: boolean;
 }
-interface IFooter extends React.FC<FooterProps> {
+interface IFooter extends React.FC<React.PropsWithChildren<FooterProps>> {
   Status: typeof Status;
   Actions: typeof Actions;
 }
@@ -52,16 +52,21 @@ Footer.Status = Status;
 Footer.Actions = Actions;
 
 interface Fs {
-  Tabs: React.FC<{ tabs: string[] } & React.HTMLAttributes<HTMLDivElement>>;
+  Tabs: React.FC<
+    React.PropsWithChildren<{ tabs: string[] }> &
+      React.HTMLAttributes<HTMLDivElement>
+  >;
   Fieldset: React.FC<
-    { disabled?: boolean } & React.HTMLAttributes<HTMLDivElement>
+    React.PropsWithChildren<{ disabled?: boolean }> &
+      React.HTMLAttributes<HTMLDivElement>
   >;
   Content: React.FC<
-    { disabled?: boolean } & React.HTMLAttributes<HTMLDivElement>
+    React.PropsWithChildren<{ disabled?: boolean }> &
+      React.HTMLAttributes<HTMLDivElement>
   >;
-  Title: React.FC;
-  Subtitle: React.FC;
-  ErrorText: React.FC;
+  Title: React.FC<React.PropsWithChildren>;
+  Subtitle: React.FC<React.PropsWithChildren>;
+  ErrorText: React.FC<React.PropsWithChildren>;
   Footer: typeof Footer;
 }
 

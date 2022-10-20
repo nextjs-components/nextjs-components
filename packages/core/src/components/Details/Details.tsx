@@ -12,7 +12,7 @@ interface DetailsProps {
   summary?: React.ReactNode | string;
 }
 
-const Details: React.FC<DetailsProps> = ({
+const Details: React.FC<React.PropsWithChildren<DetailsProps>> = ({
   children,
   heightClosed = 32,
   heightOpened = 400,

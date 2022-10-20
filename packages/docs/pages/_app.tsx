@@ -1,13 +1,19 @@
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import {
-  ToastArea,
-  ToastsProvider,
-} from "nextjs-components/src/components/Toast";
+import { ToastsProvider } from "nextjs-components/src/components/Toast";
 import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
 import "nextjs-components/src/styles/globals.css";
 import type { ReactElement, ReactNode } from "react";
+
+import "./globals.css";
+
+// Don't render this serverside. This avoids https://nextjs.org/docs/messages/react-hydration-error
+const ToastArea = dynamic(
+  () => import("nextjs-components/src/components/Toast/ToastArea"),
+  { ssr: false },
+);
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

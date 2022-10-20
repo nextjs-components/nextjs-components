@@ -11,7 +11,7 @@ interface KBDProps {
   small?: boolean;
 }
 
-const KBD: React.FC<KBDProps> = ({
+const KBD: React.FC<React.PropsWithChildren<KBDProps>> = ({
   meta,
   shift,
   alt,

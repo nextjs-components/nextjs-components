@@ -2,11 +2,11 @@ import clsx from "clsx";
 import React from "react";
 import { forwardRef, useContext, useRef, useState } from "react";
 import { useButton, useHover } from "react-aria";
-import mergeRefs from "react-merge-refs";
 
 import { DisabledContext } from "../../contexts/DisabledContext";
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import reset from "../../styles/reset/reset.module.css";
+import { mergeRefs } from "../../utils/merge-refs";
 import { Spinner } from "../Spinner";
 import styles from "./button.module.css";
 

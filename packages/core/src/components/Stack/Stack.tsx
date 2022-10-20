@@ -47,7 +47,7 @@ export interface StackProps {
   style?: React.CSSProperties;
 }
 
-const Stack: React.FC<StackProps> = (props) => {
+const Stack: React.FC<React.PropsWithChildren<StackProps>> = (props) => {
   const {
     children,
     as: Component = "div",

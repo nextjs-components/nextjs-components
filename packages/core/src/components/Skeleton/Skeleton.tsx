@@ -20,7 +20,7 @@ const isChildNull = (children) => {
   return !React.Children.count(children);
 };
 
-const Skeleton: React.FC<Props> = ({
+const Skeleton: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   width = 24,
   height = 24,

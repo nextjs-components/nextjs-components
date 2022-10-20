@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import type { CSSProperties, ComponentType } from "react";
+import type { CSSProperties } from "react";
 import { memo, useState } from "react";
 
 import { DepthContextProvider, useDepth } from "./DepthContext";
@@ -34,7 +34,7 @@ interface FolderProps extends Props {
   defaultOpen?: boolean; // TODO
   onToggle?: () => void;
 }
-export const Folder: ComponentType<FolderProps> = memo(
+export const Folder: React.FC<React.PropsWithChildren<FolderProps>> = memo(
   ({ children, name, open, style, defaultOpen = false }) => {
     const depth = useDepth();
     const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -63,7 +63,7 @@ interface FileProps extends Props {
   active?: boolean;
   type?: "lambda";
 }
-export const File: ComponentType<FileProps> = memo(
+export const File: React.ComponentType<FileProps> = memo(
   ({ name, style, active, type }) => {
     const depth = useDepth();
     return (

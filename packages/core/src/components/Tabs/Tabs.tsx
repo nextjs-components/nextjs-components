@@ -2,8 +2,7 @@ import React from "react";
 
 import styles from "./Tabs.module.css";
 
-interface Props {}
-const Tabs: React.ComponentType<Props> = ({ children }) => {
+const Tabs: React.ComponentType<React.PropsWithChildren> = ({ children }) => {
   return <div className={styles.tabs}>{children}</div>;
 };
 

@@ -1,5 +1,6 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import type { UserEvent } from "@testing-library/user-event/setup/setup";
 import React from "react";
 
 import ToastArea from "./ToastArea";
@@ -14,16 +15,21 @@ jest.mock("components/Button", () => ({
 }));
 
 describe("ToastConsumer", () => {
+  let user: UserEvent;
   let ToastConsumer: React.ComponentType;
-
-  const wrapper = ({ children }) => (
-    <ToastsProvider>
-      {children}
-      <ToastArea />
-    </ToastsProvider>
-  );
+  let wrapper: React.ComponentType<React.PropsWithChildren>;
 
   beforeEach(() => {
+    user = userEvent.setup({
+      // https://testing-library.com/docs/user-event/options#advancetimers
+      advanceTimers: jest.advanceTimersByTime,
+    });
+    wrapper = ({ children }) => (
+      <ToastsProvider>
+        {children}
+        <ToastArea />
+      </ToastsProvider>
+    );
     ToastConsumer = () => {
       const toasts = useToasts();
       return (
@@ -43,21 +49,21 @@ describe("ToastConsumer", () => {
   });
 
   // GIVEN
-  it("should open a toast", () => {
+  it("should open a toast", async () => {
     // WHEN
-    const { baseElement } = render(<ToastConsumer />, { wrapper });
-    const button = screen.getByRole("button");
+    const { baseElement, getByRole } = render(<ToastConsumer />, { wrapper });
+    const button = getByRole("button");
     const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
     // THEN
     expect(toastArea.children).toHaveLength(0);
 
     // WHEN
-    act(() => {
-      userEvent.click(button);
+    await act(async () => {
+      await user.click(button);
+      // advance timer so toasts can have unique IDs
       jest.advanceTimersByTime(10);
-      userEvent.click(button);
-      jest.advanceTimersByTime(10);
+      await user.click(button);
     });
 
     // THEN
@@ -65,17 +71,21 @@ describe("ToastConsumer", () => {
   });
 
   // GIVEN
-  it("should auto clear toasts", () => {
+  it("should auto clear toasts", async () => {
     // WHEN
     const { baseElement } = render(<ToastConsumer />, { wrapper });
     const button = screen.getByRole("button");
     const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
+    await act(async () => {
+      await user.click(button);
+    });
+
+    // For some reason, this timer run needs to exist in a
+    // separate act block for the `setTimeout` to actually
+    // call its callback.
     act(() => {
-      userEvent.click(button);
-      jest.advanceTimersByTime(10);
-      userEvent.click(button);
-      jest.advanceTimersByTime(5000);
+      jest.advanceTimersByTime(4000);
     });
 
     // THEN
@@ -83,7 +93,7 @@ describe("ToastConsumer", () => {
   });
 
   // GIVEN
-  it("should preserve toasts", () => {
+  it("should preserve toasts", async () => {
     // WHEN
     const ToastConsumer = () => {
       const toasts = useToasts();
@@ -105,10 +115,14 @@ describe("ToastConsumer", () => {
     const toastArea = baseElement.getElementsByClassName("toast-area")[0];
 
     // WHEN
-    act(() => {
-      userEvent.click(button);
+    await act(async () => {
+      await user.click(button);
       jest.advanceTimersByTime(10);
-      userEvent.click(button);
+      await user.click(button);
+    });
+
+    // Run timers to clear non-preserve toasts
+    act(() => {
       jest.advanceTimersByTime(10000);
     });
 
@@ -117,14 +131,14 @@ describe("ToastConsumer", () => {
   });
 
   // GIVEN
-  it("should render action buttons", () => {
+  it("should render action buttons", async () => {
     // WHEN
     const ToastConsumer = () => {
       const toasts = useToasts();
       return (
         <button
           onClick={() =>
-            toasts.current?.message({
+            toasts.current.message({
               text: "This is a toast",
               action: "An action button!",
               cancelAction: "A cancel button!",
@@ -139,8 +153,8 @@ describe("ToastConsumer", () => {
     const button = screen.getByRole("button");
 
     // WHEN
-    act(() => {
-      userEvent.click(button);
+    await act(async () => {
+      await user.click(button);
     });
 
     // THEN

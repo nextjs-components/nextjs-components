@@ -6,7 +6,10 @@ import styles from "./window.module.css";
 interface WindowProps {
   title?: string | JSX.Element;
 }
-const Window: React.ComponentType<WindowProps> = ({ title, children }) => {
+const Window: React.ComponentType<React.PropsWithChildren<WindowProps>> = ({
+  title,
+  children,
+}) => {
   return (
     <div className={clsx(styles.window, "window")}>
       <style jsx>{`
