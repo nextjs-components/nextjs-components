@@ -43,8 +43,8 @@ const Page: NextPageWithLayout = () => {
 
             <Spacer y={1} />
             <div>
-              <Link href="/docs/button">
-                <a className={styles.install}>Install →</a>
+              <Link href="/docs/button" className={styles.install}>
+                Install →
               </Link>
             </div>
             <Spacer y={2} />
