@@ -41,12 +41,10 @@ const NavTree = ({
           const classname = isActive ? "active" : "";
 
           return (
-            <Link href={newpath} key={key}>
-              <a className={classname}>
-                <li>
-                  <Text as="small">{node.name}</Text>
-                </li>
-              </a>
+            <Link href={newpath} key={key} className={classname}>
+              <li>
+                <Text as="small">{node.name}</Text>
+              </li>
             </Link>
           );
         }

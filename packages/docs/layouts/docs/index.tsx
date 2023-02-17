@@ -21,7 +21,7 @@ const DocsLayout = ({ children }) => {
       <header className={styles.header}>
         <div className={styles.inner}>
           <div className={styles.left}>
-            <Link href="/" passHref>
+            <Link href="/" passHref legacyBehavior>
               <Text // @ts-ignore — just let it be an <a/> ok?
                 as="a"
               >
