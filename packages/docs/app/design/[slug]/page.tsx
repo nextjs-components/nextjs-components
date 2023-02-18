@@ -19,7 +19,18 @@ export default function Slug({ params: { slug } }) {
       case "entity":
         return <Entity />;
       default:
-        return <div>🚧 Under construction 🚧</div>;
+        return (
+          <div>
+            <h1>🚧 Under construction 🚧</h1>
+            In the process of migrating to the Next.js 13 App Dir. Only the
+            following component docs have been migrated:
+            <ul>
+              <li>Button</li>
+              <li>Capacity</li>
+              <li>Entity</li>
+            </ul>
+          </div>
+        );
     }
   };
 
