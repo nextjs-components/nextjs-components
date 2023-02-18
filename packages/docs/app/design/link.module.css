@@ -1,0 +1,36 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+/* design.module.css */
+.navItem {
+  padding: 8px 16px;
+  height: 40px;
+  margin-left: -16px;
+  margin-right: -16px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  color: var(--accents-5);
+  transition: background 0.15s;
+
+  &:hover {
+    color: var(--geist-foreground);
+    background: var(--accents-1);
+  }
+}
+
+.activeNavItem {
+  color: var(--geist-foreground);
+  background: var(--hover);
+}
+
+/* text.module.css */
+.text_wrapper {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}

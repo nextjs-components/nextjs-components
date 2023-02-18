@@ -16,7 +16,7 @@ export default function Slug({ params: { slug } }) {
       case "capacity":
         return <Capacity />;
       default:
-        return <div>Page not found</div>;
+        return <div>🚧 Under construction 🚧</div>;
     }
   };
 
