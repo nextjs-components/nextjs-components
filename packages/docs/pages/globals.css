@@ -1,9 +1,0 @@
-a {
-  all: unset;
-  cursor: pointer;
-}
-a:focus,
-a:focus-visible {
-  outline: 2px auto currentColor;
-  outline-offset: 4px;
-}

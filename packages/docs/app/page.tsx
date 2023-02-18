@@ -1,3 +1,5 @@
+"use client";
+
 import Head from "next/head";
 import Link from "next/link";
 import {
@@ -12,11 +14,9 @@ import {
   fs,
 } from "nextjs-components";
 
-import DocsLayout from "../layouts/docs";
-import type { NextPageWithLayout } from "./_app";
 import styles from "./index.module.css";
 
-const Page: NextPageWithLayout = () => {
+const Page = () => {
   return (
     <div>
       <Head>
@@ -43,7 +43,7 @@ const Page: NextPageWithLayout = () => {
 
             <Spacer y={1} />
             <div>
-              <Link href="/docs/button" className={styles.install}>
+              <Link href="/design/button" className={styles.install}>
                 Install →
               </Link>
             </div>
@@ -200,10 +200,6 @@ const Page: NextPageWithLayout = () => {
       </section>
     </div>
   );
-};
-
-Page.getLayout = (page) => {
-  return <DocsLayout>{page}</DocsLayout>;
 };
 
 export default Page;
