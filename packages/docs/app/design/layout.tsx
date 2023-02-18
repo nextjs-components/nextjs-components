@@ -1,30 +1,61 @@
-import fs from "fs";
-import * as hcl from "hcl2-parser";
-import "nextjs-components/src/styles/globals.css";
-import path from "path";
+"use client";
 
-import { LeftNav } from "./LeftNav";
+import clsx from "clsx";
+import { Container } from "nextjs-components/src/components/Container";
+import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
+import { useCallback, useEffect, useState } from "react";
+
+import { Menu } from "../../components/menu";
 import styles from "./layout.module.css";
+import NavTree from "./nav-tree";
+import nodes from "./nodes.json";
 
-export default async function Layout({ children }) {
-  const navHcl = await fs.promises.readFile(
-    path.join(process.cwd(), "app/design/nav.hcl"),
-    "utf-8",
-  );
-  const [{ path: paths }] = hcl.parseToObject(navHcl);
+interface Props extends React.PropsWithChildren {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  paths?: string[];
+}
+
+const DesignLayout: React.FC<Props> = ({ children }) => {
+  const [expanded, setExpanded] = useState(false);
+  const { selectTheme, isDarkMode } = useTheme();
+
+  // This key is to force toggle to update between SSR and CSR
+  const [key, setKey] = useState<number>(0);
+  useEffect(() => {
+    setKey(+new Date());
+  }, []);
 
   return (
     <>
-      <header></header>
-      <nav></nav>
-      <main className={styles.main}>
-        <aside className={styles.aside_left}>
-          <LeftNav paths={paths} />
+      <div className={styles.hairline} />
+      <Container className={styles["design-page"]}>
+        <aside className={styles.aside}>
+          <div className={styles["logo-container"]}>
+            <div
+              className={styles.burger}
+              onClick={() => {
+                setExpanded((e) => !e);
+              }}
+            >
+              <Menu expanded={expanded} />
+            </div>
+          </div>
+
+          <div className={clsx(styles.sidebar, expanded && styles.open)}>
+            <ul className={styles.navigation}>
+              <NavTree nodes={nodes} />
+            </ul>
+          </div>
         </aside>
-        <section className={styles.section}>{children}</section>
-        <aside></aside>
-      </main>
-      <footer></footer>
+
+        <main className={styles.main}>
+          <Container className={styles.container}>{children}</Container>
+        </main>
+      </Container>
     </>
   );
-}
+};
+export default DesignLayout;
