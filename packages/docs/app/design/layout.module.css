@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  max-width: 100%;
+}
+
+.aside_left {
+  max-width: 240px;
+  display: flex;
+  flex: 1;
+}
+
+.section {
+}
+
+.aside_right {
+  display: flex;
+  flex: 1;
+}
