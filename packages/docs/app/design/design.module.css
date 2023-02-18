@@ -6,49 +6,65 @@
   max-width: 1250px;
   margin: 0 auto;
   padding: 0 var(--geist-gap);
-
-  flex-direction: row;
-
-  @media (max-width: 960px) {
-    flex-direction: column;
-  }
+  --hover: #f3f2f2;
+  --inset-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .main {
+  min-height: 100vh;
+  margin-left: 300px;
+  padding-top: 40px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: calc(100% - 200px);
 
   padding-left: var(--geist-gap);
   padding-right: var(--geist-gap);
 
   @media (max-width: 960px) {
-    padding: 0;
-    width: unset;
+    margin-left: 0;
   }
 }
 
 .container {
   display: flex;
+  flex-direction: column;
+  max-width: 840px;
   width: 100%;
-
-  @media (max-width: 960px) {
-    width: 100%;
-  }
+  margin: 0 auto;
+  flex: 1 1;
 }
 
 .aside {
-  padding: var(--geist-gap) 0;
-  height: 100vh;
-  width: 200px;
-  min-width: 200px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--geist-space-gap-half);
+  width: 296px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  position: sticky;
-  top: 0;
+  @media (max-width: 960px) {
+    position: unset;
+    width: calc(100vw - (100vw - 100%));
+    height: unset;
+    display: block;
+    padding: 24px 0;
+    background: var(--geist-background);
+  }
+}
+
+.asideInner {
+  padding: var(--geist-space-small) var(--geist-space-small) 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 960px) {
+    padding: 0;
+  }
 }
 
 .logo-container {
@@ -67,7 +83,20 @@
 
 .sidebar {
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: visible;
+  height: 100%;
+  padding: 0 16px 32px;
+  margin-left: -16px;
+  position: relative;
+  -webkit-mask-image: linear-gradient(
+    #000,
+    #000,
+    transparent 0,
+    #000 40px,
+    #000 calc(100% - 40px),
+    transparent
+  );
+  z-index: 100;
 
   &::-webkit-scrollbar {
     background: var(--accents-1);
@@ -86,15 +115,6 @@
 }
 
 @media screen and (max-width: 960px) {
-  .aside {
-    position: unset;
-    width: calc(100vw - (100vw - 100%));
-    height: unset;
-    display: block;
-    padding-top: var(--geist-gap-double);
-    background: var(--geist-background);
-  }
-
   .burger {
     cursor: pointer;
     height: 40px;
@@ -150,13 +170,12 @@
 }
 
 .navigation {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 2px;
+  gap: 2px;
+  width: 100%;
 }
 
 .navigation li {

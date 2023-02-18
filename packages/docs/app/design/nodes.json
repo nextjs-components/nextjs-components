@@ -1,36 +1,24 @@
 [
-  {
-    "path": "design/",
-    "name": "Styleguide",
-    "children": [
-      { "name": "Color", "path": "color" },
-      { "name": "Grid", "path": "grid" }
-    ]
-  },
-  {
-    "path": "design/",
-    "name": "Components",
-    "children": [
-      { "name": "Button", "path": "button" },
-      { "name": "Capacity", "path": "capacity" },
-      { "name": "Entity", "path": "entity" },
-      { "name": "Fieldset", "path": "fieldset" },
-      { "name": "File Tree", "path": "file-tree" },
-      { "name": "Keyboard Input", "path": "keyboard-input" },
-      { "name": "Loading Dots", "path": "loading-dots" },
-      { "name": "Menu", "path": "menu" },
-      { "name": "Modal", "path": "modal" },
-      { "name": "Radio", "path": "radio" },
-      { "name": "Select", "path": "select" },
-      { "name": "Show More", "path": "show-more" },
-      { "name": "Snippet", "path": "snippet" },
-      { "name": "Spinner", "path": "spinner" },
-      { "name": "Stack", "path": "stack" },
-      { "name": "Status Dot", "path": "status-dot" },
-      { "name": "Table", "path": "table" },
-      { "name": "Text", "path": "text" },
-      { "name": "Toast", "path": "toast" },
-      { "name": "Toggle", "path": "toggle" }
-    ]
-  }
+  { "name": "Color", "path": "/design/color" },
+  { "name": "Grid", "path": "/design/grid" },
+  { "name": "Button", "path": "/design/button" },
+  { "name": "Capacity", "path": "/design/capacity" },
+  { "name": "Entity", "path": "/design/entity" },
+  { "name": "Fieldset", "path": "/design/fieldset" },
+  { "name": "File Tree", "path": "/design/file-tree" },
+  { "name": "Keyboard Input", "path": "/design/keyboard-input" },
+  { "name": "Loading Dots", "path": "/design/loading-dots" },
+  { "name": "Menu", "path": "/design/menu" },
+  { "name": "Modal", "path": "/design/modal" },
+  { "name": "Radio", "path": "/design/radio" },
+  { "name": "Select", "path": "/design/select" },
+  { "name": "Show More", "path": "/design/show-more" },
+  { "name": "Snippet", "path": "/design/snippet" },
+  { "name": "Spinner", "path": "/design/spinner" },
+  { "name": "Stack", "path": "/design/stack" },
+  { "name": "Status Dot", "path": "/design/status-dot" },
+  { "name": "Table", "path": "/design/table" },
+  { "name": "Text", "path": "/design/text" },
+  { "name": "Toast", "path": "/design/toast" },
+  { "name": "Toggle", "path": "/design/toggle" }
 ]
