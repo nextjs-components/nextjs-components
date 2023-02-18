@@ -17,6 +17,9 @@ const nextConfig = {
   pageExtensions: ["mdx", "tsx", "ts"],
   swcMinify: true,
   transpilePackages: ["nextjs-components", "../core"],
+  experimental: {
+    appDir: true,
+  },
 };
 
 export default withMDX({
