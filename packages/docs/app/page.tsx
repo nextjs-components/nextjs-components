@@ -14,6 +14,7 @@ import {
   fs,
 } from "nextjs-components";
 
+import "./geist-text.css";
 import styles from "./index.module.css";
 
 const Page = () => {

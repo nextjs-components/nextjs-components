@@ -1,5 +1,19 @@
 import Link from "next/link";
-import { Avatar, Entity, EntityField } from "nextjs-components";
+import {
+  Avatar,
+  Button,
+  Checkbox,
+  Container,
+  Entity,
+  EntityField,
+  EntityThumbnail,
+} from "nextjs-components";
+import { MenuItem } from "nextjs-components/src/components/Menu";
+import {
+  FacebookIcon as Facebook,
+  GitHub,
+  GoogleIcon as Google,
+} from "nextjs-components/src/icons";
 
 export let isMounted = true;
 
@@ -33,8 +47,9 @@ export let isMounted = true;
 
 ### Thumbnail
 
-```
-<>
+<Editor
+  scope={{ Entity, EntityField, Avatar, isMounted, Link, Spacer, EntityThumbnail,GitHub }}
+  code={`<>
   <Entity
     placeholder={!isMounted}
     thumbnail={
@@ -47,7 +62,7 @@ export let isMounted = true;
     <EntityField right description="Connected 1h ago" />
   </Entity>
 
-  <Spacer/>
+<Spacer />
 
   <Entity
     placeholder={!isMounted}
@@ -60,15 +75,25 @@ export let isMounted = true;
     <EntityField title="Derpy Derp" description="Thumbnail size and wrap options"/>
     <EntityField right description="Connected 1h ago"/>
   </Entity>
-</>
-```
+</>`}/>
 
 <Spacer y={2} />
 
 ### Menu
 
-```
-<Entity
+<Editor
+  scope={{
+    Entity,
+    EntityField,
+    Avatar,
+    isMounted,
+    Link,
+    Spacer,
+    EntityThumbnail,
+    GitHub,
+    MenuItem,
+  }}
+  code={`<Entity
   placeholder={!isMounted}
   thumbnail={
     <EntityThumbnail size={24}>
@@ -87,27 +112,41 @@ export let isMounted = true;
   <EntityField title="PUBLIC_KEY" description="Production"/>
   <EntityField label title="VALUE" description="6863EFA205B4680BE7928E"/>
   <EntityField right width={200} description="Added 1h ago" avatar={<Avatar size={24} src="https://thekevinwang.com/image/kevin.webp" />}/>
-</Entity>
-```
+</Entity>`}
+/>
 
 <Spacer y={2} />
 
 ### Footer
 
-```
-<>TODO:
-  <Link href="https://vercel.com/design/entity#footer">
-    <a rel="noopener" target="_blank">https://vercel.com/design/entity#footer</a>
-  </Link>
-</>
-```
+<Editor
+  scope={{ Link }}
+  code={`<>TODO:&nbps;
+  <a rel="noopener" target="_blank">https://vercel.com/design/entity#footer</a>
+</>`}
+/>
 
 <Spacer y={2} />
 
 ### Actions
 
-```
-<Entity
+<Editor
+  scope={{
+    Entity,
+    EntityField,
+    Avatar,
+    isMounted,
+    Link,
+    Spacer,
+    EntityThumbnail,
+    GitHub,
+    MenuItem,
+    Facebook,
+    Google,
+    Container,
+    Button,
+  }}
+  code={`<Entity
   placeholder={!isMounted}
   thumbnail={
     <EntityThumbnail wrap size={32}>
@@ -139,41 +178,62 @@ export let isMounted = true;
   </Container>}
 >
   <EntityField title="Kevin Wang" description="derp"/>
-</Entity>
-```
+</Entity>`}
+/>
 
 <Spacer y={2} />
 
 ### Checkbox
 
-```
-<Entity
+<Editor
+  scope={{
+    Entity,
+    EntityField,
+    Checkbox,
+    Button,
+    isMounted,
+  }}
+  code={`<Entity
   placeholder={!isMounted}
   checkbox={<Checkbox onChange={() => alert('clicked')}/>}
   actions={<Button size={"small"} type="secondary">Revoke</Button>}
 >
   <EntityField title="Derpy CLI on localhost" description="Last used just now"/>
-</Entity>
-```
+</Entity>`}
+/>
 
 <Spacer y={2} />
 
 ### Mixed
 
-```
-<>TODO:
-  <Link href="https://vercel.com/design/entity#mixed">
+<Editor
+  scope={{}}
+  code={`<>TODO:&nbps;
     <a rel="noopener" target="_blank">https://vercel.com/design/entity#mixed</a>
-  </Link>
-</>
-```
+  </>`}
+/>
 
 <Spacer y={2} />
 
 ### Skeleton
 
-```
-<>
+<Editor
+  scope={{
+    Avatar,
+    Entity,
+    EntityField,
+    EntityThumbnail,
+    MenuItem,
+    Checkbox,
+    Button,
+    isMounted,
+    GitHub,
+    Facebook,
+    Google,
+    Container,
+    Spacer,
+  }}
+  code={`<>
   <Entity
     placeholder
     thumbnail={
@@ -233,45 +293,30 @@ export let isMounted = true;
     <EntityField label title="VALUE" description="6863EFA205B4680BE7928E"/>
     <EntityField right width="50%" description="Connected 1h ago"/>
   </Entity>
-</>
-```
+</>`}/>
 
 <Spacer y={2} />
 
 ### Disabled
 
-```
-<Entity placeholder={!isMounted} disabled>
-  <EntityField title="GitHub" description="Guillermo Rauch" />
-  <EntityField active={false} title="Inactive" description="This field is inactive" />
-  <EntityField width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
-  <EntityField label width={100} title="Label" description={<i>Encrypted</i>} />
-  <EntityField right description="Right Aligned" avatar={<Avatar size={24} username="rauchg" />} />
-</Entity>
-```
+<Editor scope={{}} code={`<>Todo</>`} />
 
 <Spacer y={2} />
 
 ### Form
 
-```
-<>Todo</>
-```
+<Editor scope={{}} code={`<>Todo</>`} />
 
 <Spacer y={2} />
 
 ### Form with Entities
 
-```
-<>Todo</>
-```
+<Editor scope={{}} code={`<>Todo</>`} />
 
 <Spacer y={2} />
 
 ### Form as Entity Footer
 
-```
-<>Todo</>
-```
+<Editor scope={{}} code={`<>Todo</>`} />
 
 <Spacer y={5} />
