@@ -1,5 +1,7 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+import Link from "next/link";
+import { Avatar, Entity, EntityField } from "nextjs-components";
+
+export let isMounted = true;
 
 # Entity
 
@@ -16,15 +18,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
 
 ### Fields
 
-```
-<Entity placeholder={!isMounted}>
+<Editor
+  scope={{ Entity, EntityField, Avatar, isMounted, Link }}
+  code={`<Entity placeholder={!isMounted}>
   <EntityField title="GitHub" description="Kevin Wang" />
   <EntityField active={false} title="Inactive" description="This field is inactive" />
   <EntityField width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
   <EntityField label width={100} title="Label" description={<i>Encrypted</i>} />
   <EntityField right description="Right Aligned" avatar={<Avatar size={24} src="https://thekevinwang.com/image/kevin.webp" />} />
-</Entity>
-```
+</Entity>`}
+/>
 
 <Spacer y={2} />
 
