@@ -7,14 +7,17 @@ import styles from "./error.module.css";
 interface ErrorProps {
   label?: string;
   size?: "small" | "large";
+  style?: React.CSSProperties;
 }
 const Error: React.ComponentType<React.PropsWithChildren<ErrorProps>> = ({
   label = "Error",
   children,
   size,
+  style,
 }) => {
   return (
     <div
+      style={style}
       className={clsx(styles.error, {
         [styles.small]: size === "small",
         [styles.large]: size === "large",
