@@ -1,4 +1,4 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
 import { DisplayIcon, Moon, Sun } from "nextjs-components/src/icons";
 
 import styles from "./theme-switcher.module.css";

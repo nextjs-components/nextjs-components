@@ -15,7 +15,6 @@
     "clsx": "^1.2.1",
     "hcl2-parser": "^1.0.3",
     "next": "^13.1.7-canary.20",
-    "next-themes": "^0.2.1",
     "nextjs-components": "file:../core",
     "npm": "^9.5.0",
     "postcss": "^8.4.16",
