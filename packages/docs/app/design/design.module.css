@@ -188,3 +188,26 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.module {
+  border-radius: var(--geist-radius);
+  border: 1px solid var(--accents-2);
+  width: 100%;
+  position: relative;
+  padding: 1rem;
+
+  & > :first-child {
+    border-top-left-radius: calc(var(--geist-radius) - 1px);
+    border-top-right-radius: calc(var(--geist-radius) - 1px);
+  }
+  & > :last-child {
+    border-bottom-left-radius: calc(var(--geist-radius) - 1px);
+    border-bottom-right-radius: calc(var(--geist-radius) - 1px);
+  }
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
