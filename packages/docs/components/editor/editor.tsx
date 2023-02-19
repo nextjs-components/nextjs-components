@@ -87,12 +87,7 @@ const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
             >
               <path d="M9 18l6-6-6-6"></path>
             </svg>
-            <Text
-              style={{
-                "--color": "var(--accents-6)",
-                marginLeft: 6,
-              }}
-            >
+            <Text color="accents-6" style={{ marginLeft: 6 }}>
               Code Editor
             </Text>
 
