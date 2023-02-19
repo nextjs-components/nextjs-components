@@ -1,17 +1,19 @@
 import { Button, Container } from "nextjs-components";
 import { ArrowUp as Up } from "nextjs-components/src/icons";
 
+<Spacer y={0.6} />
+
 # Button
 
-{/* prettier-ignore */}
-<Text as="h2" color="geist-secondary" size={20} weight={400} style={{margin: "revert"}}>Used to trigger an operation.</Text>
+<Spacer y={0.8} />
+
+## A control that triggers an action. Button labels should express what action will occur when the user interacts with it.
 
 <Spacer y={2} />
 
 ### Sizes
 
-{/* prettier-ignore */}
-<Text size={16} style={{ color: "var(--geist-secondary)", margin: "revert" }}>These sizes are standardized across form components.</Text>
+These sizes are standardized across form components.
 
 <Spacer />
 
@@ -39,6 +41,10 @@ import { ArrowUp as Up } from "nextjs-components/src/icons";
 <Spacer y={2} />
 
 ### Shapes
+
+Icon-only buttons should include the `svgOnly` prop and an `aria-label`.
+
+<Spacer />
 
 <Editor 
   scope={{Container, Button, Up}}
@@ -361,4 +367,4 @@ import { ArrowUp as Up } from "nextjs-components/src/icons";
   </Container>
 </Container>`} />
 
-<Spacer y={2} />
+<Spacer y={4} />

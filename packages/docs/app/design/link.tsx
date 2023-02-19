@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 
 import styles from "./link.module.css";
 
-export default function Link({ children, href }) {
+export default function Link({ children, href, className }) {
   const pathname = usePathname();
   const active = pathname === href;
   return (
-    <NextLink className={styles.link} href={href}>
+    <NextLink className={clsx(styles.link, className)} href={href}>
       <span
         className={clsx(
           styles.navItem,
