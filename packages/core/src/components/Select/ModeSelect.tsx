@@ -14,7 +14,7 @@ import styles from "./Select.module.css";
 const ModeSelect = () => {
   const { isFocusVisible, focusProps } = useFocusRing();
   const id = useId();
-  const { selectTheme, mode } = useTheme();
+  const { setTheme, theme: mode } = useTheme();
   return (
     <IconSizeContext.Provider value={{ size: 16 }}>
       <Label htmlFor={id}>
@@ -33,7 +33,7 @@ const ModeSelect = () => {
             })}
             aria-label="Change color theme"
             onChange={(e) => {
-              selectTheme(e.target.value);
+              setTheme(e.target.value);
             }}
             value={mode}
           >
