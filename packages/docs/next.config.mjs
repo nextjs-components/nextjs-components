@@ -34,7 +34,7 @@ export default withMDX({
       rehypeSlug, // inject `id` into headings
       [
         rehypeAutolinkHeadings,
-        { behavior: "wrap", test: ["h2", "h3", "h4", "h5", "h6"] },
+        { behavior: "wrap", test: ["h3", "h4", "h5", "h6"] },
       ],
     ],
     // this is here since we're using `MDXProvider`

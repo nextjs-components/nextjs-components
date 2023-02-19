@@ -2,7 +2,9 @@ import Link from "next/link";
 import { Spacer } from "nextjs-components";
 import { ColorCard } from "nextjs-components/src/components/ColorCard";
 import { OldCode, Text } from "nextjs-components/src/components/Text";
+import React from "react";
 
+import styles from "./app/design/design.module.css";
 import { Editor } from "./components/editor";
 
 export const mdxComponents = {
@@ -137,21 +139,40 @@ export const mdxComponents = {
       </div>
     );
   },
-  Text: (props) => <Text {...props} />,
-  // margin: "revert" allows margin to use the user agent stylesheet values
-  h1: (props) => (
-    <Text as="h1" size={48} style={{ margin: "revert" }} {...props} />
-  ),
+  Text,
+  h1: (props) => <Text as="h1" size={32} weight={600} {...props} />,
   h2: (props) => (
-    <Text as="h2" size={24} style={{ margin: "revert" }} {...props} />
+    <Text as="h2" color="accents-5" size={16} weight={400} {...props} />
   ),
-  h3: (props) => (
-    <Text as="h3" size={24} style={{ margin: "revert" }} {...props} />
-  ),
-  h4: (props) => <Text as="h4" style={{ margin: "revert" }} {...props} />,
-  h5: (props) => <Text as="h5" style={{ margin: "revert" }} {...props} />,
-  h6: (props) => <Text as="h6" style={{ margin: "revert" }} {...props} />,
-  p: (props) => <Text as="p" style={{ margin: "revert" }} {...props} />,
+  // Strange situation going on here... but this
+  // is what I transcribed from the Vercel design site.
+  h3: ({ children, ...props }) => {
+    // props are provided by a mix of
+    // - rehype-autolink-headings
+    // - rehype-slug
+    const { id } = props;
+    const text = children.props.children;
+    const newChild = React.cloneElement(children, {
+      id,
+      children: (
+        <>
+          {/* todo: link icon */}
+          <Text as="h3" size={20} weight={600}>
+            {text}
+          </Text>
+        </>
+      ),
+    });
+    return (
+      <div style={{ marginBottom: "1.25rem" }} className={styles["title-bar"]}>
+        {newChild}
+      </div>
+    );
+  },
+  h4: (props) => <Text as="h4" {...props} />,
+  h5: (props) => <Text as="h5" {...props} />,
+  h6: (props) => <Text as="h6" {...props} />,
+  p: (props) => <Text as="p" size={16} color="accents-6" {...props} />,
   code: (props) => <OldCode noTicks {...props} />,
   ColorCard,
   Spacer,

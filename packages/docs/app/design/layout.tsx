@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
 import { Avatar } from "nextjs-components/src/components/Avatar";
 import { TextField } from "nextjs-components/src/components/Input/TextField";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
@@ -35,6 +36,14 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
     setKey(+new Date());
   }, []);
 
+  const pathname = usePathname();
+  const currentNodeIdx = nodes.findIndex((n) => n.path === pathname);
+  const prevNode = nodes[currentNodeIdx - 1]?.path
+    ? nodes[currentNodeIdx - 1]
+    : nodes[currentNodeIdx - 2];
+  const nextNode = nodes[currentNodeIdx + 1]?.path
+    ? nodes[currentNodeIdx + 1]
+    : nodes[currentNodeIdx + 2];
   return (
     <ToastsProvider>
       <div className={styles["design-page"]}>
@@ -94,7 +103,48 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
         </aside>
 
         <main className={styles.main}>
-          <div className={styles.container}>{children}</div>
+          <div className={styles.container}>
+            {children}
+            <nav className="sibling-links">
+              {/* TODO add ChevronRight & ChevronLeft */}
+              {prevNode ? (
+                <Link href={prevNode.path} className="link previous-link">
+                  {prevNode.name}
+                </Link>
+              ) : null}
+              {nextNode ? (
+                <Link href={nextNode.path} className="link next-link">
+                  {nextNode.name}
+                </Link>
+              ) : null}
+            </nav>
+            <style jsx>{`
+              :global(.link) {
+                display: flex;
+                align-items: center;
+                gap: var(--geist-space-2x);
+                padding: var(--geist-space-2x);
+                border-radius: 8px;
+                transition: background-color.2s ease;
+              }
+              :global(.previous-link) {
+                padding-right: var(--geist-space-4x);
+                text-align: left;
+              }
+              :global(.next-link) {
+                margin-left: auto;
+                padding-left: var(--geist-space-4x);
+                text-align: right;
+              }
+              .sibling-links {
+                display: flex;
+                justify-content: space-between;
+                padding: var(--geist-space-8x) 0;
+                margin-top: auto;
+                border-top: 1px solid var(--accents-2);
+              }
+            `}</style>
+          </div>
         </main>
       </div>
       <ToastArea />

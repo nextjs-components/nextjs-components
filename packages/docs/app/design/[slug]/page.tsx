@@ -7,17 +7,17 @@ import { mdxComponents } from "../../../mdx-components";
 
 const Button = dynamic(() => import("./button.mdx"));
 const Capacity = dynamic(() => import("./capacity.mdx"));
+const Grid = dynamic(() => import("./grid.mdx"));
 const Entity = dynamic(() => import("./entity.mdx"));
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {
+    // prettier-ignore
     switch (slug) {
-      case "button":
-        return <Button />;
-      case "capacity":
-        return <Capacity />;
-      case "entity":
-        return <Entity />;
+      case "button":   return <Button />;
+      case "grid":     return <Grid />;
+      case "capacity": return <Capacity />;
+      case "entity":   return <Entity />;
       default:
         return (
           <div>
