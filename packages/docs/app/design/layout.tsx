@@ -1,7 +1,10 @@
 "use client";
 
 import clsx from "clsx";
-import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
+import {
+  ToastArea,
+  ToastsProvider,
+} from "nextjs-components/src/components/Toast";
 import { useEffect, useState } from "react";
 
 import { Menu } from "../../components/menu";
@@ -27,7 +30,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
   }, []);
 
   return (
-    <>
+    <ToastsProvider>
       <div className={styles["design-page"]}>
         <aside className={styles.aside}>
           <div className={styles.asideInner}>
@@ -62,7 +65,8 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
           <div className={styles.container}>{children}</div>
         </main>
       </div>
-    </>
+      <ToastArea />
+    </ToastsProvider>
   );
 };
 export default DesignLayout;
