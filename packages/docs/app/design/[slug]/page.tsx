@@ -8,6 +8,7 @@ import { mdxComponents } from "../../../mdx-components";
 const Button = dynamic(() => import("./button.mdx"));
 const Capacity = dynamic(() => import("./capacity.mdx"));
 const Grid = dynamic(() => import("./grid.mdx"));
+const Input = dynamic(() => import("./input.mdx"));
 const Entity = dynamic(() => import("./entity.mdx"));
 
 export default function Slug({ params: { slug } }) {
@@ -16,6 +17,7 @@ export default function Slug({ params: { slug } }) {
     switch (slug) {
       case "button":   return <Button />;
       case "grid":     return <Grid />;
+      case "input":    return <Input />;
       case "capacity": return <Capacity />;
       case "entity":   return <Entity />;
       default:

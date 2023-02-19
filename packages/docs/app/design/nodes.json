@@ -11,6 +11,7 @@
   { "name": "Entity", "path": "/design/entity" },
   { "name": "Fieldset", "path": "/design/fieldset" },
   { "name": "File Tree", "path": "/design/file-tree" },
+  { "name": "Input", "path": "/design/input" },
   { "name": "Keyboard Input", "path": "/design/keyboard-input" },
   { "name": "Loading Dots", "path": "/design/loading-dots" },
   { "name": "Menu", "path": "/design/menu" },
