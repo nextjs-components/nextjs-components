@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { Avatar } from "nextjs-components/src/components/Avatar";
-import { TextField } from "nextjs-components/src/components/Input/TextField";
+import { Input } from "nextjs-components/src/components/Input";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Text } from "nextjs-components/src/components/Text";
 import {
@@ -67,7 +67,8 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
             </div>
 
             <div className={clsx(styles.search, expanded && styles.open)}>
-              <TextField
+              <Input
+                disabled
                 prefix={<Search size={16} />}
                 prefixStyling={false}
                 placeholder="Search TBD..."

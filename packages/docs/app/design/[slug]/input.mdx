@@ -1,0 +1,108 @@
+import { Container } from "nextjs-components/src/components/Container";
+import { Input } from "nextjs-components/src/components/Input";
+import { KBD } from "nextjs-components/src/components/KeyboardInput";
+import { Stack } from "nextjs-components/src/components/Stack";
+import ArrowUpCircle from "nextjs-components/src/icons/ArrowUpCircle";
+import Search from "nextjs-components/src/icons/Search";
+
+<Spacer y={0.6} />
+
+# Input
+
+<Spacer y={0.8} />
+
+## Retrieve text input from a user.
+
+<Example>
+  <Stack>
+    <Input placeholder="^⨀ᴥ⨀^" error="some error?" />
+  </Stack>
+</Example>
+
+### Sizes
+
+<Editor
+  scope={{Container,Input}}
+  code={`<Container direction={['column', 'row', 'row']} top>
+  <Container left>
+    <Input size="small" placeholder="Small" />
+  </Container>
+
+<Container left>
+  <Input placeholder="Default" />
+</Container>
+
+  <Container left>
+    <Input size="large" placeholder="Large" />
+  </Container>
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### Sizes, Prefix, and Suffix
+
+<Editor
+  scope={{Container,Input,ArrowUpCircle}}
+  code={`<Container direction={['column', 'row', 'row']} top>
+  <Container left>
+    <Input
+      size="small"
+      placeholder="Small"
+      prefix={<ArrowUpCircle />}
+      suffix={<ArrowUpCircle />}
+    />
+  </Container>
+
+<Container left>
+  <Input
+    placeholder="Default"
+    prefix={<ArrowUpCircle />}
+    suffix={<ArrowUpCircle />}
+  />
+</Container>
+
+  <Container left>
+    <Input
+      size="large"
+      placeholder="Large"
+      prefix={<ArrowUpCircle />}
+      suffix={<ArrowUpCircle />}
+    />
+  </Container>
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### Typed
+
+<Editor
+  scope={{Container,Input}}
+  code={`<Container direction={['column', 'row', 'row']} top>
+  <Container>
+    <Input placeholder="Default" type="error" />
+  </Container>
+
+<Container>
+  <Input placeholder="Default" type="warning" />
+</Container>
+
+  <Container>
+    <Input placeholder="Default" type="success" />
+  </Container>
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### Other
+
+<Editor
+  scope={{ Container, Input }}
+  code={`<Container>
+  <Input placeholder="With label" label="My label" />
+</Container>`}
+/>
+
+<Spacer y={4} />

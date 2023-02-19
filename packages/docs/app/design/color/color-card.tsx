@@ -1,16 +1,18 @@
+"use client";
+
 import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
-import { Color } from "nextjs-components/src/styles/Color";
 
 import styles from "./colors.module.css";
 
 // color prop is expected to be a value like
 // --geist-foreground
-const ColorCard = ({ color }: { color: Color }) => {
+const ColorCard = ({ color }: { color: string }) => {
   const varName = `var(${color})`;
-  const hex = getComputedStyle(document.documentElement).getPropertyValue(
-    color,
-  );
+  const hex =
+    typeof window !== "undefined"
+      ? getComputedStyle(document.documentElement).getPropertyValue(color)
+      : "";
 
   const toasts = useToasts();
 
