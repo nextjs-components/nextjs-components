@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
-import { ColorCard } from "nextjs-components/src/components/ColorCard";
 import { OldCode, Text } from "nextjs-components/src/components/Text";
 import React from "react";
 
@@ -174,7 +173,6 @@ export const mdxComponents = {
   h6: (props) => <Text as="h6" {...props} />,
   p: (props) => <Text as="p" size={16} color="accents-6" {...props} />,
   code: (props) => <OldCode noTicks {...props} />,
-  ColorCard,
   Spacer,
   Link,
   Editor,
