@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
 import { ColorCard } from "nextjs-components/src/components/ColorCard";
-import { Editor } from "nextjs-components/src/components/Editor";
 import { OldCode, Text } from "nextjs-components/src/components/Text";
+
+import { Editor } from "./components/editor";
 
 export const mdxComponents = {
   th: ({ children, ...props }) => {

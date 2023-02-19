@@ -1,0 +1,98 @@
+.live {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--accents-2);
+}
+
+.live > :last-child {
+  border-bottom-left-radius: var(--geist-radius);
+  border-bottom-right-radius: var(--geist-radius);
+}
+
+.live .preview {
+  padding: var(--geist-gap) 0;
+}
+
+.live pre.error {
+  padding: 1rem;
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background-color: var(--geist-foreground);
+  color: var(--geist-error);
+}
+
+.editor {
+  background-color: var(--accents-1);
+  color: var(--geist-foreground);
+  position: relative;
+  white-space: pre-line;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.editorTrigger {
+  display: flex;
+  align-items: center;
+  padding: 5px 24px;
+  height: 42px;
+  cursor: pointer;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.editor pre,
+.editor textarea {
+  outline: none;
+  word-break: break-word !important;
+  padding: var(--geist-gap) !important;
+}
+
+.editor summary {
+  padding: var(--geist-gap-half) var(--geist-gap);
+  border-top: 1px solid var(--accents-2);
+}
+
+.editorArea {
+  font-size: 0.75rem;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.actions {
+  display: flex;
+  grid-gap: 4px;
+  gap: 4px;
+  margin-left: auto;
+  margin-right: -8px;
+}
+
+.copy,
+.reset {
+  background: transparent;
+  border: none;
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.reset {
+  cursor: pointer;
+  display: inline-flex;
+  background: transparent;
+  border: none;
+  color: var(--accents-5);
+  margin-left: auto;
+}
+
+.copy {
+}
+
+@media (hover: hover) {
+  .copy:hover,
+  .reset:hover {
+    color: var(--accents-3);
+  }
+}
