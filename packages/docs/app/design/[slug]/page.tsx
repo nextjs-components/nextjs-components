@@ -5,11 +5,11 @@ import dynamic from "next/dynamic";
 
 import { mdxComponents } from "../../../mdx-components";
 
-const Button = dynamic(() => import("./button.mdx"));
-const Capacity = dynamic(() => import("./capacity.mdx"));
-const Grid = dynamic(() => import("./grid.mdx"));
-const Input = dynamic(() => import("./input.mdx"));
-const Entity = dynamic(() => import("./entity.mdx"));
+const Button = dynamic(() => import("./button.mdx"), { ssr: false });
+const Capacity = dynamic(() => import("./capacity.mdx"), { ssr: false });
+const Grid = dynamic(() => import("./grid.mdx"), { ssr: false });
+const Input = dynamic(() => import("./input.mdx"), { ssr: false });
+const Entity = dynamic(() => import("./entity.mdx"), { ssr: false });
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {

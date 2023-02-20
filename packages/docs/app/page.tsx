@@ -1,6 +1,6 @@
 "use client";
 
-import Head from "next/head";
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Button,
@@ -17,15 +17,15 @@ import {
 import "./geist-text.css";
 import styles from "./index.module.css";
 
+export const metadata: Metadata = {
+  title: "Nextjs components",
+  description: "Nextjs components",
+  icons: [{ url: "/favicon.ico" }],
+};
+
 const Page = () => {
   return (
     <div>
-      <Head>
-        <title>Nextjs components</title>
-        <meta name="description" content="Nextjs components" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <section className={styles.gradient_bg}>
         <Container wrapper>
           <Container>
