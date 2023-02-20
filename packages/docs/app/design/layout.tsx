@@ -82,6 +82,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
                   if ("category" in n) {
                     return (
                       <Text
+                        key={n.category}
                         size={16}
                         weight={500}
                         className={styles.navCategory}
