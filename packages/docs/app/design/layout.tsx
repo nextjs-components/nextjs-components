@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 
 import { Menu } from "@/components/menu";
 
+import componentsNodes from "./(components)/nodes.json";
+import foundationsNodes from "./(foundations)/nodes.json";
 import styles from "./design.module.css";
 import Link from "./link";
-import nodes from "./nodes.json";
 import { ThemeSwitcher } from "./theme-switcher";
 
 // ToastArea should not be ssr'd because it causes hydration issues
@@ -33,23 +34,19 @@ interface Props extends React.PropsWithChildren {
   paths?: string[];
 }
 
+const navigationNodes = {
+  foundations: foundationsNodes,
+  components: componentsNodes,
+};
+
 const DesignLayout: React.FC<Props> = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
 
-  // This key is to force toggle to update between SSR and CSR
-  const [key, setKey] = useState<number>(0);
-  useEffect(() => {
-    setKey(+new Date());
-  }, []);
-
   const pathname = usePathname();
+  const nodes = [...foundationsNodes, ...componentsNodes];
   const currentNodeIdx = nodes.findIndex((n) => n.path === pathname);
-  const prevNode = nodes[currentNodeIdx - 1]?.path
-    ? nodes[currentNodeIdx - 1]
-    : nodes[currentNodeIdx - 2];
-  const nextNode = nodes[currentNodeIdx + 1]?.path
-    ? nodes[currentNodeIdx + 1]
-    : nodes[currentNodeIdx + 2];
+  const prevNode = nodes[currentNodeIdx - 1];
+  const nextNode = nodes[currentNodeIdx + 1];
 
   return (
     <ToastsProvider>
@@ -85,25 +82,26 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
             </div>
             <div className={clsx(styles.sidebar, expanded && styles.open)}>
               <div className={styles.navigation}>
-                {nodes.map((n) => {
-                  if ("category" in n) {
-                    return (
+                {Object.entries(navigationNodes).map(([category, nodes]) => {
+                  return (
+                    <>
                       <Text
-                        key={n.category}
+                        key={category}
                         size={16}
                         weight={500}
                         className={styles.navCategory}
                       >
-                        {n.category}
+                        {category}
                       </Text>
-                    );
-                  }
-
-                  const { name, path } = n;
-                  return (
-                    <Link href={path} key={path}>
-                      {name}
-                    </Link>
+                      {nodes.map((n) => {
+                        const { name, path } = n;
+                        return (
+                          <Link href={path} key={path}>
+                            {name}
+                          </Link>
+                        );
+                      })}
+                    </>
                   );
                 })}
               </div>

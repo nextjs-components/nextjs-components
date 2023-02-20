@@ -1,0 +1,7 @@
+[
+  { "name": "Introduction", "path": "/design/introduction" },
+  { "name": "Color", "path": "/design/color" },
+  { "name": "Grid", "path": "/design/grid" },
+  { "name": "Icons", "path": "/design/icons" },
+  { "name": "Playground", "path": "/design/playground" }
+]
