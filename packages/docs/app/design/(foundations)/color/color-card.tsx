@@ -1,7 +1,6 @@
 "use client";
 
 import { Text } from "nextjs-components/src/components/Text";
-import { useToasts } from "nextjs-components/src/components/Toast";
 
 import styles from "./colors.module.css";
 
@@ -14,17 +13,12 @@ const ColorCard = ({ color }: { color: string }) => {
       ? getComputedStyle(document.documentElement).getPropertyValue(color)
       : "";
 
-  const toasts = useToasts();
-
   return (
     <button
       className={styles.colorCard}
       style={{ "--color": hex }}
       onClick={() => {
         navigator.clipboard.writeText(hex.toUpperCase());
-        toasts.current?.success({
-          text: `Copied \`${hex.toUpperCase()}\` to clipboard!`,
-        });
       }}
     >
       <div className={styles.colorRect}></div>
