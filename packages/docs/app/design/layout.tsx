@@ -10,7 +10,7 @@ import { Text } from "nextjs-components/src/components/Text";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";
 import Search from "nextjs-components/src/icons/Search";
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Menu } from "@/components/menu";
 
@@ -42,6 +42,26 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
     foundations: foundationsNodes,
     components: componentsNodes,
   });
+
+  // attach "/" keyboard shortcut to search input
+  const searchRef = React.useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "/") {
+        // 1. preventDefault() to prevent immediately inputting a "/" into the search input
+        // 2. noop if the search input is already focused
+        if (searchRef.current && document.activeElement !== searchRef.current) {
+          e.preventDefault();
+          searchRef.current.focus();
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const [search, setSearch] = useState("");
 
   const pathname = usePathname();
@@ -75,6 +95,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
             <div className={clsx(styles.search, expanded && styles.open)}>
               <Input
                 value={search}
+                ref={searchRef}
                 onChange={(e) => {
                   const value = e.target.value;
                   setSearch(value);
