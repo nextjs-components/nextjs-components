@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 import styles from "./link.module.css";
 
-export default function Link({ children, href, className }) {
+export default function Link({ children, href, className = "" }) {
   const pathname = usePathname();
   const active = pathname === href;
   return (
