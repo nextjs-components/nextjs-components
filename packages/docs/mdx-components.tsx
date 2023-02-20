@@ -3,9 +3,10 @@ import { Spacer } from "nextjs-components";
 import { OldCode, Text } from "nextjs-components/src/components/Text";
 import React from "react";
 
+import { Editor } from "@/components/editor";
+import { Example } from "@/components/example";
+
 import styles from "./app/design/design.module.css";
-import { Editor } from "./components/editor";
-import { Example } from "./components/example";
 
 export const mdxComponents = {
   th: ({ children, ...props }) => {

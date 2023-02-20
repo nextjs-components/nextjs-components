@@ -3,7 +3,7 @@
 import { MDXProvider } from "@mdx-js/react";
 import dynamic from "next/dynamic";
 
-import { mdxComponents } from "../../../../mdx-components";
+import { mdxComponents } from "@/mdx-components";
 
 const Button = dynamic(() => import("./button.mdx"), { ssr: false });
 const Capacity = dynamic(() => import("./capacity.mdx"), { ssr: false });

@@ -11,7 +11,8 @@ import { ToastsProvider } from "nextjs-components/src/components/Toast";
 import Search from "nextjs-components/src/icons/Search";
 import { useEffect, useState } from "react";
 
-import { Menu } from "../../components/menu";
+import { Menu } from "@/components/menu";
+
 import styles from "./design.module.css";
 import Link from "./link";
 import nodes from "./nodes.json";

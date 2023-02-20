@@ -2,7 +2,8 @@
 
 import { MDXProvider } from "@mdx-js/react";
 
-import { mdxComponents } from "../../../../mdx-components";
+import { mdxComponents } from "@/mdx-components";
+
 import Mdx from "./playground.mdx";
 
 export default function Page() {

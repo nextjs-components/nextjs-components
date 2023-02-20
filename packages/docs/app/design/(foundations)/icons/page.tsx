@@ -6,7 +6,8 @@ import { Input } from "nextjs-components/src/components/Input";
 import * as Icons from "nextjs-components/src/icons";
 import Search from "nextjs-components/src/icons/Search";
 
-import { mdxComponents } from "../../../../mdx-components";
+import { mdxComponents } from "@/mdx-components";
+
 import styles from "../../design.module.css";
 import IconsMdx from "./icons.mdx";
 import { ListItem } from "./list";
