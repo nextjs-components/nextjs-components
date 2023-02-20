@@ -6,8 +6,8 @@ import { Input } from "nextjs-components/src/components/Input";
 import * as Icons from "nextjs-components/src/icons";
 import Search from "nextjs-components/src/icons/Search";
 
-import { mdxComponents } from "../../../mdx-components";
-import styles from "../design.module.css";
+import { mdxComponents } from "../../../../mdx-components";
+import styles from "../../design.module.css";
 import IconsMdx from "./icons.mdx";
 import { ListItem } from "./list";
 import listStyles from "./list.module.css";
@@ -354,7 +354,7 @@ const map = {
 const total = Object.keys(map).length;
 const present = Object.keys(map).filter((key) => map[key]).length;
 
-export default function Slug({ params: { slug } }) {
+export default function IconsPage() {
   return (
     <MDXProvider components={mdxComponents}>
       <IconsMdx total={total} present={present} />
