@@ -28,6 +28,8 @@ export default function Slug({ params: { slug } }) {
             following component docs have been migrated:
             <ul>
               <li>Button</li>
+              <li>Grid</li>
+              <li>Input</li>
               <li>Capacity</li>
               <li>Entity</li>
             </ul>

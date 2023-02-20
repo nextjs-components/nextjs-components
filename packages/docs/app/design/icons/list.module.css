@@ -1,0 +1,33 @@
+.geist-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: var(--geist-gap-half-negative);
+  box-sizing: border-box;
+}
+
+.geist-list-halfGap {
+  margin: var(--geist-gap-quarter-negative);
+}
+
+.geist-list-doubleGap {
+  margin: var(--geist-gap-negative);
+}
+
+.geistListItem {
+  flex-grow: 0;
+  min-width: 0;
+}
+
+.geist-list > .geistListItem {
+  padding: var(--geist-gap-half);
+  flex-grow: 0;
+  min-width: 0;
+}
+
+.geist-list > .geistListItem-halfGap {
+  padding: var(--geist-gap-quarter);
+}
+
+.geist-list > .geistListItem-doubleGap {
+  padding: var(--geist-gap);
+}
