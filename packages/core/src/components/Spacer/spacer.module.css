@@ -1,0 +1,12 @@
+.geist-spacer {
+  display: block;
+  width: 1px;
+  height: 1px;
+  min-width: 1px;
+  min-height: 1px;
+  margin-left: calc(24px - 1px);
+  margin-top: calc(24px - 1px);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
