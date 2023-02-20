@@ -1,15 +1,13 @@
 "use client";
 
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Avatar } from "nextjs-components/src/components/Avatar";
 import { Input } from "nextjs-components/src/components/Input";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Text } from "nextjs-components/src/components/Text";
-import {
-  ToastArea,
-  ToastsProvider,
-} from "nextjs-components/src/components/Toast";
+import { ToastsProvider } from "nextjs-components/src/components/Toast";
 import Search from "nextjs-components/src/icons/Search";
 import { useEffect, useState } from "react";
 
@@ -18,6 +16,13 @@ import styles from "./design.module.css";
 import Link from "./link";
 import nodes from "./nodes.json";
 import { ThemeSwitcher } from "./theme-switcher";
+
+// ToastArea should not be ssr'd because it causes hydration issues
+// TODO: figure out why and document it.
+const ToastArea = dynamic(
+  () => import("nextjs-components/src/components/Toast/ToastArea"),
+  { ssr: false },
+);
 
 interface Props extends React.PropsWithChildren {
   title?: string;
@@ -44,6 +49,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
   const nextNode = nodes[currentNodeIdx + 1]?.path
     ? nodes[currentNodeIdx + 1]
     : nodes[currentNodeIdx + 2];
+
   return (
     <ToastsProvider>
       <div className={styles["design-page"]}>
