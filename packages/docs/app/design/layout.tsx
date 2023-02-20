@@ -9,7 +9,8 @@ import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Text } from "nextjs-components/src/components/Text";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";
 import Search from "nextjs-components/src/icons/Search";
-import { useEffect, useState } from "react";
+import React from "react";
+import { useState } from "react";
 
 import { Menu } from "@/components/menu";
 
@@ -34,13 +35,14 @@ interface Props extends React.PropsWithChildren {
   paths?: string[];
 }
 
-const navigationNodes = {
-  foundations: foundationsNodes,
-  components: componentsNodes,
-};
-
 const DesignLayout: React.FC<Props> = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
+
+  const [navigationNodes, setNavigationNodes] = useState({
+    foundations: foundationsNodes,
+    components: componentsNodes,
+  });
+  const [search, setSearch] = useState("");
 
   const pathname = usePathname();
   const nodes = [...foundationsNodes, ...componentsNodes];
@@ -72,10 +74,29 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
 
             <div className={clsx(styles.search, expanded && styles.open)}>
               <Input
-                disabled
+                value={search}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setSearch(value);
+                  if (value === "") {
+                    setNavigationNodes({
+                      foundations: foundationsNodes,
+                      components: componentsNodes,
+                    });
+                    return;
+                  }
+                  setNavigationNodes({
+                    foundations: foundationsNodes.filter((n) =>
+                      n.name.toLowerCase().includes(value.toLowerCase()),
+                    ),
+                    components: componentsNodes.filter((n) =>
+                      n.name.toLowerCase().includes(value.toLowerCase()),
+                    ),
+                  });
+                }}
                 prefix={<Search size={16} />}
                 prefixStyling={false}
-                placeholder="Search TBD..."
+                placeholder="Search..."
                 suffix={<KBD small>/</KBD>}
                 suffixStyling={false}
               />
@@ -84,15 +105,16 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
               <div className={styles.navigation}>
                 {Object.entries(navigationNodes).map(([category, nodes]) => {
                   return (
-                    <>
-                      <Text
-                        key={category}
-                        size={16}
-                        weight={500}
-                        className={styles.navCategory}
-                      >
-                        {category}
-                      </Text>
+                    <React.Fragment key={category}>
+                      {nodes.length > 0 ? (
+                        <Text
+                          size={16}
+                          weight={500}
+                          className={styles.navCategory}
+                        >
+                          {category}
+                        </Text>
+                      ) : null}
                       {nodes.map((n) => {
                         const { name, path } = n;
                         return (
@@ -101,7 +123,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
                           </Link>
                         );
                       })}
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </div>
