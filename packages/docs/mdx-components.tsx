@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
-import { OldCode, Text } from "nextjs-components/src/components/Text";
+import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
 import React from "react";
 
 import { Editor } from "@/components/editor";
@@ -174,7 +174,33 @@ export const mdxComponents = {
   h5: (props) => <Text as="h5" {...props} />,
   h6: (props) => <Text as="h6" {...props} />,
   p: (props) => <Text as="p" size={16} color="accents-6" {...props} />,
-  code: (props) => <OldCode noTicks {...props} />,
+  code: (props) => {
+    // Check if content of an MDX ```codeblock```. This code tags will likely have a language-* className added.
+    if (props.className) {
+      return <code {...props} />;
+    }
+    /// Plain `code` MDX will have no className added.
+    return <InlineCode {...props} />;
+  },
+  pre: Code,
+  a: ({ children, ...props }) => {
+    if (props.href.startsWith("/")) {
+      return <Link {...props}>{children}</Link>;
+    }
+    return (
+      <a rel="noopener" target="_blank" {...props} className="external">
+        {children}
+        <style jsx>{`
+          .external {
+            color: var(--geist-success);
+          }
+          .external:hover {
+            color: var(--geist-foreground);
+          }
+        `}</style>
+      </a>
+    );
+  },
   Spacer,
   Link,
   Editor,
