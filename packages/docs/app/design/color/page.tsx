@@ -52,6 +52,7 @@ export default function ColorPage() {
         <ColorCard color={"--geist-error"} />
         <ColorCard color={"--geist-error-dark"} />
       </div>
+
       <Spacer y={2} />
 
       <div className={styles["title-bar"]} style={{ marginBottom: "1.25rem" }}>
