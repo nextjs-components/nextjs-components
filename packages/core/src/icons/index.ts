@@ -125,7 +125,7 @@ export { default as ErrorCircleFill } from "./error-circle-fill";
 export { default as ExternalLink } from "./external-link";
 export { default as Eye } from "./eye";
 export { default as EyeOff } from "./eye-off";
-export { default as Facebook } from "./facebook-icon";
+export { default as Facebook } from "./facebook";
 export { default as FastForward } from "./fast-forward";
 export { default as Feather } from "./feather";
 export { default as Figma } from "./figma";

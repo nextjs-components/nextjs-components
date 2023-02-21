@@ -182,7 +182,7 @@ const EntityField = ({
               <span className={button.content}>
                 <span className={dotsMenu.container}>
                   <span className={dotsMenu.menu}>
-                    <MoreVertical size={18} weight={"light"} />
+                    <MoreVertical size={18} />
                   </span>
                 </span>
               </span>
