@@ -3,7 +3,7 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export default function ArrowUpCircle({ color = "currentcolor", size }: Props) {
+export default function Archive({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
@@ -18,9 +18,9 @@ export default function ArrowUpCircle({ color = "currentcolor", size }: Props) {
       width={size || iconSize.size}
       style={{ color }}
     >
-      <circle cx="12" cy="12" r="10"></circle>
-      <path d="M16 12l-4-4-4 4"></path>
-      <path d="M12 16V8"></path>
+      <path d="M21 8v13H3V8"></path>
+      <path d="M1 3h22v5H1z"></path>
+      <path d="M10 12h4"></path>
     </svg>
   );
 }
