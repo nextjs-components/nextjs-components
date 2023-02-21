@@ -1,0 +1,60 @@
+import { KBD } from "nextjs-components";
+
+<Spacer y={0.6} />;
+
+# Keyboard Input
+
+<Spacer y={0.8} />
+
+## Display keyboard input that triggers an action.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ KBD }}
+  code={`
+<KBD>f</KBD>
+`}
+/>
+
+<Spacer y={2} />
+
+### Modifiers
+
+<Editor
+  scope={{ KBD }}
+  code={`
+<>
+  <KBD meta />
+  <KBD shift />
+  <KBD alt />
+  <KBD ctrl />
+</>
+`}
+/>
+
+<Spacer y={2} />
+
+### Combination
+
+<Editor
+  scope={{ KBD }}
+  code={`
+<KBD meta shift>b</KBD>
+`}
+/>
+
+<Spacer y={2} />
+
+### Small
+
+<Editor
+  scope={{ KBD }}
+  code={`
+<KBD small>/</KBD>
+`}
+/>
+
+<Spacer y={2} />

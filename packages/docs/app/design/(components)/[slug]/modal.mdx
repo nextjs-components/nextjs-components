@@ -1,0 +1,49 @@
+import { Button, Modal, Text } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Modal
+
+<Spacer y={0.8} />
+
+## Display popup content that requires attention or provides additional information.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor 
+  scope={{Modal, Button,Text}}
+  code={`
+() => {
+  const [active, setActive] = React.useState(false)
+
+return (
+
+<>
+  <Button onClick={() => setActive(true)}>Open Modal</Button>
+      <Modal.Modal active={active} onClickOutside={() => setActive(false)}>
+        <Modal.Body>
+          <Modal.Header>
+            <Modal.Title>Modal</Modal.Title>
+            <Modal.Subtitle>
+              This is a modal.
+            </Modal.Subtitle>
+          </Modal.Header>
+
+          <Text size={16}>Some content contained within the modal.</Text>
+        </Modal.Body>
+
+        <Modal.Actions>
+          <Modal.Action onClick={() => setActive(false)}>
+            Cancel
+          </Modal.Action>
+
+          <Modal.Action onClick={() => setActive(false)}>
+            Submit
+          </Modal.Action>
+        </Modal.Actions>
+      </Modal.Modal>
+    </>
+
+)}`} />

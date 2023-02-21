@@ -1,22 +1,20 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+import { Button, fs } from "nextjs-components";
+
+<Spacer y={0.6} />
 
 # Fieldset
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Display a collection of related information in a single unit.</Text>
+<Spacer y={0.8} />
+
+## Display a collection of related information in a single unit.
 
 <Spacer y={2} />
 
 ### Default
 
-```
+<Editor
+  scope={{ fs, Button }}
+  code={`
 <fs.Fieldset>
   <fs.Content>
     <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
@@ -29,13 +27,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer.Actions>
   </fs.Footer>
 </fs.Fieldset>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Tabs
 
-```
+<Editor 
+  scope={{ fs, Button }}
+  code={`
 <fs.Tabs tabs={['One', 'Two']}>
   <fs.Fieldset>
     <fs.Content>
@@ -67,13 +68,15 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer>
   </fs.Fieldset>
 </fs.Tabs>
-```
+`} />
 
 <Spacer y={2} />
 
 ### Error
 
-```
+<Editor
+  scope={{ fs, Button }}
+  code={`
 <fs.Fieldset>
   <fs.Content>
     <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
@@ -88,13 +91,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer.Actions>
   </fs.Footer>
 </fs.Fieldset>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Disabled
 
-```
+<Editor
+  scope={{ fs, Button }}
+  code={`
 <fs.Fieldset disabled>
   <fs.Content>
     <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
@@ -107,13 +113,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer.Actions>
   </fs.Footer>
 </fs.Fieldset>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Disabled Content Only
 
-```
+<Editor
+  scope={{ fs, Button }}
+  code={`
 <fs.Fieldset>
   <fs.Content disabled>
     <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
@@ -126,13 +135,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer.Actions>
   </fs.Footer>
 </fs.Fieldset>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Disabled Footer Only
 
-```
+<Editor
+  scope={{ fs, Button }}
+  code={`
 <fs.Fieldset>
   <fs.Content>
     <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
@@ -145,13 +157,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer.Actions>
   </fs.Footer>
 </fs.Fieldset>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Highlight Footer
 
-```
+<Editor
+  scope={{ fs, Button }}
+  code={`
 <fs.Fieldset>
   <fs.Content disabled>
     <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
@@ -164,6 +179,7 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </fs.Footer.Actions>
   </fs.Footer>
 </fs.Fieldset>
-```
+`}
+/>
 
 <Spacer y={5} />

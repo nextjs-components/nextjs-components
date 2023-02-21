@@ -1,0 +1,42 @@
+import { Container, LoadingDots, Text } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Loading Dots
+
+<Spacer y={0.8} />
+
+## Indicate an action running in the background.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor 
+  scope={{Container, LoadingDots}}
+  code={`
+<Container>
+  <Container>
+    <LoadingDots />
+  </Container>
+
+  <Container>
+    <LoadingDots size={4} />
+  </Container>
+</Container>
+`} />
+
+<Spacer y={2} />
+
+### Text
+
+<Editor
+  scope={{ Text, LoadingDots }}
+  code={`
+<LoadingDots size={4}>
+  <Text type="secondary">Loading</Text>
+</LoadingDots>
+`}
+/>
+
+<Spacer y={2} />

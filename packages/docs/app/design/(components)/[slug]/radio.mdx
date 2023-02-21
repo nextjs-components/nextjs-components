@@ -1,16 +1,12 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+import { Button, Container, RadioGroup, RadioItem } from "nextjs-components";
+
+<Spacer y={0.6} />
 
 # Radio
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Provides single user input from a selection of options.</Text>
+<Spacer y={0.8} />
+
+## Provides single user input from a selection of options.
 
 ### RadioGroup Props
 
@@ -35,31 +31,33 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
 
 ### Default
 
-```
+<Editor 
+  scope={{Container, RadioGroup, RadioItem}}
+  code={`
 () => {
-  const [value, setValue] = useState('one')
+  const [value, setValue] = React.useState('one')
 
-  return (
-    <RadioGroup value={value} onChange={setValue} label="Default Radio Example">
-      <Container>
-        <Container>
-          <RadioItem value="one">Option 1</RadioItem>
-        </Container>
+return (
 
-        <Container>
-          <RadioItem value="two">Option 2</RadioItem>
-        </Container>
-      </Container>
-    </RadioGroup>
-  )
-}
-```
+<RadioGroup value={value} onChange={setValue} label="Default Radio Example">
+  <Container>
+    <Container>
+      <RadioItem value="one">Option 1</RadioItem>
+    </Container>
+    <Container>
+      <RadioItem value="two">Option 2</RadioItem>
+    </Container>
+  </Container>
+</RadioGroup>
+)}`} />
 
 <Spacer y={2} />
 
 ### Disabled
 
-```
+<Editor
+  scope={{Container, RadioGroup, RadioItem}}
+  code={`
 <RadioGroup disabled value="two" label="Disabled Radio Example">
   <Container>
     <Container>
@@ -69,37 +67,43 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <Container>
       <RadioItem value="two">Option 2</RadioItem>
     </Container>
+
   </Container>
 </RadioGroup>
-```
+`} />
 
 <Spacer y={2} />
 
 ### Required
 
-```
+<Editor 
+  scope={{Container, RadioGroup, RadioItem, Button}}
+  code={`
 () => {
-  const [value, setValue] = useState(null)
+  const [value, setValue] = React.useState(null)
 
-  return (
-    <form>
-      <RadioGroup required value={value} onChange={setValue} label="Required Radio Example">
-        <Container>
-          <Container>
-            <RadioItem value="one">Option 1</RadioItem>
-          </Container>
+return (
 
-          <Container>
-            <RadioItem value="two">Option 2</RadioItem>
-          </Container>
-        </Container>
-      </RadioGroup>
-      <br />
-      <Button>Submit</Button>
-    </form>
-  )
+<form>
+  <RadioGroup required value={value} onChange={setValue} label="Required Radio Example">
+    <Container>
+      <Container>
+        <RadioItem value="one">Option 1</RadioItem>
+      </Container>
+
+      <Container>
+        <RadioItem value="two">Option 2</RadioItem>
+      </Container>
+    </Container>
+
+  </RadioGroup>
+  <br />
+  <Button>Submit</Button>
+</form>
+)
 }
-```
+
+`} />
 
 <Spacer y={2} />
 
