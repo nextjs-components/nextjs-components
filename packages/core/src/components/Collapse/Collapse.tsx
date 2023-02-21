@@ -11,7 +11,7 @@ import {
 import { FocusRing, useId } from "react-aria";
 import useMeasure from "react-use-measure";
 
-import ChevronDown from "../../icons/ChevronDown";
+import ChevronDown from "../../icons/chevron-down";
 import { Text } from "../Text";
 import styles from "./Collapse.module.css";
 
