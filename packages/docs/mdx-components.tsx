@@ -184,9 +184,15 @@ export const mdxComponents = {
   },
   pre: Code,
   a: ({ children, ...props }) => {
+    // anchor link
+    if (props.id) {
+      return <a {...props}>{children}</a>;
+    }
+    // internal link
     if (props.href.startsWith("/")) {
       return <Link {...props}>{children}</Link>;
     }
+    // external link
     return (
       <a rel="noopener" target="_blank" {...props} className="external">
         {children}
