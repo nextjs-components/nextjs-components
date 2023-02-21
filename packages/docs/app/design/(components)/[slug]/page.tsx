@@ -15,22 +15,24 @@ import LoadingDots from "./loading-dots.mdx";
 import Menu from "./menu.mdx";
 import Modal from "./modal.mdx";
 import Radio from "./radio.mdx";
+import Stack from "./stack.mdx";
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {
     // prettier-ignore
     switch (slug) {
-      case "button":   return <Button />;
-      case "capacity": return <Capacity />;
-      case "entity":   return <Entity />;
-      case "fieldset": return <Fieldset />;
-      case "file-tree":   return <FileTree />;
-      case "input":    return <Input />;
+      case "button":         return <Button />;
+      case "capacity":       return <Capacity />;
+      case "entity":         return <Entity />;
+      case "fieldset":       return <Fieldset />;
+      case "file-tree":      return <FileTree />;
+      case "input":          return <Input />;
       case "keyboard-input": return <KeyboardInput />;
-      case "loading-dots": return <LoadingDots />;
-      case "menu": return <Menu />
-      case "modal": return <Modal/>
-      case "radio": return <Radio/>
+      case "loading-dots":   return <LoadingDots />;
+      case "menu":           return <Menu />
+      case "modal":          return <Modal/>
+      case "radio":          return <Radio/>
+      case "stack":          return <Stack/>
 
       default:
         return (

@@ -1,8 +1,8 @@
 import styles from "./example.module.css";
 
-const Example = ({ children }) => {
+const Example = ({ children, style }) => {
   return (
-    <div className={styles.example} style={{ "--width": "50%" }}>
+    <div className={styles.example} style={style}>
       {children}
     </div>
   );
