@@ -1,0 +1,203 @@
+<Spacer y={0.6} />
+
+# Toast
+
+<Spacer y={0.8} />
+
+## Display an important message globally.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+<Editor 
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.message({
+        text: "The Netherland Dwarf jumped over the fence.",
+      });
+    }
+  }}
+>
+  Show Toast
+</Button>
+) }
+
+`} />
+
+<Spacer y={2} />
+
+### Multiline
+
+<Editor
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.message({
+        text: "The Netherland Dwarf jumped over the fence. The Netherland Dwarf jumped over the fence. The Netherland Dwarf jumped over the fence. The Netherland Dwarf jumped over the fence.",
+      });
+    }
+  }}
+>
+  Show Toast
+</Button>
+) } `} />
+
+<Spacer y={2} />
+
+### Preserve
+
+{/* prettier-ignore */}
+<Text
+  color="geist-secondary"
+  size={16}
+>Preserved toasts will not automatically disappear.</Text>
+
+<Spacer />
+
+<Editor 
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.message({
+        text: "The Netherland Dwarf jumped over the fence.",
+        preserve: true,
+      });
+    }
+  }}
+>
+  Show Toast
+</Button>
+) }
+
+`} />
+
+<Spacer y={2} />
+
+### Action
+
+<Editor
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.message({
+        text: "The Netherland Dwarf jumped over the fence. The Netherland Dwarf jumped over the fence again.",
+        action: "Undo",
+      });
+    }
+  }}
+>
+  Show Toast
+</Button>
+) } `} />
+
+<Spacer y={2} />
+
+### Action + Cancel
+
+<Editor 
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.message({
+        text: "The Netherland Dwarf jumped over the fence. The Netherland Dwarf jumped over the fence again.",
+        action: "Undo",
+        cancelAction: "Cancel",
+      });
+    }
+  }}
+>
+  Show Toast
+</Button>
+) }
+
+`} />
+
+<Spacer y={2} />
+
+### Success
+
+<Editor
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  success
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.success("The Netherland Dwarf jumped over the fence.");
+    }
+  }}
+>
+  Show Toast
+</Button>
+) } `} />
+
+<Spacer y={2} />
+
+### Error
+
+<Editor 
+  scope={{}}
+  code={`
+() => {
+  const toasts = useToasts()
+
+return (
+
+<Button
+  error
+  onClick={() => {
+    if (toasts && toasts.current) {
+      toasts.current.error("The Netherland Dwarf jumped over the fence.");
+    }
+  }}
+>
+  Show Toast
+</Button>
+) }
+
+`} />
+
+<Spacer y={2} />
+`} />

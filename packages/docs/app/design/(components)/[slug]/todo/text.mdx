@@ -1,16 +1,10 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+<Spacer y={0.6} />
 
 # Text
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Display text using well-defined typographic styles.</Text>
+<Spacer y={0.8} />
+
+## Display text using well-defined typographic styles.</Text>
 
 ### Props
 
@@ -37,7 +31,9 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
 
 TODO: Swap `Container` with `Stack`
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Container>
   <Text size={48}>
     The Evil Rabbit jumps.
@@ -64,7 +60,8 @@ TODO: Swap `Container` with `Stack`
     The Evil Rabbit jumps.
   </Text>
 </Container>
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -72,7 +69,9 @@ TODO: Swap `Container` with `Stack`
 
 TODO: Swap `Container` with `Stack`
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Container>
   {[900, 800, 700, 600, 500, 400, 300, 200, 100].map(weight => (
     <Text key={weight} size={16} weight={weight}>
@@ -80,54 +79,75 @@ TODO: Swap `Container` with `Stack`
     </Text>
   ))}
 </Container>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Color
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Text size={16} color="geist-success">
   The Evil Rabbit jumps.
 </Text>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Modifiers
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Text size={16}>
   The <strong>Evil Rabbit</strong> <em>jumps</em>
   over the <s>quick brown fox</s> <u>Lawful Meerkat</u>.
 </Text>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Polymorphic
 
-```
+<Editor
+  scope={{}}
+  code={
+    `
 <Text as="p" size={32}>
-  {`<p>`} semantically, {`<h2>`} visually.
+  {` <
+    p >
+    `} semantically, {` <
+    h2 >
+    `} visually.
 </Text>
-```
+`
+  }
+/>
 
 <Spacer y={2} />
 
 ### Truncate
 
-```
+<Editor
+  scope={{}}
+  code={`
 <div style={{ maxWidth: 100 }}>
   <Text size={16} truncate>The Evil Rabbit jumps.</Text>
 </div>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Clamp
 
-```
+<Editor
+  scope={{}}
+  code={`
 <div style={{ maxHeight: 100 }}>
   <Text size={16} truncate={2}>
     The Evil Rabbit jumps. The Evil Rabbit jumps. The Evil Rabbit jumps.
@@ -136,33 +156,38 @@ TODO: Swap `Container` with `Stack`
     The Evil Rabbit jumps. The Evil Rabbit jumps.
   </Text>
 </div>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Align
 
-```
+<Editor 
+  scope={{}}
+  code={`
 <div>
   <Text align="center">
     The Evil Rabbit jumps.
   </Text>
 
-  <Text align="left">
-    The Evil Rabbit jumps.
-  </Text>
+{" "}
+
+<Text align="left">The Evil Rabbit jumps.</Text>
 
   <Text align="right">
     The Evil Rabbit jumps.
   </Text>
 </div>
-```
+`} />
 
 <Spacer y={2} />
 
 ### Unordered List
 
-```
+<Editor
+  scope={{}}
+  code={`
 <UL>
   <LI>Static websites and static generators (React, Vue, Angular, etc)</LI>
   <LI>Code that renders HTML on the server-side</LI>
@@ -172,13 +197,16 @@ TODO: Swap `Container` with `Stack`
   <LI>API endpoints that query databases or web APIs and return dynamic data</LI>
 </UL></LI>
 </UL>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Ordered List
 
-```
+<Editor
+  scope={{}}
+  code={`
 <OL>
   <LI>
     Push a commit to trigger the deployment.
@@ -187,25 +215,31 @@ TODO: Swap `Container` with `Stack`
     You'll see the deployment status on GitHub and Vercel dashboard.
   </LI>
 </OL>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Code
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Text size={16}>
   It’s a matter of running <InlineCode>vercel</InlineCode> to get it up and
   running instantly.
 </Text>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Codeblock
 
-```
+<Editor 
+  scope={{}}
+  code={`
 <Code>{`npm i vercel -g\nvercel init nextjs`}</Code>
-```
+`} />
 
 <Spacer y={5} />

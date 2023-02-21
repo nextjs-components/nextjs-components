@@ -1,18 +1,14 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+<Spacer y={0.6} />
 
 # Table
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Display tabular data in row format. Some examples use the following variables for brevity:</Text>
+<Spacer y={0.8} />
 
-```js
+## Display tabular data in row format. Some examples use the following variables for brevity:</Text>
+
+<Editor 
+  scope={{}}
+  code={`js
 const columns = [
   {
     Header: "First Name",
@@ -29,23 +25,24 @@ const columns = [
 ];
 
 const data = [
-  {
-    first: "John",
-    last: "Doe",
-    email: "john@doe.com",
-  },
-  {
-    first: "Dorothy",
-    last: "Boe",
-    email: "dorothy@boe.com",
-  },
-  {
-    first: "Baby",
-    last: "Moe",
-    email: "baby@moe.com",
-  },
+{
+first: "John",
+last: "Doe",
+email: "john@doe.com",
+},
+{
+first: "Dorothy",
+last: "Boe",
+email: "dorothy@boe.com",
+},
+{
+first: "Baby",
+last: "Moe",
+email: "baby@moe.com",
+},
 ];
-```
+
+`} />
 
 <Spacer y={2} />
 
@@ -59,19 +56,24 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Table
   columns={columns}
   data={data}
   caption="A basic table."
 />
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Placeholder
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Table
   columns={columns}
   data={[]}
@@ -79,7 +81,8 @@ const data = [
   defaultRows={3}
   placeholder
 />
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -93,7 +96,9 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Table
   columns={columns}
   data={[]}
@@ -108,7 +113,8 @@ const data = [
     </>
   }
 />
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -122,7 +128,9 @@ const data = [
 
 <Spacer />
 
-```
+<Editor 
+  scope={{}}
+  code={`
 () => {
   const columns = useMemo(() => [
     {
@@ -141,15 +149,16 @@ const data = [
     }
   ], [])
 
-  return (
-    <Table
-      columns={columns}
-      data={data}
-      caption="A table with right and left aligned columns."
-    />
-  )
-}
-```
+return (
+
+<Table
+  columns={columns}
+  data={data}
+  caption="A table with right and left aligned columns."
+/>
+) }
+
+`} />
 
 <Spacer y={2} />
 
@@ -163,14 +172,17 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Table
   columns={columns}
   data={data}
   caption="A table with minimum with of 1000px."
   overflow={1000}
 />
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -184,7 +196,9 @@ const data = [
 
 <Spacer />
 
-```
+<Editor 
+  scope={{}}
+  code={`
 () => {
   const columns = useMemo(() => [
     {
@@ -202,15 +216,16 @@ const data = [
     }
   ], [])
 
-  return (
-    <Table
-      columns={columns}
-      data={data}
-      caption="A basic table with columnClassName applied to the second column."
-    />
-  )
-}
-```
+return (
+
+<Table
+  columns={columns}
+  data={data}
+  caption="A basic table with columnClassName applied to the second column."
+/>
+) }
+
+`} />
 
 <Spacer y={2} />
 
@@ -224,14 +239,17 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Table
   columns={columns}
   data={data}
   caption="A table with fixed layout."
   fixed
 />
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -245,7 +263,9 @@ const data = [
 
 <Spacer />
 
-```
+<Editor 
+  scope={{}}
+  code={`
 () => {
   const columns = useMemo(() => {
     return [
@@ -266,17 +286,17 @@ const data = [
     ]
   }, [])
 
+return (
 
-  return (
-    <Table
-      columns={columns}
-      data={data}
-      caption="A table with fixed column widths."
-      fixed
-    />
-  )
-}
-```
+<Table
+  columns={columns}
+  data={data}
+  caption="A table with fixed column widths."
+  fixed
+/>
+) }
+
+`} />
 
 <Spacer y={2} />
 
@@ -290,14 +310,17 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Table
   columns={columns}
   data={data}
   caption="A table without a table header."
   header={false}
 />
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -311,9 +334,12 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <div>TODO</div>
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -327,9 +353,12 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <div>TODO</div>
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -343,9 +372,12 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <div>TODO</div>
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -359,9 +391,12 @@ const data = [
 
 <Spacer />
 
-```
+<Editor
+  scope={{}}
+  code={`
 <div>TODO</div>
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -375,26 +410,30 @@ const data = [
 
 <Spacer />
 
-```
+<Editor 
+  scope={{}}
+  code={`
 
 () => {
 
-  return (
-    <>
-      <div>TODO</div>
-      <Spacer/>
-      <Table
-        columns={columns}
-        data={data}
-        caption="A table with selectable rows."
-        defaultRows={3}
-        selectable
-        headerActions={() => {}}
-        rowActions={() => {}}
-      />
-    </>
-  )
-}
-```
+return (
+
+<>
+  <div>TODO</div>
+  <Spacer />
+  <Table
+    columns={columns}
+    data={data}
+    caption="A table with selectable rows."
+    defaultRows={3}
+    selectable
+    headerActions={() => {}}
+    rowActions={() => {}}
+  />
+</>
+) }
+
+`} />
 
 <Spacer y={5} />
+`} />

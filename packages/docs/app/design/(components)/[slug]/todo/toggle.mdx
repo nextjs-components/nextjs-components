@@ -1,45 +1,46 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+<Spacer y={0.6} />
 
 # Toggle
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Displays a boolean value.</Text>
+<Spacer y={0.8} />
+
+## Displays a boolean value.</Text>
 
 <Spacer y={2} />
 
 ### Default
 
-```
+<Editor 
+  scope={{}}
+  code={`
 () => {
   const [checked, setChecked] = useState(false)
   const [checked2, setChecked2] = useState(true)
 
-  return (
-    <Container>
-      <Container>
-        <Toggle checked={checked} onChange={() => setChecked(!checked)} />
-      </Container>
+return (
+
+<Container>
+<Container>
+<Toggle checked={checked} onChange={() => setChecked(!checked)} />
+</Container>
 
       <Container>
         <Toggle checked={checked2} onChange={() => setChecked2(!checked2)} />
       </Container>
     </Container>
-  )
+
+)
 }
-```
+
+`} />
 
 <Spacer y={2} />
 
 ### Disabled
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Container>
   <Container>
     <Toggle disabled />
@@ -49,13 +50,15 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <Toggle disabled checked />
   </Container>
 </Container>
-```
+`} />
 
 <Spacer y={2} />
 
 ### Sizes
 
-```
+<Editor 
+  scope={{}}
+  code={`
 <Container row>
   <Container>
     <Toggle />
@@ -65,6 +68,6 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <Toggle size="large" />
   </Container>
 </Container>
-```
+`} />
 
 <Spacer y={2} />

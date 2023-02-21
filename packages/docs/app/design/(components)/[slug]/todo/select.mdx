@@ -1,42 +1,42 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+<Spacer y={0.6} />
 
 # Select
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Display a dropdown list of items.</Text>
+<Spacer y={0.8} />
+
+## Display a dropdown list of items.</Text>
 
 <Spacer y={2} />
 
 ### Sizes
 
-```
+<Editor 
+  scope={{}}
+  code={`
 <Container direction={['column', 'row', 'row']} top>
   <Container left>
     <Select size="small" placeholder="Small" />
   </Container>
 
-  <Container left>
-    <Select placeholder="Default" />
-  </Container>
+{" "}
+
+<Container left>
+  <Select placeholder="Default" />
+</Container>
 
   <Container left>
     <Select size="large" placeholder="Large" />
   </Container>
 </Container>
-```
+`} />
 
 <Spacer y={2} />
 
 ### Sizes, Prefix, and Suffix
 
-```
+<Editor 
+  scope={{}}
+  code={`
 <Container direction={['column', 'row', 'row']} top>
   <Container left>
     <Select
@@ -47,13 +47,11 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     />
   </Container>
 
-  <Container left>
-    <Select
-      placeholder="Default"
-      prefix={<Up />}
-      suffix={<Up />}
-    />
-  </Container>
+{" "}
+
+<Container left>
+  <Select placeholder="Default" prefix={<Up />} suffix={<Up />} />
+</Container>
 
   <Container left>
     <Select
@@ -64,40 +62,49 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     />
   </Container>
 </Container>
-```
+`} />
 
 <Spacer y={2} />
 
 ### Disabled
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Container direction={['column', 'row', 'row']} top>
   <Container>
     <Select placeholder="Disabled with placeholder" disabled />
   </Container>
 </Container>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Prefix and Suffix Disabled
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Container left>
   <Container>
     <Select placeholder="Default" prefix={<Up />} disabled />
   </Container>
 </Container>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Other
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Container>
   <Select placeholder="With label" label="My label" />
 </Container>
-```
+`}
+/>
 
 <Spacer y={2} />

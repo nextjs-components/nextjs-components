@@ -1,16 +1,10 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+<Spacer y={0.6} />
 
 # Stack
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Display elements vertically or horizontally on the page.</Text>
+<Spacer y={0.8} />
+
+## Display elements vertically or horizontally on the page.</Text>
 
 <Spacer y={2} />
 
@@ -38,13 +32,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
   style={{ margin: "revert" }}
 >Gap is a unit on a 4px grid scale.</Text>
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Stack gap={3}>
   <Box />
   <Box />
   <Box />
 </Stack>
-```
+`}
+/>
 
 <Spacer y={2} />
 
@@ -57,7 +54,9 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
   style={{ margin: "revert" }}
 >Resize the window to observe changes to the layout.</Text>
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Stack
   gap={{ sm: 2, md: 5, lg: 10 }}
   direction={{ sm: 'column', lg: 'row'}}
@@ -66,13 +65,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
   <Box />
   <Box />
 </Stack>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Debug
 
-```
+<Editor
+  scope={{}}
+  code={`
 <Stack
   gap={4}
   direction="row"
@@ -85,4 +87,5 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <Box />
   </Stack>
 </Stack>
-```
+`}
+/>
