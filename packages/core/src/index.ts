@@ -36,7 +36,7 @@ export { Spinner } from "./components/Spinner";
 export { Stack } from "./components/Stack";
 export { StatusDot } from "./components/StatusDot";
 export { Switch } from "./components/Switch";
-// export * from "./components/Table";
+export { Table } from "./components/Table";
 export { Tabs } from "./components/Tabs";
 export { Tag } from "./components/Tag";
 export { Code, InlineCode, LI, OL, Text, UL } from "./components/Text";
