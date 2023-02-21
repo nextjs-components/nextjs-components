@@ -6,10 +6,12 @@ import { Props } from "./props";
 export default function ChevronDownCircleFill({
   color = "currentcolor",
   size,
+  ...props
 }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
       stroke="currentColor"
@@ -20,6 +22,7 @@ export default function ChevronDownCircleFill({
       width={size || iconSize.size}
       style={
         {
+          ...props.style,
           color: color,
           "--geist-fill": "currentColor",
           "--geist-stroke": "var(--geist-background)",

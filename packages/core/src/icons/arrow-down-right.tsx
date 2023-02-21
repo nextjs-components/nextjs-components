@@ -6,10 +6,12 @@ import { Props } from "./props";
 export default function ArrowDownRight({
   color = "currentcolor",
   size,
+  ...props
 }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -19,7 +21,7 @@ export default function ArrowDownRight({
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <path d="M7 7l10 10"></path>
       <path d="M17 7v10H7"></path>

@@ -6,10 +6,12 @@ import { Props } from "./props";
 export default function PhoneForwarded({
   color = "currentcolor",
   size,
+  ...props
 }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -19,7 +21,7 @@ export default function PhoneForwarded({
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <path d="M19 1l4 4-4 4"></path>
       <path d="M15 5h8"></path>

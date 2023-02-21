@@ -3,10 +3,15 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export default function Branch({ color = "currentcolor", size }: Props) {
+export default function Branch({
+  color = "currentcolor",
+  size,
+  ...props
+}: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -16,7 +21,7 @@ export default function Branch({ color = "currentcolor", size }: Props) {
       strokeWidth="1.5"
       viewBox="0 0 20 20"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <path
         strokeLinecap="round"

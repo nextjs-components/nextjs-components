@@ -7,6 +7,7 @@ import { mdxComponents } from "@/mdx-components";
 
 const Button = dynamic(() => import("./button.mdx"), { ssr: false });
 const Capacity = dynamic(() => import("./capacity.mdx"), { ssr: false });
+const FileTree = dynamic(() => import("./file-tree.mdx"), { ssr: false });
 const Input = dynamic(() => import("./input.mdx"), { ssr: false });
 const Entity = dynamic(() => import("./entity.mdx"), { ssr: false });
 
@@ -15,6 +16,7 @@ export default function Slug({ params: { slug } }) {
     // prettier-ignore
     switch (slug) {
       case "button":   return <Button />;
+      case "file-tree":   return <FileTree />;
       case "input":    return <Input />;
       case "capacity": return <Capacity />;
       case "entity":   return <Entity />;

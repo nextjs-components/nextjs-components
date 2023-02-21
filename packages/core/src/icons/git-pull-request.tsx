@@ -6,10 +6,12 @@ import { Props } from "./props";
 export default function GitPullRequest({
   color = "currentcolor",
   size,
+  ...props
 }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -19,7 +21,7 @@ export default function GitPullRequest({
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <circle cx="18" cy="18" r="3"></circle>
       <circle cx="6" cy="6" r="3"></circle>

@@ -6,10 +6,12 @@ import { Props } from "./props";
 export default function ArrowDownCircle({
   color = "currentcolor",
   size,
+  ...props
 }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -19,7 +21,7 @@ export default function ArrowDownCircle({
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <circle cx="12" cy="12" r="10"></circle>
       <path d="M8 12l4 4 4-4"></path>

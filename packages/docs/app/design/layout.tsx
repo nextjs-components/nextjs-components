@@ -8,7 +8,7 @@ import { Input } from "nextjs-components/src/components/Input";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Text } from "nextjs-components/src/components/Text";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";
-import Search from "nextjs-components/src/icons/search";
+import * as Icons from "nextjs-components/src/icons";
 import React from "react";
 import { useEffect, useState } from "react";
 
@@ -115,7 +115,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
                     ),
                   });
                 }}
-                prefix={<Search size={16} />}
+                prefix={<Icons.Search size={16} />}
                 prefixStyling={false}
                 placeholder="Search..."
                 suffix={<KBD small>/</KBD>}
@@ -159,12 +159,12 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
               {/* TODO add ChevronRight & ChevronLeft */}
               {prevNode ? (
                 <Link href={prevNode.path} className="link previous-link">
-                  {prevNode.name}
+                  <Icons.ChevronLeft size={16} /> {prevNode.name}
                 </Link>
               ) : null}
               {nextNode ? (
                 <Link href={nextNode.path} className="link next-link">
-                  {nextNode.name}
+                  {nextNode.name} <Icons.ChevronRight size={16} />
                 </Link>
               ) : null}
             </nav>

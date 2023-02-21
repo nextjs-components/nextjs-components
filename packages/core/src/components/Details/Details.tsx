@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { useFocusRing } from "react-aria";
 
+import ChevronRight from "../../icons/chevron-right";
 import styles from "./details.module.css";
 
 interface DetailsProps {
@@ -43,20 +44,7 @@ const Details: React.FC<React.PropsWithChildren<DetailsProps>> = ({
         <div>
           {children && (
             <span className={styles.icon}>
-              <svg
-                viewBox="0 0 24 24"
-                width="14"
-                height="14"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-                shapeRendering="geometricPrecision"
-                style={{ color: "currentColor" }}
-              >
-                <path d="M9 18l6-6-6-6"></path>
-              </svg>
+              <ChevronRight size={14} />
             </span>
           )}
           {summary}

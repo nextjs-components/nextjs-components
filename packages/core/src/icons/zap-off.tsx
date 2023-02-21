@@ -3,10 +3,15 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export default function ZapOff({ color = "currentcolor", size }: Props) {
+export default function ZapOff({
+  color = "currentcolor",
+  size,
+  ...props
+}: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -16,7 +21,7 @@ export default function ZapOff({ color = "currentcolor", size }: Props) {
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <path d="M12.41 6.75L13 2l-2.43 2.92"></path>
       <path d="M18.57 12.91L21 10h-5.34"></path>

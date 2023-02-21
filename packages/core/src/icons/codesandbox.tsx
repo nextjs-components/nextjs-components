@@ -3,10 +3,15 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export default function Codesandbox({ color = "currentcolor", size }: Props) {
+export default function Codesandbox({
+  color = "currentcolor",
+  size,
+  ...props
+}: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -16,7 +21,7 @@ export default function Codesandbox({ color = "currentcolor", size }: Props) {
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
       <path d="M7.5 4.21l4.5 2.6 4.5-2.6"></path>

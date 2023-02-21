@@ -6,10 +6,12 @@ import { Props } from "./props";
 export default function VercelTriangle({
   color = "currentcolor",
   size,
+  ...props
 }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -19,13 +21,9 @@ export default function VercelTriangle({
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
-      <path
-        clip-rule="evenodd"
-        d="M12 3 2 19h20L12 3Z"
-        strokeWidth="1.5"
-      ></path>
+      <path clipRule="evenodd" d="M12 3 2 19h20L12 3Z" strokeWidth="1.5"></path>
     </svg>
   );
 }

@@ -3,10 +3,15 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export default function MicOff({ color = "currentcolor", size }: Props) {
+export default function MicOff({
+  color = "currentcolor",
+  size,
+  ...props
+}: Props) {
   const iconSize = useIconSize();
   return (
     <svg
+      {...props}
       fill="none"
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
@@ -16,7 +21,7 @@ export default function MicOff({ color = "currentcolor", size }: Props) {
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       width={size || iconSize.size}
-      style={{ color }}
+      style={{ ...props.style, color }}
     >
       <path d="M1 1l22 22"></path>
       <path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6"></path>

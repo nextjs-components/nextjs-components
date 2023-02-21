@@ -2,6 +2,7 @@ import { Button } from "nextjs-components/src/components/Button";
 import { Container } from "nextjs-components/src/components/Container";
 import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
+import ChevronRight from "nextjs-components/src/icons/chevron-right";
 import CopyIcon from "nextjs-components/src/icons/copy";
 import RotateCW from "nextjs-components/src/icons/rotate-cw";
 import React from "react";
@@ -68,24 +69,14 @@ const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
 
         <div className={styles.editor}>
           <div className={styles.editorTrigger} onClick={() => setOpen(!open)}>
-            <svg
-              fill="none"
-              height="16"
-              shapeRendering="geometricPrecision"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              viewBox="0 0 24 24"
-              width="16"
+            <ChevronRight
+              size={16}
+              color="var(--accents-6)"
               style={{
                 transition: "transform 200ms",
                 transform: `rotate(${open ? 90 : 0}deg)`,
-                color: "var(--accents-6)",
               }}
-            >
-              <path d="M9 18l6-6-6-6"></path>
-            </svg>
+            />
             <Text color="accents-6" style={{ marginLeft: 6 }}>
               Code Editor
             </Text>
