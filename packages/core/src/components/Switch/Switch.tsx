@@ -5,9 +5,12 @@ import styles from "./Switch.module.css";
 
 interface SwitchProps {
   items: {
-    name: string; // ex. 'Source'
+    /** @example 'Source' or <Icon /> */
+    name: JSX.Element;
+    /** @example 'source' */
     value: string; // ex. 'source'
-    width: React.CSSProperties["minWidth"];
+    /** ignored if using `icon` */
+    width?: React.CSSProperties["minWidth"];
     disabled?: boolean;
   }[];
   active?: string;
@@ -39,7 +42,7 @@ const Switch = ({ items, onChange, active, size, icon }: SwitchProps) => {
             onClick={() => {
               onChange(e.value);
             }}
-            style={{ minWidth: e.width }}
+            style={{ minWidth: icon ? undefined : e.width }}
             disabled={disabled}
           >
             <span>{e.name}</span>
