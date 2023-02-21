@@ -3,25 +3,23 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-const ArrowUp = ({ color = "currentcolor", size }: Props) => {
+export default function ArrowUp({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
+      shapeRendering="geometricPrecision"
       stroke="currentColor"
-      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
-      <path d="M12 19V5" />
-      <path d="M5 12l7-7 7 7" />
+      <path d="M12 19V5"></path>
+      <path d="M5 12l7-7 7 7"></path>
     </svg>
   );
-};
-
-export default ArrowUp;
+}
