@@ -25,6 +25,7 @@ export interface Props extends Omit<InputProps, "size" | "prefix" | "suffix"> {
   label?: string;
   error?: boolean;
   type?: "error" | "success" | "warning";
+  width?: React.CSSProperties["width"];
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
@@ -41,6 +42,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       label,
       error,
       type,
+      width,
       ...props
     },
     ref,
@@ -86,7 +88,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
 
     return (
       <IconSizeContext.Provider value={{ size: iconSize }}>
-        <div className={containerClassName}>
+        <div className={containerClassName} style={{ width }}>
           <input {...props} ref={ref} className={inputClassName} />
           {_prefix}
           {_suffix}
