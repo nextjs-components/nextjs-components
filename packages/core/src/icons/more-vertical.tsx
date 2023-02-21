@@ -1,31 +1,26 @@
 import React from "react";
 
 import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
 
-const MoreVertical = ({
-  color = "var(--geist-foreground)",
-  size,
-  weight = "",
-}) => {
+export default function MoreVertical({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
+      shapeRendering="geometricPrecision"
       stroke="currentColor"
-      strokeWidth={weight == "light" ? "1" : "1.5"}
       strokeLinecap="round"
       strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
-      <circle cx="12" cy="12" r="1" fill="currentColor" />
-      <circle cx="12" cy="5" r="1" fill="currentColor" />
-      <circle cx="12" cy="19" r="1" fill="currentColor" />
+      <circle cx="12" cy="12" r="1" fill="currentColor"></circle>
+      <circle cx="12" cy="5" r="1" fill="currentColor"></circle>
+      <circle cx="12" cy="19" r="1" fill="currentColor"></circle>
     </svg>
   );
-};
-
-export default MoreVertical;
+}

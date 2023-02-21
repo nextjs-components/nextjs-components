@@ -3,25 +3,23 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-const StopCircle = ({ color = "currentcolor", size }: Props) => {
+export default function StopCircle({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
+      shapeRendering="geometricPrecision"
       stroke="currentColor"
-      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M9 9h6v6H9z" />
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M9 9h6v6H9z"></path>
     </svg>
   );
-};
-
-export default StopCircle;
+}

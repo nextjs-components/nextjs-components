@@ -3,24 +3,22 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-const ChevronDown = ({ color = "currentcolor", size }: Props) => {
+export default function ChevronDown({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
+      shapeRendering="geometricPrecision"
       stroke="currentColor"
-      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
-      <path d="M6 9l6 6 6-6" />
+      <path d="M6 9l6 6 6-6"></path>
     </svg>
   );
-};
-
-export default ChevronDown;
+}

@@ -3,25 +3,23 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-const Unlock = ({ color = "currentcolor", size }: Props) => {
+export default function Unlock({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
+      shapeRendering="geometricPrecision"
       stroke="currentColor"
-      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 019.9-1" />
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+      <path d="M7 11V7a5 5 0 019.9-1"></path>
     </svg>
   );
-};
-
-export default Unlock;
+}

@@ -3,7 +3,7 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-export default function ArrowDownCircleFille({
+export default function ArrowDownCircleFill({
   color = "currentcolor",
   size,
 }: Props) {

@@ -3,23 +3,22 @@ import React from "react";
 import { useIconSize } from "../contexts/IconSizeContext";
 import { Props } from "./props";
 
-const CopyIcon = ({ color = "currentcolor", size }: Props) => {
+export default function Copy({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
+      shapeRendering="geometricPrecision"
       stroke="currentColor"
-      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      fill="none"
-      shapeRendering="geometricPrecision"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
-      <path d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z" />
+      <path d="M6 17C4.89543 17 4 16.1046 4 15V5C4 3.89543 4.89543 3 6 3H13C13.7403 3 14.3866 3.4022 14.7324 4M11 21H18C19.1046 21 20 20.1046 20 19V9C20 7.89543 19.1046 7 18 7H11C9.89543 7 9 7.89543 9 9V19C9 20.1046 9.89543 21 11 21Z"></path>
     </svg>
   );
-};
-export default CopyIcon;
+}

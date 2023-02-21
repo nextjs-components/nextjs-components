@@ -8,7 +8,6 @@ export default function Activity({ color = "currentcolor", size }: Props) {
   return (
     <svg
       fill="none"
-      width={size || iconSize.size}
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
       stroke="currentColor"
@@ -16,6 +15,7 @@ export default function Activity({ color = "currentcolor", size }: Props) {
       strokeLinejoin="round"
       strokeWidth="1.5"
       viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={{ color }}
     >
       <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>

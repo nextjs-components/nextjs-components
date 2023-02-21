@@ -1,27 +1,24 @@
 import React from "react";
 
 import { useIconSize } from "../contexts/IconSizeContext";
+import { Props } from "./props";
 
-export const FacebookIcon = ({ size = 24 }) => {
+export default function Facebook({ color = "currentcolor", size }: Props) {
   const iconSize = useIconSize();
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size || iconSize.size}
+      fill="none"
       height={size || iconSize.size}
-      viewBox="0 0 216 216"
-      // color="#ffffff"
+      shapeRendering="geometricPrecision"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
+      width={size || iconSize.size}
+      style={{ color }}
     >
-      <path
-        // fill="#ffffff"
-        fill="#4267B2"
-        d="
-          M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9
-          11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1
-          11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2
-          15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3
-          11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"
-      ></path>
+      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
     </svg>
   );
-};
+}
