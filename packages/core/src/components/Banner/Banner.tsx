@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
-import XIcon from "../../icons/XIcon";
+import XIcon from "../../icons/x";
 import styles from "./Banner.module.css";
 import { default as useBanner } from "./useBanner";
 

@@ -102,7 +102,7 @@ const map = {
   code: null,
   codepen: null,
   codesandbox: null,
-  coffee: Icons.CoffeeIcon,
+  coffee: Icons.Coffee,
   columns: null,
   command: null,
   compass: null,
