@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
-      - run: npm install
+      - run: npm install --force
         working-directory: ./packages/core
       - run: npm run build:babel
         working-directory: ./packages/core
