@@ -4,10 +4,10 @@ import { useFocusRing, useId } from "react-aria";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import { useTheme } from "../../contexts/ThemeContext";
-import Moon from "../../icons/Moon";
-import Sun from "../../icons/Sun";
 import ChevronUpDown from "../../icons/chevron-up-down";
-import DisplayIcon from "../../icons/display";
+import Display from "../../icons/display";
+import Moon from "../../icons/moon";
+import Sun from "../../icons/sun";
 import Label from "../Label/Label";
 import styles from "./Select.module.css";
 
@@ -22,7 +22,7 @@ const ModeSelect = () => {
           <span className={styles.prefix}>
             {mode === "dark" && <Moon />}
             {mode === "light" && <Sun />}
-            {mode === "system" && <DisplayIcon />}
+            {mode === "system" && <Display />}
           </span>
 
           <select
