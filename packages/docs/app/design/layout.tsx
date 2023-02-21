@@ -8,7 +8,7 @@ import { Input } from "nextjs-components/src/components/Input";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Text } from "nextjs-components/src/components/Text";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";
-import Search from "nextjs-components/src/icons/Search";
+import Search from "nextjs-components/src/icons/search";
 import React from "react";
 import { useEffect, useState } from "react";
 
