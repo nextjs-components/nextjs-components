@@ -10,7 +10,6 @@ export default function AlertCircleFill({
   const iconSize = useIconSize();
   return (
     <svg
-      width={size || iconSize.size}
       height={size || iconSize.size}
       shapeRendering="geometricPrecision"
       stroke="currentColor"
@@ -18,6 +17,7 @@ export default function AlertCircleFill({
       strokeLinejoin="round"
       strokeWidth="1.5"
       viewBox="0 0 24 24"
+      width={size || iconSize.size}
       style={
         {
           color: color,
