@@ -1,0 +1,196 @@
+import { Container, Switch } from "nextjs-components";
+import { Grid, List } from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Switch
+
+<Spacer y={0.8} />
+
+## Choose between a set of options.
+
+<Spacer y={2} />
+
+### Default
+
+Ensure the width of each item is wide enough to prevent jumping when active.
+
+<Spacer />
+
+<Editor
+  scope={{Container,Switch}}
+  code={`() => {
+  const [active, setActive] = React.useState('source')
+
+return (
+
+    <Container left>
+      <Switch
+        items={[
+          {
+            name: 'Source',
+            value: 'source',
+            width: 80
+          },
+          {
+            name: 'Output',
+            value: 'output',
+            width: 90,
+          }
+        ]}
+        active={active}
+        onChange={v => setActive(v)}
+      />
+    </Container>
+
+)
+}`}
+/>
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor
+  scope={{Container,Switch}}
+  code={`() => {
+  const [active, setActive] = React.useState('source')
+
+return (
+
+    <Container left>
+      <Switch
+        items={[
+          {
+            name: 'Source',
+            value: 'source',
+            width: 80
+          },
+          {
+            name: 'Output',
+            value: 'output',
+            width: 90,
+            disabled: true
+          }
+        ]}
+        active={active}
+        onChange={v => setActive(v)}
+      />
+    </Container>
+
+)
+}`}
+/>
+
+<Spacer y={2} />
+
+### Sizes
+
+<Editor
+  scope={{Container,Switch}}
+  code={`() => {
+  const [active, setActive] = React.useState('source')
+  const items = [
+    {
+      name: 'Source',
+      value: 'source',
+      width: 80
+    },
+    {
+      name: 'Output',
+      value: 'output',
+      width: 100
+    }
+  ]
+
+return (
+
+    <Container top direction={['column', 'column', 'row']}>
+      <Container left>
+        <Switch
+          items={items}
+          active={active}
+          onChange={v => setActive(v)}
+          size="small"
+        />
+      </Container>
+
+      <Container left>
+        <Switch
+          items={items}
+          active={active}
+          onChange={v => setActive(v)}
+        />
+      </Container>
+
+      <Container left>
+        <Switch
+          items={items}
+          active={active}
+          onChange={v => setActive(v)}
+          size="large"
+        />
+      </Container>
+    </Container>
+
+)
+}`}/>
+
+<Spacer y={2} />
+
+### Tooltip (TODO)
+
+<Spacer y={2} />
+
+### Icon
+
+<Editor 
+  scope={{Container,Switch, Grid, List}}
+  code={`() => {
+  const [active, setActive] = React.useState('source')
+  const items = [
+    {
+      name: <Grid />,
+      value: 'source',
+      width: 80
+    },
+    {
+      name: <List />,
+      value: 'list',
+      width: 100
+    }
+  ]
+
+return (
+
+      <Container top direction={['column', 'column', 'row']}>
+        <Container left>
+          <Switch
+            items={items}
+            active={active}
+            onChange={v => setActive(v)}
+            size="small"
+    	    icon
+           />
+    	</Container>
+    	<Container left>
+    	  <Switch
+    	    items={items}
+    	    active={active}
+    	    onChange={v => setActive(v)}
+    	    icon
+        />
+    	</Container>
+    	<Container left>
+    	  <Switch
+          items={items}
+          active={active}
+          onChange={v => setActive(v)}
+          size="large"
+          icon
+        />
+    	</Container>
+      </Container>
+
+)
+}`}/>

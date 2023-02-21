@@ -2,47 +2,138 @@
   display: flex;
   align-items: center;
   position: relative;
+  padding: 3px;
+  background: var(--geist-background);
+  border: 1px solid var(--accents-2);
   border-radius: var(--geist-radius);
   max-width: 100%;
   height: var(--geist-form-height);
   font-size: var(--geist-form-font);
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
+
+.switch .button {
+  min-width: var(--geist-form-height);
+}
+
 .switch.small {
   height: var(--geist-form-small-height);
   font-size: var(--geist-form-small-font);
 }
+
+.switch.small .tooltip {
+  height: 24px;
+}
+
+.switch.small .button {
+  min-width: var(--geist-form-small-height);
+}
+
 .switch.large {
   height: var(--geist-form-large-height);
   font-size: var(--geist-form-large-font);
 }
 
-.button.active {
-  background-color: var(--accents-1);
+.switch.large .button {
+  min-width: var(--geist-form-large-height);
 }
-.button.active {
-  font-weight: 700;
+
+.tooltip {
+  height: 32px;
 }
-.switch > :first-child {
-  border-radius: var(--geist-radius) 0 0 var(--geist-radius);
-  border-left: 1px solid var(--accents-2);
+
+.switch.large .tooltip {
+  height: 40px;
 }
-.switch > :last-child {
-  border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
-  border-left: none;
+
+.button[aria-checked="true"] {
+  color: var(--geist-foreground);
+  background-color: var(--accents-2);
 }
+
 .button {
   margin: 0;
   font-size: inherit;
   height: 100%;
   cursor: pointer;
-  background: none;
-  outline: none;
-  z-index: 1;
-  border: 1px solid var(--accents-2);
-  border-left: none;
-  color: var(--geist-foreground);
+  background: var(--geist-background);
+  font-family: var(--font-sans);
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 3px;
+  font-weight: 500;
+  border: none;
+  outline-color: var(--geist-foreground);
+  color: var(--accents-4);
+  transition-property: color;
+  transition-duration: 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    color: var(--geist-foreground);
+  }
+}
+
+.lite .button {
+  display: inline-flex;
+  width: auto;
+  padding: 0 var(--geist-gap-half);
+}
+
+.lite .button:focus {
+  background-color: var(--accents-1);
+}
+
+@media (hover: hover) {
+  .lite .button:hover {
+    background-color: var(--accents-1);
+  }
+}
+
+.button[disabled] {
+  color: var(--accents-3);
+  cursor: not-allowed;
+}
+
+.switch.icon .button {
+  width: 40px;
+  height: 32px;
+}
+
+.switch.icon .button svg {
+  height: 16px;
+  width: 16px;
+}
+
+.switch.icon.small .button {
+  width: 36px;
+  height: 24px;
+}
+
+.switch.icon.small .button svg {
+  height: 16px;
+  width: 16px;
+}
+
+.switch.icon.large .button {
+  width: 48px;
+  height: 40px;
+}
+
+.switch.icon.large .button svg {
+  height: 20px;
+  width: 20px;
+}
+
+.switch.icon .button {
+  min-width: auto;
 }

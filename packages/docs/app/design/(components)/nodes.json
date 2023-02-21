@@ -10,14 +10,7 @@
   { "name": "Menu", "path": "/design/menu" },
   { "name": "Modal", "path": "/design/modal" },
   { "name": "Radio", "path": "/design/radio" },
-  { "name": "Select", "path": "/design/select" },
-  { "name": "Show More", "path": "/design/show-more" },
-  { "name": "Snippet", "path": "/design/snippet" },
-  { "name": "Spinner", "path": "/design/spinner" },
   { "name": "Stack", "path": "/design/stack" },
-  { "name": "Status Dot", "path": "/design/status-dot" },
-  { "name": "Table", "path": "/design/table" },
-  { "name": "Text", "path": "/design/text" },
-  { "name": "Toast", "path": "/design/toast" },
-  { "name": "Toggle", "path": "/design/toggle" }
+  { "name": "Switch", "path": "/design/switch" },
+  { "name": "Table", "path": "/design/table" }
 ]
