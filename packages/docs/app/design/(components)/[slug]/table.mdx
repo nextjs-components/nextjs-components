@@ -1,0 +1,167 @@
+import Link from "next/link";
+import { Table } from "nextjs-components";
+
+export const columns = [
+  {
+    Header: "First Name",
+    accessor: "first",
+  },
+  {
+    Header: "Last Name",
+    accessor: "last",
+  },
+  {
+    Header: "Email",
+    accessor: "email",
+  },
+];
+
+export const data = [
+  {
+    first: "John",
+    last: "Doe",
+    email: "john@doe.com",
+  },
+  {
+    first: "Dorothy",
+    last: "Boe",
+    email: "dorothy@boe.com",
+  },
+  {
+    first: "Baby",
+    last: "Moe",
+    email: "baby@moe.com",
+  },
+];
+
+<Spacer y={0.6} />
+
+# Table
+
+<Spacer y={0.8} />
+
+## Display tabular data in row format. Some examples use the following variables for brevity:
+
+<Spacer y={2} />
+
+### Default
+
+Always provide a caption. Columns and data <b>must</b> be memoized.
+
+<Spacer />
+
+<Editor
+  scope={{ Table, columns, data }}
+  code={`<Table
+  columns={columns}
+  data={data}
+  caption="A basic table."
+/>`}
+/>
+
+<Spacer y={2} />
+
+### Placeholder
+
+<Editor
+  scope={{ Table, columns }}
+  code={`<Table
+  columns={columns}
+  data={[]}
+  caption="A table with placeholder rows."
+  defaultRows={3}
+  placeholder
+/>`}
+/>
+
+<Spacer y={2} />
+
+### Empty
+
+Use the same number of placeholder rows used while loading to avoid layout shift.
+
+<Spacer />
+
+<Editor
+  scope={{ Table, columns, Link }}
+  code={`
+<Table
+  columns={columns}
+  data={[]}
+  caption="An empty table."
+  defaultRows={3}
+  empty={
+    <>
+      No rows to display.{' '}
+      <Link href="#" type="highlight">
+        Import a project?
+      </Link>
+    </>
+  }
+/>
+`}
+/>
+
+<Spacer y={2} />
+
+### Column Align
+
+Set the align property to change text alignment. Left by default.
+
+<Spacer />
+
+<Editor 
+  scope={{Table, data}}
+  code={`
+() => {
+  const columns = React.useMemo(() => [
+    {
+      Header: 'First Name',
+      accessor: 'first'
+    },
+    {
+      Header: 'Last Name',
+      accessor: 'last',
+      align: 'center'
+    },
+    {
+      Header: 'Email',
+      accessor: 'email',
+      align: 'right'
+    }
+  ], [])
+
+return (
+
+<Table
+  columns={columns}
+  data={data}
+  caption="A table with right and left aligned columns."
+/>
+) }`} />
+
+<Spacer y={2} />
+
+### Overflow
+
+Pass a number to change the minimum width of the table. Disable with a falsy value.
+
+<Spacer />
+
+<Editor
+  scope={{ Table, columns, data }}
+  code={`
+<Table
+  columns={columns}
+  data={data}
+  caption="A table with minimum with of 1000px."
+  overflow={1000}
+/>
+`}
+/>
+
+<Spacer y={2} />
+
+### Rest todo...
+
+<Spacer y={4} />

@@ -16,6 +16,7 @@ import Menu from "./menu.mdx";
 import Modal from "./modal.mdx";
 import Radio from "./radio.mdx";
 import Stack from "./stack.mdx";
+import Table from "./table.mdx";
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {
@@ -33,6 +34,7 @@ export default function Slug({ params: { slug } }) {
       case "modal":          return <Modal/>
       case "radio":          return <Radio/>
       case "stack":          return <Stack/>
+      case "table":          return <Table/>
 
       default:
         return (
