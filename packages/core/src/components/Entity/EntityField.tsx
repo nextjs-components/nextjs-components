@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import { Container } from "../../components/Container";
 import Skeleton from "../../components/Skeleton";
-import MoreVertical from "../../icons/MoreVertical";
+import MoreVertical from "../../icons/more-vertical";
 import reset from "../../styles/reset/reset.module.css";
 import button from "../Button/button.module.css";
 import { Spacer } from "../Spacer";
