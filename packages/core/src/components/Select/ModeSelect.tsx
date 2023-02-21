@@ -4,10 +4,10 @@ import { useFocusRing, useId } from "react-aria";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import { useTheme } from "../../contexts/ThemeContext";
-import ChevronUpDown from "../../icons/ChevronUpDown";
-import DisplayIcon from "../../icons/DisplayIcon";
 import Moon from "../../icons/Moon";
 import Sun from "../../icons/Sun";
+import ChevronUpDown from "../../icons/chevron-up-down";
+import DisplayIcon from "../../icons/display";
 import Label from "../Label/Label";
 import styles from "./Select.module.css";
 

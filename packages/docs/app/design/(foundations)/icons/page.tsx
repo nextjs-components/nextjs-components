@@ -14,15 +14,15 @@ import { ListItem } from "./list";
 import listStyles from "./list.module.css";
 
 const map = {
-  activity: null,
-  airplay: null,
+  activity: Icons.Activity,
+  airplay: Icons.Airplay,
   "alert-circle": Icons.AlertCircle,
-  "alert-circle-fille": null,
-  "alert-octagon": null,
+  "alert-circle-fille": Icons.AlertCircleFill,
+  "alert-octagon": Icons.AlertOctagon,
   "alert-triangle": Icons.AlertTriangle,
-  "alert-triangle-fill": null,
+  "alert-triangle-fill": Icons.AlertTriangleFill,
   "align-center": Icons.AlignCenter,
-  "align-justify": null,
+  "align-justify": Icons.AlignJustify,
   "align-left": Icons.AlignLeft,
   "align-right": Icons.AlignRight,
   anchor: null,

@@ -3,7 +3,7 @@ import React from "react";
 import { useFocusRing, useId } from "react-aria";
 
 import ThemeContext from "../../contexts/IconSizeContext/IconSizeContext";
-import ChevronDown from "../../icons/ChevronDown";
+import ChevronDown from "../../icons/chevron-down";
 import Label from "../Label/Label";
 import styles from "./Select.module.css";
 

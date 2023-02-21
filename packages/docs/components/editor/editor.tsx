@@ -69,7 +69,6 @@ const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
         <div className={styles.editor}>
           <div className={styles.editorTrigger} onClick={() => setOpen(!open)}>
             <svg
-              data-testid="geist-icon"
               fill="none"
               height="16"
               shapeRendering="geometricPrecision"
