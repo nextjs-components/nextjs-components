@@ -1,29 +1,38 @@
-export { default } from "../../views/docs";
-export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
+import {
+  Avatar,
+  Container,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuLink,
+  MenuWrapper,
+} from "nextjs-components";
+import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  MoreHorizontal,
+} from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
 
 # Menu
 
-{/* prettier-ignore */}
-<Text
-  as="h2"
-  color="geist-secondary"
-  size={20}
-  weight={400}
-  style={{ margin: "revert" }}
->Dropdown menu opened via button. Supports typeahead and keyboard navigation.</Text>
+<Spacer y={0.8} />
+
+## Dropdown menu opened via button. Supports typeahead and keyboard navigation.
 
 <Spacer y={2} />
 
 ### Default
 
-{/* prettier-ignore */}
-<Text 
-  color="geist-secondary"
-  size={16}
-  style={{ margin: "revert" }}
->MenuButton extends the <Link href="/design/button">Button component</Link>.</Text>
+MenuButton extends the <Link href="/design/button">Button component</Link>.
 
-```
+<Spacer />
+
+<Editor
+  scope={{ Menu, MenuButton, MenuItem, MenuWrapper }}
+  code={`
 <MenuWrapper>
   <MenuButton>Actions</MenuButton>
   <Menu width={200}>
@@ -33,13 +42,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <MenuItem onClick={() => alert('Delete')} type="error">Delete</MenuItem>
   </Menu>
 </MenuWrapper>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Disabled Items
 
-```
+<Editor
+  scope={{ Menu, MenuButton, MenuItem, MenuWrapper }}
+  code={`
 <MenuWrapper>
   <MenuButton>Actions</MenuButton>
   <Menu width={200}>
@@ -49,20 +61,20 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <MenuItem>Four</MenuItem>
   </Menu>
 </MenuWrapper>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Link Items
 
-{/* prettier-ignore */}
-<Text 
-  color="geist-secondary"
-  size={16}
-  style={{ margin: "revert" }}
->MenuLink extends the <Link href="/design/link">Link component</Link>.</Text>
+MenuLink extends the <Link href="/design/link">Link component</Link>.
 
-```
+<Spacer />
+
+<Editor
+  scope={{ Menu, MenuButton, MenuLink, MenuWrapper }}
+  code={`
 <MenuWrapper>
   <MenuButton>Links</MenuButton>
   <Menu width={200}>
@@ -71,20 +83,20 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <MenuLink href="#">Three</MenuLink>
   </Menu>
 </MenuWrapper>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Custom Trigger
 
-{/* prettier-ignore */}
-<Text 
-  color="geist-secondary"
-  size={16}
-  style={{ margin: "revert" }}
->The trigger is still wrapped by an unstyled button.</Text>
+The trigger is still wrapped by an unstyled button.
 
-```
+<Spacer />
+
+<Editor
+  scope={{ Menu, MenuButton, MenuItem, MenuWrapper, Avatar }}
+  code={`
 <MenuWrapper>
   <MenuButton variant="unstyled">
     <Avatar size={30} src="https://thekevinwang.com/image/kevin.webp" />
@@ -95,13 +107,16 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     <MenuItem>Three</MenuItem>
   </Menu>
 </MenuWrapper>
-```
+`}
+/>
 
 <Spacer y={2} />
 
 ### Prefix and Suffix
 
-```
+<Editor 
+    scope={{ Menu, MenuButton, MenuItem, MenuWrapper, MoreHorizontal, AlignLeft, AlignCenter, AlignRight, Container }}
+  code={`
 <Container row>
   <Container>
     <MenuWrapper>
@@ -129,8 +144,8 @@ export { getStaticProps } from "../../layouts/DesignLayout/getStaticProps";
     </MenuWrapper>
   </Container>
 </Container>
-```
+`} />
+
+### TODO
 
 <Spacer y={4} />
-
-To be continued...
