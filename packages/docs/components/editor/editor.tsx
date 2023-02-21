@@ -2,8 +2,8 @@ import { Button } from "nextjs-components/src/components/Button";
 import { Container } from "nextjs-components/src/components/Container";
 import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
-import CopyIcon from "nextjs-components/src/icons/CopyIcon";
 import RotateCW from "nextjs-components/src/icons/RotateCW";
+import CopyIcon from "nextjs-components/src/icons/copy";
 import React from "react";
 import { useState } from "react";
 import {
