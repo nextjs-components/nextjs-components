@@ -1,0 +1,81 @@
+<Spacer y={0.6} />
+
+# Status Dot
+
+<Spacer y={0.8} />
+
+## Display an indicator of deployment status.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+<Editor 
+  scope={{}}
+  code={`
+<Container left>
+  <Container>
+    <StatusDot state="QUEUED" />
+  </Container>
+
+{" "}
+
+<Container>
+  <StatusDot state="BUILDING" />
+</Container>
+
+{" "}
+
+<Container>
+  <StatusDot state="ERROR" />
+</Container>
+
+{" "}
+
+<Container>
+  <StatusDot state="READY" />
+</Container>
+
+  <Container>
+    <StatusDot state="CANCELED" />
+  </Container>
+</Container>
+`} />
+
+<Spacer y={2} />
+
+### Label
+
+<Editor 
+  scope={{}}
+  code={`
+<Container left>
+  <Container>
+    <StatusDot state="QUEUED" label />
+  </Container>
+
+{" "}
+
+<Container>
+  <StatusDot state="BUILDING" label />
+</Container>
+
+{" "}
+
+<Container>
+  <StatusDot state="ERROR" label />
+</Container>
+
+{" "}
+
+<Container>
+  <StatusDot state="READY" label />
+</Container>
+
+  <Container>
+    <StatusDot state="CANCELED" label />
+  </Container>
+</Container>
+`} />
+
+<Spacer y={2} />

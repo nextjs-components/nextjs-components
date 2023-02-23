@@ -1,0 +1,47 @@
+import { Capacity, Container } from "nextjs-components";
+
+# Capacity
+
+{/* prettier-ignore */}
+<Text as="h2" color="geist-secondary" size={20} weight={400} style={{margin: "revert"}}>Display an capacity indicator.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+{/* prettier-ignore */}
+<Text size={16} style={{ color: "var(--geist-secondary)", margin: "revert" }}>These sizes are standardized across form components.</Text>
+
+<Spacer />
+
+<Editor 
+  scope={{Container, Capacity}}
+  code={`<Container left>
+  <Container center>
+    <Capacity value={15} limit={100} />
+  </Container>
+
+<Container center>
+  <Capacity value={45} limit={100} />
+</Container>
+
+  <Container center>
+    <Capacity value={90} limit={100} />
+  </Container>
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### Fixed color
+
+<Editor
+  scope={{ Container, Capacity }}
+  code={`<Container left>
+  <Container center>
+    <Capacity value={65} limit={100} color="var(--geist-success)" />
+  </Container>
+</Container>`}
+/>
+
+<Spacer y={4} />

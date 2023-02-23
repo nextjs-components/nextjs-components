@@ -3,31 +3,9 @@
 //
 // if using `.js`, you may see "SyntaxError: Cannot use import statement outside a module"
 import withMDX from "@next/mdx";
-import withPlugins from "next-compose-plugins";
-import withTM from "next-transpile-modules";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-
-const plugins = [
-  withMDX({
-    extension: /\.mdx?$/,
-    options: {
-      // remarkGfm is required to process syntax like tables
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [
-        rehypeSlug, // inject `id` into headings
-        [
-          rehypeAutolinkHeadings,
-          { behavior: "wrap", test: ["h2", "h3", "h4", "h5", "h6"] },
-        ],
-      ],
-      // this is here since we're using `MDXProvider`
-      providerImportSource: "@mdx-js/react",
-    },
-  }),
-  withTM(["nextjs-components", "../core"]),
-];
 
 /**
  * @type {import('next').NextConfig}
@@ -37,6 +15,29 @@ const nextConfig = {
   // must be false or else this breaks FocusScope
   reactStrictMode: false,
   pageExtensions: ["mdx", "tsx", "ts"],
+  swcMinify: true,
+  transpilePackages: ["nextjs-components", "../core"],
+  experimental: {
+    appDir: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
-export default withPlugins(plugins, nextConfig);
+export default withMDX({
+  extension: /\.mdx?$/,
+  options: {
+    // remarkGfm is required to process syntax like tables
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeSlug, // inject `id` into headings
+      [
+        rehypeAutolinkHeadings,
+        { behavior: "wrap", test: ["h3", "h4", "h5", "h6"] },
+      ],
+    ],
+    // this is here since we're using `MDXProvider`
+    providerImportSource: "@mdx-js/react",
+  },
+})(nextConfig);

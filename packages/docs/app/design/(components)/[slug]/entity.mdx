@@ -1,0 +1,316 @@
+import Link from "next/link";
+import {
+  Avatar,
+  Button,
+  Checkbox,
+  Container,
+  Entity,
+  EntityField,
+  EntityThumbnail,
+} from "nextjs-components";
+import { MenuItem } from "nextjs-components/src/components/Menu";
+import {
+  FacebookIcon as Facebook,
+  Github,
+  GoogleIcon as Google,
+} from "nextjs-components/src/icons";
+
+export let isMounted = true;
+
+# Entity
+
+<Spacer y={0.8} />
+
+## Display a collection of related information of a resource entity.
+
+<Spacer y={2} />
+
+### Fields
+
+<Editor
+  scope={{ Entity, EntityField, Avatar, isMounted, Link }}
+  code={`<Entity placeholder={!isMounted}>
+  <EntityField title="GitHub" description="Kevin Wang" />
+  <EntityField active={false} title="Inactive" description="This field is inactive" />
+  <EntityField width="20%" title="Fixed Width" description={<Link color tab href="/docs">Open docs</Link>} />
+  <EntityField label width={100} title="Label" description={<i>Encrypted</i>} />
+  <EntityField right description="Right Aligned" avatar={<Avatar size={24} src="https://thekevinwang.com/image/kevin.webp" />} />
+</Entity>`}
+/>
+
+<Spacer y={2} />
+
+### Thumbnail
+
+<Editor
+  scope={{ Entity, EntityField, Avatar, isMounted, Link, Spacer, EntityThumbnail, Github }}
+  code={`<>
+  <Entity
+    placeholder={!isMounted}
+    thumbnail={
+      <EntityThumbnail size={24}>
+        <Github width={24} height={24} />
+      </EntityThumbnail>
+    }
+   >
+    <EntityField title="GitHub" description={<>Derpy Derp (<Link color tab href="https://github.com/thiskevinwang">@thiskevinwang</Link>)</>} />
+    <EntityField right description="Connected 1h ago" />
+  </Entity>
+
+<Spacer />
+
+  <Entity
+    placeholder={!isMounted}
+    thumbnail={
+      <EntityThumbnail wrap size={36}>
+        <Avatar size={36} src="https://thekevinwang.com/image/kevin.webp" />
+      </EntityThumbnail>
+    }
+  >
+    <EntityField title="Derpy Derp" description="Thumbnail size and wrap options"/>
+    <EntityField right description="Connected 1h ago"/>
+  </Entity>
+</>`}/>
+
+<Spacer y={2} />
+
+### Menu
+
+<Editor
+  scope={{
+    Entity,
+    EntityField,
+    Avatar,
+    isMounted,
+    Link,
+    Spacer,
+    EntityThumbnail,
+    Github,
+    MenuItem,
+  }}
+  code={`<Entity
+  placeholder={!isMounted}
+  thumbnail={
+    <EntityThumbnail size={24}>
+      <Github width={24} height={24} />
+    </EntityThumbnail>
+  }
+  menuItems={<>
+    <MenuItem onClick={() => alert('clicked')}>
+      Inspect
+    </MenuItem>
+    <MenuItem style={{ color: 'var(--geist-error)' }} onClick={() => alert('clicked')}>
+      Remove
+    </MenuItem>
+  </>}
+>
+  <EntityField title="PUBLIC_KEY" description="Production"/>
+  <EntityField label title="VALUE" description="6863EFA205B4680BE7928E"/>
+  <EntityField right width={200} description="Added 1h ago" avatar={<Avatar size={24} src="https://thekevinwang.com/image/kevin.webp" />}/>
+</Entity>`}
+/>
+
+<Spacer y={2} />
+
+### Footer
+
+<Editor
+  scope={{ Link }}
+  code={`<>TODO: <a rel="noopener" target="_blank" href="https://vercel.com/design/entity#footer">https://vercel.com/design/entity#footer</a>
+</>`}
+/>
+
+<Spacer y={2} />
+
+### Actions
+
+<Editor
+  scope={{
+    Entity,
+    EntityField,
+    Avatar,
+    isMounted,
+    Link,
+    Spacer,
+    EntityThumbnail,
+    Github,
+    MenuItem,
+    Facebook,
+    Google,
+    Container,
+    Button,
+  }}
+  code={`<Entity
+  placeholder={!isMounted}
+  thumbnail={
+    <EntityThumbnail wrap size={32}>
+      <Avatar size={32} src="https://thekevinwang.com/image/kevin.webp" />
+    </EntityThumbnail>
+  }
+  menuItems={<>
+    <MenuItem onClick={() => alert('clicked')}>
+      Inspect
+    </MenuItem>
+    <MenuItem style={{ color: 'var(--geist-error)' }} onClick={() => alert('clicked')}>
+      Remove
+    </MenuItem>
+  </>}
+  footer={<Container row vcenter>
+    <Github size={14} /><Spacer x={.4}/>thiskevinwang
+    <Spacer x={.8}/>
+    <Facebook size={14} /><Spacer x={.4}/>thekevinwang
+    <Spacer x={.8}/>
+    <Google size={14} /><Spacer x={.4}/>thekevinwang
+  </Container>}
+  actions={<Container row gap={.5}>
+    <Container>
+      <Button size={"small"} type="secondary">Decline</Button>
+    </Container>
+    <Container>
+      <Button size={"small"} type="success">Accept</Button>
+    </Container>
+  </Container>}
+>
+  <EntityField title="Kevin Wang" description="derp"/>
+</Entity>`}
+/>
+
+<Spacer y={2} />
+
+### Checkbox
+
+<Editor
+  scope={{
+    Entity,
+    EntityField,
+    Checkbox,
+    Button,
+    isMounted,
+  }}
+  code={`<Entity
+  placeholder={!isMounted}
+  checkbox={<Checkbox onChange={() => alert('clicked')}/>}
+  actions={<Button size={"small"} type="secondary">Revoke</Button>}
+>
+  <EntityField title="Derpy CLI on localhost" description="Last used just now"/>
+</Entity>`}
+/>
+
+<Spacer y={2} />
+
+### Mixed
+
+<Editor
+  scope={{}}
+  code={`<>TODO: <a rel="noopener" target="_blank" href="https://vercel.com/design/entity#mixed">
+    https://vercel.com/design/entity#mixed</a>
+  </>`}
+/>
+
+<Spacer y={2} />
+
+### Skeleton
+
+<Editor
+  scope={{
+    Avatar,
+    Entity,
+    EntityField,
+    EntityThumbnail,
+    MenuItem,
+    Checkbox,
+    Button,
+    isMounted,
+    Github,
+    Facebook,
+    Google,
+    Container,
+    Spacer,
+  }}
+  code={`<>
+  <Entity
+    placeholder
+    thumbnail={
+      <EntityThumbnail wrap size={32}>
+        <Avatar size={32} src="https://thekevinwang.com/image/kevin.webp" />
+      </EntityThumbnail>
+    }
+    checkbox={
+      <Checkbox
+        onChange={e => alert('clicked')}
+        checked
+      />
+    }
+    menuItems={<>
+      <MenuItem>
+        Foo
+      </MenuItem>
+    </>}
+    actions={<>
+      <Button size={"small"} type="success">Accept</Button>
+    </>}
+  >
+    <EntityField width={160} title="GitHub" description="Kevin Wang" titleSkeletonWidth="50%" descriptionSkeletonWidth="80%" />
+    <EntityField label width="20%" title="VALUE" description="6863EFA205B4680BE7928E" descriptionSkeletonWidth="100%" />
+    <EntityField right description="Connected 1h ago"/>
+  </Entity>
+
+  <Entity
+    placeholder
+    thumbnail={
+      <EntityThumbnail wrap size={32}>
+        <Avatar size={32} src="https://thekevinwang.com/image/kevin.webp" />
+      </EntityThumbnail>
+    }
+    menuItems={<>
+      <MenuItem>
+        Foo
+      </MenuItem>
+    </>}
+    footer={<Container row vcenter>
+      <Github size={14} /><Spacer x={.4}/>thiskevinwang
+      <Spacer x={.8}/>
+      <Facebook size={14} /><Spacer x={.4}/>thekevinwang
+      <Spacer x={.8}/>
+      <Google size={14} /><Spacer x={.4}/>thekevinwang
+    </Container>}
+    actions={<Container row gap={.5}>
+      <Container>
+        <Button size={"small"} type="secondary">Decline</Button>
+      </Container>
+      <Container>
+        <Button size={"small"} type="success">Accept</Button>
+      </Container>
+    </Container>}
+  >
+    <EntityField width={120} title="GitHub" description="Kevin WAng"/>
+    <EntityField label title="VALUE" description="6863EFA205B4680BE7928E"/>
+    <EntityField right width="50%" description="Connected 1h ago"/>
+  </Entity>
+</>`}/>
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor scope={{}} code={`<>Todo</>`} />
+
+<Spacer y={2} />
+
+### Form
+
+<Editor scope={{}} code={`<>Todo</>`} />
+
+<Spacer y={2} />
+
+### Form with Entities
+
+<Editor scope={{}} code={`<>Todo</>`} />
+
+<Spacer y={2} />
+
+### Form as Entity Footer
+
+<Editor scope={{}} code={`<>Todo</>`} />
+
+<Spacer y={4} />

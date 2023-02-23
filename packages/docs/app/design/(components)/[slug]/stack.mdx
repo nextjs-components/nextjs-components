@@ -1,0 +1,108 @@
+import { Stack } from "nextjs-components";
+
+export const Box = () => {
+  return (
+    <div
+      style={{
+        background: "var(--geist-success)",
+        width: 50,
+        height: 50,
+        borderRadius: 4,
+      }}
+    />
+  );
+};
+
+<Spacer y={0.6} />
+
+# Stack
+
+<Spacer y={0.8} />
+
+## Display elements vertically or horizontally on the page.
+
+<Example>
+  <Stack gap={3}>
+    <Box />
+    <Box />
+    <Box />
+  </Stack>
+</Example>
+
+<Spacer y={2} />
+
+### Props
+
+| Name      | Type                                                                                                                   | Description                  | Default      |
+| --------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ------------ |
+| children  | `ReactNodeNoStrings`                                                                                                   | Elements to lay out..        | -            |
+| as        | `enum`                                                                                                                 | Root element.                | `div`        |
+| gap       | `ResponsiveProp<0 \| 1 \| 2 \| 3 \| 4 \| 5 \| 6 \| 7 \| 8 \| 9 \| 10 \| 11 \| 12 \| 13 \| 14 \| 15 \| 16 \| 17 \| 18>` | Gap unit, increments of 4px. | -            |
+| direction | `ResponsiveProp<Direction>`                                                                                            | Flexbox \`flex-direction\`.  | `column`     |
+| align     | `ResponsiveProp<Align>`                                                                                                | Flexbox \`align-items\`.     | `stretch`    |
+| justify   | `ResponsiveProp<Justify>`                                                                                              | Flexbox \`justify-content\`. | `flex-start` |
+| flex      | `string \| number`                                                                                                     | Flexbox \`flex\`.            | `initial`    |
+| debug     | `boolean`                                                                                                              | Visualize the whitespace.    | -            |
+| className | `string`                                                                                                               | Root element cvlass name.    | -            |
+| style     | `CSSProperties`                                                                                                        | Root element inline styles.  | -            |
+
+### Gap
+
+Gap is a unit on a 4px grid scale.
+
+<Spacer />
+
+<Editor
+  scope={{ Stack, Box }}
+  code={`
+<Stack gap={3}>
+  <Box />
+  <Box />
+  <Box />
+</Stack>
+`}
+/>
+
+<Spacer y={2} />
+
+### Responsive
+
+Resize the window to observe changes to the layout.
+
+<Spacer />
+
+<Editor
+  scope={{ Stack, Box }}
+  code={`
+<Stack
+  gap={{ sm: 2, md: 5, lg: 10 }}
+  direction={{ sm: 'column', lg: 'row'}}
+>
+  <Box />
+  <Box />
+  <Box />
+</Stack>
+`}
+/>
+
+<Spacer y={2} />
+
+### Debug
+
+<Editor
+  scope={{ Stack, Box }}
+  code={`
+<Stack
+  gap={4}
+  direction="row"
+  debug
+>
+  <Box />
+  <Box />
+  <Stack gap={8} direction="row" debug>
+    <Box />
+    <Box />
+  </Stack>
+</Stack>
+`}
+/>

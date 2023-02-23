@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
+import ChevronRight from "../../icons/chevron-right";
+
 export interface ShowMoreProps {
   expanded?: boolean;
   onClick?: () => void;
@@ -15,21 +17,7 @@ const ShowMore: React.ComponentType<ShowMoreProps> = ({
       <button onClick={onClick}>
         {expanded ? "Show Less" : "Show More"}
         <span className={clsx({ expanded })}>
-          <svg
-            data-testid="geist-icon"
-            fill="none"
-            height="16"
-            shapeRendering="geometricPrecision"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            width="16"
-            style={{ color: "currentcolor" }}
-          >
-            <path d="M6 9l6 6 6-6"></path>
-          </svg>
+          <ChevronRight size={16} />
         </span>
       </button>
       <div className="line" />

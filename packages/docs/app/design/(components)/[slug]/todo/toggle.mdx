@@ -1,0 +1,73 @@
+<Spacer y={0.6} />
+
+# Toggle
+
+<Spacer y={0.8} />
+
+## Displays a boolean value.</Text>
+
+<Spacer y={2} />
+
+### Default
+
+<Editor 
+  scope={{}}
+  code={`
+() => {
+  const [checked, setChecked] = useState(false)
+  const [checked2, setChecked2] = useState(true)
+
+return (
+
+<Container>
+<Container>
+<Toggle checked={checked} onChange={() => setChecked(!checked)} />
+</Container>
+
+      <Container>
+        <Toggle checked={checked2} onChange={() => setChecked2(!checked2)} />
+      </Container>
+    </Container>
+
+)
+}
+
+`} />
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor
+  scope={{}}
+  code={`
+<Container>
+  <Container>
+    <Toggle disabled />
+  </Container>
+
+  <Container>
+    <Toggle disabled checked />
+  </Container>
+</Container>
+`} />
+
+<Spacer y={2} />
+
+### Sizes
+
+<Editor 
+  scope={{}}
+  code={`
+<Container row>
+  <Container>
+    <Toggle />
+  </Container>
+
+  <Container>
+    <Toggle size="large" />
+  </Container>
+</Container>
+`} />
+
+<Spacer y={2} />

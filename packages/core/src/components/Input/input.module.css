@@ -1,0 +1,187 @@
+.container {
+  display: flex;
+  align-items: center;
+  font-size: var(--geist-form-font);
+  max-width: 100%;
+}
+
+.input {
+  font: inherit;
+  font-size: 100%;
+  width: 100%;
+  min-width: 0;
+  display: inline-flex;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid var(--themed-border, var(--accents-2));
+  border-radius: var(--geist-radius);
+  padding: 0 var(--geist-gap-half);
+  background: var(--themed-bg, var(--geist-background));
+  color: var(--themed-fg, var(--geist-foreground));
+  height: var(--geist-form-height);
+  line-height: normal;
+  order: 1;
+  outline: none;
+  transition: border-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container:not(:global(.geist-themed)) .input:focus {
+  border-color: var(--accents-5);
+}
+
+.input::placeholder {
+  color: var(--themed-fg);
+  opacity: 0.4;
+}
+
+.input[disabled] {
+  background: var(--accents-1);
+  border-color: var(--accents-2);
+  color: var(--accents-5);
+  opacity: 1;
+  -webkit-text-fill-color: var(--accents-5);
+  cursor: not-allowed;
+}
+
+:global(.geist-error) > .input[disabled] {
+  border-color: var(--themed-border, var(--accents-2));
+  background: var(--themed-bg, var(--accents-1));
+  color: var(--themed-fg, var(--accents-5));
+  -webkit-text-fill-color: var(--themed-fg, var(--accents-5));
+}
+
+.input[disabled]::placeholder {
+  opacity: 1;
+  color: var(--accents-3);
+  -webkit-text-fill-color: var(--accents-3);
+}
+
+.prefix {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.suffix {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.prefix .input {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.suffix .input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.container:global(.geist-themed) .prefix > :first-child:not([disabled]),
+.container:global(.geist-themed) .suffix > :last-child:not([disabled]) {
+  border-color: var(--themed-border);
+  color: var(--themed-fg);
+}
+
+.prefix > :nth-child(2),
+.suffix > :last-child {
+  flex-shrink: 0;
+  position: relative;
+  color: var(--accents-4);
+  background: var(--accents-1);
+  border: 1px solid var(--accents-2);
+  height: var(--geist-form-height);
+  padding: 0 var(--geist-gap-half);
+  display: flex;
+  align-items: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.prefix > :nth-child(2) {
+  order: 0;
+  border-right: 0;
+  border-radius: var(--geist-radius) 0 0 var(--geist-radius);
+}
+
+.suffix > :last-child {
+  order: 2;
+  border-left: 0;
+  border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
+}
+
+.prefix.noPrefixStyle > :nth-child(2) {
+  background: var(--geist-background);
+  margin-right: var(--geist-gap-half-negative);
+  border-color: var(--themed-border, var(--accents-2));
+}
+
+.prefix.noPrefixStyle .input {
+  border-left: 0;
+}
+
+.suffix.noSuffixStyle > :last-child {
+  background: var(--geist-background);
+  margin-left: var(--geist-gap-half-negative);
+  border-color: var(--themed-border, var(--accents-2));
+}
+
+.suffix.noSuffixStyle .input {
+  border-right: 0;
+}
+
+.prefix.noPrefixStyle .input:focus + *,
+.suffix.noSuffixStyle .input:focus ~ :last-child {
+  border-color: var(--themed-border, var(--accents-5));
+}
+
+.prefix.noPrefixStyle .input[disabled] + *,
+.suffix.noSuffixStyle .input[disabled] ~ :last-child {
+  background: var(--accents-1);
+  cursor: not-allowed;
+}
+
+.large .input {
+  height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+}
+
+.small .input {
+  font-size: var(--geist-form-small-font);
+  height: var(--geist-form-small-height);
+}
+
+.large.prefix > :nth-child(2),
+.large.suffix > :last-child {
+  height: var(--geist-form-large-height);
+  font-size: var(--geist-form-large-font);
+}
+
+.small.prefix > :nth-child(2),
+.small.suffix > :last-child {
+  padding: 0 var(--geist-gap-quarter);
+  height: var(--geist-form-small-height);
+  font-size: var(--geist-form-small-font);
+}
+
+.mediumSmall .input {
+  padding: 0 var(--geist-gap-quarter);
+}
+
+.mediumSmall.prefix > :nth-child(2) {
+  padding: 0 var(--geist-gap-quarter);
+  margin-right: var(--geist-gap-quarter-negative);
+}
+
+@media (max-width: 600px) {
+  .container {
+    font-size: 1rem;
+  }
+}
+
+.input[type="search"]::-webkit-search-cancel-button,
+.input[type="search"]::-webkit-search-decoration,
+.input[type="search"]::-webkit-search-results-button,
+.input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}

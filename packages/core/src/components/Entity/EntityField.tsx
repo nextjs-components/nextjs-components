@@ -3,8 +3,7 @@ import { useContext } from "react";
 
 import { Container } from "../../components/Container";
 import Skeleton from "../../components/Skeleton";
-import { Text } from "../../components/Text";
-import MoreVertical from "../../icons/MoreVertical";
+import MoreVertical from "../../icons/more-vertical";
 import reset from "../../styles/reset/reset.module.css";
 import button from "../Button/button.module.css";
 import { Spacer } from "../Spacer";
@@ -57,18 +56,19 @@ const EntityField = ({
   const placeholder = useContext(PlaceHolderContext);
 
   const _description = (
-    <Text
-      as={"p"}
+    <p
       className={clsx(
         styles.description,
+        "geist-text",
         "geist-themed",
         "geist-ellipsis",
         "geist-secondary",
+        "geist-text-no-margin",
         "body-2",
       )}
     >
       {description}
-    </Text>
+    </p>
   );
 
   return (
@@ -126,15 +126,16 @@ const EntityField = ({
               width={titleSkeletonWidth || "40%"}
             />
           ) : (
-            <Text
-              as={"p"}
+            <p
               className={clsx(
+                "geist-text",
                 "geist-themed",
                 {
                   ["geist-default"]: !label && active !== false,
                   ["geist-secondary"]: label || active === false,
                 },
                 "geist-ellipsis",
+                "geist-text-no-margin",
                 "body-2",
                 label ? "label" : "w-600",
                 {
@@ -144,7 +145,7 @@ const EntityField = ({
               )}
             >
               {title}
-            </Text>
+            </p>
           ))}
 
         {/* Description */}
@@ -181,7 +182,7 @@ const EntityField = ({
               <span className={button.content}>
                 <span className={dotsMenu.container}>
                   <span className={dotsMenu.menu}>
-                    <MoreVertical size={18} weight={"light"} />
+                    <MoreVertical size={18} />
                   </span>
                 </span>
               </span>

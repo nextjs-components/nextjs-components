@@ -1,0 +1,151 @@
+import {
+  Avatar,
+  Container,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuLink,
+  MenuWrapper,
+} from "nextjs-components";
+import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
+  MoreHorizontal,
+} from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Menu
+
+<Spacer y={0.8} />
+
+## Dropdown menu opened via button. Supports typeahead and keyboard navigation.
+
+<Spacer y={2} />
+
+### Default
+
+MenuButton extends the <Link href="/design/button">Button component</Link>.
+
+<Spacer />
+
+<Editor
+  scope={{ Menu, MenuButton, MenuItem, MenuWrapper }}
+  code={`
+<MenuWrapper>
+  <MenuButton>Actions</MenuButton>
+  <Menu width={200}>
+    <MenuItem onClick={() => alert('One')}>One</MenuItem>
+    <MenuItem onClick={() => alert('Two')}>Two</MenuItem>
+    <MenuItem onClick={() => alert('Three')}>Three</MenuItem>
+    <MenuItem onClick={() => alert('Delete')} type="error">Delete</MenuItem>
+  </Menu>
+</MenuWrapper>
+`}
+/>
+
+<Spacer y={2} />
+
+### Disabled Items
+
+<Editor
+  scope={{ Menu, MenuButton, MenuItem, MenuWrapper }}
+  code={`
+<MenuWrapper>
+  <MenuButton>Actions</MenuButton>
+  <Menu width={200}>
+    <MenuItem disabled>One</MenuItem>
+    <MenuItem>Two</MenuItem>
+    <MenuItem disabled>Three</MenuItem>
+    <MenuItem>Four</MenuItem>
+  </Menu>
+</MenuWrapper>
+`}
+/>
+
+<Spacer y={2} />
+
+### Link Items
+
+MenuLink extends the <Link href="/design/link">Link component</Link>.
+
+<Spacer />
+
+<Editor
+  scope={{ Menu, MenuButton, MenuLink, MenuWrapper }}
+  code={`
+<MenuWrapper>
+  <MenuButton>Links</MenuButton>
+  <Menu width={200}>
+    <MenuLink href="/design/menu#custom-trigger">One</MenuLink>
+    <MenuLink href="#">Two</MenuLink>
+    <MenuLink href="#">Three</MenuLink>
+  </Menu>
+</MenuWrapper>
+`}
+/>
+
+<Spacer y={2} />
+
+### Custom Trigger
+
+The trigger is still wrapped by an unstyled button.
+
+<Spacer />
+
+<Editor
+  scope={{ Menu, MenuButton, MenuItem, MenuWrapper, Avatar }}
+  code={`
+<MenuWrapper>
+  <MenuButton variant="unstyled">
+    <Avatar size={30} src="https://thekevinwang.com/image/kevin.webp" />
+  </MenuButton>
+  <Menu width={200}>
+    <MenuItem>One</MenuItem>
+    <MenuItem>Two</MenuItem>
+    <MenuItem>Three</MenuItem>
+  </Menu>
+</MenuWrapper>
+`}
+/>
+
+<Spacer y={2} />
+
+### Prefix and Suffix
+
+<Editor 
+    scope={{ Menu, MenuButton, MenuItem, MenuWrapper, MoreHorizontal, AlignLeft, AlignCenter, AlignRight, Container }}
+  code={`
+<Container row>
+  <Container>
+    <MenuWrapper>
+      <MenuButton size="small" shape="square" type="secondary">
+        <MoreHorizontal />
+      </MenuButton>
+      <Menu divide>
+        <MenuItem prefix={<AlignLeft />}>Left</MenuItem>
+        <MenuItem prefix={<AlignCenter />}>Center</MenuItem>
+        <MenuItem prefix={<AlignRight />}>Right</MenuItem>
+      </Menu>
+    </MenuWrapper>
+  </Container>
+
+  <Container>
+    <MenuWrapper>
+      <MenuButton size="small" shape="square" type="secondary">
+        <MoreHorizontal />
+      </MenuButton>
+      <Menu divide>
+        <MenuItem suffix={<AlignLeft />}>Left</MenuItem>
+        <MenuItem suffix={<AlignCenter />}>Center</MenuItem>
+        <MenuItem suffix={<AlignRight />}>Right</MenuItem>
+      </Menu>
+    </MenuWrapper>
+  </Container>
+</Container>
+`} />
+
+### TODO
+
+<Spacer y={4} />

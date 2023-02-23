@@ -3,17 +3,14 @@ import React from "react";
 import type { CSSProperties } from "react";
 import { memo, useState } from "react";
 
-import { DepthContextProvider, useDepth } from "./DepthContext";
 import {
-  fileIcon,
-  /**
-   * TODO - convert to JSX icons
-   */
-  folderIcon,
-  lambdaIcon,
-  minusIcon,
-  plusIcon,
-} from "./file-tree-icons";
+  File as FileIcon,
+  Folder as FolderIcon,
+  FileLambda as LambdaIcon,
+  MinusSquare as MinusIcon,
+  PlusSquare as PlusIcon,
+} from "../../icons";
+import { DepthContextProvider, useDepth } from "./DepthContext";
 import styles from "./file-tree.module.css";
 
 export const Tree = ({ children, style }) => {
@@ -47,9 +44,13 @@ export const Folder: React.FC<React.PropsWithChildren<FolderProps>> = memo(
               return <span key={i} data-tree-indent=""></span>;
             })}
             <span className={styles.status}>
-              {open || isOpen ? minusIcon : plusIcon}
+              {open || isOpen ? (
+                <MinusIcon size={12} />
+              ) : (
+                <PlusIcon size={12} />
+              )}
             </span>
-            <span className={styles.icon}>{folderIcon}</span>
+            <span className={styles.icon}>{<FolderIcon size={22} />}</span>
             <span className={styles.name}>{name}</span>
           </a>
           {(open || isOpen) && <ul>{children}</ul>}
@@ -73,7 +74,11 @@ export const File: React.ComponentType<FileProps> = memo(
             return <span key={i} data-tree-indent=""></span>;
           })}
           <span className={styles.icon}>
-            {type === "lambda" ? lambdaIcon : fileIcon}
+            {type === "lambda" ? (
+              <LambdaIcon size={22} />
+            ) : (
+              <FileIcon size={22} />
+            )}
           </span>
           <span className={styles.name}>{name}</span>
         </a>

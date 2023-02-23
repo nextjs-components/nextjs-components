@@ -1,0 +1,31 @@
+import { Button, Note, Spacer, Stack, Text } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Playground
+
+<Spacer y={0.8} />
+
+Play with documented components.
+
+<Spacer y={2} />
+
+<Editor 
+scope={{ Spacer, Stack, Text, Button, Note }}
+code={`() => {
+  return (
+    <Stack>
+      <Stack justify='space-between' align='center' direction='row' gap={2}>
+        <Text as="h2" size={40}>Play</Text>
+        <Button success>START</Button>
+      </Stack>
+
+      <Stack>
+        <Note>It is a happy talent to know how to play.</Note>
+      </Stack>
+
+    </Stack>
+
+)}`} />
+
+<Spacer y={4} />

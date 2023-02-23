@@ -1,0 +1,236 @@
+import { Container, Text as T } from "nextjs-components";
+
+export const BlueContainer = ({ children, ...props }) => {
+  return (
+    <Container
+      {...props}
+      style={{
+        background: "var(--geist-success)",
+        color: "rgb(255, 255, 255)",
+        padding: "var(--geist-gap-half)",
+        borderRadius: "var(--geist-radius)",
+        "--flex": 1,
+        "--justify-content": "flex-start",
+        "--align-items": "stretch",
+        "--color": "rgb(255, 255, 255)",
+        ...props.style,
+      }}
+    >
+      {children}
+    </Container>
+  );
+};
+
+export const Text = ({ children }) => (
+  <T color="rgb(255,255,255)">{children}</T>
+);
+
+<Spacer y={0.6} />
+
+# Grid
+
+<Spacer y={0.8} />
+
+## Grid system used to create complex layouts
+
+<Spacer y={2} />
+
+### Rows
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container>
+  <BlueContainer>
+    <Text small>Container</Text>
+  </BlueContainer>
+
+  <BlueContainer>
+    <Text small>Container</Text>
+  </BlueContainer>
+</Container>
+`}/>
+
+<Spacer y={2} />
+
+### Columns
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container row>
+  <BlueContainer>
+    <Text small>Container</Text>
+  </BlueContainer>
+
+{" "}
+
+<BlueContainer>
+  <Text small>Container</Text>
+</BlueContainer>
+
+  <BlueContainer>
+    <Text small>Container</Text>
+  </BlueContainer>
+</Container>
+`}/>
+
+<Spacer y={2} />
+
+### Flexboxes
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container row>
+  <BlueContainer flex={1}>
+    <Text small>Flex = 1</Text>
+  </BlueContainer>
+
+{" "}
+
+<BlueContainer flex={2}>
+  <Text small>Flex = 2</Text>
+</BlueContainer>
+
+{" "}
+
+<BlueContainer flex={3}>
+  <Text small>Flex = 3</Text>
+</BlueContainer>
+
+  <BlueContainer flex="0 0 50px">
+    <Text small>50px</Text>
+  </BlueContainer>
+</Container>
+`}/>
+
+<Spacer y={2} />
+
+### Mix
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container row>
+  <BlueContainer>
+    <Text small>Container</Text>
+  </BlueContainer>
+
+{" "}
+
+<BlueContainer flex={2}>
+  <Text small>Container</Text>
+</BlueContainer>
+
+  <Container flex={3}>
+    <BlueContainer>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+  </Container>
+</Container>
+`}/>
+
+<Spacer y={2} />
+
+### Alignments
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container>
+  <Container row>
+    <BlueContainer flex={2} style={{ height: 100 }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer style={{ alignSelf: 'flex-start' }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer style={{ alignSelf: 'center' }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer style={{ alignSelf: 'flex-end' }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+  </Container>
+
+  <Container>
+    <BlueContainer center>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer style={{ alignSelf: 'flex-start' }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer style={{ alignSelf: 'center' }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer style={{ alignSelf: 'flex-end' }}>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+  </Container>
+</Container>
+`}/>
+
+<Spacer y={2} />
+
+### Responsive
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container direction={['column', 'column', 'row']}>
+  <BlueContainer>
+    <Text small>Left</Text>
+  </BlueContainer>
+
+  <BlueContainer>
+    <Text small>Right</Text>
+  </BlueContainer>
+</Container>
+`}/>
+
+<Spacer y={2} />
+
+### Gaps
+
+<Editor 
+  scope={{Container,BlueContainer,Text}}
+  code={`
+<Container row gap={0.5}>
+  <BlueContainer>
+    <Text small>Container</Text>
+  </BlueContainer>
+
+{" "}
+
+<BlueContainer>
+  <Text small>Container</Text>
+</BlueContainer>
+
+  <Container gap={2}>
+    <BlueContainer>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+    <BlueContainer>
+      <Text small>Container</Text>
+    </BlueContainer>
+
+  </Container>
+</Container>
+`}/>
+
+<Spacer y={4} />

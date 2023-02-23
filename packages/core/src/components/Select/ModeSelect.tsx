@@ -4,17 +4,17 @@ import { useFocusRing, useId } from "react-aria";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import { useTheme } from "../../contexts/ThemeContext";
-import ChevronUpDown from "../../icons/ChevronUpDown";
-import DisplayIcon from "../../icons/DisplayIcon";
-import Moon from "../../icons/Moon";
-import Sun from "../../icons/Sun";
+import ChevronUpDown from "../../icons/chevron-up-down";
+import Display from "../../icons/display";
+import Moon from "../../icons/moon";
+import Sun from "../../icons/sun";
 import Label from "../Label/Label";
 import styles from "./Select.module.css";
 
 const ModeSelect = () => {
   const { isFocusVisible, focusProps } = useFocusRing();
   const id = useId();
-  const { selectTheme, mode } = useTheme();
+  const { setTheme, theme: mode } = useTheme();
   return (
     <IconSizeContext.Provider value={{ size: 16 }}>
       <Label htmlFor={id}>
@@ -22,7 +22,7 @@ const ModeSelect = () => {
           <span className={styles.prefix}>
             {mode === "dark" && <Moon />}
             {mode === "light" && <Sun />}
-            {mode === "system" && <DisplayIcon />}
+            {mode === "system" && <Display />}
           </span>
 
           <select
@@ -33,7 +33,7 @@ const ModeSelect = () => {
             })}
             aria-label="Change color theme"
             onChange={(e) => {
-              selectTheme(e.target.value);
+              setTheme(e.target.value);
             }}
             value={mode}
           >
