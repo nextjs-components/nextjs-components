@@ -1,9 +1,5 @@
 "use client";
 
-import { MDXProvider } from "@mdx-js/react";
-
-import { mdxComponents } from "@/mdx-components";
-
 import Button from "./button.mdx";
 import Capacity from "./capacity.mdx";
 import Entity from "./entity.mdx";
@@ -48,9 +44,5 @@ export default function Slug({ params: { slug } }) {
     }
   };
 
-  return (
-    <MDXProvider components={mdxComponents}>
-      <Page />
-    </MDXProvider>
-  );
+  return <Page />;
 }

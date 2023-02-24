@@ -17,12 +17,6 @@ import {
 import "./geist-text.css";
 import styles from "./index.module.css";
 
-export const metadata: Metadata = {
-  title: "Nextjs components",
-  description: "Nextjs components",
-  icons: [{ url: "/favicon.ico" }],
-};
-
 const Page = () => {
   return (
     <div>

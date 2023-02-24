@@ -19,6 +19,7 @@ const nextConfig = {
   transpilePackages: ["nextjs-components", "../core"],
   experimental: {
     appDir: true,
+    mdxRs: true,
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -37,7 +38,5 @@ export default withMDX({
         { behavior: "wrap", test: ["h3", "h4", "h5", "h6"] },
       ],
     ],
-    // this is here since we're using `MDXProvider`
-    providerImportSource: "@mdx-js/react",
   },
 })(nextConfig);
