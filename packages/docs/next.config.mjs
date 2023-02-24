@@ -19,7 +19,12 @@ const nextConfig = {
   transpilePackages: ["nextjs-components", "../core"],
   experimental: {
     appDir: true,
-    mdxRs: true,
+    // mdxRs: true,
+    // Error: file-tree.mdx:Error: "16:49: Could not parse expression with swc: Unexpected eof"
+
+    // Import trace for requested module:
+    // ./app/design/(components)/[slug]/file-tree.mdx
+    // ./app/design/(components)/[slug]/page.tsx
   },
   typescript: {
     ignoreBuildErrors: true,
