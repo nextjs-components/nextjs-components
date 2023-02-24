@@ -1,14 +1,17 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
 import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
+import { Link as LinkIcon } from "nextjs-components/src/icons";
 import React from "react";
 
 import { Editor } from "@/components/editor";
 import { Example } from "@/components/example";
+import link from "@/components/link/link.module.css";
 
 import styles from "./app/design/design.module.css";
 
-export const mdxComponents = {
+const mdxComponents = {
   th: ({ children, ...props }) => {
     return (
       <th className={"head-cell"}>
@@ -155,9 +158,12 @@ export const mdxComponents = {
     const text = children.props.children;
     const newChild = React.cloneElement(children, {
       id,
+      className: clsx(link.link, link["fragment-link"]),
       children: (
         <>
-          {/* todo: link icon */}
+          <i className={link.anchor}>
+            <LinkIcon size={16} />
+          </i>
           <Text as="h3" size={20} weight={600}>
             {text}
           </Text>
@@ -212,3 +218,7 @@ export const mdxComponents = {
   Editor,
   Example,
 };
+
+export function useMDXComponents(components) {
+  return { ...mdxComponents, ...components };
+}

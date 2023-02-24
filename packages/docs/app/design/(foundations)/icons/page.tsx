@@ -1,21 +1,15 @@
 "use client";
 
-import { MDXProvider } from "@mdx-js/react";
 import { Container, Spacer, Text } from "nextjs-components";
 import { Input } from "nextjs-components/src/components/Input";
 import * as Icons from "nextjs-components/src/icons";
 import { useMemo, useState } from "react";
-
-import { mdxComponents } from "@/mdx-components";
 
 import styles from "../../design.module.css";
 import { iconMap } from "./icon-map";
 import IconsMdx from "./icons.mdx";
 import { ListItem } from "./list";
 import listStyles from "./list.module.css";
-
-const total = Object.keys(iconMap).length;
-const present = Object.keys(iconMap).filter((key) => iconMap[key]).length;
 
 export default function IconsPage() {
   const [search, setSearch] = useState("");
@@ -27,8 +21,8 @@ export default function IconsPage() {
     [search],
   );
   return (
-    <MDXProvider components={mdxComponents}>
-      <IconsMdx total={total} present={present} />
+    <>
+      <IconsMdx />
 
       <div
         className={styles.module}
@@ -104,6 +98,6 @@ export default function IconsPage() {
           }
         `}</style>
       </div>
-    </MDXProvider>
+    </>
   );
 }

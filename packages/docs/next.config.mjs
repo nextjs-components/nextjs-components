@@ -19,6 +19,12 @@ const nextConfig = {
   transpilePackages: ["nextjs-components", "../core"],
   experimental: {
     appDir: true,
+    // mdxRs: true,
+    // Error: file-tree.mdx:Error: "16:49: Could not parse expression with swc: Unexpected eof"
+
+    // Import trace for requested module:
+    // ./app/design/(components)/[slug]/file-tree.mdx
+    // ./app/design/(components)/[slug]/page.tsx
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -37,7 +43,5 @@ export default withMDX({
         { behavior: "wrap", test: ["h3", "h4", "h5", "h6"] },
       ],
     ],
-    // this is here since we're using `MDXProvider`
-    providerImportSource: "@mdx-js/react",
   },
 })(nextConfig);

@@ -1,0 +1,113 @@
+.link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.link[data-focus-visible-added] {
+  outline: 2px auto currentColor;
+  outline-offset: 4px;
+}
+
+.primary {
+  color: var(--geist-foreground);
+}
+
+@media (hover: hover) {
+  .primary:hover:not(.disabled) {
+    background-image: linear-gradient(
+      var(--geist-foreground),
+      var(--geist-foreground)
+    );
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+.highlight {
+  color: var(--geist-link-color);
+}
+
+@media (hover: hover) {
+  .highlight:hover:not(.disabled) {
+    background-image: linear-gradient(
+      var(--geist-link-color),
+      var(--geist-link-color)
+    );
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+.secondary {
+  color: var(--accents-5);
+  transition: color 0.1s ease;
+}
+
+@media (hover: hover) {
+  .secondary:hover:not(.disabled) {
+    color: var(--geist-foreground);
+  }
+}
+
+.blend {
+  color: inherit;
+  transition: opacity 0.1s ease;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  .blend:hover:not(.disabled) {
+    opacity: 0.6;
+  }
+}
+
+.underline {
+  color: inherit;
+}
+
+@media (hover: hover) {
+  .underline:hover:not(.disabled) {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+.external {
+  display: inline-flex;
+  align-items: center;
+}
+
+.externalIcon {
+  flex-shrink: 0;
+  margin-left: var(--geist-space);
+}
+
+.fragment-link {
+  display: inline-flex;
+  align-items: center;
+  --anchor-opacity: 0;
+}
+
+@media (hover: hover) {
+  .fragment-link:hover {
+    --anchor-opacity: 1;
+  }
+}
+
+.anchor {
+  opacity: var(--anchor-opacity);
+  transition: opacity 0.1s;
+  position: absolute;
+  transform: translateX(-200%);
+  display: inline-flex;
+}
