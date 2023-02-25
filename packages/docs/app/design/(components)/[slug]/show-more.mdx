@@ -1,0 +1,24 @@
+import { ShowMore } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Show More
+
+<Spacer y={0.8} />
+
+## Styling component to show expanded or collapsed content.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ ShowMore }}
+  code={`
+() => {
+  const [expanded, setExpanded] = React.useState(false)
+return (<ShowMore expanded={expanded} onClick={() => setExpanded(!expanded)} />) }
+`}
+/>
+
+<Spacer y={4} />

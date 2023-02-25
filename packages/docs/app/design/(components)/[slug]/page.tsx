@@ -12,6 +12,7 @@ import Menu from "./menu.mdx";
 import Modal from "./modal.mdx";
 import Radio from "./radio.mdx";
 import Select from "./select.mdx";
+import ShowMore from "./show-more.mdx";
 import Stack from "./stack.mdx";
 import Switch from "./switch.mdx";
 import Table from "./table.mdx";
@@ -44,6 +45,8 @@ export default function Slug({ params: { slug } }) {
         return <Radio />;
       case "select":
         return <Select />;
+      case "show-more":
+        return <ShowMore />;
       case "stack":
         return <Stack />;
       case "switch":
