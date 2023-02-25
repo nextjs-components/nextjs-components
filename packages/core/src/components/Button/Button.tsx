@@ -53,29 +53,18 @@ const Button: React.ComponentType<Props> = forwardRef(
     const ref = useRef<HTMLButtonElement>();
     const { buttonProps, isPressed } = useButton(
       {
+        ...props,
         type: "submit",
         isDisabled: isDisabled || loading,
         onFocusChange: setFocused,
-        onKeyDown: (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            onClick?.(e as any);
-            setFocused(true);
-          }
+        onPress: (e) => {
+          onClick?.(e);
           return e;
         },
-        // e.pointerType: "mouse" | "touch"
-        // finger executes click on press end
-        onPressEnd: (e) => {
-          if (e.pointerType === "touch") {
-            onClick?.(e as any);
-          }
-          return e;
-        },
-        // mouse executes click on press start
-        onPressStart: (e) => {
+        onPressStart(e) {
+          // prevent focus ring on mouse click
           if (e.pointerType === "mouse") {
             setFocused(false);
-            onClick?.(e as any);
           }
           return e;
         },
@@ -93,6 +82,7 @@ const Button: React.ComponentType<Props> = forwardRef(
 
     return (
       <button
+        {...props}
         {...hoverProps}
         {...buttonProps}
         data-focus={isFocused ? "" : null}
@@ -143,7 +133,6 @@ const Button: React.ComponentType<Props> = forwardRef(
           ],
           className,
         ])}
-        {...props}
         ref={mergeRefs([ref, externalRef])}
       >
         <IconSizeContext.Provider value={iconSizeContextValue}>
