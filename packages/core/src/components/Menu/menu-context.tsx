@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from "react";
+import { type PopoverAria } from "react-aria";
 import { usePopper } from "react-popper";
 
 export interface IMenuContext {
@@ -19,6 +20,7 @@ export interface IMenuContext {
   selectFirstNonDisabled: () => void;
   handleKey: () => void;
   closeAndRestoreFocus: () => void;
+  _popover: PopoverAria;
 }
 
 const MenuContext = createContext<IMenuContext>({
@@ -39,6 +41,7 @@ const MenuContext = createContext<IMenuContext>({
   selectFirstNonDisabled: () => {},
   handleKey: () => {},
   closeAndRestoreFocus: () => {},
+  _popover: null,
 });
 
 export default MenuContext;
