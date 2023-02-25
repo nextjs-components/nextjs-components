@@ -18,6 +18,7 @@ import Stack from "./stack.mdx";
 import StatusDot from "./status-dot.mdx";
 import Switch from "./switch.mdx";
 import Table from "./table.mdx";
+import Text from "./text.mdx";
 import Toggle from "./toggle.mdx";
 
 export default function Slug({ params: { slug } }) {
@@ -59,6 +60,8 @@ export default function Slug({ params: { slug } }) {
         return <Switch />;
       case "table":
         return <Table />;
+      case "text":
+        return <Text />;
       case "toggle":
         return <Toggle />;
 
