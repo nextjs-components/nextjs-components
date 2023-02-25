@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import React, { PointerEventHandler, forwardRef, useRef } from "react";
-import { useId } from "react-aria";
+import React, { PointerEventHandler, forwardRef, useId, useRef } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import classes from "./Menu.module.css";
@@ -41,6 +40,7 @@ export const MenuItemInner: React.ForwardRefExoticComponent<
           ref={ref as any}
           data-geist-menu-item=""
           data-geist-menu-link=""
+          data-selected={props["data-selected"]}
         >
           <Component
             aria-disabled={props["aria-disabled"]}
