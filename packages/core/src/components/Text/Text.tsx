@@ -68,6 +68,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
   style?: React.CSSProperties;
   title?: string;
   wrap?: boolean;
+  monospace?: boolean;
   dangerouslySetInnerHTML?: { __html: string };
 }
 
@@ -90,6 +91,7 @@ const Text = forwardRef<unknown, Props>(
       style = {},
       title,
       wrap,
+      monospace,
       dangerouslySetInnerHTML,
       ...rest
     },
@@ -112,6 +114,7 @@ const Text = forwardRef<unknown, Props>(
           [styles.clamp]: typeof truncate === "number",
           [styles[transform]]: !!transform,
           [styles.nowrap]: wrap === false,
+          [styles.monospace]: !!monospace,
         })}
         style={{
           ...style,
