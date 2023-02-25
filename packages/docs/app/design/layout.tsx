@@ -76,11 +76,18 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
         <aside className={styles.aside}>
           <div className={styles.asideInner}>
             <div className={styles["logo-container"]}>
-              <Avatar
-                size={36}
-                // src="https://thekevinwang.com/image/kevin.webp"
-                src="https://thekevinwang.com/favicon.ico"
-              />
+              <a
+                aria-label="Next.js Components GitHub Repository"
+                href="https://github.com/nextjs-components/nextjs-components"
+                target="_blank"
+                rel="noopener"
+              >
+                <Avatar
+                  size={36}
+                  // src="https://thekevinwang.com/image/kevin.webp"
+                  src="https://thekevinwang.com/favicon.ico"
+                />
+              </a>
               <ThemeSwitcher />
               <div
                 className={styles.burger}

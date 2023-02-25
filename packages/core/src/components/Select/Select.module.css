@@ -5,7 +5,7 @@
   color: var(--themed-fg);
 }
 
-.container:not(.geist-themed) {
+.container:not(:global(.geist-themed)) {
   --themed-fg: var(--geist-foreground);
   --themed-bg: var(--geist-background);
   --themed-border: var(--accents-2);
@@ -15,9 +15,7 @@
   cursor: pointer;
   font-size: 100%;
   font: inherit;
-  outline: none;
   -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   font-size: var(--geist-form-font);
   height: var(--geist-form-height);
@@ -33,8 +31,20 @@
   transition: border-color 0.15s ease;
 }
 
-.container:not(.geist-themed) .select:global(.focus-visible):focus {
+@media (hover: hover) {
+  .container:not(.disabled):hover .select {
+    border-color: var(--geist-foreground);
+  }
+
+  .container:not(.disabled):hover .prefix,
+  .container:not(.disabled):hover .suffix {
+    color: var(--geist-foreground);
+  }
+}
+
+.container:not(:global(.geist-themed)) .select:global(.focus-visible):focus {
   border-color: var(--accents-5);
+  outline: none;
 }
 
 .select:-moz-focusring {
@@ -89,4 +99,37 @@
 .small {
   font-size: var(--geist-form-small-font);
   height: var(--geist-form-small-height);
+}
+
+.xsmall {
+  height: 24px;
+  font-size: 12px;
+  padding: 0 24px;
+}
+
+.xsmallContainer svg {
+  height: 12px;
+  width: 12px;
+}
+
+.xsmallContainer .prefix + .select {
+  padding-left: 24px;
+}
+
+.xsmallContainer .suffix {
+  right: 8px;
+}
+
+.xsmallContainer .prefix {
+  left: 7px;
+}
+
+@media (max-width: 600px) {
+  .select {
+    font-size: 1rem;
+  }
+
+  .select.xsmall {
+    font-size: 12px;
+  }
 }

@@ -10,6 +10,7 @@
   { "name": "Menu", "path": "/design/menu" },
   { "name": "Modal", "path": "/design/modal" },
   { "name": "Radio", "path": "/design/radio" },
+  { "name": "Select", "path": "/design/select" },
   { "name": "Stack", "path": "/design/stack" },
   { "name": "Switch", "path": "/design/switch" },
   { "name": "Table", "path": "/design/table" }

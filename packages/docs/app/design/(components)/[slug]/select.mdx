@@ -1,24 +1,31 @@
+import { Container, Select, Spacer } from "nextjs-components";
+import { ArrowUp as Up } from "nextjs-components/src/icons";
+
 <Spacer y={0.6} />
 
 # Select
 
 <Spacer y={0.8} />
 
-## Display a dropdown list of items.</Text>
+## Display a dropdown list of items.
+
+<Example style={{ "--width": "60%" }}>
+  <Select placeholder="With label">
+    <option>Option 1</option>
+  </Select>
+</Example>
 
 <Spacer y={2} />
 
 ### Sizes
 
 <Editor 
-  scope={{}}
+  scope={{Container,Select}}
   code={`
 <Container direction={['column', 'row', 'row']} top>
   <Container left>
     <Select size="small" placeholder="Small" />
   </Container>
-
-{" "}
 
 <Container left>
   <Select placeholder="Default" />
@@ -35,7 +42,7 @@
 ### Sizes, Prefix, and Suffix
 
 <Editor 
-  scope={{}}
+  scope={{Container,Select,Up}}
   code={`
 <Container direction={['column', 'row', 'row']} top>
   <Container left>
@@ -46,8 +53,6 @@
       suffix={<Up />}
     />
   </Container>
-
-{" "}
 
 <Container left>
   <Select placeholder="Default" prefix={<Up />} suffix={<Up />} />
@@ -69,7 +74,7 @@
 ### Disabled
 
 <Editor
-  scope={{}}
+  scope={{ Container, Select }}
   code={`
 <Container direction={['column', 'row', 'row']} top>
   <Container>
@@ -84,7 +89,7 @@
 ### Prefix and Suffix Disabled
 
 <Editor
-  scope={{}}
+  scope={{ Container, Select, Up }}
   code={`
 <Container left>
   <Container>
@@ -99,7 +104,7 @@
 ### Other
 
 <Editor
-  scope={{}}
+  scope={{ Container, Select }}
   code={`
 <Container>
   <Select placeholder="With label" label="My label" />
@@ -107,4 +112,4 @@
 `}
 />
 
-<Spacer y={2} />
+<Spacer y={4} />
