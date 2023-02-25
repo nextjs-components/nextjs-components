@@ -108,12 +108,17 @@ const Text = forwardRef<unknown, Props>(
         className={clsx(className, styles.wrapper, styles[s], {
           [styles[w]]: !!weight,
           [styles[lh]]: !!lh,
-          [styles.truncate]: !!truncate,
+          [styles.truncate]: truncate === true,
+          [styles.clamp]: typeof truncate === "number",
           [styles[transform]]: !!transform,
           [styles.nowrap]: wrap === false,
         })}
-        // @ts-expect-error
-        style={{ ...style, "--color": `var(--${color})` }}
+        style={{
+          ...style,
+          // @ts-expect-error
+          "--color": `var(--${color})`,
+          "--clamp": typeof truncate === "number" ? truncate : undefined,
+        }}
         {...rest}
       >
         {children}
