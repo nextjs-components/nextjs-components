@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import React, { PointerEventHandler, forwardRef, useRef } from "react";
-import { useId } from "react-aria";
+import React, { PointerEventHandler, forwardRef, useId, useRef } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import classes from "./Menu.module.css";
@@ -41,6 +40,7 @@ export const MenuItemInner: React.ForwardRefExoticComponent<
           ref={ref as any}
           data-geist-menu-item=""
           data-geist-menu-link=""
+          data-selected={props["data-selected"]}
         >
           <Component
             aria-disabled={props["aria-disabled"]}
@@ -95,17 +95,12 @@ interface MenuItemProps {
 export const MenuItem: React.ComponentType<
   React.PropsWithChildren<MenuItemProps>
 > = ({ children, onClick, type, error, disabled, prefix, suffix }) => {
-  const { setOpen, listRef, selected, setSelected } = useMenu();
+  const { setOpen, selected, setSelected, listElement } = useMenu();
 
   const itemRef = useRef<HTMLLIElement>();
 
   // https://stackoverflow.com/a/23528539/9823455
-  // const idx =
-  //   listRef.current?.children &&
-  //   Array.prototype.indexOf.call(listRef.current.children, itemRef.current);
-  // equivalent to
-  // @ts-ignore TODO: use `--downlevelIteration`
-  const idx = [...(listRef.current?.childNodes.values() ?? [])].indexOf(
+  const idx = Array.from(listElement?.childNodes.values() ?? []).indexOf(
     itemRef.current,
   );
 
@@ -155,17 +150,12 @@ export const MenuLink = ({
   error,
   onClick,
 }) => {
-  const { setOpen, listRef, selected, setSelected } = useMenu();
+  const { setOpen, selected, setSelected, listElement } = useMenu();
 
   const itemRef = useRef<HTMLLIElement>();
 
   // https://stackoverflow.com/a/23528539/9823455
-  // const idx =
-  //   listRef.current?.children &&
-  //   Array.prototype.indexOf.call(listRef.current.children, itemRef.current);
-  // equivalent to
-  // @ts-ignore TODO: use `--downlevelIteration`
-  const idx = [...(listRef.current?.childNodes.values() ?? [])].indexOf(
+  const idx = Array.from(listElement?.childNodes.values() ?? []).indexOf(
     itemRef.current,
   );
 

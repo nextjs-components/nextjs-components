@@ -1,8 +1,7 @@
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { useId } from "react-aria";
-import { usePopper } from "react-popper";
+import React, { useEffect, useId, useRef, useState } from "react";
+import { FocusScope, usePopover } from "react-aria";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Drawer from "../Drawer";
@@ -23,40 +22,29 @@ import MenuContext, { useMenu } from "./menu-context";
  * </MenuWrapper>
  */
 export const MenuWrapper = ({ children }) => {
-  const listRef = useRef<HTMLUListElement>(null);
+  const [listElement, setListElement] = useState<HTMLUListElement>(null);
+
   const buttonRef = useRef<HTMLButtonElement>(null);
-
-  const [popperElement, setPopperElement] = useState<HTMLDivElement>(null);
-  const [arrowElement, setArrowElement] = useState<HTMLDivElement>(null);
-
-  const popper = usePopper(buttonRef.current, popperElement, {
-    placement: "bottom-start",
-    modifiers: [
-      { name: "arrow", options: { element: arrowElement } },
-      { name: "offset", options: { offset: [0, 10] } },
-    ],
-  });
+  const popperRef = useRef<HTMLDivElement>();
 
   const [selected, setSelected] = useState(-1);
 
   const [open, setOpen] = useState(false);
 
-  const menuId = useId();
-  const buttonId = useId();
+  const menuId = "menu-" + useId();
+  const buttonId = "menu-button-" + useId();
 
   return (
     <MenuContext.Provider
       value={{
+        popperRef,
+        buttonRef,
+        listElement,
+        setListElement,
+        menuId,
+        buttonId,
         open,
         setOpen,
-        menuId: `menu-${menuId}`,
-        buttonId: `button-${buttonId}`,
-        buttonRef,
-        listRef,
-        arrow: setArrowElement,
-        popper: setPopperElement,
-        popperStyles: popper.styles,
-        popperAttributes: popper.attributes,
         selected,
         setSelected,
         typeahead: "",
@@ -92,28 +80,25 @@ const MenuInner: React.FC<React.PropsWithChildren<MenuInnerProps>> = ({
   width,
   children,
 }) => {
-  const { listRef, menuId } = useMenu();
-
-  const isActive =
-    typeof window !== "undefined" &&
-    listRef.current?.contains(document.activeElement);
+  const { menuId, setListElement, buttonId } = useMenu();
 
   return (
-    <ul
-      id={menuId}
-      data-geist-menu=""
-      role="menu"
-      tabIndex={-1}
-      className={clsx(classes.menu, {
-        [classes.divide]: divide,
-        ["focus-visible"]: isActive,
-      })}
-      data-focus-visible-added={isActive ? "" : undefined}
-      style={{ width }}
-      ref={listRef}
-    >
-      {children}
-    </ul>
+    <FocusScope contain restoreFocus autoFocus>
+      <ul
+        ref={setListElement}
+        aria-labelledby={buttonId}
+        id={menuId}
+        data-geist-menu=""
+        role="menu"
+        tabIndex={-1}
+        className={clsx(classes.menu, {
+          [classes.divide]: divide,
+        })}
+        style={{ width }}
+      >
+        {children}
+      </ul>
+    </FocusScope>
   );
 };
 
@@ -130,23 +115,13 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
   width = 150,
   divide,
 }) => {
-  const { open, listRef, setOpen, buttonRef, selected, setSelected } =
+  const { open, listElement, setOpen, buttonRef, selected, setSelected } =
     useMenu();
 
   const isSmall = useMediaQuery("(max-width:600px)");
 
-  const prevFocusedEl = useRef<HTMLElement>(
-    document.activeElement as HTMLElement,
-  );
-
-  useEffect(() => {
-    if (open) {
-      // When the menu opens, focus it
-      prevFocusedEl.current = document.activeElement as HTMLElement;
-      listRef.current?.focus();
-    }
-  }, [open]);
-
+  // When MenuButton is focused, open the menu
+  // on arrow up/down
   useEffect(() => {
     if (!buttonRef.current) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -165,19 +140,11 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
     };
   }, [open, buttonRef.current]);
 
-  // handle keyboard actions
+  // When Menu is open, listen for keyboard events
   useEffect(() => {
-    if (!listRef.current) return;
+    if (!listElement) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
-        case "Tab":
-          e.preventDefault();
-          break;
-        case "Escape":
-          // close and focus the previous element. Likely the MenuButton.
-          setOpen(false);
-          prevFocusedEl.current.focus();
-          break;
         case "Enter":
         case " ":
           e.preventDefault();
@@ -222,85 +189,98 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
       }
     };
 
-    listRef.current?.addEventListener("keydown", handleKeyDown);
+    listElement.addEventListener("keydown", handleKeyDown);
     return () => {
-      listRef.current?.removeEventListener("keydown", handleKeyDown);
+      listElement.removeEventListener("keydown", handleKeyDown);
     };
-  }, [open, listRef.current, selected]);
+  }, [open, listElement, selected]);
 
-  // handle outside click
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const isOutside =
-        !buttonRef.current?.contains(e.target as Node) &&
-        !listRef.current?.contains(e.target as Node);
-
-      if (open && isOutside) {
+  // Drawer has its own portal so don't wrap it again.
+  // Drawer also handles slide animation so don't
+  // conditionally render it. Rely on `show={open}` instead.
+  return isSmall ? (
+    <Drawer
+      show={open}
+      onDismiss={() => {
         setOpen(false);
-      }
-    };
-
-    const handleFocusChange = (e: FocusEvent) => {
-      const isSelf =
-        e.target === listRef.current ||
-        e.target === buttonRef.current ||
-        listRef.current.contains(e.target as Node) ||
-        buttonRef.current.contains(e.target as Node);
-      if (!isSelf) setOpen(false);
-    };
-
-    document.addEventListener("focus", handleFocusChange, true);
-    document.addEventListener("touchstart", handleClick, true);
-    document.addEventListener("mousedown", handleClick, true);
-
-    return () => {
-      document.removeEventListener("focus", handleFocusChange, true);
-      document.removeEventListener("touchstart", handleClick, true);
-      document.removeEventListener("mousedown", handleClick, true);
-    };
-  }, [open, buttonRef.current, listRef.current]);
-
-  return (
+      }}
+    >
+      <MenuInner width={width} divide={divide}>
+        {children}
+      </MenuInner>
+    </Drawer>
+  ) : open ? (
     <Portal>
-      {isSmall ? (
-        <Drawer show={open}>
-          <MenuInner width={width} divide={divide}>
-            {children}
-          </MenuInner>
-        </Drawer>
-      ) : (
-        <Popper>
-          <MenuInner width={width} divide={divide}>
-            {children}
-          </MenuInner>
-        </Popper>
-      )}
+      <Popper>
+        <MenuInner width={width} divide={divide}>
+          {children}
+        </MenuInner>
+      </Popper>
     </Portal>
-  );
+  ) : null;
 };
 
 const Popper = ({ children }) => {
-  const { open, popper, popperStyles, popperAttributes, arrow } = useMenu();
+  const { popperRef, open, setOpen, buttonRef } = useMenu();
 
+  const { arrowProps, placement, popoverProps } = usePopover(
+    {
+      // "modal": injects "padding-right: 0px; overflow: hidden;" to the html element
+      // - prevents scrolling
+      // - closes on outside click
+      // "non-modal"
+      // - allows scrolling
+      // - doesn't close on outside click
+      // ∆ closes on outside click, escape, but allows scrolling too...
+      isNonModal: false,
+      popoverRef: popperRef,
+      triggerRef: buttonRef,
+      placement: "bottom start",
+      offset: 10,
+    },
+    {
+      isOpen: open,
+      setOpen: (val) => {
+        setOpen(val);
+      },
+      close: () => {
+        setOpen(false);
+      },
+      open: () => {
+        setOpen(true);
+      },
+      toggle: () => {
+        setOpen(!open);
+      },
+    },
+  );
   return (
-    <div
-      ref={popper}
-      className={classes.wrapper}
-      hidden={!open}
-      style={popperStyles.popper}
-      {...popperAttributes.popper}
-    >
+    <>
+      {/* <div
+        // this prevents background scroll
+        {...underlayProps} // what does this even do?
+        // (e)=>{
+        //   // fixes a firefox issue that starts text selection https://bugzilla.mozilla.org/show_bug.cgi?id=1675846
+        //   if (e.target === e.currentTarget) e.preventDefault();
+        // }
+        className="underlay"
+        style={{ position: "fixed", inset: 0 }}
+        // but ∆ doesn't block scroll
+      /> */}
       <div
-        // force arrow position to update on
-        // initial paint
-        key={open ? 1 : 0}
-        ref={arrow}
-        data-popper-arrow=""
-        className={classes.arrow}
-        style={popperStyles.arrow}
-        {...popperAttributes.arrow}
-      />
-      {children}
-    </div>
+        ref={popperRef}
+        className={classes.wrapper}
+        style={popoverProps.style}
+        onFocus={popoverProps.onFocus}
+        onKeyDown={popoverProps.onKeyDown}
+        data-popper-reference-hidden={!open}
+        data-popper-escaped={false}
+        data-popper-placement={placement}
+      >
+        <div className={classes.arrow} style={arrowProps.style} />
+
+        {children}
+      </div>
+    </>
   );
 };

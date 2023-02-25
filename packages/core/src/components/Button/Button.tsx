@@ -1,3 +1,4 @@
+import type { PressEvent } from "@react-types/shared";
 import clsx from "clsx";
 import React from "react";
 import { forwardRef, useContext, useRef, useState } from "react";
@@ -14,7 +15,8 @@ type IntrinsicProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
-export interface Props extends Omit<IntrinsicProps, "prefix" | "type"> {
+export interface Props
+  extends Omit<IntrinsicProps, "prefix" | "type" | "onClick"> {
   size?: "small" | "large";
   prefix?: JSX.Element | string;
   suffix?: JSX.Element | string;
@@ -23,6 +25,7 @@ export interface Props extends Omit<IntrinsicProps, "prefix" | "type"> {
   shape?: "square" | "circle";
   variant?: "shadow" | "ghost" | "unstyled";
   loading?: boolean;
+  onClick?: (e: PressEvent) => void;
 }
 const Button: React.ComponentType<Props> = forwardRef(
   (
@@ -53,29 +56,18 @@ const Button: React.ComponentType<Props> = forwardRef(
     const ref = useRef<HTMLButtonElement>();
     const { buttonProps, isPressed } = useButton(
       {
+        ...props,
         type: "submit",
         isDisabled: isDisabled || loading,
         onFocusChange: setFocused,
-        onKeyDown: (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            onClick?.(e as any);
-            setFocused(true);
-          }
+        onPress: (e) => {
+          onClick?.(e);
           return e;
         },
-        // e.pointerType: "mouse" | "touch"
-        // finger executes click on press end
-        onPressEnd: (e) => {
-          if (e.pointerType === "touch") {
-            onClick?.(e as any);
-          }
-          return e;
-        },
-        // mouse executes click on press start
-        onPressStart: (e) => {
+        onPressStart(e) {
+          // prevent focus ring on mouse click
           if (e.pointerType === "mouse") {
             setFocused(false);
-            onClick?.(e as any);
           }
           return e;
         },
@@ -93,6 +85,7 @@ const Button: React.ComponentType<Props> = forwardRef(
 
     return (
       <button
+        {...props}
         {...hoverProps}
         {...buttonProps}
         data-focus={isFocused ? "" : null}
@@ -143,7 +136,6 @@ const Button: React.ComponentType<Props> = forwardRef(
           ],
           className,
         ])}
-        {...props}
         ref={mergeRefs([ref, externalRef])}
       >
         <IconSizeContext.Provider value={iconSizeContextValue}>
