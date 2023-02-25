@@ -28,16 +28,20 @@ const THEME: EditorProps["theme"] = {
   },
   styles: [
     {
-      style: { color: "var(--accents-3)" },
-      types: ["comment"],
+      style: { color: "var(--accents-5)" },
+      types: [
+        "comment",
+        "string",
+        "number",
+        "builtin",
+        "variable",
+        "attr-name",
+        "punctuation",
+      ],
     },
     {
-      style: { color: "var(--accents-4)" },
-      types: ["string", "number", "builtin", "variable"],
-    },
-    {
-      style: { color: "var(--accents-6)" },
-      types: ["class-name", "function", "tag", "attr-name"],
+      style: { color: "var(--geist-foreground)" },
+      types: ["class-name", "function", "tag"],
     },
   ],
 };
