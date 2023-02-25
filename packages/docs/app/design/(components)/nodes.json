@@ -12,6 +12,7 @@
   { "name": "Radio", "path": "/design/radio" },
   { "name": "Select", "path": "/design/select" },
   { "name": "Show More", "path": "/design/show-more" },
+  { "name": "Spinner", "path": "/design/spinner" },
   { "name": "Stack", "path": "/design/stack" },
   { "name": "Switch", "path": "/design/switch" },
   { "name": "Table", "path": "/design/table" },
