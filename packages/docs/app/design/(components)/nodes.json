@@ -13,5 +13,6 @@
   { "name": "Select", "path": "/design/select" },
   { "name": "Stack", "path": "/design/stack" },
   { "name": "Switch", "path": "/design/switch" },
-  { "name": "Table", "path": "/design/table" }
+  { "name": "Table", "path": "/design/table" },
+  { "name": "Toggle", "path": "/design/toggle" }
 ]

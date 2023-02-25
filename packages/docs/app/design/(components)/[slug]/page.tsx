@@ -15,6 +15,7 @@ import Select from "./select.mdx";
 import Stack from "./stack.mdx";
 import Switch from "./switch.mdx";
 import Table from "./table.mdx";
+import Toggle from "./toggle.mdx";
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {
@@ -49,6 +50,8 @@ export default function Slug({ params: { slug } }) {
         return <Switch />;
       case "table":
         return <Table />;
+      case "toggle":
+        return <Toggle />;
 
       default:
         return (

@@ -1,36 +1,35 @@
+import { Container, Toggle } from "nextjs-components";
+
 <Spacer y={0.6} />
 
 # Toggle
 
 <Spacer y={0.8} />
 
-## Displays a boolean value.</Text>
+## Displays a boolean value.
 
 <Spacer y={2} />
 
 ### Default
 
 <Editor 
-  scope={{}}
+  scope={{Container, Toggle}}
   code={`
 () => {
-  const [checked, setChecked] = useState(false)
-  const [checked2, setChecked2] = useState(true)
+  const [checked, setChecked] = React.useState(false)
+  const [checked2, setChecked2] = React.useState(true)
 
 return (
 
 <Container>
-<Container>
-<Toggle checked={checked} onChange={() => setChecked(!checked)} />
+  <Container>
+    <Toggle checked={checked} onChange={() => setChecked(!checked)} />
+  </Container>
+  <Container>
+    <Toggle checked={checked2} onChange={() => setChecked2(!checked2)} />
+  </Container>
 </Container>
-
-      <Container>
-        <Toggle checked={checked2} onChange={() => setChecked2(!checked2)} />
-      </Container>
-    </Container>
-
-)
-}
+) }
 
 `} />
 
@@ -39,7 +38,7 @@ return (
 ### Disabled
 
 <Editor
-  scope={{}}
+  scope={{Container, Toggle}}
   code={`
 <Container>
   <Container>
@@ -57,7 +56,7 @@ return (
 ### Sizes
 
 <Editor 
-  scope={{}}
+  scope={{Container, Toggle}}
   code={`
 <Container row>
   <Container>
@@ -70,4 +69,4 @@ return (
 </Container>
 `} />
 
-<Spacer y={2} />
+<Spacer y={4} />
