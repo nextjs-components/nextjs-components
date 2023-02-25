@@ -1,3 +1,4 @@
+import type { PressEvent } from "@react-types/shared";
 import clsx from "clsx";
 import React from "react";
 import { forwardRef, useContext, useRef, useState } from "react";
@@ -14,7 +15,8 @@ type IntrinsicProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
-export interface Props extends Omit<IntrinsicProps, "prefix" | "type"> {
+export interface Props
+  extends Omit<IntrinsicProps, "prefix" | "type" | "onClick"> {
   size?: "small" | "large";
   prefix?: JSX.Element | string;
   suffix?: JSX.Element | string;
@@ -23,6 +25,7 @@ export interface Props extends Omit<IntrinsicProps, "prefix" | "type"> {
   shape?: "square" | "circle";
   variant?: "shadow" | "ghost" | "unstyled";
   loading?: boolean;
+  onClick?: (e: PressEvent) => void;
 }
 const Button: React.ComponentType<Props> = forwardRef(
   (
