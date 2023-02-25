@@ -15,7 +15,7 @@
     "clsx": "^1.2.1",
     "hcl2-parser": "^1.0.3",
     "next": "^13.2.0",
-    "nextjs-components": "^2.0.0",
+    "nextjs-components": "^2.1.0-rc.1",
     "npm": "^9.5.0",
     "postcss": "^8.4.16",
     "postcss-flexbugs-fixes": "^5.0.2",
