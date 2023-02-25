@@ -15,6 +15,7 @@ import Select from "./select.mdx";
 import ShowMore from "./show-more.mdx";
 import Spinner from "./spinner.mdx";
 import Stack from "./stack.mdx";
+import StatusDot from "./status-dot.mdx";
 import Switch from "./switch.mdx";
 import Table from "./table.mdx";
 import Toggle from "./toggle.mdx";
@@ -52,6 +53,8 @@ export default function Slug({ params: { slug } }) {
         return <Spinner />;
       case "stack":
         return <Stack />;
+      case "status-dot":
+        return <StatusDot />;
       case "switch":
         return <Switch />;
       case "table":

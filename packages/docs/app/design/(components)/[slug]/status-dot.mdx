@@ -1,36 +1,32 @@
+import { Container, StatusDot } from "nextjs-components";
+
 <Spacer y={0.6} />
 
 # Status Dot
 
 <Spacer y={0.8} />
 
-## Display an indicator of deployment status.</Text>
+## Display an indicator of deployment status.
 
 <Spacer y={2} />
 
 ### Default
 
 <Editor 
-  scope={{}}
+  scope={{Container,StatusDot}}
   code={`
 <Container left>
   <Container>
     <StatusDot state="QUEUED" />
   </Container>
 
-{" "}
-
 <Container>
   <StatusDot state="BUILDING" />
 </Container>
 
-{" "}
-
 <Container>
   <StatusDot state="ERROR" />
 </Container>
-
-{" "}
 
 <Container>
   <StatusDot state="READY" />
@@ -47,26 +43,20 @@
 ### Label
 
 <Editor 
-  scope={{}}
+  scope={{Container,StatusDot}}
   code={`
 <Container left>
   <Container>
     <StatusDot state="QUEUED" label />
   </Container>
 
-{" "}
-
 <Container>
   <StatusDot state="BUILDING" label />
 </Container>
 
-{" "}
-
 <Container>
   <StatusDot state="ERROR" label />
 </Container>
-
-{" "}
 
 <Container>
   <StatusDot state="READY" label />
@@ -78,4 +68,4 @@
 </Container>
 `} />
 
-<Spacer y={2} />
+<Spacer y={4} />
