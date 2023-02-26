@@ -16,18 +16,6 @@ A collection of React components, transcribed from https://vercel.com/design. [^
 
 [Blog post](https://thekevinwang.com/2022/01/09/nextjs-components/) from 01/09/2022
 
-### Todo's
-
-- [ ] Unit test coverage
-- [ ] Unit tests in CI (Github workflows)
-- [ ] Add every component to the docs site
-- [ ] Deploy the docs site
-- [x] Report Bundle size
-- [ ] Figure out monorepo situation
-  - Lerna? Turborepo?
-  - 1 Large components-package or multiple per-component packages?
-- [ ] Move Todo's to [project board](https://github.com/nextjs-components/nextjs-components/projects?type=beta)
-
 ## Installation
 
 ```bash
@@ -40,48 +28,56 @@ npm i nextjs-components
 yarn add nextjs-components
 ```
 
-This project uses TypeScript and CSS modules. It relies on [next-transpile-modules](https://github.com/martpie/next-transpile-modules) to work in a Next.js app.
-
-```bash
-yarn add next-transpile-modules
-```
-
-## Usage
-
-### With `Next.js`
-
-[CodeSandbox](https://codesandbox.io/s/nextjs-components-next-t7vil)
-
-<details>
-  <summary>Hide/Show Example Code</summary>
-
-Transpile ♻️
+This project needs to be transpiled to work with your Next.js application. It is recommended to use Next.js `13.1.0`’s [built-in module tranpilation](https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable). (Up until Next.js `13.1.0`, [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) handled this use case.)
 
 ```js
 // next.config.js
-const withTM = require("next-transpile-modules")(["nextjs-components"]);
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
   reactStrictMode: true,
+  pageExtensions: ["tsx", "ts"],
+  swcMinify: true,
+  transpilePackages: ["nextjs-components"],
 };
 
-module.exports = withTM(nextConfig);
+module.exports = nextConfig;
 ```
 
-Import Global CSS 💅
+## Usage
+
+Using Next 13's `app` directory
 
 ```tsx
-// pages/_app.tsx
-import "nextjs-components/dist/styles/globals.css";
+"use client";
 
+// ./app/layout.tsx
+import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
+import "nextjs-components/src/styles/globals.css";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+Using the _traditional_ custom `_app.tsx`
+
+```tsx
+// ./pages/_app.tsx
 import {
   ThemeContextProvider,
-  ToastsProvider,
   ToastArea,
+  ToastsProvider,
 } from "nextjs-components";
+import "nextjs-components/src/styles/globals.css";
 
 function App({ Component, pageProps }) {
   return (
@@ -97,210 +93,8 @@ function App({ Component, pageProps }) {
 export default App;
 ```
 
-Import Components 🎉
+Check out the [documentation site](https://nextjs-components-thekevinwang.vercel.app/) for more examples!
 
-```tsx
-// pages/index.tsx
-import {
-  Button,
-  Checkbox,
-  Container,
-  fs,
-  LoadingDots,
-  Spacer,
-  Spinner,
-  Text,
-  useTheme,
-  useToasts,
-  IconSizeContext,
-  Toggle,
-} from "nextjs-components";
-
-import { Sun, Moon } from "nextjs-components/dist/icons";
-
-export default function IndexPage() {
-  const { selectTheme, isDarkMode } = useTheme();
-  const toast = useToasts();
-
-  return (
-    <Container center>
-      <Container row vcenter>
-        <IconSizeContext.Provider value={{ size: 18 }}>
-          <Sun />
-          <Spacer x={0.4} />
-          <Toggle
-            checked={isDarkMode}
-            onChange={(checked) => {
-              selectTheme(checked ? "dark" : "light");
-              toast.current.message(
-                `Theme has been set to ${checked ? "dark" : "light"}`
-              );
-            }}
-          />
-          <Spacer x={0.4} />
-          <Moon />
-        </IconSizeContext.Provider>
-      </Container>
-      <Text h1 noMargin>
-        Hello World
-      </Text>
-      <Text h2 noMargin>
-        Hello World
-      </Text>
-      <Text h3 noMargin>
-        Hello World
-      </Text>
-
-      <Spacer />
-
-      <fs.Fieldset>
-        <fs.Content>
-          <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
-          <fs.Subtitle>The Holland Lop Jumped over the Fence</fs.Subtitle>
-        </fs.Content>
-        <fs.Footer>
-          <fs.Footer.Status>
-            The Holland lop Jumped over the Fence
-            <Spacer />
-          </fs.Footer.Status>
-          <fs.Footer.Actions>
-            <Button size="small">Action</Button>
-          </fs.Footer.Actions>
-        </fs.Footer>
-      </fs.Fieldset>
-
-      <Spacer />
-      <Button>A button!</Button>
-      <Spacer />
-      <Checkbox>A checkbox</Checkbox>
-      <Spacer />
-      <LoadingDots size={8} />
-      <Spacer />
-      <Spinner />
-    </Container>
-  );
-}
-```
-
-</details>
-
-### With `create-react-app`
-
-[CodeSandbox](https://codesandbox.io/s/nextjs-components-zhbkv)
-
-<details>
-  <summary>Hide/Show Example Code</summary>
-
-```jsx
-// index.js
-import { StrictMode } from "react";
-import ReactDOM from "react-dom";
-
-import "nextjs-components/dist/styles/globals.css";
-
-import {
-  ThemeContextProvider,
-  ToastsProvider,
-  ToastArea,
-} from "nextjs-components";
-
-import App from "./App";
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <StrictMode>
-    <ThemeContextProvider>
-      <ToastsProvider>
-        <App />
-        <ToastArea />
-      </ToastsProvider>
-    </ThemeContextProvider>
-  </StrictMode>,
-  rootElement
-);
-```
-
-```jsx
-// App.js
-import {
-  Button,
-  Checkbox,
-  Container,
-  fs,
-  LoadingDots,
-  Spacer,
-  Spinner,
-  Text,
-  useTheme,
-  useToasts,
-  IconSizeContext,
-  Toggle,
-} from "nextjs-components";
-
-import { Sun, Moon } from "nextjs-components/dist/icons";
-
-export default function App() {
-  const { selectTheme, isDarkMode } = useTheme();
-  const toast = useToasts();
-
-  return (
-    <Container center>
-      <Container row vcenter>
-        <IconSizeContext.Provider value={{ size: 18 }}>
-          <Sun />
-          <Spacer x={0.4} />
-          <Toggle
-            checked={isDarkMode}
-            onChange={(checked) => {
-              selectTheme(checked ? "dark" : "light");
-              toast.current.message(
-                `Theme has been set to ${checked ? "dark" : "light"}`
-              );
-            }}
-          />
-          <Spacer x={0.4} />
-          <Moon />
-        </IconSizeContext.Provider>
-      </Container>
-      <Text h1 noMargin>
-        Hello World
-      </Text>
-      <Text h2 noMargin>
-        Hello World
-      </Text>
-      <Text h3 noMargin>
-        Hello World
-      </Text>
-
-      <Spacer />
-
-      <fs.Fieldset>
-        <fs.Content>
-          <fs.Title>The Holland Lop Jumped over the Fence</fs.Title>
-          <fs.Subtitle>The Holland Lop Jumped over the Fence</fs.Subtitle>
-        </fs.Content>
-        <fs.Footer>
-          <fs.Footer.Status>
-            The Holland lop Jumped over the Fence
-            <Spacer />
-          </fs.Footer.Status>
-          <fs.Footer.Actions>
-            <Button size="small">Action</Button>
-          </fs.Footer.Actions>
-        </fs.Footer>
-      </fs.Fieldset>
-
-      <Spacer />
-      <Button>A button!</Button>
-      <Spacer />
-      <Checkbox>A checkbox</Checkbox>
-      <Spacer />
-      <LoadingDots size={8} />
-      <Spacer />
-      <Spinner />
-    </Container>
-  );
-}
-```
-
-</details>
+> **Warning**: Dropped `create-react-app` support.
+>
+> In older versions, usage with `create-react-app` was supported. However, from `>=v1.0.0`, the pre-built `/dist` folder was dropped.

@@ -11,10 +11,8 @@ import remarkGfm from "remark-gfm";
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  // https://github.com/adobe/react-spectrum/issues/3515
-  // must be false or else this breaks FocusScope
-  reactStrictMode: false,
-  pageExtensions: ["mdx", "tsx", "ts"],
+  reactStrictMode: true,
+  pageExtensions: ["tsx", "ts"],
   swcMinify: true,
   transpilePackages: ["nextjs-components", "../core"],
   experimental: {

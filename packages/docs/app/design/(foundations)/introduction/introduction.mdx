@@ -1,10 +1,17 @@
+import { Note } from "nextjs-components";
+
 <Spacer y={0.6} />
 
 # nextjs-components
 
 <Spacer y={0.8} />
 
-## A collection of React components, transcribed from https://vercel.com/design. (This is not affiliated with [Vercel](https://vercel.com))
+## A collection of React components, transcribed from https://vercel.com/design.
+
+<Spacer y={0.33} />
+
+{/* prettier-ignore */}
+<Note type="warning" label="Note: ">This is not affiliated with [Vercel](https://vercel.com)</Note>
 
 <Spacer y={2} />
 
@@ -14,12 +21,75 @@ I wanted to use nice-looking components on my website, https://thekevinwang.com.
 
 <Spacer y={2} />
 
-### How do I use this?
+### How do you use this?
 
-More docs are coming soon to this docs-site. But for now, checkout the GitHub repository's [README](https://github.com/nextjs-components/nextjs-components).
+Start by installing the package.
 
 ```bash
 npm i nextjs-components
+```
+
+This project needs to be transpiled to work with your Next.js application. It is recommended to use Next.js `13.1.0`’s [built-in module tranpilation](https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable). (Up until Next.js `13.1.0`, [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) handled this use case.)
+
+```js
+// next.config.js
+
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  reactStrictMode: true,
+  pageExtensions: ["tsx", "ts"],
+  swcMinify: true,
+  transpilePackages: ["nextjs-components"],
+};
+
+module.exports = nextConfig;
+```
+
+Using Next 13's `app` directory
+
+```tsx
+"use client";
+
+// ./app/layout.tsx
+import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
+import "nextjs-components/src/styles/globals.css";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+Using the _traditional_ custom `_app.tsx`
+
+```tsx
+// ./pages/_app.tsx
+import {
+  ThemeContextProvider,
+  ToastArea,
+  ToastsProvider,
+} from "nextjs-components";
+import "nextjs-components/src/styles/globals.css";
+
+function App({ Component, pageProps }) {
+  return (
+    <ThemeContextProvider>
+      <ToastsProvider>
+        <Component {...pageProps} />
+        <ToastArea />
+      </ToastsProvider>
+    </ThemeContextProvider>
+  );
+}
+
+export default App;
 ```
 
 <Spacer y={4} />
