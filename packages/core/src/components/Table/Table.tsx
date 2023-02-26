@@ -107,7 +107,9 @@ const Table: React.ComponentType<React.PropsWithChildren<Props>> = ({
                 {selectable && <col style={{ width: "40px" }} />}
               </colgroup>
               <thead
-                className={header === false && "geist-visually-hidden"}
+                className={
+                  header === false ? "geist-visually-hidden" : undefined
+                }
                 data-geist-table-header="original"
               >
                 <tr role="row">

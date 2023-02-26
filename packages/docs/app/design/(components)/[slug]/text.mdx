@@ -1,10 +1,22 @@
+import { Code, InlineCode, LI, OL, Stack, Text, UL } from "nextjs-components";
+
 <Spacer y={0.6} />
 
 # Text
 
 <Spacer y={0.8} />
 
-## Display text using well-defined typographic styles.</Text>
+## Display text using well-defined typographic styles.
+
+<Example style={{ "--width": "auto" }}>
+  <Stack gap={2}>
+    {[48, 32, 24, 20, 16, 14, 12, 10].map((size) => (
+      <Text key={size} size={size}>
+        The Happy Bufo laughs.
+      </Text>
+    ))}
+  </Stack>
+</Example>
 
 ### Props
 
@@ -29,37 +41,35 @@
 
 ### Sizes
 
-TODO: Swap `Container` with `Stack`
-
 <Editor
-  scope={{}}
+  scope={{ Stack, Text }}
   code={`
-<Container>
+<Stack gap={2}>
   <Text size={48}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={32}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={24}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={20}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={16}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={14}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={12}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
   <Text size={10}>
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
-</Container>
+</Stack>
 `}
 />
 
@@ -67,18 +77,16 @@ TODO: Swap `Container` with `Stack`
 
 ### Weights
 
-TODO: Swap `Container` with `Stack`
-
 <Editor
-  scope={{}}
+  scope={{ Stack, Text }}
   code={`
-<Container>
+<Stack gap={2}>
   {[900, 800, 700, 600, 500, 400, 300, 200, 100].map(weight => (
     <Text key={weight} size={16} weight={weight}>
-      The Evil Rabbit jumps. ({weight})
+      The Happy Bufo laughs. ({weight})
     </Text>
   ))}
-</Container>
+</Stack>
 `}
 />
 
@@ -87,10 +95,10 @@ TODO: Swap `Container` with `Stack`
 ### Color
 
 <Editor
-  scope={{}}
+  scope={{ Text }}
   code={`
-<Text size={16} color="geist-success">
-  The Evil Rabbit jumps.
+  <Text size={16} color="geist-success">
+  The Happy Bufo laughs.
 </Text>
 `}
 />
@@ -100,11 +108,10 @@ TODO: Swap `Container` with `Stack`
 ### Modifiers
 
 <Editor
-  scope={{}}
+  scope={{ Text }}
   code={`
 <Text size={16}>
-  The <strong>Evil Rabbit</strong> <em>jumps</em>
-  over the <s>quick brown fox</s> <u>Lawful Meerkat</u>.
+  The <strong>Happy Bufo</strong> <em>laughs</em> at the <s>silly bunny</s> <u>Funny Meme</u>.
 </Text>
 `}
 />
@@ -114,18 +121,12 @@ TODO: Swap `Container` with `Stack`
 ### Polymorphic
 
 <Editor
-  scope={{}}
-  code={
-    `
+  scope={{ Text }}
+  code={`
 <Text as="p" size={32}>
-  {` <
-    p >
-    `} semantically, {` <
-    h2 >
-    `} visually.
+  {\`<p>\`} semantically, {\`<h2>\`} visually.
 </Text>
-`
-  }
+`}
 />
 
 <Spacer y={2} />
@@ -133,10 +134,10 @@ TODO: Swap `Container` with `Stack`
 ### Truncate
 
 <Editor
-  scope={{}}
+  scope={{ Text }}
   code={`
 <div style={{ maxWidth: 100 }}>
-  <Text size={16} truncate>The Evil Rabbit jumps.</Text>
+  <Text size={16} truncate>The Happy Bufo laughs.</Text>
 </div>
 `}
 />
@@ -146,14 +147,14 @@ TODO: Swap `Container` with `Stack`
 ### Clamp
 
 <Editor
-  scope={{}}
+  scope={{ Text }}
   code={`
 <div style={{ maxHeight: 100 }}>
   <Text size={16} truncate={2}>
-    The Evil Rabbit jumps. The Evil Rabbit jumps. The Evil Rabbit jumps.
-    The Evil Rabbit jumps. The Evil Rabbit jumps. The Evil Rabbit jumps.
-    The Evil Rabbit jumps. The Evil Rabbit jumps. The Evil Rabbit jumps.
-    The Evil Rabbit jumps. The Evil Rabbit jumps.
+    The Happy Bufo laughs. The Happy Bufo laughs. The Happy Bufo laughs.
+    The Happy Bufo laughs. The Happy Bufo laughs. The Happy Bufo laughs.
+    The Happy Bufo laughs. The Happy Bufo laughs. The Happy Bufo laughs.
+    The Happy Bufo laughs. The Happy Bufo laughs.
   </Text>
 </div>
 `}
@@ -163,39 +164,53 @@ TODO: Swap `Container` with `Stack`
 
 ### Align
 
-<Editor 
-  scope={{}}
+<Editor
+  scope={{ Text }}
   code={`
 <div>
   <Text align="center">
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
 
-{" "}
-
-<Text align="left">The Evil Rabbit jumps.</Text>
+<Text align="left">The Happy Bufo laughs.</Text>
 
   <Text align="right">
-    The Evil Rabbit jumps.
+    The Happy Bufo laughs.
   </Text>
 </div>
-`} />
+`}
+/>
+
+<Spacer y={2} />
+
+### Monospace Font
+
+<Editor
+  scope={{ Text }}
+  code={`
+<div>
+  <Text>
+    This is a sans-serif font.
+  </Text>
+
+  <Text monospace>
+    This is a monospace font.
+  </Text>
+</div>
+`}
+/>
 
 <Spacer y={2} />
 
 ### Unordered List
 
 <Editor
-  scope={{}}
+  scope={{ UL, LI }}
   code={`
 <UL>
   <LI>Static websites and static generators (React, Vue, Angular, etc)</LI>
   <LI>Code that renders HTML on the server-side</LI>
-  <LI><UL>
-  <LI>Static websites and static generators (React, Vue, Angular, etc)</LI>
-  <LI>Code that renders HTML on the server-side</LI>
   <LI>API endpoints that query databases or web APIs and return dynamic data</LI>
-</UL></LI>
 </UL>
 `}
 />
@@ -205,14 +220,17 @@ TODO: Swap `Container` with `Stack`
 ### Ordered List
 
 <Editor
-  scope={{}}
+  scope={{ OL, LI }}
   code={`
 <OL>
   <LI>
-    Push a commit to trigger the deployment.
+    Delete all files, commit, and push to your GitHub repository.
   </LI>
   <LI>
-    You'll see the deployment status on GitHub and Vercel dashboard.
+    Can’t have any buggy code if you don’t have any code.
+  </LI>
+  <LI>
+    Profit.
   </LI>
 </OL>
 `}
@@ -223,11 +241,10 @@ TODO: Swap `Container` with `Stack`
 ### Code
 
 <Editor
-  scope={{}}
+  scope={{ Text, InlineCode }}
   code={`
 <Text size={16}>
-  It’s a matter of running <InlineCode>vercel</InlineCode> to get it up and
-  running instantly.
+  To use these nice components, run <InlineCode>npm i nextjs-components</InlineCode>.
 </Text>
 `}
 />
@@ -236,10 +253,11 @@ TODO: Swap `Container` with `Stack`
 
 ### Codeblock
 
-<Editor 
-  scope={{}}
+<Editor
+  scope={{ Code }}
   code={`
-<Code>{`npm i vercel -g\nvercel init nextjs`}</Code>
-`} />
+<Code>{\`npm i nextjs-components\nnpm ls nextjs-components\`}</Code>
+`}
+/>
 
-<Spacer y={5} />
+<Spacer y={4} />

@@ -29,6 +29,7 @@ export { Note } from "./components/Note";
 export { RadioGroup, RadioItem } from "./components/Radio";
 // export * from "./components/Scroller";
 export { ModeSelect, Select } from "./components/Select";
+export { ShowMore, type ShowMoreProps } from "./components/ShowMore";
 export { default as Skeleton } from "./components/Skeleton"; // breaking 2.0.0
 export { Snippet } from "./components/Snippet";
 export { Spacer } from "./components/Spacer";

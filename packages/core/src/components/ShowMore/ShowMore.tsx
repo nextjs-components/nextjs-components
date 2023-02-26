@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-import ChevronRight from "../../icons/chevron-right";
+import Chevron from "../../icons/chevron-down";
 
 export interface ShowMoreProps {
   expanded?: boolean;
@@ -17,7 +17,7 @@ const ShowMore: React.ComponentType<ShowMoreProps> = ({
       <button onClick={onClick}>
         {expanded ? "Show Less" : "Show More"}
         <span className={clsx({ expanded })}>
-          <ChevronRight size={16} />
+          <Chevron size={16} />
         </span>
       </button>
       <div className="line" />

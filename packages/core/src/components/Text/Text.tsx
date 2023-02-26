@@ -68,6 +68,7 @@ interface Props extends React.HTMLAttributes<HTMLElement> {
   style?: React.CSSProperties;
   title?: string;
   wrap?: boolean;
+  monospace?: boolean;
   dangerouslySetInnerHTML?: { __html: string };
 }
 
@@ -90,6 +91,7 @@ const Text = forwardRef<unknown, Props>(
       style = {},
       title,
       wrap,
+      monospace,
       dangerouslySetInnerHTML,
       ...rest
     },
@@ -108,12 +110,18 @@ const Text = forwardRef<unknown, Props>(
         className={clsx(className, styles.wrapper, styles[s], {
           [styles[w]]: !!weight,
           [styles[lh]]: !!lh,
-          [styles.truncate]: !!truncate,
+          [styles.truncate]: truncate === true,
+          [styles.clamp]: typeof truncate === "number",
           [styles[transform]]: !!transform,
           [styles.nowrap]: wrap === false,
+          [styles.monospace]: !!monospace,
         })}
-        // @ts-expect-error
-        style={{ ...style, "--color": `var(--${color})` }}
+        style={{
+          ...style,
+          // @ts-expect-error
+          "--color": `var(--${color})`,
+          "--clamp": typeof truncate === "number" ? truncate : undefined,
+        }}
         {...rest}
       >
         {children}

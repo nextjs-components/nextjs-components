@@ -1,6 +1,18 @@
 import Link from "next/link";
 import { Table } from "nextjs-components";
 
+export const generateData = (columns, rows) => {
+  const data = [];
+  for (let i = 0; i < rows; i++) {
+    const row = {};
+    columns.forEach((column) => {
+      row[column.accessor] = `${column.accessor} ${i}`;
+    });
+    data.push(row);
+  }
+  return data;
+};
+
 export const columns = [
   {
     Header: "First Name",
@@ -33,6 +45,41 @@ export const data = [
     email: "baby@moe.com",
   },
 ];
+
+```javascript
+const columns = [
+  {
+    Header: "First Name",
+    accessor: "first",
+  },
+  {
+    Header: "Last Name",
+    accessor: "last",
+  },
+  {
+    Header: "Email",
+    accessor: "email",
+  },
+];
+
+const data = [
+  {
+    first: "John",
+    last: "Doe",
+    email: "john@doe.com",
+  },
+  {
+    first: "Dorothy",
+    last: "Boe",
+    email: "dorothy@boe.com",
+  },
+  {
+    first: "Baby",
+    last: "Moe",
+    email: "baby@moe.com",
+  },
+];
+```
 
 <Spacer y={0.6} />
 
@@ -162,6 +209,60 @@ Pass a number to change the minimum width of the table. Disable with a falsy val
 
 <Spacer y={2} />
 
-### Rest todo...
+### Sticky Header
+
+Specify a number to change the offset from 0.
+
+<Spacer />
+
+<Editor
+  scope={{ Table, columns, data }}
+  code={`
+<Table
+  columns={columns}
+  data={[...data, ...data, ...data]}
+  caption="A table with a sticky header."
+  sticky
+/>`}
+/>
+
+<Spacer y={2} />
+
+### Sortable Rows
+
+Hold shift to sort by multiple columns. Columns can disable sorting.
+
+<Spacer />
+
+<Editor
+  scope={{ Table,generateData }}
+  code={`() => {
+  const columns = React.useMemo(() => [
+    {
+      Header: 'First Name',
+      accessor: 'first'
+    },
+    {
+      Header: 'Last Name',
+      accessor: 'last'
+    },
+    {
+      Header: 'Email',
+      accessor: 'email',
+      disableSortBy: true
+    }
+  ], [])
+
+const data = React.useMemo(() => generateData(columns, 3), [])
+
+return (
+
+<Table
+  columns={columns}
+  data={data}
+  caption="A table with sortable columns."
+  sortable
+/>
+) }`} />
 
 <Spacer y={4} />

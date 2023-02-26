@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "nextjs-components/src/components/Button";
 import { Container } from "nextjs-components/src/components/Container";
 import { Text } from "nextjs-components/src/components/Text";
@@ -28,16 +29,20 @@ const THEME: EditorProps["theme"] = {
   },
   styles: [
     {
-      style: { color: "var(--accents-3)" },
-      types: ["comment"],
+      style: { color: "var(--accents-5)" },
+      types: [
+        "comment",
+        "string",
+        "number",
+        "builtin",
+        "variable",
+        "attr-name",
+        "punctuation",
+      ],
     },
     {
-      style: { color: "var(--accents-4)" },
-      types: ["string", "number", "builtin", "variable"],
-    },
-    {
-      style: { color: "var(--accents-6)" },
-      types: ["class-name", "function", "tag", "attr-name"],
+      style: { color: "var(--geist-foreground)" },
+      types: ["class-name", "function", "tag"],
     },
   ],
 };
@@ -81,44 +86,58 @@ const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
               Code Editor
             </Text>
 
-            <div className={styles.actions}>
-              <Button
-                shape="square"
-                type="secondary"
-                className={styles.reset}
-                onClick={handleReset}
-                variant="ghost"
-              >
-                <RotateCW size={16} />
-              </Button>
+            <AnimatePresence>
+              {open ? (
+                <motion.div
+                  className={styles.actions}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Button
+                    shape="square"
+                    type="secondary"
+                    className={styles.reset}
+                    onClick={handleReset}
+                  >
+                    <RotateCW size={16} />
+                  </Button>
 
-              <Button
-                shape="square"
-                type="secondary"
-                className={styles.copy}
-                onClick={handleCopy}
-                variant="ghost"
-              >
-                <CopyIcon size={16} />
-              </Button>
-            </div>
+                  <Button
+                    shape="square"
+                    type="secondary"
+                    className={styles.copy}
+                    onClick={handleCopy}
+                  >
+                    <CopyIcon size={16} />
+                  </Button>
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           </div>
         </div>
 
-        {open ? (
-          <div className={styles.editorArea}>
-            <LiveEditor
-              theme={THEME}
-              onChange={setCode}
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "1em",
-                // 14 + inner 10 = var(--geist-gap) (24)
-                padding: 14,
-              }}
-            />
-          </div>
-        ) : null}
+        <AnimatePresence>
+          {open ? (
+            <motion.div
+              className={styles.editorArea}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <LiveEditor
+                theme={THEME}
+                onChange={setCode}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "1em",
+                  // 14 + inner 10 = var(--geist-gap) (24)
+                  padding: 14,
+                }}
+              />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
         <LiveError className={styles.error} />
       </div>
     </LiveProvider>
