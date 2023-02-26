@@ -34,24 +34,15 @@
   overflow: hidden;
 }
 
-.editorTrigger {
-  display: flex;
-  align-items: center;
-  padding: 5px 24px;
-  height: 42px;
-  cursor: pointer;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-}
-
-.editor pre,
-.editor textarea {
-  outline: none;
-  word-break: break-word !important;
-  padding: var(--geist-gap) !important;
+:global(.dark-theme) .editorArea pre,
+:global(.dark-theme) .editorArea textarea {
+  --comment: #707070;
+  --variable: #7e7e7e;
 }
 
 .editor summary {
+  display: flex;
+  align-items: center;
   padding: var(--geist-gap-half) var(--geist-gap);
   border-top: 1px solid var(--accents-2);
 }
@@ -60,22 +51,6 @@
   font-size: 0.75rem;
   overflow: hidden;
   border-radius: 6px;
-}
-
-.actions {
-  display: flex;
-  grid-gap: 4px;
-  gap: 4px;
-  margin-left: auto;
-  margin-right: -8px;
-}
-
-.copy,
-.reset {
-  background: transparent;
-  border: none;
-  height: 32px !important;
-  width: 32px !important;
 }
 
 .reset {
@@ -87,12 +62,46 @@
   margin-left: auto;
 }
 
-.copy {
+.copy,
+.reset {
+  background: transparent;
+  border: none;
+  height: 32px;
+  width: 32px;
 }
 
-@media (hover: hover) {
-  .copy:hover,
-  .reset:hover {
-    color: var(--accents-3);
+.actions {
+  display: flex;
+  grid-gap: 4px;
+  gap: 4px;
+  margin-left: auto;
+  margin-right: -8px;
+}
+
+.copy[data-hover],
+.reset[data-hover] {
+  background: var(--accents-2) !important;
+}
+
+.copy svg,
+.reset svg {
+  height: 16px;
+  width: 16px;
+}
+
+.editorTrigger {
+  display: flex;
+  align-items: center;
+  padding: 5px 24px;
+  height: 42px;
+  cursor: pointer;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+@media (max-width: 600px) {
+  .editor-area,
+  .live pre.error {
+    font-size: 1rem;
   }
 }
