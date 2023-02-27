@@ -25,6 +25,31 @@
   margin-bottom: -1px;
   border-bottom: 1px solid var(--accents-2);
   outline: 0;
+
+  /* liberties taken for accessibility, not present in ˚∆ */
+  & p {
+    position: relative;
+    z-index: 1;
+  }
+  & p:before {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    top: -20%;
+    height: 140%;
+    width: 140%;
+    left: -20%;
+    bottom: 0;
+    background: var(--accents-2);
+    border-radius: 4px;
+    z-index: -1;
+    transition: opacity 0.2s ease;
+  }
+  &:hover p:before,
+  &:focus p:before,
+  &:focus-within p:before {
+    opacity: 1;
+  }
 }
 
 .tabs.tabs.noBorder > .tabContainer {
@@ -37,7 +62,7 @@
 }
 
 .tabContainer:first-child {
-  padding-left: 0;
+  /* padding-left: 0; */
 }
 
 .tab {
