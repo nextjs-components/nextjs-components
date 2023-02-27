@@ -46,7 +46,9 @@ const Switch = ({ items, onChange, active, size, icon }: SwitchProps) => {
             }}
             style={{ minWidth: icon ? undefined : e.width }}
             disabled={disabled}
-            aria-label={icon ? e.ariaLabel || `Switch to ${e.name}` : undefined}
+            aria-label={
+              icon ? e.ariaLabel || `Switch to ${e.value}` : undefined
+            }
           >
             <span>{e.name}</span>
           </button>
