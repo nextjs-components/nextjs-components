@@ -12,6 +12,8 @@ interface SwitchProps {
     /** ignored if using `icon` */
     width?: React.CSSProperties["minWidth"];
     disabled?: boolean;
+    /** Useful if using `icon` */
+    ariaLabel?: string;
   }[];
   active?: string;
   onChange?: (value: string) => void;
@@ -44,6 +46,7 @@ const Switch = ({ items, onChange, active, size, icon }: SwitchProps) => {
             }}
             style={{ minWidth: icon ? undefined : e.width }}
             disabled={disabled}
+            aria-label={icon ? e.ariaLabel || `Switch to ${e.name}` : undefined}
           >
             <span>{e.name}</span>
           </button>
