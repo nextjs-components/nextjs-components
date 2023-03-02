@@ -1,0 +1,49 @@
+import { Calendar } from "nextjs-components";
+
+export const presets = {
+  "last-3-days": {
+    start: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    text: "Last 3 days",
+  },
+  "last-7-days": {
+    start: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    text: "Last 7 days",
+  },
+  "last-14-days": {
+    start: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
+    text: "Last 14 days",
+  },
+  "last-month": {
+    start: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+    text: "Last month",
+  },
+};
+
+<Spacer y={0.6} />
+
+# Calendar
+
+<Spacer y={0.8} />
+
+Displays a calendar from which users can select a date or range of dates.
+
+<Spacer />
+
+### Default
+
+<Editor
+  scope={{ Calendar, presets }}
+  code={`() => {
+  const [range, setRange] = React.useState(null)
+  const handleChange = (range) => {
+    {/* console.log("change...") */}
+    setRange(range)
+  }
+  return <div>
+    <pre>{JSON.stringify(range, null, 2)}</pre>
+    <Calendar value={range} onChange={handleChange} />
+</div>
+}`}
+/>
+
+<Spacer y={4} />
