@@ -9,6 +9,8 @@ interface Props
     HTMLLabelElement
   > {
   label?: React.ReactNode;
+  capitalize?: boolean;
+  withInput?: boolean;
 }
 
 const Label: React.ComponentType<Props> = ({
@@ -16,11 +18,19 @@ const Label: React.ComponentType<Props> = ({
   htmlFor,
   label,
   style,
+  capitalize,
+  withInput,
 }) => {
   return (
     <label htmlFor={htmlFor}>
       {label && (
-        <div className={clsx(styles.label, styles.input)} {...{ style }}>
+        <div
+          className={clsx(styles.label, {
+            [styles.capitalize]: capitalize,
+            [styles.input]: withInput,
+          })}
+          {...{ style }}
+        >
           {label}
         </div>
       )}

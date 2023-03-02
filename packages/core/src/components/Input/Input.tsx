@@ -75,7 +75,12 @@ const Input = forwardRef<HTMLInputElement, Props>(
     if (label) {
       return (
         <IconSizeContext.Provider value={{ size: iconSize }}>
-          <Label htmlFor={props.id || props.name} label={label}>
+          <Label
+            htmlFor={props.id || props.name}
+            label={label}
+            capitalize
+            withInput
+          >
             <div className={containerClassName}>
               <input {...props} ref={ref} className={inputClassName} />
               {_prefix}

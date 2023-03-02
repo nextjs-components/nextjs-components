@@ -3,9 +3,12 @@
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--geist-secondary);
-  text-transform: uppercase;
   margin-bottom: var(--geist-space-2x);
   max-width: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
 }
 
 .input {

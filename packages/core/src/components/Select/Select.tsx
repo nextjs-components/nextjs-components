@@ -37,7 +37,7 @@ const Select: React.FC<Props> = ({
   const { isFocusVisible, focusProps } = useFocusRing();
   const id = "select-" + useId();
   return (
-    <Label label={label} htmlFor={id}>
+    <Label label={label} htmlFor={id} capitalize>
       <div
         className={clsx(styles.container, {
           [styles.disabled]: disabled,
