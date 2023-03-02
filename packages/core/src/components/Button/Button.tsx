@@ -26,6 +26,7 @@ export interface Props
   variant?: "shadow" | "ghost" | "unstyled";
   loading?: boolean;
   onClick?: (e: PressEvent) => void;
+  svgOnly?: boolean;
 }
 const Button: React.ComponentType<Props> = forwardRef(
   (
@@ -44,6 +45,7 @@ const Button: React.ComponentType<Props> = forwardRef(
       disabled,
       loading,
       onClick,
+      svgOnly,
       ...props
     },
     externalRef,
@@ -85,6 +87,7 @@ const Button: React.ComponentType<Props> = forwardRef(
 
     return (
       <button
+        data-geist-button=""
         {...props}
         {...hoverProps}
         {...buttonProps}
@@ -152,6 +155,7 @@ const Button: React.ComponentType<Props> = forwardRef(
             className={clsx(styles.content, {
               [styles.grow]: align === "grow",
               [styles.start]: align === "start",
+              [styles.flex]: svgOnly,
             })}
           >
             {children}
