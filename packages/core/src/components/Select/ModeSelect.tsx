@@ -17,7 +17,7 @@ const ModeSelect = () => {
   const { setTheme, theme: mode } = useTheme();
   return (
     <IconSizeContext.Provider value={{ size: 16 }}>
-      <Label htmlFor={id}>
+      <Label htmlFor={id} capitalize>
         <div className={styles.container}>
           <span className={styles.prefix}>
             {mode === "dark" && <Moon />}

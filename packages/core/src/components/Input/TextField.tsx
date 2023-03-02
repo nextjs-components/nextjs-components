@@ -61,7 +61,12 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
 
     if (label) {
       return (
-        <Label htmlFor={props.id || props.name} label={label}>
+        <Label
+          htmlFor={props.id || props.name}
+          label={label}
+          capitalize
+          withInput
+        >
           <div className={containerClassName}>
             <input {...props} ref={ref} className={inputClassName} />
             {_prefix}
