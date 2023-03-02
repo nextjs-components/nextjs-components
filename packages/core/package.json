@@ -35,9 +35,10 @@
     "@radix-ui/react-popover": "^1.0.5",
     "@radix-ui/react-portal": "^1.0.0",
     "clsx": "1.1.1",
+    "framer-motion": "^10.0.1",
     "next-themes": "^0.2.1",
     "react-aria": "^3.23.0",
-    "react-stately": "^3.18.0",
+    "react-stately": "^3.21.0",
     "react-use-measure": "2.1.1"
   },
   "devDependencies": {

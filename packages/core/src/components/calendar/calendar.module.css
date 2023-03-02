@@ -1,0 +1,642 @@
+.calendar.hasSelect {
+  display: flex;
+}
+
+@media (hover: hover) {
+  .calendar.hasSelect [data-geist-select]:hover {
+    z-index: 1;
+  }
+}
+
+.calendar.hasSelect [data-geist-button] {
+  transform: translateX(-1px);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+@media (max-width: 600px) {
+  .calendar.hasSelect {
+    flex-direction: column;
+  }
+
+  .calendar.hasSelect.showingDateButton [data-geist-select] select {
+    border-bottom: none;
+    border-radius: var(--geist-radius);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .calendar.hasSelect [data-geist-button] {
+    transform: none;
+    font-size: 1rem;
+    border-radius: var(--geist-radius);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.popover {
+  outline: none;
+  background: var(--geist-background);
+  box-shadow: var(--shadow-medium);
+  border-radius: var(--geist-radius);
+  border: 1px solid var(--accents-2);
+}
+
+:global(.dark-theme) .arrow {
+  stroke-width: 3px;
+}
+
+.hrFull {
+  margin: 0 var(--geist-gap-half-negative) !important;
+}
+
+.currentMonth {
+  color: var(--geist-foreground);
+  font-size: 14px;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0;
+}
+
+.caretButton {
+  padding: 2px;
+  color: var(--accents-5);
+  background: var(--geist-background);
+  border-radius: 50%;
+}
+
+.caretButton[disabled] {
+  color: var(--accents-3);
+  cursor: not-allowed;
+}
+
+.caretButton[data-active] {
+  background: var(--accents-2);
+}
+
+.caretButton[data-focus] {
+  box-shadow: 0 0 0 2px var(--accents-5);
+}
+
+.caretButton[data-hover] {
+  color: var(--geist-foreground);
+}
+
+.todayButton {
+  padding: 4px;
+}
+
+:global(.dark-theme) .table td[aria-selected="true"] {
+  background: var(--accents-2);
+}
+
+.table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  display: block;
+  position: relative;
+}
+
+.table tbody,
+.table thead {
+  display: block;
+}
+
+.table tbody {
+  top: 14.5px !important;
+}
+
+.table tr {
+  margin: var(--geist-space-2x) 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.table th {
+  flex: 1 1;
+  text-align: center;
+  padding: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--geist-secondary);
+  text-transform: uppercase;
+}
+
+.table td {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.table td[aria-selected="true"] {
+  background: var(--accents-2);
+}
+
+.table td[aria-selected="true"]:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.table td[aria-selected="true"]:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.table td.lastInRange {
+  border-radius: 0 4px 4px 0;
+  position: relative;
+}
+
+.table td.lastInRange:after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  z-index: 0;
+  background: var(--geist-background);
+}
+
+.table td.firstInRange {
+  border-radius: 4px 0 0 4px;
+  position: relative;
+}
+
+.table td.firstInRange:before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  z-index: 0;
+  background: var(--geist-background);
+}
+
+.table td span {
+  z-index: 1;
+  outline: none;
+  display: block;
+  line-height: 30px;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid transparent;
+  margin: 0;
+}
+
+.table td span.disabled {
+  cursor: not-allowed;
+}
+
+.table td span.disabled,
+.table td span.outsideMonth {
+  color: var(--accents-3);
+}
+
+.table td span.highlight {
+  background: var(--geist-success);
+  color: #fff;
+}
+
+.table td span.highlight.focused {
+  box-shadow: 0 0 0 1px var(--geist-background),
+    0 0 0 2.5px var(--geist-success);
+}
+
+.table td span.focused {
+  box-shadow: 0 0 0 1px var(--geist-background),
+    0 0 0 2.5px var(--geist-foreground);
+}
+
+.table td span.inRange {
+  color: var(--geist-foreground);
+}
+
+.table td span.hovered:not(.disabled):not(.selected):not(.highlight) {
+  color: var(--geist-foreground);
+  border-color: var(--accents-7);
+}
+
+.table td span.selected {
+  background: var(--geist-foreground);
+  color: var(--geist-background);
+}
+
+.form {
+  position: relative;
+  --icon-size: 20px;
+}
+
+.form:focus .button,
+.form:focus .calendarIcon {
+  color: var(--geist-foreground) !important;
+}
+
+@media (hover: hover) {
+  .form:hover .button,
+  .form:hover .calendarIcon {
+    color: var(--geist-foreground) !important;
+  }
+}
+
+.form:focus .button,
+.form:hover .button {
+  border: 1px solid var(--geist-foreground);
+}
+
+.form.error .button,
+.form.error .calendarIcon {
+  color: var(--geist-error) !important;
+  background: var(--geist-background);
+  border-color: var(--themed-fg);
+}
+
+.form .calendarIcon {
+  pointer-events: none;
+  position: absolute;
+  height: var(--icon-size);
+  width: var(--icon-size);
+  transition: color 0.2s ease, border-color 0.2s ease;
+  color: var(--accents-5) !important;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hasSelect .button {
+  border-left: 1px solid transparent;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-gap: 4px;
+  gap: 4px;
+  margin-top: -4px;
+}
+
+.inputRow input {
+  color: var(--accents-5);
+  font-weight: 500;
+  padding: 0 8px;
+}
+
+.inputRow .timeInput {
+  text-transform: uppercase;
+}
+
+.inputsWrapper {
+  margin-bottom: var(--geist-space-4x);
+}
+
+.contentWrapper {
+  --padding: var(--geist-gap-half);
+  padding: var(--padding);
+  position: relative;
+  border-radius: 6px;
+  background-image: linear-gradient(
+      to right,
+      var(--geist-background),
+      transparent var(--padding),
+      transparent 30%,
+      transparent calc(100% - var(--padding)),
+      var(--geist-background)
+    ),
+    linear-gradient(to top, var(--geist-background), transparent var(--padding));
+}
+
+:global(.dark-theme) .popover {
+  box-shadow: none;
+}
+
+.comboboxInput ~ :last-child:after {
+  content: "";
+  position: absolute;
+  right: calc(-1 * var(--width) + 45px);
+  height: calc(100% + 2px);
+  width: 1px;
+  opacity: 0;
+  z-index: 1;
+  background: var(--geist-foreground);
+  transition: opacity 0.15s;
+}
+
+.comboboxPopover {
+  background: var(--geist-background);
+  border: 1px solid var(--accents-2);
+  border-radius: var(--geist-radius);
+  box-shadow: var(--shadow-medium);
+  width: calc(var(--width) * 2);
+  overflow: hidden;
+  display: grid;
+  position: absolute;
+  top: 47px;
+  left: 0;
+  grid-template-columns: 1fr 1fr;
+  z-index: 99999999;
+}
+
+:global(.dark-theme) .comboboxPopover {
+  box-shadow: none;
+}
+
+.comboboxHints {
+  border-left: 1px solid var(--accents-2);
+  padding: var(--geist-space-4x) 30px var(--geist-space-4x)
+    var(--geist-space-4x);
+}
+
+.hintButtonsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  grid-gap: 4px;
+  gap: 4px;
+}
+
+.hintButton {
+  font-size: 13px;
+  padding: 0 6px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  background: var(--accents-2);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--geist-foreground);
+}
+
+@media (hover: hover) {
+  .hintButton:hover {
+    background: #dedede;
+  }
+
+  :global(.dark-theme) .hintButton:hover {
+    background: #4d4d4d;
+  }
+}
+
+.suggestions {
+  padding: 8px;
+}
+
+.comboboxWrapper {
+  position: relative;
+  display: flex;
+  height: 40px;
+}
+
+.comboboxWrapper [data-radix-popper-content-wrapper] {
+  position: absolute !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.comboboxInputPrefix {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.comboboxInputSuffix {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.comboboxInputSuffix:not(.clearButton) {
+  pointer-events: none;
+}
+
+.comboboxInput {
+  border: 1px solid var(--accents-2);
+  border-radius: var(--geist-radius);
+  padding: 0 40px;
+  height: 40px;
+  font-family: var(--geist-sans);
+  width: var(--width);
+  font-size: 14px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  outline: none;
+  color: var(--geist-foreground);
+  background: var(--geist-background);
+  transition: border-color 0.15s;
+  position: relative;
+  font-weight: 500;
+  color: var(--accents-5);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .comboboxInput:focus,
+  .comboboxInput:hover {
+    border-color: var(--geist-foreground);
+    color: var(--geist-foreground) !important;
+  }
+
+  .comboboxInput:focus::placeholder,
+  .comboboxInput:hover::placeholder {
+    color: var(--geist-foreground);
+  }
+
+  .comboboxInput:focus ~ .svg,
+  .comboboxInput:hover ~ .svg {
+    color: var(--geist-foreground) !important;
+  }
+
+  .comboboxInput:focus ~ .comboboxInputRightBorder,
+  .comboboxInput:hover ~ .comboboxInputRightBorder {
+    opacity: 1;
+  }
+
+  .comboboxInput:focus ~ .comboboxInputSuffixButton {
+    transform: translateY(-50%) rotate(180deg);
+  }
+}
+
+.comboboxInput ~ .svg {
+  color: var(--accents-5) !important;
+  transition: color 0.15s, transform 0.15s;
+}
+
+.comboboxInput.hasValue {
+  color: var(--geist-foreground);
+}
+
+.comboboxInput.hasValue:not(:focus) {
+  color: var(--accents-5);
+}
+
+.comboboxInput[data-error="true"] {
+  border-color: var(--geist-error);
+}
+
+.comboboxInput[data-error="true"] ~ .comboboxInputRightBorder {
+  background: var(--geist-error);
+  opacity: 1;
+}
+
+.comboboxInputRightBorder {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  opacity: 0;
+  z-index: 1;
+  background: var(--geist-foreground);
+  transition: opacity 0.15s;
+}
+
+.comboboxItem {
+  height: 36px;
+  font-size: 14px;
+  padding: 0 8px;
+  border-radius: var(--geist-radius);
+  display: flex;
+  scroll-margin: 8px;
+  cursor: pointer;
+  align-items: center;
+  font-weight: 500;
+  color: var(--accents-5);
+}
+
+.comboboxItem[aria-selected="true"] {
+  background-color: var(--accents-2);
+  color: var(--geist-foreground);
+}
+
+.clearButton {
+  background: none;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  color: var(--accents-5);
+  transition: color 0.15s;
+}
+
+@media (hover: hover) {
+  .clearButton:hover {
+    color: var(--geist-foreground);
+  }
+}
+
+.stacked {
+  display: inline-flex !important;
+  flex-direction: column;
+}
+
+.stacked .comboboxInput {
+  border-top-right-radius: var(--geist-radius);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.stacked [data-geist-button] {
+  border-radius: var(--geist-radius) !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  transform: translateY(-1px) !important;
+}
+
+.stacked .comboboxInputRightBorder {
+  bottom: 0;
+  top: unset;
+  height: 1px;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .comboboxInput {
+    width: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: var(--geist-radius);
+    border-bottom: 0;
+    text-align: left;
+    outline: none;
+  }
+
+  .drawerInput {
+    height: var(--geist-form-large-height);
+    padding: 0 42px;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    position: relative;
+    border-bottom: 1px solid var(--accents-2);
+  }
+
+  .drawerInput:focus {
+    outline: none;
+  }
+
+  .drawerBody {
+    padding: 0;
+  }
+
+  .comboboxItem {
+    height: 48px;
+    border-radius: var(--geist-radius);
+    font-size: 16px;
+  }
+
+  .comboboxList {
+    padding: 8px;
+    min-height: 256px;
+  }
+
+  .inputContainer {
+    position: sticky;
+  }
+
+  .inputPrefix {
+    left: var(--geist-gap-half);
+    display: flex;
+  }
+
+  .inputPrefix,
+  .inputSuffix {
+    position: absolute;
+    top: 50%;
+    color: var(--accents-3);
+    transform: translateY(-50%);
+  }
+
+  .inputSuffix {
+    right: 0;
+    height: 30px;
+    width: 40px;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .calendarButton,
+  .comboboxInput {
+    font-size: 14px !important;
+  }
+
+  .calendarBody {
+    min-height: 500px;
+  }
+}

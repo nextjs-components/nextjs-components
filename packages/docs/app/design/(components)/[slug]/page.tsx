@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "./button.mdx";
+import Calendar from "./calendar.mdx";
 import Capacity from "./capacity.mdx";
 import Combobox from "./combobox.mdx";
 import Description from "./description.mdx";
@@ -31,6 +32,8 @@ export default function Slug({ params: { slug } }) {
     switch (slug) {
       case "button":
         return <Button />;
+      case "calendar":
+        return <Calendar />;
       case "capacity":
         return <Capacity />;
       case "combobox":
