@@ -67,7 +67,7 @@ const Entity: React.FC<React.PropsWithChildren<Props>> = ({
             className={clsx(styles.footer)}
             style={{
               // @ts-ignore
-              "--indent": "48px",
+              "--indent": thumbnail ? "48px" : 0,
               "--height": "24px",
             }}
           >
