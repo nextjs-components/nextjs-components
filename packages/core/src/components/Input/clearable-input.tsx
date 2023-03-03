@@ -1,42 +1,19 @@
-import React from "react";
 import { forwardRef, useRef } from "react";
 
-import Search from "../../icons/search";
 import { mergeRefs } from "../../utils/merge-refs";
-import { Spinner } from "../Spinner";
 import { Props as BaseProps, default as Input } from "./Input";
 import { ClearButton } from "./clear-button";
 
 interface Props
-  extends Omit<
-    BaseProps,
-    | "prefix"
-    | "prefixStyling"
-    | "prefixContainer"
-    | "suffix"
-    | "suffixStyling"
-    | "suffixContainer"
-  > {
-  loading?: boolean;
-}
+  extends Omit<BaseProps, "suffix" | "suffixStyling" | "suffixContainer"> {}
 
-const SearchInput = forwardRef<HTMLInputElement, Props>(
-  ({ loading, ...props }, externalRef) => {
+const ClearableInput = forwardRef<HTMLInputElement, Props>(
+  (props, externalRef) => {
     const inputRef = useRef<HTMLInputElement>(null);
     return (
       <Input
         {...props}
         ref={mergeRefs([externalRef, inputRef])}
-        aria-label={props["aria-label"] || "Search"}
-        typeName="search"
-        prefix={
-          loading ? (
-            <Spinner size={{ small: 16, large: 24 }[props.size]} />
-          ) : (
-            <Search />
-          )
-        }
-        prefixStyling={false}
         suffix={
           props.value || inputRef.current?.value ? (
             <ClearButton
@@ -44,6 +21,7 @@ const SearchInput = forwardRef<HTMLInputElement, Props>(
                 if (inputRef.current) {
                   inputRef.current.value = "";
                   inputRef.current.focus();
+                  console.log(props);
                   props.onChange?.({
                     target: { value: "" },
                   } as any);
@@ -59,4 +37,4 @@ const SearchInput = forwardRef<HTMLInputElement, Props>(
   },
 );
 
-export default SearchInput;
+export default ClearableInput;

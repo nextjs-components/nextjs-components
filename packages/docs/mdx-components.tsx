@@ -4,6 +4,7 @@ import { Spacer } from "nextjs-components";
 import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
 import { Link as LinkIcon } from "nextjs-components/src/icons";
 import React from "react";
+import { useFocusRing } from "react-aria";
 
 import { Editor } from "@/components/editor";
 import { Example } from "@/components/example";
@@ -150,14 +151,17 @@ const mdxComponents = {
   ),
   // Strange situation going on here... but this
   // is what I transcribed from the Vercel design site.
-  h3: ({ children, ...props }) => {
+  h3: function H3({ children, ...props }) {
     // props are provided by a mix of
     // - rehype-autolink-headings
     // - rehype-slug
     const { id } = props;
     const text = children.props.children;
+    const { focusProps, isFocusVisible } = useFocusRing();
     const newChild = React.cloneElement(children, {
       id,
+      "data-focus-visible-added": isFocusVisible ? "" : undefined,
+      ...focusProps,
       className: clsx(link.link, link["fragment-link"]),
       children: (
         <>

@@ -8,15 +8,21 @@ interface ErrorProps {
   label?: string;
   size?: "small" | "large";
   style?: React.CSSProperties;
+  id?: string;
 }
 const Error: React.ComponentType<React.PropsWithChildren<ErrorProps>> = ({
   label = "Error",
   children,
   size,
   style,
+  id,
 }) => {
   return (
     <div
+      id={id}
+      aria-atomic="true"
+      role="alert"
+      data-geist-error=""
       style={style}
       className={clsx(styles.error, {
         [styles.small]: size === "small",

@@ -1,5 +1,9 @@
 import { Container } from "nextjs-components/src/components/Container";
-import { Input } from "nextjs-components/src/components/Input";
+import {
+  ClearableInput,
+  Input,
+  SearchInput,
+} from "nextjs-components/src/components/Input";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Stack } from "nextjs-components/src/components/Stack";
 import ArrowUpCircle from "nextjs-components/src/icons/arrow-up-circle";
@@ -92,6 +96,65 @@ import Search from "nextjs-components/src/icons/search";
     <Input placeholder="Default" type="success" />
   </Container>
 </Container>`}
+/>
+
+<Spacer y={2} />
+
+### Clearable
+
+Automatically show a clear button if a value is entered.
+
+<Spacer />
+
+<Editor
+  scope={{ Container, ClearableInput,Search }}
+  code={`() => {
+const [value, setValue] = React.useState('initial')
+return (<Container left>
+  <Container>
+    <ClearableInput value={value} onChange={e => setValue(e.target.value)} />
+  </Container>
+
+  <Container>
+    <ClearableInput
+      prefix={<Search />}
+    />
+  </Container>
+</Container>)
+}`}
+/>
+
+<Spacer y={2} />
+
+### Search
+
+Automatically clears the input if Escape is pressed.
+
+<Spacer />
+
+<Editor
+  scope={{ Container, SearchInput }}
+  code={`() => {
+return (
+  <Container left>
+    <Container>
+      <SearchInput placeholder="Enter some text..." />
+    </Container>
+    
+    <Container>
+      <SearchInput loading placeholder="Loading" size="small"/>
+    </Container>
+
+    <Container>
+      <SearchInput loading placeholder="Loading" />
+    </Container>
+
+    <Container>
+      <SearchInput loading placeholder="Loading" size="large" />
+    </Container>
+
+  </Container>
+)}`}
 />
 
 <Spacer y={2} />

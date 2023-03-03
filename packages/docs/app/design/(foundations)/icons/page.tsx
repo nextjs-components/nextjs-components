@@ -1,8 +1,7 @@
 "use client";
 
 import { Container, Spacer, Text } from "nextjs-components";
-import { Input } from "nextjs-components/src/components/Input";
-import * as Icons from "nextjs-components/src/icons";
+import { SearchInput } from "nextjs-components/src/components/Input";
 import { useMemo, useState } from "react";
 
 import styles from "../../design.module.css";
@@ -32,11 +31,9 @@ export default function IconsPage() {
           marginTop: 30,
         }}
       >
-        <Input
+        <SearchInput
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          prefix={<Icons.Search size={16} color="var(--themed-border)" />}
-          prefixStyling={false}
           placeholder="Search icons..."
         />
         <Spacer />

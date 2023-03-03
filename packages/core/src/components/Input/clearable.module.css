@@ -1,0 +1,19 @@
+.button {
+  cursor: pointer;
+  transition: color 0.15s ease, box-shadow 0.15s, border-color 0.15s;
+}
+
+.button:not(.disabled):hover {
+  color: var(--geist-foreground);
+}
+
+.button:focus.focus-visible {
+  color: var(--geist-foreground);
+  border: 1px solid var(--geist-foreground);
+  border-left: 0;
+  box-shadow: inset 1px 0 0 var(--geist-foreground);
+}
+
+.button span {
+  display: inline-flex;
+}

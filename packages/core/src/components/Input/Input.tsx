@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useCallback, useId } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import { Error } from "../Error";
@@ -26,6 +26,7 @@ export interface Props extends Omit<InputProps, "size" | "prefix" | "suffix"> {
   error?: boolean;
   type?: "error" | "success" | "warning";
   width?: React.CSSProperties["width"];
+  typeName?: InputProps["type"];
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
@@ -43,6 +44,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       error,
       type,
       width,
+      typeName = "text",
       ...props
     },
     ref,
@@ -64,45 +66,66 @@ const Input = forwardRef<HTMLInputElement, Props>(
       [styles[size]]: !!size,
     });
 
-    const _prefix = prefixContainer ? <span>{prefix}</span> : prefix;
-    const _suffix = suffixContainer ? <span>{suffix}</span> : suffix;
+    const _prefix = prefixContainer ? (
+      <span data-geist-input-prefix="">{prefix}</span>
+    ) : (
+      prefix
+    );
+    const _suffix = suffixContainer ? (
+      <span data-geist-input-suffix="">{suffix}</span>
+    ) : (
+      suffix
+    );
 
     // small = 16
     // medium = 20
     // large = 24
     const iconSize = size === "small" ? 16 : size === "large" ? 24 : 20;
 
-    if (label) {
-      return (
-        <IconSizeContext.Provider value={{ size: iconSize }}>
-          <Label
-            htmlFor={props.id || props.name}
-            label={label}
-            capitalize
-            withInput
-          >
-            <div className={containerClassName}>
-              <input {...props} ref={ref} className={inputClassName} />
-              {_prefix}
-              {_suffix}
-            </div>
-          </Label>
-        </IconSizeContext.Provider>
-      );
-    }
+    const LabelOrFragment = useCallback(
+      ({ children }) => {
+        if (label) {
+          return (
+            <Label
+              htmlFor={props.id || props.name}
+              label={label}
+              capitalize
+              withInput
+            >
+              {children}
+            </Label>
+          );
+        }
+        return <>{children}</>;
+      },
+      [label],
+    );
+
+    const errorId = "input-" + useId() + "-error";
 
     return (
       <IconSizeContext.Provider value={{ size: iconSize }}>
-        <div className={containerClassName} style={{ width }}>
-          <input {...props} ref={ref} className={inputClassName} />
-          {_prefix}
-          {_suffix}
-        </div>
-        {error ? (
-          <Error style={{ marginTop: "var(--geist-gap-quarter)" }}>
-            {error}
-          </Error>
-        ) : null}
+        <LabelOrFragment>
+          <div className={containerClassName} style={{ width }}>
+            <input
+              aria-describedby={error ? errorId : undefined}
+              {...props}
+              ref={ref}
+              className={inputClassName}
+              type={typeName}
+            />
+            {_prefix}
+            {_suffix}
+          </div>
+          {error ? (
+            <Error
+              id={errorId}
+              style={{ marginTop: "var(--geist-gap-quarter)" }}
+            >
+              {error}
+            </Error>
+          ) : null}
+        </LabelOrFragment>
       </IconSizeContext.Provider>
     );
   },

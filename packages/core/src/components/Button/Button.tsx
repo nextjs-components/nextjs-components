@@ -27,6 +27,7 @@ export interface Props
   loading?: boolean;
   onClick?: (e: PressEvent) => void;
   svgOnly?: boolean;
+  typeName?: IntrinsicProps["type"];
 }
 const Button: React.ComponentType<Props> = forwardRef(
   (
@@ -46,6 +47,7 @@ const Button: React.ComponentType<Props> = forwardRef(
       loading,
       onClick,
       svgOnly,
+      typeName = "submit",
       ...props
     },
     externalRef,
@@ -91,6 +93,7 @@ const Button: React.ComponentType<Props> = forwardRef(
         {...props}
         {...hoverProps}
         {...buttonProps}
+        type={typeName}
         data-focus={isFocused ? "" : null}
         data-active={isPressed ? "" : null}
         data-hover={isHovered ? "" : null}
