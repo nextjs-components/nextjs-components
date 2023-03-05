@@ -1,5 +1,6 @@
 "use client";
 
+import commandScore from "command-score";
 import { Container, Spacer, Text } from "nextjs-components";
 import { SearchInput } from "nextjs-components/src/components/Input";
 import { useMemo, useState } from "react";
@@ -12,13 +13,29 @@ import listStyles from "./list.module.css";
 
 export default function IconsPage() {
   const [search, setSearch] = useState("");
-  const entries = useMemo(
-    () =>
-      Object.entries(iconMap).filter(([key, _]) =>
-        search ? key.includes(search.toLowerCase()) : true,
-      ),
-    [search],
-  );
+  const entries = useMemo(() => {
+    return Object.entries(iconMap)
+      .reduce((acc, [key, Icon]) => {
+        const score = commandScore(key, search);
+        if (score > 0) {
+          acc.push({ Icon, score, key });
+        }
+        return acc;
+      }, [])
+      .sort((a, b) => {
+        if (a.score === b.score) {
+          return a.key.localeCompare(b.key);
+        }
+        return b.score - a.score;
+      })
+      .map((suggestion) => {
+        return {
+          key: suggestion.key,
+          Icon: suggestion.Icon,
+        };
+      });
+  }, [search]);
+
   return (
     <>
       <IconsMdx />
@@ -39,12 +56,12 @@ export default function IconsPage() {
         <Spacer />
 
         <div className="geist-list">
-          {entries.map(([key, Ic]) => {
+          {entries.map(({ key, Icon }) => {
             return (
               <ListItem key={key}>
                 <button className="icon">
                   <Container center>
-                    <Ic />
+                    <Icon />
                   </Container>
                   <Spacer />
                   <Container>
