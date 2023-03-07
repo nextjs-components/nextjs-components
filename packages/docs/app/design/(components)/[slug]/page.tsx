@@ -20,6 +20,7 @@ import Switch from "./switch.mdx";
 import Table from "./table.mdx";
 import Text from "./text.mdx";
 import Toggle from "./toggle.mdx";
+import Tooltip from "./tooltip.mdx";
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {
@@ -64,6 +65,8 @@ export default function Slug({ params: { slug } }) {
         return <Text />;
       case "toggle":
         return <Toggle />;
+      case "tooltip":
+        return <Tooltip />;
 
       default:
         return (

@@ -18,5 +18,6 @@
   { "name": "Switch", "path": "/design/switch" },
   { "name": "Table", "path": "/design/table" },
   { "name": "Text", "path": "/design/text" },
-  { "name": "Toggle", "path": "/design/toggle" }
+  { "name": "Toggle", "path": "/design/toggle" },
+  { "name": "Tooltip", "path": "/design/tooltip" }
 ]
