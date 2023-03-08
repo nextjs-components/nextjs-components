@@ -110,7 +110,7 @@ const Tooltip = ({
         ref={ref}
         className={clsx(styles.container, className)}
         style={style}
-        {...triggerProps}
+        {...mergeProps(triggerProps, { tabIndex })}
       >
         {children}
       </Component>
