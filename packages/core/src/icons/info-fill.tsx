@@ -22,10 +22,10 @@ export default function InfoFill({
       width={size || iconSize.size}
       style={
         {
-          ...props.style,
           color: color,
           "--geist-fill": "currentColor",
           "--geist-stroke": "var(--geist-background)",
+          ...props.style,
         } as React.CSSProperties
       }
     >

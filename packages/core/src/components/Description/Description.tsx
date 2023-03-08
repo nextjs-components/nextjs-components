@@ -1,5 +1,7 @@
 import React from "react";
 
+import InfoFill from "../../icons/info-fill";
+import { Tooltip } from "../tooltip";
 import styles from "./description.module.css";
 
 interface Props {
@@ -19,7 +21,24 @@ const Description = ({ title, content, tooltip }: Props) => {
     <dl className={styles.description}>
       <dt>
         {title}
-        {tooltip && <span className={styles.icon}>{/* <Tooltip/> */}</span>}
+        {tooltip && (
+          <span className={styles.icon}>
+            {
+              <Tooltip text={tooltip}>
+                <InfoFill
+                  size={14}
+                  color="var(--accents-2)"
+                  style={
+                    {
+                      fill: "currentColor",
+                      "--geist-stroke": "var(--geist-foreground)",
+                    } as React.CSSProperties
+                  }
+                />
+              </Tooltip>
+            }
+          </span>
+        )}
       </dt>
       <dd>{content}</dd>
     </dl>
