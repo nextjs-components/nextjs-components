@@ -16,7 +16,7 @@ import useMeasure from "react-use-measure";
 import styles from "./tooltip.module.css";
 
 interface Props {
-  as?: "string";
+  as?: React.ElementType;
   boxAlign?: string;
   center?: boolean;
   className?: string;
@@ -44,9 +44,8 @@ interface Props {
   lowerDelay?: boolean;
   forceHide?: boolean;
 }
-// <Tooltip text="The Evil Rabbit Jumped over the Fence">
-//   <span>Top</span>
-// </Tooltip>
+
+// TODO(kevin): use all the props here
 const Tooltip = ({
   children,
   as,
@@ -81,7 +80,7 @@ const Tooltip = ({
 
   let state = useTooltipTriggerState({
     defaultOpen: false,
-    delay: delayTime,
+    delay: delayTime ?? 500,
     isDisabled: disableTriggers,
   });
 
@@ -90,8 +89,6 @@ const Tooltip = ({
   let { triggerProps, tooltipProps: _ttp } = useTooltipTrigger({}, state, ref);
 
   let { tooltipProps } = useTooltip(_ttp, state);
-
-  const element = Children.only(children) as ReactElement;
 
   const x = bounds.width / 2;
   const y = bounds.height / 2;
@@ -105,18 +102,25 @@ const Tooltip = ({
       : position === "right"
       ? `translate(calc(${x * 3}px), calc(-50% + ${y}px))`
       : undefined;
+
+  const Component = as || "span";
   return (
     <>
-      <span className={styles.container} {...triggerProps} ref={ref}>
-        {/* {cloneElement(element, )} */}
+      <Component
+        ref={ref}
+        className={clsx(styles.container, className)}
+        style={style}
+        {...triggerProps}
+      >
         {children}
-      </span>
+      </Component>
       {state.isOpen ? (
         <Portal.Root asChild>
           <div
             {...tooltipProps}
             className={clsx(
               styles.tooltip,
+              tooltipClassName,
               {
                 [styles.top]: position === "top",
                 [styles.bottom]: position === "bottom",
