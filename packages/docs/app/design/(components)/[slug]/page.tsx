@@ -2,6 +2,7 @@
 
 import Button from "./button.mdx";
 import Capacity from "./capacity.mdx";
+import Description from "./description.mdx";
 import Entity from "./entity.mdx";
 import Fieldset from "./fieldset.mdx";
 import FileTree from "./file-tree.mdx";
@@ -29,6 +30,8 @@ export default function Slug({ params: { slug } }) {
         return <Button />;
       case "capacity":
         return <Capacity />;
+      case "description":
+        return <Description />;
       case "entity":
         return <Entity />;
       case "fieldset":
