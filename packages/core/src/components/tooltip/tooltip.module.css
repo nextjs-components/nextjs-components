@@ -1,0 +1,188 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.container.focus-visible:focus {
+  box-shadow: var(--geist-focus);
+}
+
+.absolute {
+  position: absolute;
+  pointer-events: none;
+}
+
+.relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1999;
+}
+
+.tooltip {
+  pointer-events: all;
+  position: absolute;
+  opacity: 0;
+  z-index: 2000;
+  --tooltip-color: var(--themed-fg);
+  --tooltip-background: var(--themed-bg);
+  text-transform: none;
+  font-weight: 400;
+  color: var(--tooltip-color);
+  background: var(--tooltip-background);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-radius: 5px;
+  box-shadow: var(--shadow-medium);
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  animation: fadeIn 0.1s ease-in 0.4s forwards;
+}
+
+.tooltip.faster {
+  animation: fadeIn 0.1s ease-in 0.1s forwards;
+}
+
+.tooltip:not(.delay) {
+  animation-delay: 0s;
+}
+
+.tooltip.wrap {
+  word-wrap: break-word;
+  white-space: pre-line;
+  border-collapse: separate;
+}
+
+.tooltip.center {
+  text-align: center;
+}
+
+.tooltip:not(.tip) .triangle,
+.tooltip:not(.tip):before {
+  display: none;
+}
+
+.tooltip.geist-themed {
+  box-shadow: none;
+  --tooltip-stroke: var(--themed-bg);
+}
+
+.tooltip:not(.geist-themed) {
+  --themed-fg: var(--geist-foreground);
+  --themed-bg: var(--geist-background);
+  --themed-border: var(--themed-bg);
+  --tooltip-stroke: var(--dropdown-triangle-stroke);
+}
+
+.tooltip:before,
+.triangle {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  z-index: 100001;
+  pointer-events: none;
+}
+
+.triangle {
+  border: 7px solid transparent;
+  z-index: 100000;
+  --tooltip-background: var(--tooltip-stroke);
+}
+
+.tooltip:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tooltip.top:after {
+  top: 10px;
+}
+
+.tooltip.top .triangle,
+.tooltip.top:before {
+  top: 100%;
+  left: 50%;
+  margin-bottom: 10px;
+  transform: translateX(-50%);
+  border-top-color: var(--tooltip-background);
+}
+
+.tooltip.bottom .triangle,
+.tooltip.bottom:before {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: var(--tooltip-background);
+}
+
+.tooltip.bottom:after {
+  top: -10px;
+}
+
+.tooltip.left .triangle,
+.tooltip.left:before {
+  top: 50%;
+  bottom: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-left-color: var(--tooltip-background);
+}
+
+.tooltip.left:after {
+  left: 10px;
+}
+
+.tooltip.right .triangle,
+.tooltip.right:before {
+  top: 50%;
+  bottom: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-right-color: var(--tooltip-background);
+}
+
+.tooltip.right:after {
+  left: -10px;
+}
+
+.tooltip.box-align-left .triangle,
+.tooltip.box-align-left:before {
+  left: 10%;
+}
+
+.tooltip.box-align-right .triangle,
+.tooltip.box-align-right:before {
+  left: unset;
+  right: calc(10% - 14px);
+}
+
+.tooltip.box-align-auto.box-align-right .triangle,
+.tooltip.box-align-auto.box-align-right:before {
+  right: calc(10% - 10px);
+}
+
+.tooltip.box-align-right:not(.left):not(.right) .triangle {
+  transform: translateX(calc(-50% + (7px / 2)));
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

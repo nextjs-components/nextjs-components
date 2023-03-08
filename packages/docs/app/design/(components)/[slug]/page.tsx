@@ -2,6 +2,7 @@
 
 import Button from "./button.mdx";
 import Capacity from "./capacity.mdx";
+import Description from "./description.mdx";
 import Entity from "./entity.mdx";
 import Fieldset from "./fieldset.mdx";
 import FileTree from "./file-tree.mdx";
@@ -20,6 +21,7 @@ import Switch from "./switch.mdx";
 import Table from "./table.mdx";
 import Text from "./text.mdx";
 import Toggle from "./toggle.mdx";
+import Tooltip from "./tooltip.mdx";
 
 export default function Slug({ params: { slug } }) {
   const Page = () => {
@@ -28,6 +30,8 @@ export default function Slug({ params: { slug } }) {
         return <Button />;
       case "capacity":
         return <Capacity />;
+      case "description":
+        return <Description />;
       case "entity":
         return <Entity />;
       case "fieldset":
@@ -64,6 +68,8 @@ export default function Slug({ params: { slug } }) {
         return <Text />;
       case "toggle":
         return <Toggle />;
+      case "tooltip":
+        return <Tooltip />;
 
       default:
         return (

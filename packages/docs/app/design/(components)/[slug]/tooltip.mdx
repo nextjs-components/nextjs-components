@@ -1,0 +1,129 @@
+import { Badge, Button, Container, Spinner, Tooltip } from "nextjs-components";
+import { Info } from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Tooltip
+
+<Spacer y={0.8} />
+
+## Displays additional information on hover.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ Container, Tooltip }}
+  code={`<Container row>
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence">
+      <span>Top</span>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="bottom">
+      <span>Bottom</span>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="left">
+      <span>Left</span>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="right">
+      <span>Right</span>
+    </Tooltip>
+  </Container>
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### No Delay
+
+<Editor
+  scope={{ Container, Tooltip }}
+  code={`<Container row>
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" delay={false}>
+      <span>Top</span>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="bottom" delay={false}>
+      <span>Bottom</span>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="left" delay={false}>
+      <span>Left</span>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="right" delay={false}>
+      <span>Right</span>
+    </Tooltip>
+  </Container>
+</Container>
+`}
+/>
+
+<Spacer y={2} />
+
+### BoxAlign
+
+<Spacer y={2} />
+
+### Custom Content
+
+<Spacer y={2} />
+
+### Custom Type
+
+<Spacer y={2} />
+
+### Components
+
+<Editor
+  scope={{ Container, Tooltip, Button, Badge, Spinner, Info }}
+  code={`<Container row>
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence">
+      <Info height="15px" />
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="bottom">
+      <Button small>Bottom</Button>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="left">
+      <Badge size="sm">LEFT</Badge>
+    </Tooltip>
+  </Container>
+  
+  <Container center>
+    <Tooltip text="The Evil Rabbit Jumped over the Fence" position="right">
+      <Spinner />
+    </Tooltip>
+  </Container>
+</Container>
+`}
+/>
+
+<Spacer y={2} />
+
+### Other
+
+<Spacer y={4} />

@@ -1,6 +1,7 @@
 "use client";
 
 import clsx from "clsx";
+import commandScore from "command-score";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Avatar } from "nextjs-components/src/components/Avatar";
@@ -10,7 +11,7 @@ import { Text } from "nextjs-components/src/components/Text";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";
 import * as Icons from "nextjs-components/src/icons";
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Menu } from "@/components/menu";
 
@@ -38,11 +39,6 @@ interface Props extends React.PropsWithChildren {
 const DesignLayout: React.FC<Props> = ({ children }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const [navigationNodes, setNavigationNodes] = useState({
-    foundations: foundationsNodes,
-    components: componentsNodes,
-  });
-
   // attach "/" keyboard shortcut to search input
   const searchRef = React.useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -63,6 +59,48 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
   }, []);
 
   const [search, setSearch] = useState("");
+  const navigationNodes = useMemo(() => {
+    return {
+      foundations: foundationsNodes,
+      components: componentsNodes,
+    };
+  }, []);
+
+  const filteredNodes = useMemo(() => {
+    if (!search) {
+      return navigationNodes;
+    }
+    return Object.keys(navigationNodes).reduce(
+      (acc, next) => {
+        const nodes = navigationNodes[next as "foundations" | "components"];
+
+        acc[next] = nodes
+          .reduce((acc, next) => {
+            const score = commandScore(next.name, search);
+            if (score > 0) {
+              acc.push({ ...next, score });
+            }
+            return acc;
+          }, [] as (typeof nodes[number] & { score: number })[])
+          .sort((a, b) => {
+            if (a.score === b.score) {
+              return a.name.localeCompare(b.name);
+            }
+            return b.score - a.score;
+          })
+          .map((n) => {
+            delete n.score;
+            return n;
+          });
+
+        return acc;
+      },
+      {
+        foundations: [] as typeof foundationsNodes,
+        components: [] as typeof componentsNodes,
+      },
+    );
+  }, [search, navigationNodes]);
 
   const pathname = usePathname();
   const nodes = [...foundationsNodes, ...componentsNodes];
@@ -106,21 +144,6 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
                 onChange={(e) => {
                   const value = e.target.value;
                   setSearch(value);
-                  if (value === "") {
-                    setNavigationNodes({
-                      foundations: foundationsNodes,
-                      components: componentsNodes,
-                    });
-                    return;
-                  }
-                  setNavigationNodes({
-                    foundations: foundationsNodes.filter((n) =>
-                      n.name.toLowerCase().includes(value.toLowerCase()),
-                    ),
-                    components: componentsNodes.filter((n) =>
-                      n.name.toLowerCase().includes(value.toLowerCase()),
-                    ),
-                  });
                 }}
                 prefix={<Icons.Search size={16} />}
                 prefixStyling={false}
@@ -131,7 +154,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
             </div>
             <div className={clsx(styles.sidebar, expanded && styles.open)}>
               <div className={styles.navigation}>
-                {Object.entries(navigationNodes).map(([category, nodes]) => {
+                {Object.entries(filteredNodes).map(([category, nodes]) => {
                   return (
                     <React.Fragment key={category}>
                       {nodes.length > 0 ? (

@@ -1,6 +1,7 @@
 [
   { "name": "Button", "path": "/design/button" },
   { "name": "Capacity", "path": "/design/capacity" },
+  { "name": "Description", "path": "/design/description" },
   { "name": "Entity", "path": "/design/entity" },
   { "name": "Fieldset", "path": "/design/fieldset" },
   { "name": "File Tree", "path": "/design/file-tree" },
@@ -18,5 +19,6 @@
   { "name": "Switch", "path": "/design/switch" },
   { "name": "Table", "path": "/design/table" },
   { "name": "Text", "path": "/design/text" },
-  { "name": "Toggle", "path": "/design/toggle" }
+  { "name": "Toggle", "path": "/design/toggle" },
+  { "name": "Tooltip", "path": "/design/tooltip" }
 ]
