@@ -1,0 +1,52 @@
+import { Container, Textarea } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Textarea
+
+<Spacer y={0.8} />
+
+## Retrieve multi-line user input.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ Container, Textarea }}
+  code={`<Container>
+  <Textarea
+    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  />
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor
+  scope={{ Container, Textarea }}
+  code={`<Container>
+  <Textarea
+    disabled
+    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  />
+</Container>`}
+/>
+
+<Spacer y={2} />
+
+### Error
+
+<Editor
+  scope={{ Container, Textarea }}
+  code={`<Container>
+  <Textarea
+    errored
+    defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  />
+</Container>`}
+/>
+
+<Spacer y={4} />

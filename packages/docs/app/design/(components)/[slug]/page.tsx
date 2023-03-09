@@ -20,6 +20,7 @@ import StatusDot from "./status-dot.mdx";
 import Switch from "./switch.mdx";
 import Table from "./table.mdx";
 import Text from "./text.mdx";
+import Textarea from "./textarea.mdx";
 import Toggle from "./toggle.mdx";
 import Tooltip from "./tooltip.mdx";
 
@@ -66,6 +67,8 @@ export default function Slug({ params: { slug } }) {
         return <Table />;
       case "text":
         return <Text />;
+      case "textarea":
+        return <Textarea />;
       case "toggle":
         return <Toggle />;
       case "tooltip":
