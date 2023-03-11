@@ -13,13 +13,13 @@ import * as Icons from "nextjs-components/src/icons";
 import React from "react";
 import { useEffect, useMemo, useState } from "react";
 
+import { ThemeSwitcher } from "@/app/theme-switcher";
 import { Menu } from "@/components/menu";
 
 import componentsNodes from "./(components)/nodes.json";
 import foundationsNodes from "./(foundations)/nodes.json";
 import styles from "./design.module.css";
 import Link from "./link";
-import { ThemeSwitcher } from "./theme-switcher";
 
 // ToastArea should not be ssr'd because it causes hydration issues
 // TODO: figure out why and document it.
