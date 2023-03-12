@@ -11,6 +11,7 @@
     "build:core-babel": "npm run build:babel --workspace=nextjs-components",
     "clean": "npm run clean --workspace=nextjs-components",
     "docs": "npm run dev --workspace=docs",
+    "docs:plop": "npm run plop --workspace=docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
