@@ -77,9 +77,13 @@ let useCThing = () => {
 };
 
 /** what provider is this? */
-const $ = createContext({});
+const $ = createContext({
+  list: { current: [] },
+  map: { current: {} },
+  force: ({}) => {},
+});
 
-const useValue = (context, t: Partial<Item>) => {
+const useValue = (context: typeof $, t: Partial<Item>) => {
   let [index, setIndex] = useState(-1);
   let ref = useRef(null);
   let { list, map, force } = useContext(context);
@@ -177,6 +181,7 @@ const INITIAL_STATE: State = {
 type Action =
   | {
       type: "OPEN";
+      selectedIndex?: number;
     }
   | {
       type: "RESET";
@@ -318,6 +323,7 @@ const ComboboxContext = createContext({
   selectedIndex: 0,
   selectedValue: null,
   showMenuButton: true,
+  showAllResults: true,
   size: undefined as ComboboxProps["size"],
 });
 const useComboboxContext = () => useContext(ComboboxContext);
@@ -434,6 +440,7 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
     let menuItems = [];
 
     for (let item of items) {
+      // @ts-expect-error TODO: type items array
       item.isMenu ? menuItems.push(item) : regularItems.push(item);
     }
 
@@ -457,9 +464,12 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
       let e;
       if (!open) {
         if (er && items?.length) {
+          // @ts-expect-error TODO: type items array
           let t = items.find((e) => e.value === er);
+
           t
-            ? t.displayValue
+            ? // @ts-expect-error TODO: type items array
+              t.displayValue
               ? dispatch({
                   type: "RESET",
                   inputValue: er,
@@ -468,11 +478,13 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
               ? (e = K(() => {
                   dispatch({
                     type: "RESET",
+                    // @ts-expect-error TODO: type items array
                     inputValue: t.label,
                   });
                 }))
               : dispatch({
                   type: "RESET",
+                  // @ts-expect-error TODO: type items array
                   inputValue: t.label,
                 })
             : dispatch({
@@ -498,6 +510,7 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
     const isMobile = useMediaQuery("(max-width: 375px)");
     return (
       <ComboboxContext.Provider
+        // @ts-expect-error TODO: satisfy context type
         value={{
           // state
           selectedIndex,
@@ -779,6 +792,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
           let t = e.relatedTarget;
           for (
             ;
+            // @ts-expect-error — TODO: Figure out what's going on here
             null !== t && ("FOOTER" !== t.tagName || !t.dataset.listFooter);
 
           ) {
@@ -837,6 +851,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
             open ? dispatch({ type: "CLOSE" }) : dispatch({ type: "OPEN" });
           }}
         >
+          {/* @ts-expect-error TODO: className needs to be added to allow types */}
           <ChevronDown size={18} className={iconButton.chevron} />
         </button>
       ) : null}
@@ -1102,6 +1117,7 @@ const ClearButton = ({ style, onClick, open }) => {
       type="button"
       style={style}
     >
+      {/* @ts-expect-error TODO className needs to be added to allow types */}
       <X size={18} className={iconButton.cross} />
     </button>
   );
