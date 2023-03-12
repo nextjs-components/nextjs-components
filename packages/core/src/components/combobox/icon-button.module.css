@@ -1,0 +1,46 @@
+.iconButton {
+  --icon-rotation: 0deg;
+  -webkit-user-select: none;
+  user-select: none;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 30px;
+  color: var(--accents-3);
+}
+
+@media (hover: hover) {
+  .iconButton:hover:not(:disabled) {
+    color: var(--geist-foreground);
+  }
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+}
+
+.iconButton[data-open="true"] {
+  --icon-rotation: 180deg;
+}
+
+.iconButton[data-open="true"] .chevron {
+  transform: rotate(var(--icon-rotation));
+}
+
+.iconButton > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton .chevron {
+  transition: transform 0.15s ease;
+}
+
+.iconButton .chevron,
+.iconButton .cross {
+  animation: bounce 0.15s ease;
+}

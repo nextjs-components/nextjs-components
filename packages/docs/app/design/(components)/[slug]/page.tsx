@@ -2,6 +2,7 @@
 
 import Button from "./button.mdx";
 import Capacity from "./capacity.mdx";
+import Combobox from "./combobox.mdx";
 import Description from "./description.mdx";
 import Entity from "./entity.mdx";
 import Fieldset from "./fieldset.mdx";
@@ -31,6 +32,8 @@ export default function Slug({ params: { slug } }) {
         return <Button />;
       case "capacity":
         return <Capacity />;
+      case "combobox":
+        return <Combobox />;
       case "description":
         return <Description />;
       case "entity":

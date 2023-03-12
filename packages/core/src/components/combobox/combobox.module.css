@@ -1,0 +1,332 @@
+.container {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  font-size: var(--geist-form-font);
+  z-index: 0;
+}
+
+.small {
+  font-size: var(--geist-form-small-font) !important;
+}
+
+.small .iconButton.clearButton,
+.small .input {
+  height: var(--geist-form-small-height);
+}
+
+.large {
+  font-size: var(--geist-form-large-font) !important;
+}
+
+.large .iconButton.clearButton,
+.large .input {
+  height: var(--geist-form-large-height);
+}
+
+.optionDisabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0) rotate(var(--icon-rotation));
+  }
+
+  50% {
+    transform: scale(1.2) rotate(var(--icon-rotation));
+  }
+
+  to {
+    transform: scale(1) rotate(var(--icon-rotation));
+  }
+}
+
+.iconButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.15s ease;
+}
+
+.iconButton.clearButton {
+  border: 1px solid var(--accents-2);
+  border-left: 0;
+  border-radius: 0 var(--geist-radius) var(--geist-radius) 0;
+  height: var(--geist-form-height);
+  order: 2;
+  padding: 0 var(--geist-gap-half);
+  transition: color 0.15s ease, box-shadow 0.15s, border-color 0.15s;
+  width: auto;
+}
+
+.iconButton.clearButton:focus:global(.focus-visible) {
+  color: var(--geist-foreground);
+  border-color: var(--geist-foreground);
+  box-shadow: inset 1px 0 0 var(--geist-foreground);
+}
+
+.prefix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accents-3) !important;
+  pointer-events: none;
+  position: absolute;
+  left: var(--geist-gap-half);
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-50%);
+}
+
+.input {
+  width: 100%;
+  height: var(--geist-form-height);
+  background: var(--geist-background);
+  border-radius: var(--geist-radius);
+  border: 1px solid var(--accents-2);
+  font-size: inherit;
+  font-family: var(--font-sans);
+  color: var(--geist-foreground);
+  min-height: unset;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  box-shadow: none;
+  cursor: text;
+  outline: 0;
+  padding: 0 calc(var(--geist-gap) + 18px);
+  transition: border-color 0.15s ease;
+}
+
+.input.placeholder,
+.input::placeholder {
+  color: var(--accents-3);
+}
+
+.input:disabled {
+  background: var(--accents-1);
+  color: var(--accents-5);
+  cursor: not-allowed;
+}
+
+.input:focus {
+  border-color: var(--accents-5);
+}
+
+@media (hover: hover) {
+  .input:hover:not(:disabled):not(.errored) {
+    border-color: var(--accents-5);
+  }
+}
+
+.input:focus ~ .iconButton.clearButton {
+  border-color: var(--accents-5);
+}
+
+@media (hover: hover) {
+  .input:hover:not(:disabled):not(.errored) ~ .iconButton.clearButton {
+    border-color: var(--accents-5);
+  }
+}
+
+.input:focus ~ .iconButton.clearButton:focus:global(.focus-visible) {
+  border-color: var(--geist-foreground);
+}
+
+@media (hover: hover) {
+  .input:hover:not(:disabled):not(.errored)
+    ~ .iconButton.clearButton:focus:global(.focus-visible) {
+    border-color: var(--geist-foreground);
+  }
+}
+
+.input.errored {
+  border-color: var(--geist-error);
+  color: var(--geist-error);
+}
+
+.input.errored ~ .iconButton {
+  color: var(--geist-error);
+}
+
+@media (hover: hover) {
+  .input.errored ~ .iconButton:hover {
+    color: var(--geist-error);
+  }
+}
+
+.input.errored ~ .iconButton.clearButton {
+  color: var(--geist-error);
+  border-color: var(--geist-error);
+}
+
+.input.errored ~ .iconButton.clearButton:focus:global(.focus-visible) {
+  box-shadow: inset 1px 0 0 var(--geist-error);
+}
+
+.input.noPrefix {
+  padding: 0 var(--geist-gap-half);
+}
+
+.list {
+  margin: 0;
+  padding: 8px;
+  opacity: 0;
+  outline: 0;
+  background: var(--geist-background);
+  box-shadow: var(--shadow-medium);
+  border-radius: var(--geist-radius);
+  z-index: 101;
+  transform: translateY(-8px);
+  transition: opacity 0.1s ease, transform 0.15s ease, height 0.1s ease;
+}
+
+.list.open {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.list.hidden {
+  display: none;
+}
+
+.list > ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  font-size: var(--geist-form-font);
+  padding: 0 var(--geist-space-2x);
+  color: var(--accents-7);
+  scroll-margin: 8px 0;
+  border-radius: var(--geist-radius);
+  cursor: pointer;
+  outline: 0;
+}
+
+.option[aria-selected="true"] {
+  background-color: var(--accents-2);
+  color: var(--geist-foreground);
+}
+
+.option[data-highlighted="true"] {
+  color: var(--geist-foreground);
+  font-weight: 500;
+}
+
+.option [data-geist-combobox-option-prefix] {
+  display: flex;
+  align-items: center;
+  margin-right: var(--geist-gap-half);
+}
+
+.option [data-geist-combobox-option-suffix] {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.truncate {
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty {
+  color: var(--accents-5);
+  padding: var(--geist-gap-quarter);
+  display: block;
+}
+
+.toolbar-hidden .drawer {
+  height: calc(100% - 200px) !important;
+}
+
+.drawer {
+  overflow-x: hidden;
+  height: calc(100% - 120px) !important;
+}
+
+.drawer .container {
+  display: block;
+  position: sticky;
+  background: var(--geist-background);
+  border-bottom: 1px solid var(--accents-2);
+  top: 0;
+  z-index: 1;
+}
+
+.drawer .list {
+  border-radius: 0;
+  box-shadow: none;
+  max-height: unset;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.drawer .input {
+  height: var(--geist-form-large-height);
+  border-radius: 0;
+  border: 0;
+}
+
+.drawer .input:focus {
+  border-color: var(--accents-2);
+}
+
+@media (hover: hover) {
+  .drawer .input:hover:not(:disabled):not(.errored) {
+    border-color: var(--accents-2);
+  }
+}
+
+@media (max-width: 600px) {
+  .container,
+  .option {
+    font-size: 1rem !important;
+  }
+
+  .option {
+    height: 48px !important;
+  }
+
+  .input {
+    min-height: 40px !important;
+  }
+}
+
+@media (min-width: 600px) {
+  .list {
+    border: 1px solid var(--accents-2);
+  }
+
+  :global(.dark-theme) .list {
+    box-shadow: none;
+    border: 1px solid var(--accents-2);
+  }
+}
+
+.screenReaderSelect {
+  outline: none;
+}
+
+.screenReaderSelect:focus {
+  border-radius: var(--geist-radius);
+  border: 0.5px solid var(--accents-5);
+}
+
+.team-select-team-name {
+  padding-right: 8px;
+}
+
+.team-select-selected {
+  font-weight: 700;
+}

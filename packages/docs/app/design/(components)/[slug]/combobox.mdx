@@ -1,0 +1,45 @@
+import { Combobox } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Combobox
+
+<Spacer y={0.8} />
+
+## Filters large lists to selectable options based on the matching query.
+
+<Example style={{ "--width": "60%" }}>
+  <Combobox placeholder="Search...">
+    <Combobox.Input />
+    <Combobox.List>
+      <Combobox.Option value="a">One</Combobox.Option>
+      <Combobox.Option value="b">Two</Combobox.Option>
+      <Combobox.Option value="c">Three</Combobox.Option>
+      <Combobox.Option value="d">Four</Combobox.Option>
+      <Combobox.Option value="e">Five</Combobox.Option>
+      <Combobox.Option value="f">Six</Combobox.Option>
+    </Combobox.List>
+  </Combobox>
+</Example>
+
+<Spacer />
+
+### Uncontrolled
+
+Optional section description
+
+<Spacer />
+
+<Editor
+  scope={{ Combobox }}
+  code={`<Combobox placeholder="Search..." onChange={console.log}>
+    <Combobox.Input />
+    <Combobox.List>
+      <Combobox.Option value="a">One</Combobox.Option>
+      <Combobox.Option value="b">Two</Combobox.Option>
+      <Combobox.Option value="c">Three</Combobox.Option>
+    </Combobox.List>
+  </Combobox>`}
+/>
+
+<Spacer y={4} />
