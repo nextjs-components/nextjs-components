@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { useFocus } from "react-aria";
+import { useFocusRing } from "react-aria";
 
 import { Text } from "../Text";
 import styles from "./tabs.module.css";
@@ -9,12 +9,13 @@ interface TabsProps extends React.PropsWithChildren {
   tabs: { title: string; value: string; icon?: JSX.Element }[];
   selected?: string;
   setSelected?: (value: string) => void;
+  disabled?: boolean;
 }
 const Tabs: React.ComponentType<TabsProps> = ({
-  children,
   tabs,
   selected,
   setSelected,
+  disabled,
 }) => {
   return (
     <div className={clsx("geist-no-scrollbar", styles.tabs)} data-geist-tabs="">
@@ -26,6 +27,8 @@ const Tabs: React.ComponentType<TabsProps> = ({
             value={tab.value}
             selected={selected}
             setSelected={setSelected}
+            icon={tab.icon}
+            disabled={disabled}
           />
         );
       })}
@@ -35,22 +38,21 @@ const Tabs: React.ComponentType<TabsProps> = ({
 
 export default Tabs;
 
-const Tab = ({ title, value, selected, setSelected }) => {
-  let [focused, setFocused] = React.useState(false);
-  let { focusProps } = useFocus({
-    onFocusChange: setFocused,
-  });
+const Tab = ({ title, value, selected, setSelected, icon, disabled }) => {
+  let { focusProps, isFocusVisible } = useFocusRing();
   return (
     <div
+      aria-disabled={disabled}
       {...focusProps}
-      className={styles.tabContainer}
+      className={clsx(styles.tabContainer, { "focus-visible": isFocusVisible })}
       data-geist-tab=""
-      data-focus-visible-added={focused}
+      data-focus-visible-added={isFocusVisible}
       role="button"
       tabIndex={0}
       onClick={() => setSelected?.(value)}
       onKeyDown={(e) => {
         if (e.key === " ") {
+          e.preventDefault(); // prevent page scroll
           setSelected?.(value);
         }
       }}
@@ -60,6 +62,7 @@ const Tab = ({ title, value, selected, setSelected }) => {
           [styles.activeTab]: selected == value,
         })}
       >
+        {icon ? <div className={styles.tabIcon}>{icon}</div> : null}
         <Text>{title}</Text>
       </div>
     </div>
