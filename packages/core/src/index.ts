@@ -39,7 +39,7 @@ export { Stack } from "./components/Stack";
 export { StatusDot } from "./components/StatusDot";
 export { Switch } from "./components/Switch";
 export { Table } from "./components/Table";
-export { Tabs } from "./components/Tabs";
+export { Tabs } from "./components/tabs";
 export { Tag } from "./components/Tag";
 export { Code, InlineCode, LI, OL, Text, UL } from "./components/Text";
 export { Textarea } from "./components/Textarea";

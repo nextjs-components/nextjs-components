@@ -20,6 +20,7 @@ import Stack from "./stack.mdx";
 import StatusDot from "./status-dot.mdx";
 import Switch from "./switch.mdx";
 import Table from "./table.mdx";
+import Tabs from "./tabs.mdx";
 import Text from "./text.mdx";
 import Textarea from "./textarea.mdx";
 import Toggle from "./toggle.mdx";
@@ -68,6 +69,8 @@ export default function Slug({ params: { slug } }) {
         return <Switch />;
       case "table":
         return <Table />;
+      case "tabs":
+        return <Tabs />;
       case "text":
         return <Text />;
       case "textarea":

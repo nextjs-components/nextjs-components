@@ -1,0 +1,76 @@
+.tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  padding-bottom: 1px;
+  box-shadow: 0 -1px 0 var(--accents-2) inset;
+  overflow-x: auto;
+}
+
+.tabs.centered {
+  justify-content: center;
+}
+
+.tabs.bold {
+  font-weight: 600;
+}
+
+.tabs.noBorder {
+  box-shadow: none;
+}
+
+.tabContainer {
+  padding: 0 var(--geist-gap-half);
+  cursor: pointer;
+  margin-bottom: -1px;
+  border-bottom: 1px solid var(--accents-2);
+  outline: 0;
+}
+
+.tabs.tabs.noBorder > .tabContainer {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.disabled .tabContainer {
+  cursor: default;
+}
+
+.tabContainer:first-child {
+  padding-left: 0;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  margin-bottom: -1px;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  color: var(--accents-5);
+}
+
+.tabContainer:focus .tab {
+  color: var(--geist-foreground);
+}
+
+/* liberty take for a11y */
+.tabContainer[data-focus-visible-added="true"] .tab {
+  outline: 2px auto currentColor;
+  outline-offset: -1px;
+  border-radius: var(--geist-radius);
+}
+
+.disabled .tabContainer:focus .tab {
+  color: var(--accents-5);
+}
+
+.activeTab,
+.disabled .tabContainer:focus .tab.activeTab {
+  color: var(--geist-foreground);
+  border-bottom: 2px solid var(--geist-foreground);
+}
+
+.tabIcon {
+  margin-right: 6px;
+  margin-bottom: -3px;
+}

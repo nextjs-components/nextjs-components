@@ -1,0 +1,82 @@
+import { Container, Tabs } from "nextjs-components";
+import {
+  Facebook,
+  Figma,
+  Instagram,
+  Linkedin,
+  Twitter,
+} from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Toggle
+
+<Spacer y={0.8} />
+
+## Display tab content.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ Tabs }}
+  code={`() => {
+  const [selected, setSelected] = React.useState('apple')
+  
+  return <Tabs
+    tabs={[
+      { title: 'Apple', value: 'apple' },
+      { title: 'Orange', value: 'orange' },
+      { title: 'Mango', value: 'mango' }
+    ]}
+    selected={selected}
+    setSelected={setSelected}
+  />
+}`}
+/>
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor
+  scope={{ Tabs }}
+  code={`() => {
+  const [selected, setSelected] = React.useState('apple')
+  
+  return <Tabs
+    tabs={[
+      { title: 'Apple', value: 'apple' },
+      { title: 'Orange', value: 'orange' },
+      { title: 'Mango', value: 'mango' }
+    ]}
+    selected={selected}
+    setSelected={setSelected}
+    disabled
+  />
+}`}
+/>
+
+<Spacer y={2} />
+
+### With Icons
+
+<Editor
+  scope={{ Tabs, Facebook, Figma, Instagram, Linkedin, Twitter }}
+  code={`() => {
+  const [selected, setSelected] = React.useState('facebook')
+  
+  return <Tabs
+    tabs={[
+      { title: 'Facebook', value: 'facebook', icon: <Facebook size={20} /> },
+      { title: 'Figma', value: 'figma', icon: <Figma size={20} /> },
+      { title: 'Instagram', value: 'instagram', icon: <Instagram size={20} /> }
+    ]}
+    selected={selected}
+    setSelected={setSelected}
+  />
+}`}
+/>
+
+<Spacer y={4} />
