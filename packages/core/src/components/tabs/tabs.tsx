@@ -49,9 +49,11 @@ const Tab = ({ title, value, selected, setSelected, icon, disabled }) => {
       data-focus-visible-added={isFocusVisible}
       role="button"
       tabIndex={0}
-      onClick={() => setSelected?.(value)}
+      onClick={() => {
+        if (!disabled) setSelected?.(value);
+      }}
       onKeyDown={(e) => {
-        if (e.key === " ") {
+        if (e.key === " " && !disabled) {
           e.preventDefault(); // prevent page scroll
           setSelected?.(value);
         }
