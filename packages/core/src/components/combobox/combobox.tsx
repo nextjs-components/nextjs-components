@@ -1,7 +1,7 @@
 import * as Popover from "@radix-ui/react-popover";
-import * as Portal from "@radix-ui/react-portal";
 import clsx from "clsx";
 import React, {
+  type ContextType,
   type Dispatch,
   type FC,
   type MutableRefObject,
@@ -9,9 +9,9 @@ import React, {
   type ReactNode,
   type Reducer,
   type ReducerAction,
+  type SetStateAction,
   createContext,
   forwardRef,
-  startTransition,
   useCallback,
   useContext,
   useEffect,
@@ -27,20 +27,19 @@ import { useFocusRing } from "react-aria";
 import { useMediaQuery } from "../../hooks";
 import { ChevronDown, Search, X } from "../../icons";
 import reset from "../../styles/reset/reset.module.css";
-import { mergeRefs } from "../../utils/merge-refs";
 import { Text } from "../Text";
 import styles from "./combobox.module.css";
+import { Dialog } from "./dialog";
 import iconButton from "./icon-button.module.css";
-
-// ??????
-function K(e) {
-  return window.setTimeout(e, 150);
-}
 
 const useLayoutEffect =
   typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
 
-let useCThing = () => {
+/**
+ * queries a <ul> for all its [data-descendant] items and returns them
+ * as a `list` ref
+ */
+let useListItems = () => {
   let listRef = useRef([]); // e
   let mapRef = useRef({}); // t
   let [, force] = useState<{}>(); // n
@@ -49,22 +48,25 @@ let useCThing = () => {
   useLayoutEffect(() => {
     if (!ref.current) return;
     let items = Array.from(ref.current.querySelectorAll("[data-descendant]"));
-    let o =
+    let isOutOfSync =
+      // UL's data-descendant length is different than the listRef length
       items.length !== listRef.current.length ||
+      // UL's data-descendant elements are different than the listRef elements
       !items.every((t, n) => listRef.current[n].element === t);
 
-    if (o) {
-      listRef.current = items.map((e) => {
-        let n = e.getAttribute("data-descendant");
+    if (isOutOfSync) {
+      listRef.current = items.map((el) => {
+        let n = el.getAttribute("data-descendant");
         if (!n)
           throw Error("Descendant element must have a data-descendant key");
         let r = mapRef.current[n];
         return {
-          element: listRef,
+          element: el,
           ...r,
         };
       });
-      // force({}); // this causes infinite renders..
+      // force a re-render to synchronize everything
+      force({});
     }
   });
 
@@ -76,19 +78,27 @@ let useCThing = () => {
   };
 };
 
-/** what provider is this? */
-const $ = createContext({
-  list: { current: [] },
-  map: { current: {} },
-  force: ({}) => {},
+/**
+ * Proxies the ComboboxContet's `list`, `map`, and `force` fields.
+ *
+ * These three fields ultimately come from {@link useListItems}.
+ */
+const ListContext = createContext({
+  list: { current: [] } as ContextType<typeof ComboboxContext>["list"],
+  map: { current: {} } as ContextType<typeof ComboboxContext>["map"],
+  force: (({}) => {}) as ContextType<typeof ComboboxContext>["force"],
 });
 
-const useValue = (context: typeof $, t: Partial<Item>) => {
+const useValue = (
+  context: typeof ListContext,
+  t: Omit<Item, "_internalId">,
+) => {
   let [index, setIndex] = useState(-1);
-  let ref = useRef(null);
+  let ref = useRef<HTMLLIElement>(null);
   let { list, map, force } = useContext(context);
   let id = useId();
 
+  map.current["asd"];
   useLayoutEffect(() => {
     if (map) {
       map.current[id] = {
@@ -169,14 +179,6 @@ interface State {
   selectedValue: string | null;
   selectedIndex: number;
 }
-
-const INITIAL_STATE: State = {
-  open: false,
-  showAllResults: false,
-  inputValue: "",
-  selectedValue: null,
-  selectedIndex: 0,
-};
 
 type Action =
   | {
@@ -287,7 +289,7 @@ const ComboboxContext = createContext({
   errored: undefined,
   filterList: [],
   footerRef: { current: null },
-  force() {},
+  force: (() => {}) as Dispatch<SetStateAction<{}>>,
   inputId: "combobox-input-:R6ol8mH1:",
   inputRef: { current: null } as MutableRefObject<HTMLInputElement | null>,
   inputValue: "",
@@ -297,21 +299,7 @@ const ComboboxContext = createContext({
   listRef: { current: null } as MutableRefObject<HTMLUListElement | null>,
   map: {
     current: {},
-  } as MutableRefObject<
-    Map<
-      string,
-      {
-        _internalId: ReturnType<typeof useId>;
-        callback: () => void;
-        disabled?: boolean;
-        displayValue?: ReactNode;
-        isMenu?: boolean;
-        label?: ReactNode;
-        prefix?: ReactNode;
-        value: string;
-      }
-    >
-  >,
+  } as MutableRefObject<Record<string, Item>>,
   noInputPrefix: undefined,
   noNegativeIndex: undefined,
   noTextSelection: undefined,
@@ -349,6 +337,10 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
       shouldContinue = false,
       onChangeOpen,
       noNegativeIndex,
+      disabled,
+      errored,
+      width,
+      size,
       filter = (items, searchTerm) => {
         if (!searchTerm) return items;
 
@@ -364,6 +356,15 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
     },
     forwardedRef,
   ) => {
+    const id = useId();
+    const inputId = "combobox-input-" + id;
+    const listId = "combobox-list-" + id;
+    // U
+    const inputRef = useRef<HTMLInputElement>(null);
+    // q
+    const footerRef = useRef(null);
+
+    const { ref: listRef, ...Y } = useListItems();
     const [
       {
         inputValue,
@@ -375,64 +376,58 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
       },
       dispatch,
     ] = useReducer(reducer, {
-      ...INITIAL_STATE,
-      inputValue: value,
+      open: false,
+      showAllResults: true,
+      inputValue: "",
+      selectedValue: null,
+      selectedIndex: 0,
     });
 
-    // U
-    const inputRef = useRef<HTMLInputElement>(null);
-    // q
-    const footerRef = useRef(null);
-
-    const id = useId();
-    const inputId = "combobox-input-" + id;
-    const listId = "combobox-list-" + id;
-
-    const { ref: listRef, ...Y } = useCThing();
-
+    // trigger onChangeOpen prop when open changes
     useEffect(() => {
       onChangeOpen?.(open);
     }, [onChangeOpen, open]);
 
-    // useImperativeHandle(
-    //   forwardedRef,
-    //   () => ({
-    //     setValue(e) {
-    //       dispatch({
-    //         type: "RESET",
-    //         inputValue: e,
-    //       });
-    //     },
-    //     setSelectedValue(e) {
-    //       dispatch({
-    //         type: "CONTINUE",
-    //         selectedValue: e,
-    //       });
-    //     },
-    //     setSelectedIndex(e) {
-    //       dispatch({
-    //         type: "NAVIGATE",
-    //         selectedIndex: e,
-    //       });
-    //     },
-    //     getSelectedIndex: () => X,
-    //     clear() {
-    //       dispatch({
-    //         type: "CLEAR",
-    //       });
-    //     },
-    //     close() {
-    //       dispatch({
-    //         type: "CLOSE",
-    //       });
-    //     },
-    //   }),
-    //   [dispatch, selectedIndex],
-    // );
+    useImperativeHandle(
+      forwardedRef,
+      () => ({
+        setValue(e) {
+          dispatch({
+            type: "RESET",
+            inputValue: e,
+          });
+        },
+        setSelectedValue(e) {
+          dispatch({
+            type: "CONTINUE",
+            selectedValue: e,
+          });
+        },
+        setSelectedIndex(e) {
+          dispatch({
+            type: "NAVIGATE",
+            selectedIndex: e,
+          });
+        },
+        getSelectedIndex: () => X,
+        clear() {
+          dispatch({
+            type: "CLEAR",
+          });
+        },
+        close() {
+          dispatch({
+            type: "CLOSE",
+          });
+        },
+      }),
+      [dispatch, selectedIndex],
+    );
 
-    let er = value ? value : selectedValue;
+    // controlled handling
+    let actualValue = value ? value : selectedValue;
     // ei
-    let items = Object.values(Y.map.current);
+    let items = Object.values(Y.map.current) as Item[];
     // eo
     let regularItems = [];
     // MenuItems are sent to the end of the list
@@ -440,7 +435,6 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
     let menuItems = [];
 
     for (let item of items) {
-      // @ts-expect-error TODO: type items array
       item.isMenu ? menuItems.push(item) : regularItems.push(item);
     }
 
@@ -450,7 +444,7 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
     let allItems =
       showAllResults || result.length ? [...result, ...menuItems] : [];
 
-    function eu() {
+    function handleOpenWithSelection() {
       if (!open) {
         setTimeout(() => {
           noTextSelection || inputRef.current?.select?.();
@@ -460,43 +454,46 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
         });
       }
     }
-    useEffect(() => {
-      let e;
-      if (!open) {
-        if (er && items?.length) {
-          // @ts-expect-error TODO: type items array
-          let t = items.find((e) => e.value === er);
 
-          t
-            ? // @ts-expect-error TODO: type items array
-              t.displayValue
-              ? dispatch({
-                  type: "RESET",
-                  inputValue: er,
-                })
-              : inputValue
-              ? (e = K(() => {
-                  dispatch({
-                    type: "RESET",
-                    // @ts-expect-error TODO: type items array
-                    inputValue: t.label,
-                  });
-                }))
-              : dispatch({
-                  type: "RESET",
-                  // @ts-expect-error TODO: type items array
-                  inputValue: t.label,
-                })
-            : dispatch({
+    // when not open, display the selected value
+    useEffect(() => {
+      let timerId;
+
+      if (!open) {
+        if (actualValue && items?.length) {
+          let match = items.find((e) => e.value === actualValue);
+          if (match) {
+            // console.log({ match, inputValue });
+            if (match.displayValue) {
+              dispatch({
                 type: "RESET",
-                inputValue: er,
+                inputValue: actualValue,
               });
+            } else if (inputValue) {
+              timerId = K(() => {
+                dispatch({
+                  type: "RESET",
+                  inputValue: match.label,
+                });
+              });
+            } else {
+              dispatch({
+                type: "RESET",
+                inputValue: match.label,
+              });
+            }
+          } else {
+            dispatch({
+              type: "RESET",
+              inputValue: actualValue,
+            });
+          }
         }
         return () => {
-          clearTimeout(e);
+          clearTimeout(timerId);
         };
       }
-    }, [er, open, items.length]);
+    }, [actualValue, open, items.length]);
 
     // coerce null to empty string
     useEffect(() => {
@@ -507,7 +504,7 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
         });
     }, [value, dispatch]);
 
-    const isMobile = useMediaQuery("(max-width: 375px)");
+    const isMobile = useMediaQuery("(max-width: 600px)");
     return (
       <ComboboxContext.Provider
         // @ts-expect-error TODO: satisfy context type
@@ -520,6 +517,9 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
           showAllResults,
           // ---
           dispatch,
+          disabled,
+          errored,
+          size,
           inputId,
           inputRef,
           listId,
@@ -527,8 +527,10 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
           footerRef,
           placeholder,
           filterList: allItems,
+          isMobile,
           clearSelectedValue: function (e) {
-            e.preventDefault(), onClear?.(); // E
+            e.preventDefault();
+            onClear?.(); // E
             onChange?.(null);
             inputRef.current?.focus(),
               isMobile ||
@@ -558,9 +560,11 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
                 });
           },
           noNegativeIndex,
-          openWithSelection: eu,
+          openWithSelection: handleOpenWithSelection,
           // list, map, force
-          ...Y,
+          list: Y.list,
+          map: Y.map,
+          force: Y.force,
         }}
       >
         <div
@@ -570,6 +574,7 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
           aria-haspopup="listbox"
           aria-owns={listId}
           role="combobox"
+          style={{ width }}
         >
           {/* <pre>
             {JSON.stringify(
@@ -602,7 +607,8 @@ interface InputProps {
   onFocus?: (e) => void;
 }
 const Input: FC<PWC<InputProps>> = (props) => {
-  const { className, onChange, loading: a, onKeyDown, onBlur, onFocus } = props;
+  const { className, onChange, loading, onKeyDown, onBlur, onFocus, ...rest } =
+    props;
 
   const {
     open,
@@ -770,8 +776,8 @@ const Input: FC<PWC<InputProps>> = (props) => {
       </div>
 
       <input
+        {...rest}
         id={inputId}
-        // ref={mergeRefs([inputRef])} // [t:dispatch,h:inputRef]
         ref={inputRef}
         aria-activedescendant={open ? selectedId : undefined}
         aria-autocomplete="list"
@@ -813,7 +819,6 @@ const Input: FC<PWC<InputProps>> = (props) => {
           onChange?.(e);
         }}
         onFocus={(e) => {
-          console.log("onFocus");
           onFocus?.(e);
           isMobile ? inputRef.current?.select() : openWithSelection();
         }}
@@ -836,6 +841,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
         onClick={(e) => clearSelectedValue(e)}
         style={inputValue ? undefined : { display: "none" }}
       />
+
       {!inputValue ? (
         <button
           aria-label={open ? "Close menu" : "Open menu"}
@@ -871,6 +877,8 @@ interface ListProps {
   width?: number | string;
   avoidCollisions?: boolean;
 }
+
+// Z
 const List: FC<PWC<ListProps>> = (props) => {
   const {
     children,
@@ -885,8 +893,137 @@ const List: FC<PWC<ListProps>> = (props) => {
     ...rest
   } = props;
 
-  const { open, inputRef, dispatch, listRef, listId, list, map, force } =
-    useComboboxContext();
+  const {
+    listId,
+    listRef,
+    footerRef,
+    map,
+    list,
+    force,
+    inputRef,
+    open,
+    isMobile,
+    selectedIndex,
+    dispatch,
+  } = useComboboxContext();
+
+  const [_width, setWidth] = useState<string | number>(0);
+
+  // const {mounted: N,rendered:R} = ({exitDelay:150})
+
+  // ???
+  useEffect(() => {
+    width && setWidth(width);
+  }, [width]);
+
+  // handle window resize
+  useEffect(() => {
+    let e = inputRef.current;
+    if (!e) return;
+    let t = new window.ResizeObserver(() => {
+      if (!width) {
+        let { width: t } = e.getBoundingClientRect();
+        setWidth(t);
+      }
+    });
+
+    return (
+      t.observe(e),
+      () => {
+        t.disconnect();
+      }
+    );
+  }, []);
+
+  // TODO: describe this effect
+  useEffect(() => {
+    if (!listRef.current) return;
+    let e = new Map();
+    let items = Array.from(
+      listRef.current.querySelectorAll("[data-descendant]"),
+    );
+    items
+      .sort(
+        (e, t) =>
+          Number(e.getAttribute("data-order")) -
+          Number(t.getAttribute("data-order")),
+      )
+      .forEach((t) => {
+        if (t.parentElement) {
+          t.parentElement.appendChild(t);
+          let n = t.closest("[data-geist-combobox-list] > *");
+          !n ||
+            n === t ||
+            n === listRef.current ||
+            e.has(n) ||
+            (listRef.current?.appendChild(n), e.set(n, !0));
+        }
+      });
+  });
+
+  //   function(e) {
+  //     let {dispatch: t, open: n, inputRef: r, footerRef: i, list: o} = e;
+  //     function s(e) {
+  //         switch (e.key) {
+  //         case "Escape":
+  //             e.preventDefault(),
+  //             n && (r.current?.focus(),
+  //             t({
+  //                 type: A
+  //             }));
+  //             break;
+  //         case "Home":
+  //         case "ArrowDown":
+  //             e.preventDefault(),
+  //             r.current?.focus(),
+  //             t({
+  //                 type: D,
+  //                 selectedIndex: 0
+  //             });
+  //             break;
+  //         case "End":
+  //         case "ArrowUp":
+  //             e.preventDefault(),
+  //             r.current?.focus(),
+  //             t({
+  //                 type: D,
+  //                 selectedIndex: o.current.length - 1
+  //             });
+  //             break;
+  //         case "Tab":
+  //             e.preventDefault(),
+  //             r.current?.focus()
+  //         }
+  //     }
+  //     function a() {
+  //         setTimeout(()=>{
+  //             r.current?.focus()
+  //         }
+  //         , 0),
+  //         t({
+  //             type: D,
+  //             selectedIndex: o.current.length - 1
+  //         })
+  //     }
+  //     (0,
+  //     b.Z)(()=>{
+  //         let e = i.current?.querySelector("input:not([type=hidden]), select, button, textarea, a");
+  //         return n && o.current.length > 0 && (e?.addEventListener("keydown", s),
+  //         e?.tagName === "BUTTON" && e.addEventListener("click", a)),
+  //         ()=>{
+  //             e?.removeEventListener("keydown", s),
+  //             e?.removeEventListener("click", a)
+  //         }
+  //     }
+  //     , [n, o.current.length])
+  // }({
+  //     dispatch: z,
+  //     open: j,
+  //     selectedIndex: S,
+  //     inputRef: E,
+  //     footerRef: k,
+  //     list: w
+  // });
 
   let P = useMemo(
     () => ({
@@ -896,6 +1033,42 @@ const List: FC<PWC<ListProps>> = (props) => {
     }),
     [list, map, force],
   );
+
+  const listChildren = (
+    <ListContext.Provider value={P}>{children}</ListContext.Provider>
+  );
+  const message = !list.current?.length ? (
+    <Text color="geist-secondary" className={styles.empty} align="center">
+      {emptyMessage}
+    </Text>
+  ) : null;
+
+  if (isMobile) {
+    return (
+      <Dialog
+        active={open}
+        className={styles.drawer}
+        onClickOutside={() => {
+          dispatch({
+            type: "CLOSE",
+          });
+        }}
+      >
+        <Input />
+        <ul
+          className={clsx(styles.list, styles.mobileList)}
+          data-geist-combobox-list=""
+          id={listId}
+          ref={listRef}
+          role="listbox"
+          {...rest}
+        >
+          {listChildren}
+          {message}
+        </ul>
+      </Dialog>
+    );
+  }
 
   return (
     <Popover.Root open={open}>
@@ -917,35 +1090,23 @@ const List: FC<PWC<ListProps>> = (props) => {
             e.preventDefault();
             e.stopPropagation();
           }}
-          // onInteractOutside={(e) => {
-          //   dispatch({ type: "CLOSE" });
-          // }}
           style={{
             outline: 0,
             overflowY: "auto",
             width: inputRef.current?.offsetWidth,
-            // height formula = 18px + itemCount * 36px
-            height: 18 + Math.max(1, list.current.length) * 36,
             maxHeight: 216, // arbitrary?
           }}
         >
           <div className={clsx(styles.list, styles.open)}>
             <ul
-              data-geist-combobox-list=""
-              role="listbox"
-              id={listId}
               ref={listRef}
+              {...rest}
+              data-geist-combobox-list=""
+              id={listId}
+              role="listbox"
             >
-              <$.Provider value={P}>{children}</$.Provider>
-              {!list.current?.length ? (
-                <Text
-                  color="geist-secondary"
-                  className={styles.empty}
-                  align="center"
-                >
-                  No results
-                </Text>
-              ) : null}
+              {listChildren}
+              {message}
             </ul>
           </div>
         </Popover.Content>
@@ -953,11 +1114,20 @@ const List: FC<PWC<ListProps>> = (props) => {
 
       {!open ? (
         <ul aria-hidden="true" id={listId} style={{ display: "none" }}>
-          {children}
+          {listChildren}
         </ul>
       ) : (
         <div aria-live="polite" className="geist-sr-only" role="status">
-          {list.current.length} results available
+          {list.current.length > 0
+            ? `${list.current.length} result${
+                list.current.length > 1 ? "s" : ""
+              } available`
+            : null}
+          {0 === list.current.length
+            ? "string" == typeof emptyMessage
+              ? emptyMessage
+              : "No results"
+            : null}
         </div>
       )}
     </Popover.Root>
@@ -1011,7 +1181,7 @@ const Option: FC<PWC<OptionProps>> = ({
     onSelect(value);
   }
 
-  const { index, ref, id } = useValue($, {
+  const { index, ref, id } = useValue(ListContext, {
     callback: S,
     label: "string" == typeof children ? children : value,
     value,
@@ -1024,12 +1194,12 @@ const Option: FC<PWC<OptionProps>> = ({
   let isInMap = Boolean(map.current[id]);
 
   // grey bg
-  let __R =
+  let shouldHighlight =
     (-1 !== index && selectedIndex === index && open) ||
     (0 === index && selectedIndex === (noNegativeIndex ? index : -1) && open);
 
-  let P = selectedValue === value && open;
-  let L = useCallback(() => {
+  let shouldBold = selectedValue === value && open;
+  let handleMouseMove = useCallback(() => {
     dispatch({
       type: "NAVIGATE",
       selectedIndex: index,
@@ -1037,13 +1207,13 @@ const Option: FC<PWC<OptionProps>> = ({
   }, [index]);
 
   useEffect(() => {
-    __R &&
+    shouldHighlight &&
       ref.current &&
       !isMobile &&
       ref.current.scrollIntoView({
         block: "nearest",
       });
-  }, [__R, isMobile]);
+  }, [shouldHighlight, isMobile]);
 
   const order =
     filterList && isInMap
@@ -1062,15 +1232,13 @@ const Option: FC<PWC<OptionProps>> = ({
         [styles.optionDisabled]: disabled,
       })}
       id={id}
-      // grey bg
-      aria-selected={__R}
-      // bold text
-      data-highlighted={P}
+      aria-selected={shouldHighlight}
+      data-highlighted={shouldBold}
       data-descendant={id}
       data-order={order}
       role="option"
       style={{ height: ignoreDefaultHeight ? undefined : 36 }}
-      onMouseMove={L}
+      onMouseMove={handleMouseMove}
       onMouseUp={(e) => {
         e.preventDefault();
         S();
@@ -1130,4 +1298,8 @@ function P(e: number, t: any[]) {
 // wrap beginning of array to end
 function L(e: number, t: any[]) {
   return 0 === t.length ? e : (e - 1 + t.length) % t.length;
+}
+// ??????
+function K(e) {
+  return window.setTimeout(e, 150);
 }

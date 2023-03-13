@@ -1,0 +1,276 @@
+dialog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  margin: auto;
+  border: solid;
+  padding: 1em;
+  background: #fff;
+  color: #000;
+  display: block;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+dialog + :global(.backdrop) {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+:global(._dialog_overlay),
+dialog + :global(.backdrop) {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+dialog:global(.fixed) {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* weird straggler global styles above */
+
+dialog.geist-dialog {
+  --dialog-open-cubic-bezier: cubic-bezier(0, 1, 0.58, 1);
+  --dialog-close-cubic-bezier: cubic-bezier(0.58, 0, 1, 1);
+  --translate-y-start: 100vh;
+  --translate-y-end: 0%;
+  bottom: 0;
+  top: auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 !important;
+  padding: 0;
+  position: fixed;
+  overscroll-behavior: none;
+  max-height: 75dvh;
+  min-height: 10dvh;
+  transition: height 0.1s ease-in-out;
+  box-shadow: var(--shadow-large);
+  background: var(--geist-background);
+  color: var(--geist-foreground);
+  border-top-left-radius: var(--geist-marketing-radius);
+  border-top-right-radius: var(--geist-marketing-radius);
+  border: none;
+}
+
+dialog.geist-dialog::-webkit-backdrop {
+  margin: 0 !important;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+dialog.geist-dialog::backdrop {
+  margin: 0 !important;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+dialog.geist-dialog + .backdrop {
+  margin: 0 !important;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+dialog.geist-dialog[open] {
+  -webkit-animation: show 0.4s var(--dialog-open-cubic-bezier) normal,
+    content-fade-in 0.3s ease normal;
+  animation: show 0.4s var(--dialog-open-cubic-bezier) normal,
+    content-fade-in 0.3s ease normal;
+}
+
+dialog.geist-dialog[open]::-webkit-backdrop {
+  -webkit-animation: fade-in 0.4s var(--dialog-open-cubic-bezier) normal;
+  animation: fade-in 0.4s var(--dialog-open-cubic-bezier) normal;
+}
+
+dialog.geist-dialog[open]::backdrop {
+  -webkit-animation: fade-in 0.4s var(--dialog-open-cubic-bezier) normal;
+  animation: fade-in 0.4s var(--dialog-open-cubic-bezier) normal;
+}
+
+dialog.geist-dialog[open] + .backdrop {
+  -webkit-animation: fade-in 0.4s var(--dialog-open-cubic-bezier) normal;
+  animation: fade-in 0.4s var(--dialog-open-cubic-bezier) normal;
+}
+
+dialog.geist-dialog.hide {
+  -webkit-animation: hide 0.4s var(--dialog-close-cubic-bezier) normal;
+  animation: hide 0.4s var(--dialog-close-cubic-bezier) normal;
+}
+
+dialog.geist-dialog.hide::-webkit-backdrop {
+  -webkit-animation: fade-out 0.4s var(--dialog-close-cubic-bezier) normal;
+  animation: fade-out 0.4s var(--dialog-close-cubic-bezier) normal;
+}
+
+dialog.geist-dialog.hide::backdrop {
+  -webkit-animation: fade-out 0.4s var(--dialog-close-cubic-bezier) normal;
+  animation: fade-out 0.4s var(--dialog-close-cubic-bezier) normal;
+}
+
+dialog.geist-dialog.hide + .backdrop {
+  -webkit-animation: fade-out 0.4s var(--dialog-close-cubic-bezier) normal;
+  animation: fade-out 0.4s var(--dialog-close-cubic-bezier) normal;
+}
+
+dialog.geist-dialog.modal {
+  --translate-y-start: -40px;
+  --translate-y-end: 0px;
+  bottom: revert;
+  top: revert;
+  width: 420px;
+  margin: revert;
+  border-radius: var(--geist-marketing-radius);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+dialog.geist-dialog.modal[open] {
+  -webkit-animation-duration: 0.35s, 0.35s;
+  animation-duration: 0.35s, 0.35s;
+  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+    cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 601px) {
+  dialog.geist-dialog {
+    --translate-y-start: -40px;
+    --translate-y-end: 0px;
+    bottom: revert;
+    top: revert;
+    width: 420px;
+    margin: revert !important;
+    border-radius: var(--geist-marketing-radius);
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  dialog.geist-dialog[open] {
+    -webkit-animation-duration: 0.35s, 0.35s;
+    animation-duration: 0.35s, 0.35s;
+    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+      cubic-bezier(0.4, 0, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+      cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@-webkit-keyframes show {
+  0% {
+    transform: translate3d(0, var(--translate-y-start), 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, var(--translate-y-end), 0);
+    opacity: 1;
+  }
+}
+
+@keyframes show {
+  0% {
+    transform: translate3d(0, var(--translate-y-start), 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, var(--translate-y-end), 0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes hide {
+  0% {
+    transform: translate3d(0, var(--translate-y-end), 0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(0, var(--translate-y-start), 0);
+    opacity: 0;
+  }
+}
+
+@keyframes hide {
+  0% {
+    transform: translate3d(0, var(--translate-y-end), 0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate3d(0, var(--translate-y-start), 0);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

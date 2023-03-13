@@ -1,0 +1,28 @@
+.drawer {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.drawer.noVerticalScroll {
+  overflow-y: hidden;
+}
+
+.allowOverflow {
+  overflow: visible;
+}
+
+.modalOpen {
+  touch-action: none;
+  -webkit-overflow-scrolling: none;
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+
+.inner {
+  outline: none;
+  transition: padding-bottom 0.1s ease-in-out;
+}
+
+.inner.max {
+  height: 100%;
+}
