@@ -8,6 +8,7 @@ export { Button, type ButtonProps } from "./components/Button";
 export { Capacity } from "./components/Capacity";
 export { Checkbox } from "./components/Checkbox";
 export { Collapse, CollapseGroup } from "./components/Collapse";
+export { Combobox } from "./components/combobox";
 export { Container } from "./components/Container";
 export { Description } from "./components/Description";
 export { Details } from "./components/Details";

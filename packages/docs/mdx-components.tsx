@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
+import { Container } from "nextjs-components/src/components/Container";
+import { Stack } from "nextjs-components/src/components/Stack";
 import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
 import { Link as LinkIcon } from "nextjs-components/src/icons";
 import React from "react";
@@ -221,6 +223,7 @@ const mdxComponents = {
   Link,
   Editor,
   Example,
+  Stack,
 };
 
 export function useMDXComponents(components) {

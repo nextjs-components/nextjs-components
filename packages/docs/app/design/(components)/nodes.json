@@ -1,6 +1,7 @@
 [
   { "name": "Button", "path": "/design/button" },
   { "name": "Capacity", "path": "/design/capacity" },
+  { "name": "Combobox", "path": "/design/combobox" },
   { "name": "Description", "path": "/design/description" },
   { "name": "Entity", "path": "/design/entity" },
   { "name": "Fieldset", "path": "/design/fieldset" },

@@ -1,0 +1,226 @@
+import { Badge, Combobox, Container } from "nextjs-components";
+import {
+  Facebook,
+  Figma,
+  Instagram,
+  Linkedin,
+  Twitter,
+} from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Combobox
+
+<Spacer y={0.8} />
+
+## Filters large lists to selectable options based on the matching query.
+
+<Example style={{ "--width": "60%" }}>
+  <Combobox placeholder="Search...">
+    <Combobox.Input />
+    <Combobox.List>
+      <Combobox.Option value="a">One</Combobox.Option>
+      <Combobox.Option value="b">Two</Combobox.Option>
+      <Combobox.Option value="c">Three</Combobox.Option>
+      <Combobox.Option value="d">Four</Combobox.Option>
+      <Combobox.Option value="e">Five</Combobox.Option>
+      <Combobox.Option value="f">Six</Combobox.Option>
+    </Combobox.List>
+  </Combobox>
+</Example>
+
+<Spacer />
+
+### Uncontrolled
+
+<Editor
+  scope={{ Combobox }}
+  code={`<Combobox placeholder="Search..." onChange={console.log}>
+    <Combobox.Input />
+    <Combobox.List>
+      <Combobox.Option value="a">One</Combobox.Option>
+      <Combobox.Option value="b">Two</Combobox.Option>
+      <Combobox.Option value="c">Three</Combobox.Option>
+    </Combobox.List>
+  </Combobox>`}
+/>
+
+<Spacer y={2} />
+
+### Controlled
+
+<Editor
+  scope={{ Combobox }}
+  code={`() => {
+  const [value, setValue] = React.useState('b')
+  return (
+    <Combobox placeholder="Search..." value={value} onChange={setValue}>
+      <Combobox.Input />
+      <Combobox.List>
+        <Combobox.Option value="a">One</Combobox.Option>
+        <Combobox.Option value="b">Two</Combobox.Option>
+        <Combobox.Option value="c">Three</Combobox.Option>
+      </Combobox.List>
+    </Combobox>
+  )
+}`}
+/>
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor
+  scope={{ Combobox }}
+  code={`<Combobox placeholder="Search..." disabled>
+  <Combobox.Input />
+  <Combobox.List>
+    <Combobox.Option value="a">One</Combobox.Option>
+    <Combobox.Option value="b">Two</Combobox.Option>
+    <Combobox.Option value="c">Three</Combobox.Option>
+  </Combobox.List>
+</Combobox>`}
+/>
+
+<Spacer y={2} />
+
+### Errored
+
+<Editor
+  scope={{ Combobox }}
+  code={`<Combobox placeholder="Search..." errored>
+  <Combobox.Input />
+  <Combobox.List>
+    <Combobox.Option value="a">One</Combobox.Option>
+    <Combobox.Option value="b">Two</Combobox.Option>
+    <Combobox.Option value="c">Three</Combobox.Option>
+  </Combobox.List>
+</Combobox>`}
+/>
+
+<Spacer y={2} />
+
+### Custom width
+
+<Editor
+  scope={{ Combobox }}
+  code={`<Combobox placeholder="Search..." width={256}>
+  <Combobox.Input />
+  <Combobox.List>
+    <Combobox.Option value="a">One</Combobox.Option>
+    <Combobox.Option value="b">Two</Combobox.Option>
+    <Combobox.Option value="c">Three</Combobox.Option>
+  </Combobox.List>
+</Combobox>`}
+/>
+
+<Spacer y={2} />
+
+### Custom empty message
+
+<Editor
+  scope={{ Combobox }}
+  code={`<Combobox placeholder="Search..." width={256}>
+  <Combobox.Input />
+  <Combobox.List emptyMessage="Nothing to see here..." />
+</Combobox>`}
+/>
+
+<Spacer y={2} />
+
+### Sizes
+
+<Editor
+  scope={{ Combobox, Container }}
+  code={`() => {
+  const options = [
+    { value: 'a', label: 'One' },
+    { value: 'b', label: 'Two' },
+    { value: 'c', label: 'Three' }
+  ]
+  
+  return (
+    <Container direction={['column', 'row']}>
+      <Container>
+        <Combobox placeholder="Search..." size="small">
+          <Combobox.Input/>
+          <Combobox.List>
+            {options.map(option => (
+              <Combobox.Option key={option.value} value={option.value}>
+                {option.label}
+              </Combobox.Option>
+            ))}
+          </Combobox.List>
+        </Combobox>
+      </Container>
+  
+      <Container>
+        <Combobox placeholder="Search...">
+          <Combobox.Input />
+          <Combobox.List>
+            {options.map(option => (
+              <Combobox.Option key={option.value} value={option.value}>
+                {option.label}
+              </Combobox.Option>
+            ))}
+          </Combobox.List>
+        </Combobox>
+      </Container>
+  
+      <Container>
+        <Combobox placeholder="Search..." size="large">
+          <Combobox.Input />
+          <Combobox.List>
+            {options.map(option => (
+              <Combobox.Option key={option.value} value={option.value}>
+                {option.label}
+              </Combobox.Option>
+            ))}
+          </Combobox.List>
+        </Combobox>
+      </Container>
+    </Container>
+  )
+}`}
+/>
+
+<Spacer y={2} />
+
+### Prefix & Suffix
+
+<Editor
+  scope={{ Combobox, Facebook, Twitter, Instagram, Badge, Linkedin, Figma }}
+  code={`() => {
+  const options = [
+    { value: 'a', label: 'Facebook', prefix: <Facebook size={16} /> },
+    { value: 'b', label: 'Twitter', prefix: <Twitter size={16} /> },
+    { value: 'c', label: 'Instagram', prefix: <Instagram size={16} /> },
+    { value: 'd', label: 'LinkedIn', prefix: <Linkedin size={16} /> },
+    { value: 'e', label: 'Figma', prefix: <Figma size={16} /> }
+  ]
+  
+  return (
+    <Combobox placeholder="Search...">
+      <Combobox.Input />
+      <Combobox.List>
+        {options.map(option => (
+          <Combobox.Option
+            key={option.value}
+            value={option.value}
+            prefix={option.prefix}
+            suffix={
+              <Badge size="small">
+                {option.label}
+              </Badge>
+            }
+          >
+            {option.label}
+          </Combobox.Option>
+        ))}
+      </Combobox.List>
+    </Combobox>
+  )
+}`}
+/>
+
+<Spacer y={4} />
