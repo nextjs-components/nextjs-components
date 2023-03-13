@@ -961,68 +961,74 @@ const List: FC<PWC<ListProps>> = (props) => {
       });
   });
 
-  //   function(e) {
-  //     let {dispatch: t, open: n, inputRef: r, footerRef: i, list: o} = e;
-  //     function s(e) {
-  //         switch (e.key) {
-  //         case "Escape":
-  //             e.preventDefault(),
-  //             n && (r.current?.focus(),
-  //             t({
-  //                 type: A
-  //             }));
-  //             break;
-  //         case "Home":
-  //         case "ArrowDown":
-  //             e.preventDefault(),
-  //             r.current?.focus(),
-  //             t({
-  //                 type: D,
-  //                 selectedIndex: 0
-  //             });
-  //             break;
-  //         case "End":
-  //         case "ArrowUp":
-  //             e.preventDefault(),
-  //             r.current?.focus(),
-  //             t({
-  //                 type: D,
-  //                 selectedIndex: o.current.length - 1
-  //             });
-  //             break;
-  //         case "Tab":
-  //             e.preventDefault(),
-  //             r.current?.focus()
+  // Footer?
+  // (({ dispatch, open, inputRef, footerRef, list }) => {
+  //   console.log("WHAT??");
+  //   function handleKeyDown(e) {
+  //     switch (e.key) {
+  //       case "Escape":
+  //         e.preventDefault();
+  //         if (open) {
+  //           inputRef.current?.focus();
+  //           dispatch({
+  //             type: "CLOSE",
+  //           });
   //         }
+  //         break;
+  //       case "Home":
+  //       case "ArrowDown":
+  //         e.preventDefault();
+  //         inputRef.current?.focus();
+  //         dispatch({
+  //           type: "NAVIGATE",
+  //           selectedIndex: 0,
+  //         });
+  //         break;
+  //       case "End":
+  //       case "ArrowUp":
+  //         e.preventDefault();
+  //         inputRef.current?.focus();
+  //         dispatch({
+  //           type: "NAVIGATE",
+  //           selectedIndex: list.current.length - 1,
+  //         });
+  //         break;
+  //       case "Tab":
+  //         e.preventDefault();
+  //         inputRef.current?.focus();
   //     }
-  //     function a() {
-  //         setTimeout(()=>{
-  //             r.current?.focus()
-  //         }
-  //         , 0),
-  //         t({
-  //             type: D,
-  //             selectedIndex: o.current.length - 1
-  //         })
-  //     }
-  //     (0,
-  //     b.Z)(()=>{
-  //         let e = i.current?.querySelector("input:not([type=hidden]), select, button, textarea, a");
-  //         return n && o.current.length > 0 && (e?.addEventListener("keydown", s),
-  //         e?.tagName === "BUTTON" && e.addEventListener("click", a)),
-  //         ()=>{
-  //             e?.removeEventListener("keydown", s),
-  //             e?.removeEventListener("click", a)
-  //         }
-  //     }
-  //     , [n, o.current.length])
-  // }({
-  //     dispatch: z,
-  //     open: j,
-  //     selectedIndex: S,
-  //     inputRef: E,
-  //     footerRef: k,
-  //     list: w
+  //   }
+  //   function handleClick() {
+  //     setTimeout(() => {
+  //       inputRef.current?.focus();
+  //     }, 0);
+  //     dispatch({
+  //       type: "NAVIGATE",
+  //       selectedIndex: list.current.length - 1,
+  //     });
+  //   }
+  //   useEffect(() => {
+  //     let e = footerRef.current?.querySelector(
+  //       "input:not([type=hidden]), select, button, textarea, a",
+  //     );
+  //     return (
+  //       open &&
+  //         list.current.length > 0 &&
+  //         (e?.addEventListener("keydown", handleKeyDown),
+  //         e?.tagName === "BUTTON" && e.addEventListener("click", handleClick)),
+  //       () => {
+  //         e?.removeEventListener("keydown", handleKeyDown),
+  //           e?.removeEventListener("click", handleClick);
+  //       }
+  //     );
+  //   }, [open, list.current.length]);
+  // })({
+  //   dispatch,
+  //   open,
+  //   selectedIndex,
+  //   inputRef,
+  //   footerRef,
+  //   list,
   // });
 
   let P = useMemo(
@@ -1034,13 +1040,36 @@ const List: FC<PWC<ListProps>> = (props) => {
     [list, map, force],
   );
 
+  // L
+  const message = !list.current?.length ? (
+    <Text
+      color="geist-secondary"
+      className={styles.empty}
+      align="center"
+      style={{ lineHeight: "initial" }}
+    >
+      {emptyMessage}
+    </Text>
+  ) : null;
+
+  let M = null;
+  if (ListFooterComponent) {
+    M = React.isValidElement(ListFooterComponent) ? (
+      ListFooterComponent
+    ) : (
+      // @ts-ignore
+      <ListFooterComponent />
+    );
+  }
+
   const listChildren = (
     <ListContext.Provider value={P}>{children}</ListContext.Provider>
   );
-  const message = !list.current?.length ? (
-    <Text color="geist-secondary" className={styles.empty} align="center">
-      {emptyMessage}
-    </Text>
+
+  let footer = M ? (
+    <footer data-list-footer={true} ref={footerRef}>
+      {M}
+    </footer>
   ) : null;
 
   if (isMobile) {
@@ -1066,9 +1095,22 @@ const List: FC<PWC<ListProps>> = (props) => {
           {listChildren}
           {message}
         </ul>
+        {footer}
       </Dialog>
     );
   }
+
+  let itemHeight =
+    (function (e) {
+      let t = e.current?.querySelector("[data-descendant]");
+      // @ts-ignore
+      if (t) return t.offsetHeight;
+    })(listRef) || 36;
+  let maxHeight = 5 * itemHeight + 16 + 2 + itemHeight / 2;
+  let height =
+    0 === list.current.length
+      ? itemHeight + 16 + 2
+      : list.current.length * itemHeight + 16 + 2;
 
   return (
     <Popover.Root open={open}>
@@ -1076,13 +1118,14 @@ const List: FC<PWC<ListProps>> = (props) => {
 
       <Popover.Portal>
         <Popover.Content
-          asChild
+          // o.VY
           align={align}
-          side={side}
-          sideOffset={8}
-          onOpenAutoFocus={(e) => {
-            e.preventDefault();
-          }}
+          alignOffset={8}
+          avoidCollisions
+          className={clsx(styles.list, {
+            [styles.open]: open,
+            [styles.hidden]: !open,
+          })}
           onCloseAutoFocus={(e) => {
             e.preventDefault();
           }}
@@ -1090,25 +1133,31 @@ const List: FC<PWC<ListProps>> = (props) => {
             e.preventDefault();
             e.stopPropagation();
           }}
+          onOpenAutoFocus={(e) => {
+            e.preventDefault();
+          }}
+          side={side}
+          sideOffset={8}
           style={{
             outline: 0,
-            overflowY: "auto",
-            width: inputRef.current?.offsetWidth,
-            maxHeight: 216, // arbitrary?
+            overflowY: height > maxHeight ? "auto" : "hidden",
+            height: height,
+            width: _width,
+            maxHeight: maxHeight,
           }}
+          tabIndex={-1}
         >
-          <div className={clsx(styles.list, styles.open)}>
-            <ul
-              ref={listRef}
-              {...rest}
-              data-geist-combobox-list=""
-              id={listId}
-              role="listbox"
-            >
-              {listChildren}
-              {message}
-            </ul>
-          </div>
+          <ul
+            ref={listRef}
+            {...rest}
+            data-geist-combobox-list=""
+            id={listId}
+            role="listbox"
+          >
+            {listChildren}
+            {message}
+          </ul>
+          {footer}
         </Popover.Content>
       </Popover.Portal>
 
