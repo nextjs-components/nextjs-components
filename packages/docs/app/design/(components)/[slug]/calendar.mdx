@@ -35,14 +35,24 @@ Displays a calendar from which users can select a date or range of dates.
   scope={{ Calendar, presets }}
   code={`() => {
   const [range, setRange] = React.useState(null)
-  const handleChange = (range) => {
-    {/* console.log("change...") */}
-    setRange(range)
-  }
-  return <div>
-    <pre>{JSON.stringify(range, null, 2)}</pre>
-    <Calendar value={range} onChange={handleChange} />
-</div>
+  
+  return <Calendar value={range} onChange={setRange} />
+}`}
+/>
+
+<Spacer y={2} />
+
+### Presets
+
+Provide common date ranges
+
+<Spacer />
+
+<Editor
+  scope={{ Calendar, presets }}
+  code={`() => {
+  const [range, setRange] = React.useState(null)
+  return <Calendar presets={presets} value={range} onChange={setRange} />
 }`}
 />
 

@@ -1,24 +1,26 @@
 import {
   CalendarDate,
+  CalendarDateTime,
+  DateFormatter,
   GregorianCalendar, // https://react-spectrum.adobe.com/react-aria/useRangeCalendar.html#reducing-bundle-size
   // createCalendar,
   endOfMonth,
-  getDayOfWeek,
   getLocalTimeZone,
   getWeeksInMonth,
   isSameDay,
   isSameMonth,
   isToday,
+  now,
   parseAbsoluteToLocal,
-  toCalendarDateTime,
+  toCalendarDate,
   today,
 } from "@internationalized/date";
 import * as Popover from "@radix-ui/react-popover";
+import * as chrono from "chrono-node";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-  mergeProps,
   useCalendarCell,
   useCalendarGrid,
   useHover,
@@ -27,6 +29,7 @@ import {
 } from "react-aria";
 import { type RangeCalendarState, useRangeCalendarState } from "react-stately";
 
+import useMediaQuery from "../../hooks/useMediaQuery";
 import CalendarIcon from "../../icons/calendar";
 import ChevronLeft from "../../icons/chevron-left";
 import ChevronRight from "../../icons/chevron-right";
@@ -38,66 +41,99 @@ import Skeleton from "../Skeleton";
 import { Spacer } from "../Spacer";
 import styles from "./calendar.module.css";
 
+const parseDateText = (text, ref) => {
+  let parseResult = chrono.parse(text, ref);
+  return 1 === parseResult.length ? parseResult[0].start.date() : null;
+};
+
 interface DateRange {
   start: Date;
   end: Date;
 }
 export interface CalendarProps {
-  skeleton?: boolean;
   presets?: unknown;
   value: DateRange | null;
-  onChange?: (val: DateRange) => void;
-  size?: "small" | "large";
   minValue?: Date;
   maxValue?: Date;
-}
-
-function usePreviousDate(value: CalendarDate) {
-  const ref = useRef<CalendarDate>();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
+  onChange?: (val: DateRange) => void;
+  size?: "small" | "large";
+  presetIndex?: number;
+  popoverAlignment?: string; // TODO  = "start"
+  disabled?: boolean;
+  buttonClassName?: string;
+  onClick?: () => void;
+  width?: number; // = 280
+  dataTestId?: string;
+  stacked?: boolean;
+  hideDateButton?: boolean;
+  allowClear?: boolean;
+  skeleton?: boolean;
 }
 
 const Calendar = ({
-  skeleton,
-  size,
+  presets,
   value = {
     start: new Date(),
     end: new Date(),
   },
+  minValue,
+  maxValue,
   onChange,
+  size,
+  presetIndex,
+  popoverAlignment,
+  disabled,
+  buttonClassName,
+  onClick,
+  width,
+  dataTestId,
+  stacked,
+  hideDateButton,
+  allowClear,
+  skeleton,
 }: CalendarProps) => {
   const [open, setOpen] = useState(false);
 
   const { locale } = useLocale();
   const tz = getLocalTimeZone();
 
-  const handleChange = (val) => {
-    const newState = {
-      start: val.start.toDate(tz),
-      end: val.end.toDate(tz),
-    };
-    onChange?.(newState);
-  };
+  // const handleChange = (val) => {
+  //   const newState = {
+  //     start: val.start.toDate(tz),
+  //     end: val.end.toDate(tz),
+  //   };
+  //   onChange?.(newState);
+  // };
 
-  const [focusedDate, setFocusedDate] = useState(today(getLocalTimeZone()));
+  let [presetKey, setPresetKey] = useState(
+    presets && undefined !== presetIndex
+      ? Object.keys(presets)[presetIndex]
+      : null,
+  );
+
+  let presetValue = useMemo(
+    () =>
+      presets && presetKey && "__custom" !== presetKey && presets[presetKey]
+        ? {
+            start: presets[presetKey].start,
+            end: presets[presetKey].end || new Date(),
+          }
+        : null,
+    [presetKey, presets],
+  );
+
   const state = useRangeCalendarState({
-    defaultValue: {
-      start: today(getLocalTimeZone()),
-      end: today(getLocalTimeZone()).add({ weeks: 2 }),
-    },
-    // focusedValue: focusedDate,
-    // onFocusChange: setFocusedDate,
-    onChange: handleChange,
-    value: value
-      ? {
-          start: parseAbsoluteToLocal(value.start?.toISOString()),
-          end: parseAbsoluteToLocal(value.end?.toISOString()),
-        }
-      : undefined,
-    allowsNonContiguousRanges: true,
+    onChange: onChange,
+    value: value || presetValue,
+    // value: value
+    //   ? {
+    //       start: parseAbsoluteToLocal(value.start?.toISOString()),
+    //       end: parseAbsoluteToLocal(value.end?.toISOString()),
+    //     }
+    //   : undefined,
+    // minValue: minValue,
+    // maxValue: maxValue,
+    autoFocus: true,
     locale,
     createCalendar(identifier) {
       switch (identifier) {
@@ -109,21 +145,110 @@ const Calendar = ({
     },
   });
 
+  let defaultStart = useMemo(() => {
+    return state.value?.start || state.anchorDate || today(tz).toDate(tz);
+  }, [state.value, state.anchorDate]);
+
+  let defaultEnd = useMemo(() => {
+    let tmrw = today(tz).add({ days: 1 });
+    return (
+      state.value?.end ||
+      new CalendarDateTime(tmrw.year, tmrw.month, tmrw.day, 0, 0, 0, 0)
+        .subtract({ seconds: 1 })
+        .toDate(tz)
+    );
+  }, [state.value]);
+
+  let [startDateString, setStartDateString] = useState("");
+  let [endDateString, setEndDateString] = useState("");
+  let [startTimeString, setStartTimeString] = useState("");
+  let [endTimeString, setEndTimeString] = useState("");
+  let [errors, setErrors] = useState([]);
+
+  let validateDateWithMinAndMaxValue = (e) => {
+    return true; // TODO fixme
+  };
+
+  let validateStartDateString = useCallback(
+    (e) => {
+      console.log("validateStartDateString", e);
+      setErrors((e) => [...e, "startDate"]);
+    },
+    [defaultEnd, validateDateWithMinAndMaxValue, defaultStart, state],
+  );
+
+  let validateEndDateString = useCallback(
+    (e) => {
+      console.log("validateEndDateString", e);
+      setErrors((e) => [...e, "endDate"]);
+    },
+    [defaultEnd, validateDateWithMinAndMaxValue, defaultStart, state],
+  );
+
+  let validateStartTimeString = useCallback(
+    (e) => {
+      console.log("validateStartTimeString", e);
+      setErrors((e) => [...e, "startTime"]);
+    },
+    [defaultEnd, validateDateWithMinAndMaxValue, defaultStart, state],
+  );
+
+  let validateEndTimeString = useCallback(
+    (e) => {
+      console.log("validateEndTimeString", e);
+      setErrors((e) => [...e, "endTime"]);
+    },
+    [defaultEnd, validateDateWithMinAndMaxValue, defaultStart, state],
+  );
+
   const ref = useRef();
   const { calendarProps, prevButtonProps, nextButtonProps, title } =
     useRangeCalendar({}, state, ref);
 
-  const startText = state.value.start
-    .toDate(getLocalTimeZone())
-    .toLocaleString();
-  const endText = state.value.end.toDate(getLocalTimeZone()).toLocaleString();
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  //
+  const calendarButtonProps = {
+    className: buttonClassName,
+    type: "secondary",
+    width: isMobile ? "100%" : width,
+    style: {
+      textTransform: state.value?.start ? "uppercase" : "initial",
+      justifyContent: "flex-star",
+    },
+    prefix: <CalendarIcon />,
+    size: size,
+    disabled: disabled,
+    children: state.value?.start
+      ? `${formatter
+          .full(state.value.start)
+          .replace(/\s/g, "")
+          .replace(",", " ")} – ${formatter
+          .full(state.value.end)
+          .replace(/\s/g, "")
+          .replace(",", " ")}`
+      : "Select Date Range",
+  };
 
-  // TODO: format readable text
-  // current: "3/1/2023, 12:00:00AM - 3/1/2023, 11:59:59PM"
-  // desired: "2/7 12:00AM – 2/8 11:59PM"
-  const buttonReadout = state
-    ? `${startText} – ${endText}`
-    : "Select Date Range";
+  // TODO
+  const presetSelector = presets ? (
+    <Popover.Root>
+      <Popover.Trigger asChild>
+        <div className={styles.comboboxWrapper}>
+          <input className={styles.comboboxInput} />
+        </div>
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content asChild align="start" side="bottom" sideOffset={8}>
+          <div className={styles.comboboxPopover}>
+            <div className={styles.suggestions}>{/* cmdk-list */}</div>
+            <div className={styles.comboboxHints}>
+              {/* holy crap this is complicated */}
+            </div>
+          </div>
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
+  ) : null;
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
@@ -131,28 +256,17 @@ const Calendar = ({
         {...calendarProps}
         ref={ref}
         className={clsx(styles.calendar, {
-          [styles.hasSelect]: state.isFocused, // fixme
-          [styles.stacked]: false, // fixme
-          [styles.showingDateButton]: true, // ?
+          [styles.hasSelect]: !!presets,
+          [styles.stacked]: stacked,
+          [styles.showingDateButton]: !hideDateButton,
         })}
         data-geist-calendar=""
+        data-testid={dataTestId}
       >
+        {presetSelector}
         <Skeleton show={skeleton ?? false}>
           <Popover.Trigger asChild aria-haspopup="dialog">
-            <Button
-              type={"secondary"}
-              size={size}
-              prefix={<CalendarIcon />}
-              style={{
-                textTransform: "initial",
-                justifyContent: "flex-start",
-                minWidth: 280,
-                maxWidth: 280,
-              }}
-              aria-haspopup="dialog"
-            >
-              {buttonReadout}
-            </Button>
+            <Button {...calendarButtonProps} />
           </Popover.Trigger>
           <Popover.Portal
           // this is named `y` in the devtools
@@ -189,24 +303,48 @@ const Calendar = ({
                       <Label htmlFor="start-date" label="Start" capitalize />
                       <div className={styles.inputRow}>
                         <Input
-                          readOnly // TODO: figure out input
                           id="start-date"
                           size="small"
-                          // Format: Feb 28, 2023
-                          value={state.value.start
-                            .toDate(getLocalTimeZone())
-                            .toLocaleDateString()}
+                          title="Start date"
+                          type={
+                            errors.includes("startDate") ? "error" : undefined
+                          }
+                          onChange={(e) => {
+                            setStartDateString(e.target.value);
+                          }}
+                          onKeyDown={(e) => {
+                            if ("Enter" === e.key) {
+                              validateStartDateString(startDateString);
+                            }
+                          }}
+                          value={
+                            startDateString || errors.includes("startDate")
+                              ? startDateString
+                              : formatter.input(defaultStart)
+                          }
                         />
 
                         <Input
-                          readOnly // TODO: figure out input
                           id="start-time"
                           size="small"
+                          title="Start time"
                           className={styles.timeInput}
-                          // Format: 12:00 AM EST
-                          value={state.value.start
-                            .toDate(getLocalTimeZone())
-                            .toLocaleTimeString()}
+                          onChange={(e) => {
+                            setStartTimeString(e.target.value);
+                          }}
+                          onKeyDown={(e) => {
+                            if ("Enter" === e.key && startTimeString) {
+                              validateStartTimeString(startTimeString);
+                            }
+                          }}
+                          type={
+                            errors.includes("startTime") ? "error" : undefined
+                          }
+                          value={
+                            startTimeString || errors.includes("startTime")
+                              ? startTimeString
+                              : formatter.time(defaultStart)
+                          }
                         />
                       </div>
 
@@ -217,17 +355,45 @@ const Calendar = ({
                         <Input
                           id="end-date"
                           size="small"
-                          value={state.value.end
-                            .toDate(getLocalTimeZone())
-                            .toLocaleDateString()}
+                          title="End date"
+                          type={
+                            errors.includes("endDate") ? "error" : undefined
+                          }
+                          onChange={(e) => {
+                            setEndDateString(e.target.value);
+                          }}
+                          onKeyDown={(e) => {
+                            if ("Enter" === e.key) {
+                              validateEndDateString(endDateString);
+                            }
+                          }}
+                          value={
+                            endDateString || errors.includes("endDate")
+                              ? endDateString
+                              : formatter.input(defaultEnd)
+                          }
                         />
                         <Input
                           id="end-time"
                           size="small"
                           className={styles.timeInput}
-                          value={state.value.end
-                            .toDate(getLocalTimeZone())
-                            .toLocaleTimeString()}
+                          title="End time"
+                          type={
+                            errors.includes("endTime") ? "error" : undefined
+                          }
+                          onChange={(e) => {
+                            setEndTimeString(e.target.value);
+                          }}
+                          onKeyDown={(e) => {
+                            if ("Enter" === e.key && endTimeString) {
+                              validateEndTimeString(endTimeString);
+                            }
+                          }}
+                          value={
+                            endTimeString || errors.includes("endTime")
+                              ? endTimeString
+                              : formatter.time(defaultEnd)
+                          }
                         />
                       </div>
                     </div>
@@ -303,6 +469,12 @@ const Calendar = ({
 
                     <Spacer y={0.5} />
 
+                    {/* y props:
+                          children: <ForwardRef />
+                          custom: undefined
+                          initial: false
+                          mode: "popLayout"
+                     */}
                     <CalendarGrid state={state} />
                   </div>
                 </motion.div>
@@ -329,6 +501,7 @@ function CalendarGrid({ state }: { state: RangeCalendarState }) {
   // Get the number of weeks in the month so we can render the proper number of rows.
   const weeksInMonth = getWeeksInMonth(state.visibleRange.start, locale);
 
+  const tBodyRef = useRef<HTMLTableSectionElement>(null);
   return (
     <table {...gridProps} className={styles.table}>
       <thead {...headerProps}>
@@ -340,6 +513,7 @@ function CalendarGrid({ state }: { state: RangeCalendarState }) {
       </thead>
       <AnimatePresence mode="popLayout">
         <motion.tbody
+          ref={tBodyRef}
           key={state.visibleRange.start.toString()}
           data-test={gridProps["aria-label"]}
           transition={{ duration: 0.15 }}
@@ -362,8 +536,8 @@ function CalendarGrid({ state }: { state: RangeCalendarState }) {
                     <CalendarCell
                       key={i}
                       state={state}
-                      date={date}
                       currentMonth={startDate}
+                      date={date}
                     />
                   ) : (
                     <td key={i} />
@@ -386,48 +560,42 @@ function CalendarCell({
   date: CalendarDate;
   currentMonth: CalendarDate;
 }) {
-  const ref = useRef<HTMLSpanElement>();
-  let { cellProps, buttonProps, isSelected, formattedDate } = useCalendarCell(
-    { date },
-    state,
-    ref,
-  );
-  // console.log(Object.getOwnPropertyNames(cellProps));
-  // const cellKeys = ["role", "aria-disabled", "aria-selected", "aria-invalid"];
-  let isOutsideMonth = !isSameMonth(currentMonth, date);
-
-  // The start and end date of the selected range will have
-  // an emphasized appearance.
-  let isSelectionStart = state.highlightedRange
-    ? isSameDay(date, state.highlightedRange.start)
-    : isSelected;
-  let isSelectionEnd = state.highlightedRange
-    ? isSameDay(date, state.highlightedRange.end)
-    : isSelected;
+  const ref = useRef<HTMLSpanElement>(null);
+  let { cellProps, buttonProps } = useCalendarCell({ date }, state, ref);
 
   let { hoverProps, isHovered } = useHover({});
+
+  // m (highlightedRange)
+  let highlightedRange = "highlightedRange" in state && state.highlightedRange;
+
+  // p (firstInRange)
+  let isFirstInRange =
+    highlightedRange && isSameDay(date, highlightedRange.start);
+  // x (lastInRange)
+  let isLastInRange = highlightedRange && isSameDay(date, highlightedRange.end);
 
   return (
     <td
       {...cellProps}
       className={clsx({
-        [styles.firstInRange]: isSelectionStart,
-        [styles.lastInRange]: isSelectionEnd,
+        [styles.firstInRange]: isFirstInRange,
+        [styles.lastInRange]: isLastInRange,
       })}
     >
       <span
-        {...mergeProps(hoverProps, buttonProps)}
-        // ref={ref} // This results strange behavior with keyboard navigation.
+        {...buttonProps} //c
+        {...hoverProps} //d
         className={clsx({
           [styles.highlight]: isToday(date, state.timeZone), // Blue
           [styles.focused]: state.isCellFocused(date), // thick ring
-          [styles.outsideMonth]: isOutsideMonth, // faded
+          [styles.outsideMonth]: !isSameMonth(date, currentMonth), // faded
           [styles.hovered]: isHovered, // thin ring
-          [styles.selected]: isSelectionStart || isSelectionEnd, // White
-          // [styles.disabled]: state.isCellDisabled(date), // faded; no hover ring
+          [styles.selected]: isFirstInRange || isLastInRange, // White
+          [styles.disabled]: state.isCellDisabled(date), // faded; no hover ring
         })}
+        ref={ref} // This results strange behavior with keyboard navigation.
       >
-        {formattedDate}
+        {toCalendarDate(date).day}
       </span>
     </td>
   );
@@ -470,4 +638,50 @@ const Debug = ({ state }) => {
       )}
     </pre>
   );
+};
+
+// eM
+let formatter = {
+  full: (e) =>
+    new Date().toLocaleString(e, {
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: !0,
+    }),
+  input: (e) =>
+    new Date().toLocaleString(e, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }),
+  month: (e) =>
+    new Date().toLocaleString(e, {
+      month: "long",
+      year: "numeric",
+    }),
+  weekday: (e, t) =>
+    new Date().toLocaleString(e, {
+      weekday: t ? "long" : "narrow",
+    }),
+  day: (e) =>
+    new Date().toLocaleString(e, {
+      day: "numeric",
+    }),
+  time(e) {
+    let t = new Date().toLocaleString(e, {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: !0,
+      timeZoneName: "short",
+    });
+    return t;
+  },
+  numeric: (e) =>
+    new Date().toLocaleString(e, {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+    }),
 };
