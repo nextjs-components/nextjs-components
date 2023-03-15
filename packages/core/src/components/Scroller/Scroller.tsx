@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import clamp from "lodash/clamp";
 import React from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -154,3 +153,17 @@ const Scroller: React.ComponentType<React.PropsWithChildren<Props>> = ({
   );
 };
 export default Scroller;
+
+// Copied from https://github.com/lodash/lodash/blob/master/clamp.js
+function clamp(number: number, lower: number, upper: number) {
+  number = +number;
+  lower = +lower;
+  upper = +upper;
+  lower = lower === lower ? lower : 0;
+  upper = upper === upper ? upper : 0;
+  if (number === number) {
+    number = number <= upper ? number : upper;
+    number = number >= lower ? number : lower;
+  }
+  return number;
+}
