@@ -27,6 +27,7 @@ import { useFocusRing } from "react-aria";
 import { useMediaQuery } from "../../hooks";
 import { ChevronDown, Search, X } from "../../icons";
 import reset from "../../styles/reset/reset.module.css";
+import { Spinner } from "../Spinner";
 import { Text } from "../Text";
 import styles from "./combobox.module.css";
 import { Dialog } from "./dialog";
@@ -772,7 +773,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
       })}
     >
       <div aria-hidden="true" className={styles.prefix}>
-        <Search size={18} />
+        {loading ? <Spinner size={18} /> : <Search size={18} />}
       </div>
 
       <input
@@ -1187,8 +1188,8 @@ List.displayName = "Combobox.List";
 
 interface OptionProps extends React.PropsWithChildren {
   value: string;
-  prefix: JSX.Element;
-  suffix: JSX.Element;
+  prefix?: JSX.Element;
+  suffix?: JSX.Element;
   className?: string;
   truncatePrefix?: boolean;
   truncateSuffix?: boolean;
