@@ -7,6 +7,8 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 
+import rehypeStarryNight from "./rehype-starry-night.mjs";
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -35,6 +37,7 @@ export default withMDX({
     // remarkGfm is required to process syntax like tables
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
+      rehypeStarryNight,
       rehypeSlug, // inject `id` into headings
       [
         rehypeAutolinkHeadings,

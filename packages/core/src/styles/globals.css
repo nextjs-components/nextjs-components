@@ -51,8 +51,7 @@ a.active {
   background: var(--geist-selection);
 }
 
-:root,
-.__SPACING {
+:root {
   --geist-space: 4px;
   --geist-space-2x: 8px;
   --geist-space-4x: 16px;
@@ -118,8 +117,7 @@ a.active {
 /* ---- COLORS ---- */
 
 :root,
-.dark-theme .invert-theme,
-.__LIGHT {
+.dark-theme .invert-theme {
   --geist-foreground: #000000;
   --geist-background: #ffffff;
   --geist-selection: var(--geist-cyan-light);
@@ -179,8 +177,7 @@ a.active {
 }
 
 .dark-theme,
-.invert-theme,
-.__DARK {
+.invert-theme {
   --geist-foreground: #ffffff;
   --geist-background: #000000;
   --geist-selection: var(--geist-highlight-purple);

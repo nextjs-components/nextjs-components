@@ -13,7 +13,6 @@ import {
 import { ThemeSwitcher } from "@/app/theme-switcher";
 import { Example } from "@/components/example";
 
-import "./geist-text.css";
 import styles from "./index.module.css";
 
 const Page = () => {
