@@ -785,7 +785,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
         aria-controls={listId}
         aria-label={ariaLabel || placeholder}
         autoComplete="off"
-        className={clsx(styles.input, styles.truncate, {
+        className={clsx(className, styles.input, styles.truncate, {
           [styles.errored]: errored,
           [styles.noPrefix]: noInputPrefix,
         })}
