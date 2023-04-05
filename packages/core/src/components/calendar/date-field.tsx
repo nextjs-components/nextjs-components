@@ -1,26 +1,57 @@
 import { createCalendar } from "@internationalized/date";
+import { getLocalTimeZone, now } from "@internationalized/date";
 import { useDateField, useDateSegment } from "@react-aria/datepicker";
 import { useLocale } from "@react-aria/i18n";
 import { useDateFieldState } from "@react-stately/datepicker";
-import { useRef } from "react";
-import { useFocusRing } from "react-aria";
+import { useRef, useState } from "react";
+import { useFocusRing, useFocusWithin } from "react-aria";
+import type {
+  DateFieldStateOptions,
+  DateFieldState as IDateFieldState,
+  DateSegment as IDateSegment,
+} from "react-stately";
 
+interface DateFieldProps {
+  label?: string;
+  placeholderValue?: string;
+  className?: string;
+}
 export function DateField(props) {
   let { locale } = useLocale();
   let state = useDateFieldState({
     ...props,
+    placeholderValue: now(getLocalTimeZone()),
     locale,
     createCalendar,
   });
 
   let ref = useRef();
-  let { fieldProps } = useDateField(props, state, ref);
+  let { fieldProps, labelProps } = useDateField(props, state, ref);
 
+  const [focusWithin, setFocusWithin] = useState(false);
+  let { focusWithinProps } = useFocusWithin({
+    onFocusWithinChange: setFocusWithin,
+  });
   return (
     <div
       {...fieldProps}
+      {...focusWithinProps}
       ref={ref}
-      style={{ display: "flex", flexDirection: "row" }}
+      style={{
+        // @ts-ignore
+        "--themed-border": focusWithin
+          ? "var(--geist-foreground)"
+          : "var(--accents-2)",
+        display: "inline-flex",
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%",
+        padding: "0 8px",
+        border: "1px solid var(--themed-border,var(--accents-2))",
+        borderRadius: "var(--geist-radius)",
+        fontSize: "var(--geist-form-small-font)",
+        height: "var(--geist-form-small-height)",
+      }}
     >
       {state.segments.map((segment, i) => (
         <DateSegment key={i} segment={segment} state={state} />
@@ -29,7 +60,13 @@ export function DateField(props) {
   );
 }
 
-function DateSegment({ segment, state }) {
+function DateSegment({
+  segment,
+  state,
+}: {
+  segment: IDateSegment;
+  state: IDateFieldState;
+}) {
   let ref = useRef();
   let { segmentProps } = useDateSegment(segment, state, ref);
   let { focusProps, isFocused } = useFocusRing();
@@ -42,26 +79,25 @@ function DateSegment({ segment, state }) {
         ...segmentProps.style,
         minWidth:
           segment.maxValue != null && String(segment.maxValue).length + "ch",
-        paddingLeft: "0.5ch",
-        paddingRight: "0.5ch",
+        paddingLeft: "0.25ch",
+        paddingRight: "0.25ch",
         boxSizing: "content-box",
         fontVariantNumeric: "tabular-nums",
         textAlign: "right",
         outline: "none",
-        borderRadius: "0.25rem",
-        background: isFocused ? "var(--geist-violet)" : "",
+        color: isFocused ? "var(--geist-foreground)" : "var(--geist-secondary)",
       }}
     >
       {/* Always reserve space for the placeholder, to prevent layout shift when editing. */}
       <span
         aria-hidden="true"
-        className="block w-full text-center italic text-gray-500 group-focus:text-white"
         style={{
           display: "block",
           width: "100%",
           textAlign: "center",
-          fontStyle: "italic",
-          color: "var(--geist-foreground)",
+          color: isFocused
+            ? "var(--geist-foreground)"
+            : "var(--geist-secondary)",
           visibility: segment.isPlaceholder ? "visible" : "hidden",
           height: segment.isPlaceholder ? "" : 0,
           pointerEvents: "none",

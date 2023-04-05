@@ -1,13 +1,14 @@
 import { useDateRangePicker } from "@react-aria/datepicker";
 import { useDateRangePickerState } from "@react-stately/datepicker";
-import { DateValue } from "@react-types/datepicker/src/index";
+import type { DateValue } from "@react-types/datepicker/src/index";
 import clsx from "clsx";
 import { useRef } from "react";
 import { OverlayContainer, useOverlayPosition } from "react-aria";
 
 import { AlertTriangle, Calendar as CalendarIcon } from "../../icons";
 import { Button } from "../Button";
-import { FieldButton } from "./button";
+import { Label } from "../Label";
+import { Spacer } from "../Spacer";
 import styles from "./calendar.module.css";
 import { DateField } from "./date-field";
 import { Popover } from "./popover";
@@ -16,7 +17,8 @@ import { RangeCalendar } from "./range-calendar";
 export function DateRangePicker(props) {
   let state = useDateRangePickerState({
     ...props,
-    granularity: "hour",
+    granularity: "minute", // This causes DateField to render a TimeField
+    hideTimeZone: false,
   });
   let ref = useRef();
   let overlayRef = useRef();
@@ -29,7 +31,15 @@ export function DateRangePicker(props) {
     buttonProps,
     dialogProps,
     calendarProps,
-  } = useDateRangePicker(props, state, ref);
+  } = useDateRangePicker(
+    {
+      ...props,
+      granularity: "minute", // This causes DateField to render a TimeField
+      hideTimeZone: false,
+    },
+    state,
+    ref,
+  );
 
   // Get popover positioning props relative to the trigger
   let { overlayProps: positionProps } = useOverlayPosition({
@@ -78,10 +88,6 @@ export function DateRangePicker(props) {
         />
 
         <div style={{ display: "flex", flexDirection: "row" }}>
-          {/* <DateField {...startFieldProps} /> */}
-          {/* <span aria-hidden="true">–</span> */}
-          {/* <DateField {...endFieldProps} /> */}
-
           {state.validationState === "invalid" && (
             <AlertTriangle color="var(--geist-error)" />
           )}
@@ -97,7 +103,27 @@ export function DateRangePicker(props) {
             isOpen={state.isOpen}
             onOpenChange={state.setOpen}
           >
-            <RangeCalendar {...calendarProps} />
+            <div className={clsx(styles.contentWrapper)}>
+              <div className={styles.inputsWrapper}>
+                <Label htmlFor="start-date" label="Start" capitalize />
+                <div
+                // className={styles.inputRow}
+                >
+                  <DateField {...startFieldProps} />
+                </div>
+
+                <Spacer y={0.5} />
+
+                <Label htmlFor="end-date" label="End" capitalize />
+                <div
+                // className={styles.inputRow}
+                >
+                  <DateField {...endFieldProps} />
+                </div>
+              </div>
+
+              <RangeCalendar {...calendarProps} />
+            </div>
           </Popover>
         </OverlayContainer>
       )}
@@ -105,15 +131,18 @@ export function DateRangePicker(props) {
   );
 }
 
+// 4/4 12:00AM
 let formatter = {
-  full: (e: DateValue) =>
-    e
+  full: (e: DateValue) => {
+    if (!e) return "";
+    return e
       .toDate(Intl.DateTimeFormat().resolvedOptions().timeZone)
       .toLocaleString(undefined, {
         month: "numeric",
         day: "numeric",
         hour: "numeric",
         minute: "numeric",
-        hour12: !0,
-      }),
+        hour12: true,
+      });
+  },
 };
