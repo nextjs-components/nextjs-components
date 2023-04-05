@@ -28,11 +28,7 @@ export function RangeCalendar(props) {
     useRangeCalendar(props, state, ref);
 
   return (
-    <div {...calendarProps} ref={ref} className={clsx(styles.contentWrapper)}>
-      {/* <div>Start (TODO)</div> */}
-
-      {/* <div>End (TODO)</div> */}
-
+    <div {...calendarProps} ref={ref}>
       <Container
         direction={"row"}
         style={{
