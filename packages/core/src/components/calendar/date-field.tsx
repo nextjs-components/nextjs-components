@@ -37,11 +37,15 @@ export function DateField(props) {
       {...fieldProps}
       {...focusWithinProps}
       ref={ref}
+      // TODO: move to css
       style={{
         // @ts-ignore
-        "--themed-border": focusWithin
-          ? "var(--geist-foreground)"
-          : "var(--accents-2)",
+        "--themed-border":
+          state.validationState === "invalid"
+            ? "var(--geist-error)"
+            : focusWithin
+            ? "var(--geist-foreground)"
+            : "var(--accents-2)",
         display: "inline-flex",
         flexDirection: "row",
         alignItems: "center",
@@ -91,6 +95,7 @@ function DateSegment({
       {/* Always reserve space for the placeholder, to prevent layout shift when editing. */}
       <span
         aria-hidden="true"
+        // TODO: move to css
         style={{
           display: "block",
           width: "100%",
