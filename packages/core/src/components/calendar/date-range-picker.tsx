@@ -1,11 +1,12 @@
+import { getLocalTimeZone, now } from "@internationalized/date";
 import { useDateRangePicker } from "@react-aria/datepicker";
 import { useDateRangePickerState } from "@react-stately/datepicker";
-import type { DateValue } from "@react-types/datepicker/src/index";
 import clsx from "clsx";
 import { useRef } from "react";
 import { OverlayContainer, useOverlayPosition } from "react-aria";
+import { useDateFormatter } from "react-aria";
 
-import { AlertTriangle, Calendar as CalendarIcon } from "../../icons";
+import { Calendar as CalendarIcon } from "../../icons";
 import { Button } from "../Button";
 import { Label } from "../Label";
 import { Spacer } from "../Spacer";
@@ -14,12 +15,24 @@ import { DateField } from "./date-field";
 import { Popover } from "./popover";
 import { RangeCalendar } from "./range-calendar";
 
-export function DateRangePicker(props) {
+// TODO type this
+type DateRangePickerProps = any;
+
+export function DateRangePicker(props: DateRangePickerProps) {
+  let formatter = useDateFormatter({
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
   let state = useDateRangePickerState({
     ...props,
     granularity: "minute", // This causes DateField to render a TimeField
     hideTimeZone: false,
   });
+
   let ref = useRef();
   let overlayRef = useRef();
 
@@ -42,8 +55,9 @@ export function DateRangePicker(props) {
   );
 
   // Get popover positioning props relative to the trigger
+  let triggerRef = useRef();
   let { overlayProps: positionProps } = useOverlayPosition({
-    targetRef: ref,
+    targetRef: triggerRef,
     overlayRef,
     placement: "bottom start",
     offset: 8,
@@ -57,11 +71,7 @@ export function DateRangePicker(props) {
     >
       <span {...labelProps}>{props.label}</span>
 
-      <div
-        {...groupProps}
-        ref={ref}
-        style={{ display: "flex", flexDirection: "row" }}
-      >
+      <div ref={triggerRef} style={{ display: "flex", flexDirection: "row" }}>
         <Button
           prefix={<CalendarIcon />}
           {...buttonProps}
@@ -75,14 +85,11 @@ export function DateRangePicker(props) {
             maxWidth: 280,
           }}
           children={
-            state.value?.start
-              ? `${formatter
-                  .full(state.value.start)
-                  .replace(/\s/g, "")
-                  .replace(",", " ")} – ${formatter
-                  .full(state.value.end)
-                  .replace(/\s/g, "")
-                  .replace(",", " ")}`
+            state.value.start && state.value.end
+              ? formatter.formatRange(
+                  state.value.start.toDate(getLocalTimeZone()),
+                  state.value.end?.toDate(getLocalTimeZone()),
+                )
               : "Select Date Range"
           }
         />
@@ -98,12 +105,22 @@ export function DateRangePicker(props) {
             onOpenChange={state.setOpen}
           >
             <div className={clsx(styles.contentWrapper)}>
-              <div className={styles.inputsWrapper}>
+              <div
+                // groupProps and ref must wrap the DateFields
+                // in order for Left/Right arrow nav to work
+                // see: https://react-spectrum.adobe.com/react-aria/useDateRangePicker.html#anatomy
+                {...groupProps}
+                ref={ref}
+                className={styles.inputsWrapper}
+              >
                 <Label htmlFor="start-date" label="Start" capitalize />
                 <div
                 // className={styles.inputRow}
                 >
-                  <DateField {...startFieldProps} />
+                  <DateField
+                    {...startFieldProps}
+                    placeholderValue={now(getLocalTimeZone())}
+                  />
                 </div>
 
                 <Spacer y={0.5} />
@@ -112,7 +129,10 @@ export function DateRangePicker(props) {
                 <div
                 // className={styles.inputRow}
                 >
-                  <DateField {...endFieldProps} />
+                  <DateField
+                    {...endFieldProps}
+                    placeholderValue={now(getLocalTimeZone())}
+                  />
                 </div>
               </div>
 
@@ -124,19 +144,3 @@ export function DateRangePicker(props) {
     </div>
   );
 }
-
-// 4/4 12:00AM
-let formatter = {
-  full: (e: DateValue) => {
-    if (!e) return "";
-    return e
-      .toDate(Intl.DateTimeFormat().resolvedOptions().timeZone)
-      .toLocaleString(undefined, {
-        month: "numeric",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-        hour12: true,
-      });
-  },
-};
