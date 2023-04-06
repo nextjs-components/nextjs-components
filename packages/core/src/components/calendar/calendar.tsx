@@ -23,18 +23,17 @@ export default function Calendar(props) {
   let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
     props,
     state,
-    ref,
   );
 
   return (
-    <div {...calendarProps} ref={ref} className="inline-block text-gray-800">
-      <div className="flex items-center pb-4">
-        <h2 className="flex-1 font-bold text-xl ml-2">{title}</h2>
+    <div {...calendarProps} ref={ref}>
+      <div>
+        <h2>{title}</h2>
         <CalendarButton {...prevButtonProps}>
-          <ChevronLeftIcon className="h-6 w-6" />
+          <ChevronLeftIcon />
         </CalendarButton>
         <CalendarButton {...nextButtonProps}>
-          <ChevronRightIcon className="h-6 w-6" />
+          <ChevronRightIcon />
         </CalendarButton>
       </div>
       <CalendarGrid state={state} />

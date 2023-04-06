@@ -86,12 +86,6 @@ export function DateRangePicker(props) {
               : "Select Date Range"
           }
         />
-
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          {state.validationState === "invalid" && (
-            <AlertTriangle color="var(--geist-error)" />
-          )}
-        </div>
       </div>
 
       {state.isOpen && (
