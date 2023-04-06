@@ -1,32 +1,26 @@
 import { createCalendar } from "@internationalized/date";
-import { getLocalTimeZone, now } from "@internationalized/date";
 import { useDateField, useDateSegment } from "@react-aria/datepicker";
 import { useLocale } from "@react-aria/i18n";
+import { mergeProps } from "@react-aria/utils";
 import { useDateFieldState } from "@react-stately/datepicker";
+import type { AriaDatePickerProps, DateValue } from "@react-types/datepicker";
 import { useRef, useState } from "react";
 import { useFocusRing, useFocusWithin } from "react-aria";
 import type {
-  DateFieldStateOptions,
   DateFieldState as IDateFieldState,
   DateSegment as IDateSegment,
 } from "react-stately";
 
-interface DateFieldProps {
-  label?: string;
-  placeholderValue?: string;
-  className?: string;
-}
-export function DateField(props) {
+export function DateField(props: AriaDatePickerProps<DateValue>) {
   let { locale } = useLocale();
   let state = useDateFieldState({
     ...props,
-    placeholderValue: now(getLocalTimeZone()),
     locale,
     createCalendar,
   });
 
   let ref = useRef();
-  let { fieldProps, labelProps } = useDateField(props, state, ref);
+  let { fieldProps } = useDateField(props, state, ref);
 
   const [focusWithin, setFocusWithin] = useState(false);
   let { focusWithinProps } = useFocusWithin({
@@ -34,8 +28,7 @@ export function DateField(props) {
   });
   return (
     <div
-      {...fieldProps}
-      {...focusWithinProps}
+      {...mergeProps(focusWithinProps, fieldProps)}
       ref={ref}
       // TODO: move to css
       style={{
@@ -64,32 +57,36 @@ export function DateField(props) {
   );
 }
 
-function DateSegment({
-  segment,
-  state,
-}: {
+interface DateSegmentProps {
   segment: IDateSegment;
   state: IDateFieldState;
-}) {
+}
+
+function DateSegment({ segment, state }: DateSegmentProps) {
   let ref = useRef();
   let { segmentProps } = useDateSegment(segment, state, ref);
   let { focusProps, isFocused } = useFocusRing();
+
   return (
     <div
-      {...segmentProps}
-      {...focusProps}
+      {...mergeProps(segmentProps, focusProps)}
       ref={ref}
+      // TODO: move to css
       style={{
         ...segmentProps.style,
         minWidth:
           segment.maxValue != null && String(segment.maxValue).length + "ch",
         paddingLeft: "0.25ch",
         paddingRight: "0.25ch",
+        paddingTop: 4,
+        paddingBottom: 4,
         boxSizing: "content-box",
         fontVariantNumeric: "tabular-nums",
         textAlign: "right",
         outline: "none",
         color: isFocused ? "var(--geist-foreground)" : "var(--geist-secondary)",
+        borderRadius: "var(--geist-radius)",
+        background: isFocused ? "var(--accents-2)" : undefined,
       }}
     >
       {/* Always reserve space for the placeholder, to prevent layout shift when editing. */}

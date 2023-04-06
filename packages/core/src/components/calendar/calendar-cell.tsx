@@ -1,9 +1,4 @@
-import {
-  getDayOfWeek,
-  isSameDay,
-  isSameMonth,
-  isToday,
-} from "@internationalized/date";
+import { isSameDay, isSameMonth, isToday } from "@internationalized/date";
 import { useCalendarCell } from "@react-aria/calendar";
 import { useFocusRing } from "@react-aria/focus";
 import { useLocale } from "@react-aria/i18n";
@@ -27,7 +22,6 @@ export function CalendarCell({ state, date }) {
   } = useCalendarCell({ date }, state, ref);
 
   let { locale } = useLocale();
-  let dayOfWeek = getDayOfWeek(date, locale);
 
   let highlightedRange = "highlightedRange" in state && state.highlightedRange;
 

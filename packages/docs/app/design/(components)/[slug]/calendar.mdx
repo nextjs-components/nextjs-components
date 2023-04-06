@@ -40,20 +40,4 @@ Displays a calendar from which users can select a date or range of dates.
 }`}
 />
 
-<Spacer y={2} />
-
-### Presets
-
-Provide common date ranges
-
-<Spacer />
-
-<Editor
-  scope={{ Calendar, presets }}
-  code={`() => {
-  const [range, setRange] = React.useState(null)
-  return <Calendar presets={presets} value={range} onChange={setRange} />
-}`}
-/>
-
 <Spacer y={4} />
