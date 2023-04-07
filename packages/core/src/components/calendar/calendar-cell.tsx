@@ -1,6 +1,5 @@
 import { isSameDay, isSameMonth, isToday } from "@internationalized/date";
 import { useCalendarCell } from "@react-aria/calendar";
-import { useFocusRing } from "@react-aria/focus";
 import { useLocale } from "@react-aria/i18n";
 import { mergeProps } from "@react-aria/utils";
 import clsx from "clsx";
@@ -29,7 +28,6 @@ export function CalendarCell({ state, date }) {
     highlightedRange && isSameDay(date, highlightedRange.start);
   let isLastInRange = highlightedRange && isSameDay(date, highlightedRange.end);
 
-  let { focusProps, isFocusVisible } = useFocusRing();
   let { hoverProps, isHovered } = useHover({});
 
   return (
@@ -41,7 +39,7 @@ export function CalendarCell({ state, date }) {
       })}
     >
       <span
-        {...mergeProps(buttonProps, focusProps, hoverProps)}
+        {...mergeProps(buttonProps, hoverProps)}
         ref={ref}
         hidden={isOutsideVisibleRange}
         className={clsx({
