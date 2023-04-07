@@ -53,7 +53,7 @@ export function CalendarCell({ state, date }) {
           ), // faded
           [styles.hovered]: isHovered, // thin ring
           [styles.selected]: isFirstInRange || isLastInRange, // White
-          // [styles.disabled]: state.isCellDisabled(date), // faded; no hover ring
+          [styles.disabled]: isDisabled, // faded; no hover ring
         })}
       >
         {formattedDate}

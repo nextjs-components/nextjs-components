@@ -1,2 +1,7 @@
 // export { default as Calendar } from "./calendar";
-export { DateRangePicker as Calendar } from "./date-range-picker";
+export {
+  DateRangePicker as Calendar,
+  type DateRangePickerProps,
+  type DateValue,
+  type RangeValue,
+} from "./date-range-picker";

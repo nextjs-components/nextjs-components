@@ -1,8 +1,10 @@
-import { getLocalTimeZone, now } from "@internationalized/date";
+import { type DateValue, getLocalTimeZone, now } from "@internationalized/date";
 import { useDateRangePicker } from "@react-aria/datepicker";
 import { useDateRangePickerState } from "@react-stately/datepicker";
+import type { Granularity } from "@react-types/datepicker";
+import type { RangeValue } from "@react-types/shared";
 import clsx from "clsx";
-import { useRef } from "react";
+import { PropsWithChildren, useRef } from "react";
 import { OverlayContainer, useOverlayPosition } from "react-aria";
 import { useDateFormatter } from "react-aria";
 
@@ -15,10 +17,35 @@ import { DateField } from "./date-field";
 import { Popover } from "./popover";
 import { RangeCalendar } from "./range-calendar";
 
-// TODO type this
-type DateRangePickerProps = any;
+export { type DateValue };
+export { type RangeValue };
+export interface DateRangePickerProps {
+  minValue?: DateValue;
+  maxValue?: DateValue;
+  isDateUnavailable?: (date: DateValue) => boolean;
+  placeholderValue?: DateValue;
+  hourCycle?: 12 | 24;
+  granularity?: Granularity;
+  hideTimeZone?: boolean;
+  isDisabled?: boolean;
+  isReadOnly?: boolean;
+  validationState?: "valid" | "invalid";
+  isRequired?: boolean;
+  autoFocus?: boolean;
+  isOpen?: boolean;
+  defaultOpen?: boolean;
+  allowsNonContiguousRanges?: boolean;
+  value?: RangeValue<DateValue> | null;
+  defaultValue?: RangeValue<DateValue> | null;
+  //
+  label?: string;
+}
 
-export function DateRangePicker(props: DateRangePickerProps) {
+export function DateRangePicker({
+  granularity = "minute", // This causes DateField to render a TimeField
+  hideTimeZone = false,
+  ...props
+}: DateRangePickerProps) {
   let formatter = useDateFormatter({
     month: "numeric",
     day: "numeric",
@@ -29,7 +56,7 @@ export function DateRangePicker(props: DateRangePickerProps) {
 
   let state = useDateRangePickerState({
     ...props,
-    granularity: "minute", // This causes DateField to render a TimeField
+    granularity,
     hideTimeZone: false,
   });
 
@@ -44,15 +71,7 @@ export function DateRangePicker(props: DateRangePickerProps) {
     buttonProps,
     dialogProps,
     calendarProps,
-  } = useDateRangePicker(
-    {
-      ...props,
-      granularity: "minute", // This causes DateField to render a TimeField
-      hideTimeZone: false,
-    },
-    state,
-    ref,
-  );
+  } = useDateRangePicker({ ...props, granularity, hideTimeZone }, state, ref);
 
   // Get popover positioning props relative to the trigger
   let triggerRef = useRef();
