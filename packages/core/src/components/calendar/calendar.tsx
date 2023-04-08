@@ -36,7 +36,7 @@ export default function Calendar(props) {
           <ChevronRightIcon />
         </CalendarButton>
       </div>
-      <CalendarGrid state={state} />
+      {/* <CalendarGrid state={state} /> */}
     </div>
   );
 }
