@@ -3,8 +3,7 @@
   vertical-align: middle;
   color: var(--themed-fg, var(--geist-background));
   background: var(--themed-bg, var(--geist-foreground));
-  border: 1px solid
-    var(--themed-border, var(--themed-bg, var(--geist-foreground)));
+  border: 1px solid var(--themed-border, var(--themed-bg, var(--geist-foreground)));
   border-radius: 16px;
   padding: 2px 7px;
   font-weight: 500;
@@ -20,6 +19,7 @@
   --themed-bg: var(--geist-success);
   --themed-border: var(--geist-success);
 }
+
 .success.contrast {
   --themed-fg: var(--geist-success-dark);
   --themed-bg: var(--geist-success-lighter);
@@ -31,6 +31,7 @@
   --themed-bg: var(--geist-error);
   --themed-border: var(--geist-error);
 }
+
 .error.contrast {
   --themed-fg: var(--geist-error-dark);
   --themed-bg: var(--geist-error-lighter);
@@ -42,6 +43,7 @@
   --themed-bg: var(--geist-warning);
   --themed-border: var(--geist-warning);
 }
+
 .warning.contrast {
   --themed-fg: var(--geist-warning-dark);
   --themed-bg: var(--geist-warning-lighter);
@@ -53,6 +55,7 @@
   --themed-bg: var(--geist-violet);
   --themed-border: var(--geist-violet);
 }
+
 .violet.contrast {
   --themed-fg: var(--geist-violet-dark);
   --themed-bg: var(--geist-violet-lighter);
@@ -64,19 +67,105 @@
   --themed-bg: var(--geist-secondary);
   --themed-border: var(--geist-secondary);
 }
+
 .secondary.contrast {
   --themed-fg: var(--geist-secondary-dark);
   --themed-bg: var(--geist-secondary-lighter);
   --themed-border: var(--geist-secondary);
 }
+
+.blue {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-success);
+  --themed-border: var(--geist-success);
+}
+
+.red {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-error);
+  --themed-border: var(--geist-error);
+}
+
+.pink {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-highlight-pink);
+  --themed-border: var(--geist-highlight-pink);
+}
+
+.amber {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-error-dark);
+  --themed-border: var(--geist-error-dark);
+}
+
+.purple {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-violet);
+  --themed-border: var(--geist-violet);
+}
+
+.gray {
+  --themed-fg: #fff;
+  --themed-bg: var(--geist-foreground);
+  --themed-border: var(--geist-foreground);
+}
+
+.blue-subtle {
+  --themed-fg: var(--geist-success);
+  --themed-bg: var(--geist-success-lighter);
+  --themed-border: var(--geist-success-lighter);
+}
+
+.red-subtle {
+  --themed-fg: var(--geist-error);
+  --themed-bg: var(--geist-error-lighter);
+  --themed-border: var(--geist-error-lighter);
+}
+
+.amber-subtle {
+  --themed-fg: var(--geist-error-dark);
+  --themed-bg: var(--geist-warning-lighter);
+  --themed-border: var(--geist-warning-lighter);
+}
+
+.purple-subtle {
+  --themed-fg: var(--geist-violet);
+  --themed-bg: var(--geist-violet-lighter);
+  --themed-border: var(--geist-violet-lighter);
+}
+
+.gray-contrast {
+  --themed-fg: #000;
+  --themed-bg: var(--geist-background);
+  --themed-border: var(--geist-background);
+}
+
+.trial {
+  --themed-fg: #fff;
+  background: linear-gradient(135deg,
+      var(--geist-success),
+      var(--geist-highlight-pink));
+      border: none;
+}
+
+.turbo {
+  --themed-fg: #fff;
+  background: linear-gradient(135deg,
+      var(--geist-error),
+      var(--geist-success));
+      border: none;
+}
+
 .outline {
   color: var(--themed-bg, var(--geist-foreground));
   background: transparent;
 }
+
 .small {
   padding: 3px 7px;
   font-size: 12px;
 }
+
 .large {
   padding: 3px 10px;
   font-size: 16px;

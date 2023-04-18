@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "./button.mdx";
+import Badge from "./badge.mdx";
 import Capacity from "./capacity.mdx";
 import Combobox from "./combobox.mdx";
 import Description from "./description.mdx";
@@ -26,11 +27,14 @@ import Textarea from "./textarea.mdx";
 import Toggle from "./toggle.mdx";
 import Tooltip from "./tooltip.mdx";
 
+
 export default function Slug({ params: { slug } }) {
   const Page = () => {
     switch (slug) {
       case "button":
         return <Button />;
+      case "badge":
+        return <Badge />;
       case "capacity":
         return <Capacity />;
       case "combobox":
