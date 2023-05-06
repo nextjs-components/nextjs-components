@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
-import { Container } from "nextjs-components/src/components/Container";
 import { Stack } from "nextjs-components/src/components/Stack";
 import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
 import { Link as LinkIcon } from "nextjs-components/src/icons";
@@ -12,9 +11,21 @@ import { Editor } from "@/components/editor";
 import { Example } from "@/components/example";
 import link from "@/components/link/link.module.css";
 
-import styles from "./app/design/design.module.css";
-
 const mdxComponents = {
+  blockquote: ({ children, ...props }) => {
+    return (
+      <blockquote
+        className={clsx(
+          "bg-[--geist-background] p-3 text-sm",
+          "rounded-[--geist-radius] border border-[--accents-2]",
+          "my-[1.6em]",
+        )}
+        {...props}
+      >
+        {children}
+      </blockquote>
+    );
+  },
   th: ({ children, ...props }) => {
     return (
       <th className={"head-cell"}>
@@ -177,7 +188,10 @@ const mdxComponents = {
       ),
     });
     return (
-      <div style={{ marginBottom: "1.25rem" }} className={styles["title-bar"]}>
+      <div
+        style={{ marginBottom: "1.25rem" }}
+        className="flex items-center justify-between"
+      >
         {newChild}
       </div>
     );

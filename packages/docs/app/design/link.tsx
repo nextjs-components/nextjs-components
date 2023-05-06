@@ -4,18 +4,23 @@ import clsx from "clsx";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 
-import styles from "./link.module.css";
-
 export default function Link({ children, href, className = "" }) {
   const pathname = usePathname();
   const active = pathname === href;
   return (
-    <NextLink className={clsx(styles.link, className)} href={href}>
+    <NextLink
+      className={clsx(
+        "cursor-pointer text-inherit no-underline outline-none",
+        className,
+      )}
+      href={href}
+    >
       <span
         className={clsx(
-          styles.navItem,
-          { [styles.activeNavItem]: active },
-          styles.text_wrapper,
+          "-mx-4 flex h-10 items-center rounded-md px-4 py-2 text-[--accents-5] transition-all duration-100",
+          "hover:bg-[--accents-1] hover:text-[--geist-foreground]",
+          { ["bg-[--hover] text-[--geist-foreground]"]: active },
+          "text-sm font-normal leading-5",
         )}
       >
         {children}

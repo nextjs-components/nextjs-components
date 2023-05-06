@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import commandScore from "command-score";
 import { AnimatePresence, motion } from "framer-motion";
 import { Container, Spacer, Text } from "nextjs-components";
@@ -10,8 +11,6 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "../../design.module.css";
 import { iconMap } from "./icon-map";
 import IconsMdx from "./icons.mdx";
-import { ListItem } from "./list";
-import listStyles from "./list.module.css";
 
 export default function IconsPage() {
   const [search, setSearch] = useState("");
@@ -43,7 +42,11 @@ export default function IconsPage() {
       <IconsMdx />
 
       <div
-        className={styles.module}
+        // .module
+        className={clsx(
+          "relative w-full rounded-[--geist-radius] border border-solid border-[--accents-2] p-4",
+        )}
+        // overwrites above styles... but why?
         style={{
           padding: 0,
           border: "none",
@@ -57,7 +60,7 @@ export default function IconsPage() {
         />
         <Spacer />
 
-        <div className="geist-list">
+        <div className="m-[--geist-gap-half-negative] box-border flex flex-wrap">
           {entries.map(({ key, Icon }) => {
             return (
               <ClickableIcon key={key} name={key}>
@@ -68,21 +71,6 @@ export default function IconsPage() {
         </div>
 
         <Spacer y={4} />
-
-        <style jsx>{`
-          .geist-list {
-            display: flex;
-            flex-wrap: wrap;
-            margin: var(--geist-gap-half-negative);
-            box-sizing: border-box;
-          }
-          .geist-list > :global(.${listStyles.geistListItem}) {
-            padding: var(--geist-gap-half);
-            flex-grow: 0;
-            flex-basis: 25%;
-            min-width: 0;
-          }
-        `}</style>
       </div>
     </>
   );
@@ -103,84 +91,72 @@ const ClickableIcon = ({ children, name }) => {
   }, [clicked]);
 
   return (
-    <ListItem>
-      <AnimatePresence>
-        <button
-          className="icon"
-          onClick={() => {
-            setClicked(true);
-          }}
-        >
-          <Container center>
-            {clicked ? (
-              <motion.div
-                key="check"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                <Check />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="icon"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                {children}
-              </motion.div>
+    <div
+      // geistListItem
+      className="min-w-0 grow-0 basis-1/4 p-[--geist-gap-half]"
+    >
+      <Container style={{ height: 100 }}>
+        <AnimatePresence>
+          <button
+            style={{ "--icon-color": "var(--geist-secondary)" }}
+            className={clsx(
+              "h-full w-full cursor-pointer select-none rounded-[var(--geist-radius)] border-none bg-[--geist-background] p-0 text-[--geist-foreground] transition-colors duration-200",
+              "hover:bg-[--hover]",
             )}
-          </Container>
-          <Spacer y={0.5} />
-          <Container>
-            {clicked ? (
-              <motion.div
-                key="check2"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                <Text as="small" color="geist-secondary">
-                  Copied!
-                </Text>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="icon2"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                <Text as="small" color="geist-secondary">
-                  {name}
-                </Text>
-              </motion.div>
-            )}
-          </Container>
-        </button>
-      </AnimatePresence>
-      <style jsx>{`
-        .icon {
-          --icon-color: var(--geist-secondary);
-          transition: color 0.2s ease;
-
-          color: var(--geist-foreground);
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          background: var(--geist-background);
-          padding: 0;
-          border: none;
-          user-select: none;
-          cursor: pointer;
-          border-radius: var(--geist-radius);
-          transition: background-color.1s ease-in-out, box-shadow.1s ease-in-out;
-        }
-        .icon:hover {
-          background-color: var(--hover);
-        }
-      `}</style>
-    </ListItem>
+            onClick={() => {
+              setClicked(true);
+            }}
+          >
+            <Container center>
+              {clicked ? (
+                <motion.div
+                  key="check"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <Check />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="icon"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  {children}
+                </motion.div>
+              )}
+            </Container>
+            <Spacer y={0.5} />
+            <Container>
+              {clicked ? (
+                <motion.div
+                  key="check2"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <Text as="small" color="geist-secondary">
+                    Copied!
+                  </Text>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="icon2"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <Text as="small" color="geist-secondary">
+                    {name}
+                  </Text>
+                </motion.div>
+              )}
+            </Container>
+          </button>
+        </AnimatePresence>
+      </Container>
+    </div>
   );
 };
