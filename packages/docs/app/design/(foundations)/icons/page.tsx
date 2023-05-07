@@ -8,7 +8,6 @@ import { SearchInput } from "nextjs-components/src/components/Input";
 import Check from "nextjs-components/src/icons/check";
 import { useEffect, useMemo, useState } from "react";
 
-import styles from "../../design.module.css";
 import { iconMap } from "./icon-map";
 import IconsMdx from "./icons.mdx";
 

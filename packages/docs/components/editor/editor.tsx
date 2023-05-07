@@ -1,3 +1,5 @@
+"use client";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "nextjs-components/src/components/Button";
 import { Container } from "nextjs-components/src/components/Container";
@@ -8,13 +10,8 @@ import CopyIcon from "nextjs-components/src/icons/copy";
 import RotateCW from "nextjs-components/src/icons/rotate-cw";
 import React from "react";
 import { useState } from "react";
-import {
-  EditorProps,
-  LiveEditor,
-  LiveError,
-  LivePreview,
-  LiveProvider,
-} from "react-live";
+import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
+import type { Props as EditorProps } from "react-live/src/components/Editor";
 
 import styles from "./editor.module.css";
 

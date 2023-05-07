@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import dynamic from "next/dynamic";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";
-import React from "react";
 
 import Navigation, { SiblingLinks, Sidebar } from "./navigation";
 
