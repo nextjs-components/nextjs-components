@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import React from "react";
 import { CSSProperties } from "react";
 
 import styles from "./LoadingDots.module.css";

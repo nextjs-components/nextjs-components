@@ -2,7 +2,6 @@
 
 // styled-jsx cannot be used in server-components
 import clsx from "clsx";
-import React from "react";
 
 type Direction = "column" | "row";
 export interface Props {

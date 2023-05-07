@@ -1,5 +1,3 @@
-import React from "react";
-
 import InfoFill from "../../icons/info-fill";
 import { Tooltip } from "../tooltip";
 import styles from "./description.module.css";

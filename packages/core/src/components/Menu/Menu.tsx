@@ -1,6 +1,8 @@
+"use client";
+
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
-import React, { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { FocusScope, usePopover } from "react-aria";
 
 import useMediaQuery from "../../hooks/useMediaQuery";

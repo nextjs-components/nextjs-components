@@ -1,6 +1,7 @@
+"use client";
+
 import clsx from "clsx";
 import NextImage from "next/image";
-import React from "react";
 import { memo, useEffect, useState } from "react";
 
 interface ImageProps {

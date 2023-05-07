@@ -1,6 +1,7 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
-import React from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import XIcon from "../../icons/x";

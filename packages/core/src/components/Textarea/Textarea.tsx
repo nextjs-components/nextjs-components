@@ -1,5 +1,7 @@
-import React, { useState, forwardRef } from "react";
+"use client";
+
 import clsx from "clsx";
+import { forwardRef, useState } from "react";
 
 interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   disabled?: boolean;

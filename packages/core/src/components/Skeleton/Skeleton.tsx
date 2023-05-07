@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import { Children } from "react";
 
 import styles from "./skeleton.module.css";
 
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const isChildNull = (children) => {
-  return !React.Children.count(children);
+  return !Children.count(children);
 };
 
 const Skeleton: React.FC<React.PropsWithChildren<Props>> = ({

@@ -1,5 +1,7 @@
+"use client";
+
 import clsx from "clsx";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 import { Label } from "../Label";
 import styles from "./TextField.module.css";

@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import React from "react";
 
 import code from "./code.module.css";
 import syntaxTheme from "./syntax-theme.module.css";

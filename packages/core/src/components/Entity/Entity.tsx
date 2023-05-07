@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import { Children } from "react";
 import { isFragment } from "react-is";

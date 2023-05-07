@@ -2,7 +2,6 @@
 
 import type { PressEvent } from "@react-types/shared";
 import clsx from "clsx";
-import React from "react";
 import { forwardRef, useContext, useRef, useState } from "react";
 import { useButton, useHover } from "react-aria";
 

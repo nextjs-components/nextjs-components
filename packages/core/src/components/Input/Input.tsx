@@ -1,5 +1,7 @@
+"use client";
+
 import clsx from "clsx";
-import React, { forwardRef, useCallback, useId } from "react";
+import { forwardRef, useCallback, useId } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import { Error } from "../Error";

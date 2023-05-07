@@ -1,6 +1,7 @@
+"use client";
+
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
-import React from "react";
 import { usePreventScroll } from "react-aria";
 import useMeasure from "react-use-measure";
 

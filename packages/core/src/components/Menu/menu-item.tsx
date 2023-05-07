@@ -1,5 +1,7 @@
+"use client";
+
 import clsx from "clsx";
-import React, { PointerEventHandler, forwardRef, useId, useRef } from "react";
+import { PointerEventHandler, forwardRef, useId, useRef } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
 import classes from "./Menu.module.css";

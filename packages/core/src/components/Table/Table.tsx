@@ -1,5 +1,6 @@
+"use client";
+
 import clsx from "clsx";
-import React from "react";
 import { Children, useState } from "react";
 
 import reset from "../../styles/reset/reset.module.css";
