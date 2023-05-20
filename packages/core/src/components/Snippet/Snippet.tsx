@@ -1,5 +1,7 @@
+"use client";
+
 import clsx from "clsx";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useFocus } from "react-aria";
 
 import CopyIcon from "../../icons/copy";

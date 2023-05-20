@@ -1,35 +1,29 @@
-"use client";
-
 import Link from "next/link";
-import {
-  Button,
-  Container,
-  Description,
-  Spacer,
-  Stack,
-  useTheme,
-} from "nextjs-components";
+import { Button } from "nextjs-components/src/components/Button";
+import { Container } from "nextjs-components/src/components/Container";
+import { Description } from "nextjs-components/src/components/Description";
+import { Spacer } from "nextjs-components/src/components/Spacer";
+import { Stack } from "nextjs-components/src/components/Stack";
 
 import { ThemeSwitcher } from "@/app/theme-switcher";
 import { Example } from "@/components/example";
 
-import styles from "./index.module.css";
-
 const Page = () => {
-  const { resolvedTheme } = useTheme();
   return (
     <div>
-      <section className={styles.gradient_bg}>
+      <section className="bg-gradient-radial">
         <Container wrapper>
           <Container>
             <Spacer y={4} />
-            <div className={styles.title}>
-              <h1>Nextjs components</h1>
+            <div className="max-w-[500px]">
+              <h1 className="m-0 text-[80px] font-bold leading-[0.85] tracking-[max(min(-0.055em,-0.66vw),-0.07em)] text-[--geist-foreground] max-[960px]:text-[min(11.2vw,80px)]">
+                Nextjs components
+              </h1>
               <Spacer y={1} />
             </div>
 
-            <div className={styles.subtitle}>
-              <p>
+            <div className="max-w-[500px]">
+              <p className="m-0 text-[21px] font-normal leading-[30px] tracking-[-0.016em] text-[--geist-secondary]">
                 A collection of components, transcribed from Vercel’s design
                 system.
               </p>
@@ -37,7 +31,10 @@ const Page = () => {
 
             <Spacer y={1} />
             <div>
-              <Link href="/design/introduction" className={styles.install}>
+              <Link
+                href="/design/introduction"
+                className="box-border inline-flex h-[--geist-space-medium] cursor-pointer select-none items-center rounded-[--geist-radius] bg-[--geist-background] px-[--geist-space-4x] font-medium text-[--geist-foreground] shadow-[--shadow-medium]"
+              >
                 Go to the docs →
               </Link>
             </div>
@@ -51,7 +48,7 @@ const Page = () => {
                     tooltip="pressy clicky things"
                     content="Press me!"
                   />
-                  <Button onClick={() => alert("hi")}>hi</Button>
+                  <Button>hi</Button>
                 </Stack>
               </Example>
 
@@ -91,7 +88,10 @@ const Page = () => {
           </Container>
 
           <Stack align={"center"}>
-            <Link href="/design/introduction" className={styles.install}>
+            <Link
+              href="/design/introduction"
+              className="box-border inline-flex h-[--geist-space-medium] cursor-pointer select-none items-center rounded-[--geist-radius] bg-[--geist-background] px-[--geist-space-4x] font-medium text-[--geist-foreground] shadow-[--shadow-medium]"
+            >
               Go to the docs →
             </Link>
           </Stack>
@@ -106,13 +106,6 @@ export default Page;
 
 const Box = () => {
   return (
-    <div
-      style={{
-        background: "var(--geist-success)",
-        width: 50,
-        height: 50,
-        borderRadius: 4,
-      }}
-    />
+    <div className="h-[50px] w-[50px] rounded-[4px] bg-[--geist-success]" />
   );
 };

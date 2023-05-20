@@ -1,3 +1,5 @@
+"use client";
+
 import { ThemeProvider, useTheme } from "next-themes";
 
 const STORAGE_KEY = "mode";

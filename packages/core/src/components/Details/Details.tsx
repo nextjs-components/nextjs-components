@@ -1,5 +1,6 @@
+"use client";
+
 import clsx from "clsx";
-import React from "react";
 import { useFocusRing } from "react-aria";
 
 import ChevronRight from "../../icons/chevron-right";

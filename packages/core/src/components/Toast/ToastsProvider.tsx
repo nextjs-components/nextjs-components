@@ -1,5 +1,6 @@
-import React from "react";
-import { createContext, useRef, useState } from "react";
+"use client";
+
+import { createContext, useState } from "react";
 
 type ToastType = "success" | "error" | "violet";
 export interface IToast {

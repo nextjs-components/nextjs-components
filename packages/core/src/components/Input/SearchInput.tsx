@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { forwardRef, useRef } from "react";
 
 import Search from "../../icons/search";

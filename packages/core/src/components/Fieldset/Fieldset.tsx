@@ -1,16 +1,23 @@
+"use client";
+
 import clsx from "clsx";
-import React from "react";
 import { Children, useContext, useState } from "react";
+import type {
+  CSSProperties,
+  FC,
+  HTMLAttributes,
+  PropsWithChildren,
+} from "react";
 
 import { DisabledContext } from "../../contexts/DisabledContext";
 import { Text } from "../Text";
 import styles from "./Fieldset.module.css";
 
-const Status: React.FC<React.PropsWithChildren> = ({ children }) => {
+const Status: FC<PropsWithChildren> = ({ children }) => {
   return <div className={styles.status}>{children}</div>;
 };
 
-const Actions: React.FC<React.PropsWithChildren> = ({ children }) => {
+const Actions: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className={styles.actions}>
       <div>{children}</div>
@@ -19,11 +26,11 @@ const Actions: React.FC<React.PropsWithChildren> = ({ children }) => {
 };
 
 interface FooterProps {
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   disabled?: boolean;
   highlight?: boolean;
 }
-interface IFooter extends React.FC<React.PropsWithChildren<FooterProps>> {
+interface IFooter extends FC<PropsWithChildren<FooterProps>> {
   Status: typeof Status;
   Actions: typeof Actions;
 }
@@ -52,21 +59,18 @@ Footer.Status = Status;
 Footer.Actions = Actions;
 
 interface Fs {
-  Tabs: React.FC<
-    React.PropsWithChildren<{ tabs: string[] }> &
-      React.HTMLAttributes<HTMLDivElement>
+  Tabs: FC<
+    PropsWithChildren<{ tabs: string[] }> & HTMLAttributes<HTMLDivElement>
   >;
-  Fieldset: React.FC<
-    React.PropsWithChildren<{ disabled?: boolean }> &
-      React.HTMLAttributes<HTMLDivElement>
+  Fieldset: FC<
+    PropsWithChildren<{ disabled?: boolean }> & HTMLAttributes<HTMLDivElement>
   >;
-  Content: React.FC<
-    React.PropsWithChildren<{ disabled?: boolean }> &
-      React.HTMLAttributes<HTMLDivElement>
+  Content: FC<
+    PropsWithChildren<{ disabled?: boolean }> & HTMLAttributes<HTMLDivElement>
   >;
-  Title: React.FC<React.PropsWithChildren>;
-  Subtitle: React.FC<React.PropsWithChildren>;
-  ErrorText: React.FC<React.PropsWithChildren>;
+  Title: FC<PropsWithChildren>;
+  Subtitle: FC<PropsWithChildren>;
+  ErrorText: FC<PropsWithChildren>;
   Footer: typeof Footer;
 }
 

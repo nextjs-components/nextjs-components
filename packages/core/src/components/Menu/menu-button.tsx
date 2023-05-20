@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 
 import { Button, ButtonProps } from "../Button";
 import { useMenu } from "./menu-context";

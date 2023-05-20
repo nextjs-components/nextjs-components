@@ -1,3 +1,6 @@
+"use client";
+
+// styled-jsx cannot be used in server-components
 import clsx from "clsx";
 import type { Property } from "csstype";
 import * as React from "react";
