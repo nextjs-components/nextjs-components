@@ -2,7 +2,8 @@
 
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
-import { useEffect, useId, useRef, useState } from "react";
+import { Children, useEffect, useId, useRef, useState } from "react";
+import type { FC, PropsWithChildren } from "react";
 import { FocusScope, usePopover } from "react-aria";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
@@ -77,7 +78,7 @@ interface MenuInnerProps {
   divide?: boolean;
 }
 
-const MenuInner: React.FC<React.PropsWithChildren<MenuInnerProps>> = ({
+const MenuInner: FC<PropsWithChildren<MenuInnerProps>> = ({
   divide,
   width,
   children,
@@ -112,7 +113,7 @@ interface MenuProps {
 /**
  * @see {@link MenuWrapper} for code sample usage
  */
-export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
+export const Menu: FC<PropsWithChildren<MenuProps>> = ({
   children,
   width = 150,
   divide,
@@ -151,14 +152,14 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
         case " ":
           e.preventDefault();
           // @ts-expect-error TODO: fix .props
-          React.Children.toArray(children)[selected]?.props?.onClick?.();
+          Children.toArray(children)[selected]?.props?.onClick?.();
           setOpen(false);
           setSelected(0);
           break;
         case "ArrowUp": {
           e.preventDefault();
           // prevent selecting a disabled sibling
-          let siblings = React.Children.toArray(children);
+          let siblings = Children.toArray(children);
           let step = 1;
           let curr = selected;
           if (curr <= 0) return;
@@ -174,7 +175,7 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
         case "ArrowDown": {
           e.preventDefault();
           // prevent selecting a disabled sibling
-          let siblings = React.Children.toArray(children);
+          let siblings = Children.toArray(children);
           let step = 1;
           let curr = selected;
           let len = siblings.length;
