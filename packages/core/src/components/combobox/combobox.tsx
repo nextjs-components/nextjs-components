@@ -14,6 +14,7 @@ import {
   type SetStateAction,
   createContext,
   forwardRef,
+  isValidElement,
   useCallback,
   useContext,
   useEffect,
@@ -1058,7 +1059,7 @@ const List: FC<PWC<ListProps>> = (props) => {
 
   let M = null;
   if (ListFooterComponent) {
-    M = React.isValidElement(ListFooterComponent) ? (
+    M = isValidElement(ListFooterComponent) ? (
       ListFooterComponent
     ) : (
       // @ts-ignore
