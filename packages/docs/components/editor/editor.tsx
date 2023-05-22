@@ -11,7 +11,6 @@ import RotateCW from "nextjs-components/src/icons/rotate-cw";
 import React from "react";
 import { useState } from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
-import type { Props as EditorProps } from "react-live/src/components/Editor";
 
 import styles from "./editor.module.css";
 
@@ -19,7 +18,7 @@ const DEFAULT_CODE = `
 <div>Hello, world!</div>
 `;
 
-const THEME: EditorProps["theme"] = {
+const THEME = {
   plain: {
     backgroundColor: "var(--geist-background)",
     color: "var(--geist-foreground)",
