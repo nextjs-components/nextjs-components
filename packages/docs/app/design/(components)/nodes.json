@@ -1,4 +1,5 @@
 [
+  { "name": "Breadcrumbs", "path": "/design/breadcrumbs" },
   { "name": "Button", "path": "/design/button" },
   { "name": "Calendar", "path": "/design/calendar" },
   { "name": "Capacity", "path": "/design/capacity" },

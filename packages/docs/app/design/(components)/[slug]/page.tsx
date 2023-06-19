@@ -1,5 +1,6 @@
 "use client";
 
+import Breadcrumbs from "./breadcrumbs.mdx";
 import Button from "./button.mdx";
 import Calendar from "./calendar.mdx";
 import Capacity from "./capacity.mdx";
@@ -30,6 +31,8 @@ import Tooltip from "./tooltip.mdx";
 export default function Slug({ params: { slug } }) {
   const Page = () => {
     switch (slug) {
+      case "breadcrumbs":
+        return <Breadcrumbs />;
       case "button":
         return <Button />;
       case "calendar":

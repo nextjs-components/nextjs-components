@@ -4,6 +4,7 @@ export { ThemeContextProvider, useTheme } from "./contexts/ThemeContext";
 
 export { Avatar } from "./components/Avatar";
 export { Badge } from "./components/Badge";
+export { Breadcrumbs } from "./components/breadcrumbs";
 export { Button, type ButtonProps } from "./components/Button";
 export { Calendar } from "./components/calendar";
 export { Capacity } from "./components/Capacity";

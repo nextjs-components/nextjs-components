@@ -1,0 +1,65 @@
+import Link from "next/link";
+import { Breadcrumbs } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Breadcrumbs
+
+<Spacer y={0.8} />
+
+## Displays your location in a hierarchy.
+
+<Spacer />
+
+### Text Type
+
+<Spacer />
+
+<Editor
+  scope={{ Breadcrumbs, Link }}
+  code={`() => {
+  const [active, setActive] = React.useState(0);
+  return (
+    <Breadcrumbs>
+      <Breadcrumbs.Item active={active === 0} onClick={() => setActive(0)}>
+        <Link href="/design/breadcrumbs">Item 1</Link>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item active={active === 1} onClick={() => setActive(1)}>
+        <Link href="/design/breadcrumbs">Item 1</Link>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item active={active === 2} onClick={() => setActive(2)}>
+        <Link href="/design/breadcrumbs">Item 3</Link>
+      </Breadcrumbs.Item>
+    </Breadcrumbs>
+  );
+}`}
+/>
+
+<Spacer y={2} />
+
+### Menu Type
+
+<Editor
+  scope={{ Breadcrumbs }}
+  code={`() => {
+  const [active, setActive] = React.useState(0);
+  return (
+    <Breadcrumbs type="menu">
+      <Breadcrumbs.Item active={active === 0} onClick={() => setActive(0)}>
+        Item 1
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item active={active === 1} onClick={() => setActive(1)}>
+        Item 2
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item active={active === 2} onClick={() => setActive(2)}>
+        Item 3
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item disabled active={active === 2} onClick={() => setActive(2)}>
+        Disabled
+      </Breadcrumbs.Item>
+    </Breadcrumbs>
+  );
+}`}
+/>
+
+<Spacer y={4} />
