@@ -9,6 +9,7 @@ import "./pretty-lights.css";
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>{/* <script src="https://cdn.tailwindcss.com"></script> */}</head>
       <body>
         <ThemeContextProvider>{children}</ThemeContextProvider>
       </body>

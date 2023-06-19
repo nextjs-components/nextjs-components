@@ -5,6 +5,7 @@ export { ThemeContextProvider, useTheme } from "./contexts/ThemeContext";
 export { Avatar } from "./components/Avatar";
 export { Badge } from "./components/Badge";
 export { Button, type ButtonProps } from "./components/Button";
+export { Calendar } from "./components/calendar";
 export { Capacity } from "./components/Capacity";
 export { Checkbox } from "./components/Checkbox";
 export { Collapse, CollapseGroup } from "./components/Collapse";
