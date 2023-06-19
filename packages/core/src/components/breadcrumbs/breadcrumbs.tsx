@@ -7,7 +7,7 @@ import ChevronRight from "../../icons/chevron-right";
 import styles from "./breadcrumbs.module.css";
 
 interface BreadcrumbsType {
-  type: "menu" | undefined;
+  type?: "menu";
 }
 const TypeContext = createContext<BreadcrumbsType>({
   type: undefined,
