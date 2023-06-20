@@ -57,7 +57,7 @@ const Breadcrumbs = ({ type, children }: BreadcrumbsProps) => {
 export interface BreadcrumbsItemProps extends PropsWithChildren {
   active?: boolean;
   onClick?: () => void;
-  disabled?: true;
+  disabled?: boolean;
 }
 
 const Item = ({
