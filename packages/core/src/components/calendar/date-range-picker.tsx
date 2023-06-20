@@ -1,3 +1,5 @@
+"use client";
+
 import { type DateValue, getLocalTimeZone, now } from "@internationalized/date";
 import { useDateRangePicker } from "@react-aria/datepicker";
 import { useDateRangePickerState } from "@react-stately/datepicker";

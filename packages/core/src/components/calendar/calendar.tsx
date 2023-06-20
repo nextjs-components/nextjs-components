@@ -1,3 +1,5 @@
+"use client";
+
 import { createCalendar } from "@internationalized/date";
 import { useCalendar } from "@react-aria/calendar";
 import { useLocale } from "@react-aria/i18n";
