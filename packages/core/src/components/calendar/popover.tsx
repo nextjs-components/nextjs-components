@@ -1,3 +1,5 @@
+"use client";
+
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useModal, useOverlay } from "@react-aria/overlays";

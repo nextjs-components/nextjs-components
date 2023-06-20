@@ -1,3 +1,5 @@
+"use client";
+
 import { getWeeksInMonth } from "@internationalized/date";
 import { useCalendarGrid } from "@react-aria/calendar";
 import { useLocale } from "@react-aria/i18n";
