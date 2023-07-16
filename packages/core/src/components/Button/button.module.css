@@ -1,17 +1,14 @@
 .base {
   position: relative;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   background: none;
 }
 
 .button {
   border-radius: var(--geist-radius);
-  color: var(--themed-fg, var(--geist-background));
-  background: var(--themed-bg, var(--geist-foreground));
+  color: var(--themed-fg, var(--ds-background-100));
+  background: var(--themed-bg, var(--ds-gray-1000)) none;
   border: 1px solid var(--themed-border, var(--geist-foreground));
   font-weight: 500;
   padding: 0 var(--geist-gap-half);
@@ -109,12 +106,10 @@
   margin-left: var(--geist-gap-quarter);
 }
 
-.invert[data-active],
-.invert[data-hover] {
-  box-shadow: none;
-  background: transparent;
-  color: var(--themed-bg);
-  --themed-border: var(--themed-bg);
+.invert[data-active][data-geist-button],
+.invert[data-hover][data-geist-button] {
+  background: var(--themed-hover-bg, #383838);
+  --themed-border: var(--themed-hover-bg, var(--ds-gray-200)) !important;
 }
 
 .invert[data-active] {

@@ -14,6 +14,7 @@ import KeyboardInput from "./keyboard-input.mdx";
 import LoadingDots from "./loading-dots.mdx";
 import Menu from "./menu.mdx";
 import Modal from "./modal.mdx";
+import Note from "./note.mdx";
 import Radio from "./radio.mdx";
 import Select from "./select.mdx";
 import ShowMore from "./show-more.mdx";
@@ -59,6 +60,8 @@ export default function Slug({ params: { slug } }) {
         return <Menu />;
       case "modal":
         return <Modal />;
+      case "note":
+        return <Note />;
       case "radio":
         return <Radio />;
       case "select":

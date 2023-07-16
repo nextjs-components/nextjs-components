@@ -1,16 +1,23 @@
 .note {
   padding: 7px var(--geist-gap-half);
   display: flex;
+  flex-grow: 1;
   align-items: center;
+  justify-content: space-between;
+  gap: var(--geist-gap-half);
   min-height: var(--geist-form-height);
   border-radius: var(--geist-radius);
-  color: var(--themed-fg);
-  background: var(--themed-bg);
-  border: 1px solid var(--themed-border, var(--accents-2));
   font-size: 14px;
-  line-height: 24px;
+  line-height: 1.5;
   word-break: break-word;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 600px) {
+  .note {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 .small {
@@ -24,13 +31,10 @@
   font-size: var(--geist-form-large-font);
 }
 
-.action {
-  margin-left: auto;
-  padding-left: var(--geist-gap-half);
+.center {
+  text-align: center;
 }
 
-.fill {
-  color: var(--themed-fg, var(--geist-background));
-  background: var(--themed-bg, var(--geist-foreground));
-  border: 1px solid var(--themed-border, var(--geist-foreground));
-}
+/* --- */
+
+/* todo: move to global scope? */

@@ -13,6 +13,7 @@
   { "name": "Loading Dots", "path": "/design/loading-dots" },
   { "name": "Menu", "path": "/design/menu" },
   { "name": "Modal", "path": "/design/modal" },
+  { "name": "Note", "path": "/design/note" },
   { "name": "Radio", "path": "/design/radio" },
   { "name": "Select", "path": "/design/select" },
   { "name": "Show More", "path": "/design/show-more" },
