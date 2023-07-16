@@ -703,3 +703,98 @@ html:not(.dark-theme) .geist-themed.geist-error-fill.geist-error-contrast {
   --ds-background-100: #0a0a0a;
   --ds-background-200: #000;
 }
+
+.v3-colors {
+  --note-border-color: var(--ds-gray-400);
+  --note-fg: var(--ds-gray-900);
+  --note-bg: transparent;
+  border: 1px solid var(--note-border-color) !important;
+  background: var(--note-bg) !important;
+  color: var(--note-fg) !important;
+}
+.v3-colors.geist-secondary {
+  --note-border-color: var(--ds-gray-400);
+  --note-fg: var(--ds-gray-900);
+}
+
+.v3-colors.geist-secondary.geist-secondary-fill {
+  --note-bg: var(--ds-gray-200);
+  --note-border-color: var(--ds-gray-100);
+}
+
+.v3-colors.geist-success {
+  --note-border-color: var(--ds-blue-400);
+  --note-fg: var(--ds-blue-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-success.geist-success-fill {
+  --note-bg: var(--ds-blue-200);
+  --note-border-color: var(--ds-blue-100);
+}
+
+.v3-colors.geist-error {
+  --note-border-color: var(--ds-red-400);
+  --note-fg: var(--ds-red-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-error.geist-error-fill {
+  --note-bg: var(--ds-red-200);
+  --note-border-color: var(--ds-red-100);
+}
+
+.v3-colors.geist-warning {
+  --note-border-color: var(--ds-amber-400);
+  --note-fg: var(--ds-amber-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-warning.geist-warning-fill {
+  --note-bg: var(--ds-amber-200);
+  --note-border-color: var(--ds-amber-100);
+}
+
+.v3-colors.geist-secondary {
+  --note-border-color: var(--ds-gray-alpha-400);
+  --note-fg: var(--ds-gray-alpha-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-secondary.geist-secondary-fill {
+  --note-bg: var(--ds-gray-alpha-200);
+  --note-border-color: transparent;
+}
+
+.v3-colors.geist-alert {
+  --note-border-color: var(--ds-red-400);
+  --note-fg: var(--ds-red-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-alert.geist-alert-fill {
+  --note-bg: var(--ds-red-200);
+  --note-border-color: var(--ds-red-100);
+}
+
+.v3-colors.geist-violet {
+  --note-border-color: var(--ds-purple-400);
+  --note-fg: var(--ds-purple-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-violet.geist-violet-fill {
+  --note-bg: var(--ds-purple-200);
+  --note-border-color: var(--ds-purple-100);
+}
+
+.v3-colors.geist-cyan {
+  --note-border-color: var(--ds-teal-400);
+  --note-fg: var(--ds-teal-900);
+  --note-bg: transparent;
+}
+
+.v3-colors.geist-cyan.geist-cyan-fill {
+  --note-bg: var(--ds-teal-200);
+  --note-border-color: var(--ds-teal-100);
+}

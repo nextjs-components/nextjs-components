@@ -1,0 +1,129 @@
+import { Button, Container, Note, Stack } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Note
+
+<Spacer y={0.8} />
+
+## Display text that requires attention or provides additional information.
+
+<Spacer />
+
+### Sizes
+
+<Spacer />
+
+<Editor scope={{ Note, Container }} code={`<Container row>
+  <Container>
+    <Note size="small">
+      A small note.
+    </Note>
+  </Container>
+  
+  <Container>
+    <Note>
+      A default note.
+    </Note>
+  </Container>
+
+  <Container>
+    <Note size="large">
+      A large note.
+    </Note>
+  </Container>
+</Container>`} />
+
+<Spacer y={2} />
+
+### Action
+
+<Editor scope={{ Note }} code={`<>TODO</>`} />
+
+<Spacer y={2} />
+
+### Success
+
+<Editor
+  scope={{ Note, Stack, Button }}
+  code={`<Stack gap={2}>
+	<Note type="success">This note details some success information.</Note>
+	<Note type="success" action={<Button size="small">Upgrade</Button>}>This note details some success information.</Note>
+	<Note type="success" fill>This filled note details some success information.</Note>
+	<Note type="success" fill action={<Button size="small">Upgrade</Button>}>This filled note details some success information.</Note>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+### Error
+
+<Editor
+  scope={{ Note, Stack, Button }}
+  code={`<Stack gap={2}>
+	<Note type="error">This note details some error information.</Note>
+	<Note type="error" action={<Button size="small">Upgrade</Button>}>This note details some error information.</Note>
+	<Note type="error" fill>This filled note details some error information.</Note>
+	<Note type="error" fill action={<Button size="small">Upgrade</Button>}>This filled note details some error information.</Note>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+### Warning
+
+<Editor
+  scope={{ Note, Stack, Button }}
+  code={`<Stack gap={2}>
+	<Note type="warning">This note details some warning information.</Note>
+	<Note type="warning" action={<Button size="small">Upgrade</Button>}>This note details some warning information.</Note>
+	<Note type="warning" fill>This filled note details some warning information.</Note>
+	<Note type="warning" fill action={<Button size="small">Upgrade</Button>}>This filled note details some warning information.</Note>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+### Secondary
+
+<Editor
+  scope={{ Note, Stack, Button }}
+  code={`<Stack gap={2}>
+	<Note type="secondary">This note details some secondary information.</Note>
+	<Note type="secondary" action={<Button size="small">Upgrade</Button>}>This note details some secondary information.</Note>
+	<Note type="secondary" fill>This filled note details some secondary information.</Note>
+	<Note type="secondary" fill action={<Button size="small">Upgrade</Button>}>This filled note details some secondary information.</Note>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+### Violet
+
+<Editor
+  scope={{ Note, Stack, Button }}
+  code={`<Stack gap={2}>
+	<Note type="violet">This note details some violet information.</Note>
+	<Note type="violet" action={<Button size="small">Upgrade</Button>}>This note details some violet information.</Note>
+	<Note type="violet" fill>This filled note details some violet information.</Note>
+	<Note type="violet" fill action={<Button size="small">Upgrade</Button>}>This filled note details some violet information.</Note>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+### Cyan
+
+<Editor
+  scope={{ Note, Stack, Button }}
+  code={`<Stack gap={2}>
+	<Note type="cyan">This note details some cyan information.</Note>
+	<Note type="cyan" action={<Button size="small">Upgrade</Button>}>This note details some cyan information.</Note>
+	<Note type="cyan" fill>This filled note details some cyan information.</Note>
+	<Note type="cyan" fill action={<Button size="small">Upgrade</Button>}>This filled note details some cyan information.</Note>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+<Spacer y={4} />
