@@ -21,22 +21,29 @@ interface Props {
 }
 
 const Icon = ({ type }: { type?: Props["type"] }) => {
-  const style = {
-    transform: `translateY(3px)`,
-    display: `inline-block`,
-  };
+  let icon = null;
   if (!type || type === "secondary" || type === "violet" || type === "cyan") {
-    return <Info size={16} style={style} />;
+    icon = <Info size={16} />;
   }
   if (type === "success") {
-    return <CheckInCircle size={16} style={style} />;
+    icon = <CheckInCircle size={16} />;
   }
   if (type === "warning") {
-    return <AlertTriangle size={16} style={style} />;
+    icon = <AlertTriangle size={16} />;
   }
   if (type === "error") {
-    return <AlertOctagon size={16} style={style} />;
+    icon = <AlertOctagon size={16} />;
   }
+  return (
+    <span
+      style={{
+        transform: `translateY(3px)`,
+        display: `inline-block`,
+      }}
+    >
+      {icon}
+    </span>
+  );
 };
 
 const Note: React.FC<React.PropsWithChildren<Props>> = ({
@@ -86,7 +93,7 @@ const Note: React.FC<React.PropsWithChildren<Props>> = ({
         ) : null}
         {label === false ? undefined : null}
         {label === undefined ? <Icon type={type} /> : null}
-        {children}
+        <span>{children}</span>
       </span>
       {action && <div>{action}</div>}
     </div>
