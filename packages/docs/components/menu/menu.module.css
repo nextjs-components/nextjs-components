@@ -14,7 +14,7 @@
   display: block;
   height: 1px;
   width: 22px;
-  background-color: var(--geist-foreground);
+  background-color: black(--geist-foreground);
   transition: transform 0.15s ease;
 }
 
