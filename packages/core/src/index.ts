@@ -20,6 +20,7 @@ export { Entity, EntityField, EntityThumbnail, PlaceHolderContext } from "./comp
 export { Error } from "./components/Error";
 export { fs } from "./components/Fieldset";
 export { File, Folder, Tree } from "./components/FileTree";
+export { Footer } from "./components/footer";
 // export * from "./components/Image";
 export { Input, SearchInput } from "./components/Input";
 export { KBD } from "./components/KeyboardInput";

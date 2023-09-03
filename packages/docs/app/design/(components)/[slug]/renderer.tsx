@@ -9,6 +9,7 @@ import Description from "./description.mdx";
 import Entity from "./entity.mdx";
 import Fieldset from "./fieldset.mdx";
 import FileTree from "./file-tree.mdx";
+import Footer from "./footer.mdx";
 import Input from "./input.mdx";
 import KeyboardInput from "./keyboard-input.mdx";
 import LoadingDots from "./loading-dots.mdx";
@@ -49,6 +50,8 @@ export default function Renderer({ slug }: { slug: string }) {
       return <Fieldset />;
     case "file-tree":
       return <FileTree />;
+    case "footer":
+      return <Footer />;
     case "input":
       return <Input />;
     case "keyboard-input":
