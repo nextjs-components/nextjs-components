@@ -54,6 +54,7 @@ a.active {
 :root {
   --geist-space: 4px;
   --geist-space-2x: 8px;
+  --geist-space-3x: 12px;
   --geist-space-4x: 16px;
   --geist-space-8x: 32px;
   --geist-space-16x: 64px;
@@ -112,6 +113,27 @@ a.active {
   --geist-form-font: 0.875rem;
   --geist-form-line-height: 1.25rem;
   --geist-form-height: var(--geist-space-medium);
+  --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
+  --ds-shadow-small: 0px 1px 2px rgba(0, 0, 0, 0.04);
+  --ds-shadow-border-small: var(--ds-shadow-border), var(--ds-shadow-small);
+  --ds-shadow-medium: 0px 2px 2px rgba(0, 0, 0, 0.04),
+    0px 8px 8px -8px rgba(0, 0, 0, 0.04);
+  --ds-shadow-border-medium: var(--ds-shadow-border), var(--ds-shadow-medium);
+  --ds-shadow-large: 0px 2px 2px rgba(0, 0, 0, 0.04),
+    0px 8px 16px -4px rgba(0, 0, 0, 0.04);
+  --ds-shadow-border-large: var(--ds-shadow-border), var(--ds-shadow-large);
+  --ds-shadow-tooltip: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02),
+    0px 4px 8px rgba(0, 0, 0, 0.04);
+  --ds-shadow-menu: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02),
+    0px 4px 8px -4px rgba(0, 0, 0, 0.04), 0px 16px 24px -8px rgba(0, 0, 0, 0.06);
+  --ds-shadow-modal: var(--ds-shadow-border), 0px 1px 1px rgba(0, 0, 0, 0.02),
+    0px 8px 16px -4px rgba(0, 0, 0, 0.04),
+    0px 24px 32px -8px rgba(0, 0, 0, 0.06);
+  --ds-shadow-fullscreen: var(--ds-shadow-border),
+    0px 1px 1px rgba(0, 0, 0, 0.02), 0px 8px 16px -4px rgba(0, 0, 0, 0.04),
+    0px 24px 32px -8px rgba(0, 0, 0, 0.06);
+  --ds-focus-ring: 0 0 0 2px var(--ds-background-100),
+    0 0 0 4px var(--ds-focus-color);
 }
 
 /* ---- COLORS ---- */
@@ -607,6 +629,12 @@ html:not(.dark-theme) .geist-themed.geist-error-fill.geist-error-contrast {
   --ds-pink-1000: #430a23;
   --ds-background-100: #fff;
   --ds-background-200: #fafafa;
+  --ds-focus-border: 0 0 0 1px var(--ds-gray-alpha-600),
+    0px 0px 0px 4px rgba(0, 0, 0, 0.16);
+  --ds-focus-color: var(--ds-blue-700);
+  --vaul-overlay-background: 255, 255, 255;
+  --vaul-overlay-background-start: transparent;
+  --vaul-overlay-background-end: rgba(0, 0, 0, 0.4);
 }
 
 .dark-theme {
@@ -702,6 +730,9 @@ html:not(.dark-theme) .geist-themed.geist-error-fill.geist-error-contrast {
   --ds-pink-1000: #feecf4;
   --ds-background-100: #0a0a0a;
   --ds-background-200: #000;
+  --ds-focus-border: 0 0 0 1px var(--ds-gray-alpha-600),
+    0px 0px 0px 4px hsla(0, 0%, 100%, 0.24);
+  --ds-focus-color: var(--ds-blue-900);
 }
 
 .v3-colors {
