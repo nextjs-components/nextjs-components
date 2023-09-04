@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import Link from "next/link";
 import {
@@ -8,7 +10,6 @@ import {
 } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
-// import {is} from "react-is"
 import { Stack } from "../Stack";
 import switchStyles from "./Switch.module.css";
 import styles from "./switch-control.module.css";
@@ -17,7 +18,7 @@ const SwitchControlContext = createContext<{
   name: string;
   defaultChecked?: string;
   size?: "small" | "large";
-}>({ name: "defualt" });
+}>({ name: "default" });
 const useSwitchControlContext = () => useContext(SwitchControlContext);
 
 interface SwitchProps extends PropsWithChildren {
