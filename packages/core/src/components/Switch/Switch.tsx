@@ -19,6 +19,7 @@ interface SwitchProps {
   size?: "small" | "large";
   icon?: boolean;
 }
+/** @deprecated Use [`Switch`](./switch-control.tsx) instead  */
 const Switch = ({ items, onChange, active, size, icon }: SwitchProps) => {
   return (
     <div

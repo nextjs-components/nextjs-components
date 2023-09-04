@@ -16,23 +16,22 @@ import styles from "./switch-control.module.css";
 
 const SwitchControlContext = createContext<{
   name: string;
-  defaultChecked?: string;
   size?: "small" | "large";
 }>({ name: "default" });
 const useSwitchControlContext = () => useContext(SwitchControlContext);
 
 interface SwitchProps extends PropsWithChildren {
   name: string;
-  defaultChecked?: string;
   size?: "small" | "large";
+  className?: string;
 }
-const Switch = ({ children, name, defaultChecked, size }: SwitchProps) => {
+const Switch = ({ children, name, className, size }: SwitchProps) => {
   return (
-    <SwitchControlContext.Provider value={{ name, defaultChecked, size }}>
+    <SwitchControlContext.Provider value={{ name, size }}>
       <IconSizeContext.Provider value={{ size: size == "large" ? 20 : 16 }}>
         <Stack
           direction={"row"}
-          className={clsx(switchStyles.switch, {
+          className={clsx(className, switchStyles.switch, {
             [switchStyles.small]: size === "small",
             [switchStyles.large]: size === "large",
           })}
