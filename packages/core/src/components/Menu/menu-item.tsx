@@ -83,7 +83,7 @@ export const MenuItemInner: React.ForwardRefExoticComponent<
 );
 MenuItemInner.displayName = "MenuItemInner";
 
-interface MenuItemProps {
+export interface MenuItemProps {
   disabled?: boolean;
   onClick?: () => void;
   value?: any; // fixme
