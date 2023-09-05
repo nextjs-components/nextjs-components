@@ -1,0 +1,122 @@
+.pill {
+  display: inline-flex;
+  height: 26px;
+  background: var(--ds-background-200);
+  font-size: 14px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.mainArea {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--ds-gray-1000);
+  border: 1px solid var(--ds-gray-400);
+  transition: border-color 0.2s;
+}
+
+.mainArea.hasPrefix {
+  padding-left: 6px;
+}
+
+.mainArea.hasMenu {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+
+.mainArea.isExternal {
+  padding-right: 6px;
+}
+
+@media (hover: hover) {
+  .mainArea:hover {
+    border-color: var(--ds-gray-alpha-900);
+  }
+
+  .mainArea:hover ~ .divider {
+    background: var(--ds-gray-900);
+  }
+}
+
+.mainArea:focus-visible {
+  outline: none;
+  z-index: 1;
+  box-shadow: var(--ds-focus-ring);
+}
+
+.divider {
+  height: 100%;
+  width: 1px;
+  order: 2;
+  background: var(--ds-gray-400);
+  transition: background 0.2s;
+}
+
+.prefix {
+  display: flex;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.prefix svg {
+  height: 16px;
+  width: 16px;
+}
+
+.externalIcon {
+  margin-left: 2px;
+  flex-shrink: 0;
+  color: var(--ds-gray-600);
+  transform: translateY(1px);
+}
+
+.externalIcon svg {
+  height: 16px;
+  width: 16px;
+}
+
+.menuButton {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border: 1px solid var(--ds-gray-400);
+  border-left: 0;
+  transition: border-color 0.2s;
+  position: relative;
+  order: 3;
+  padding: 0 4px 0 6px;
+}
+
+.menuButton svg {
+  margin-left: 2px;
+}
+
+.menuButton .menuButtonContent {
+  color: var(--ds-gray-1000);
+}
+
+.menuButton[data-is-open="true"] {
+  border-color: var(--ds-gray-alpha-900);
+}
+
+@media (hover: hover) {
+  .menuButton:hover {
+    border-color: var(--ds-gray-alpha-900);
+  }
+}
+
+.menuButton[data-is-open="true"] ~ .divider {
+  background: var(--ds-gray-900);
+  z-index: 1;
+}
+
+@media (hover: hover) {
+  .menuButton:hover ~ .divider {
+    background: var(--ds-gray-900);
+    z-index: 1;
+  }
+}

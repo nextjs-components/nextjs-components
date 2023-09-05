@@ -33,7 +33,7 @@ export interface Props
   onKeyDown?: (e: KeyboardEvent) => void;
   onMouseDown?: (e: PressEvent) => void;
   svgOnly?: boolean;
-  Component: ElementType;
+  Component?: ElementType;
   typeName?: IntrinsicProps["type"];
 }
 
