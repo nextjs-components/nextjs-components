@@ -16,7 +16,7 @@ interface Props {
     | "red-subtle"
     | "amber-subtle"
     | "purple-subtle"
-    | "gray-contrast"
+    | "gray-subtle"
     | "trial"
     | "turbo";
   size?: "sm" | "md" | "lg";
