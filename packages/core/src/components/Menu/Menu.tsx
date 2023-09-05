@@ -34,6 +34,28 @@ export const MenuWrapper = ({ children }) => {
 
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (!listElement || !buttonRef.current || !popperRef.current) return;
+      if (listElement.contains(e.target as Node)) {
+        return;
+      }
+      if (buttonRef.current.contains(e.target as Node)) {
+        return;
+      }
+      if (popperRef.current.contains(e.target as Node)) {
+        return;
+      }
+      setOpen(false);
+    }
+
+    document.addEventListener("click", (e) => handleClickOutside(e));
+
+    return () => {
+      document.removeEventListener("click", (e) => handleClickOutside(e));
+    };
+  }, [open, listElement, buttonRef.current, popperRef.current]);
+
   const menuId = "menu-" + useId();
   const buttonId = "menu-button-" + useId();
 
@@ -105,8 +127,8 @@ const MenuInner: FC<PropsWithChildren<MenuInnerProps>> = ({
   );
 };
 
-interface MenuProps {
-  /** default: 150 */
+export interface MenuProps {
+  /** default: 200 */
   width?: number;
   divide?: boolean;
 }
@@ -115,7 +137,7 @@ interface MenuProps {
  */
 export const Menu: FC<PropsWithChildren<MenuProps>> = ({
   children,
-  width = 150,
+  width = 200,
   divide,
 }) => {
   const { open, listElement, setOpen, buttonRef, selected, setSelected } =
@@ -230,7 +252,7 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
 const Popper = ({ children }) => {
   const { popperRef, open, setOpen, buttonRef } = useMenu();
 
-  const { arrowProps, placement, popoverProps } = usePopover(
+  const { arrowProps, placement, popoverProps, underlayProps } = usePopover(
     {
       // "modal": injects "padding-right: 0px; overflow: hidden;" to the html element
       // - prevents scrolling
@@ -239,7 +261,7 @@ const Popper = ({ children }) => {
       // - allows scrolling
       // - doesn't close on outside click
       // ∆ closes on outside click, escape, but allows scrolling too...
-      isNonModal: false,
+      isNonModal: true,
       popoverRef: popperRef,
       triggerRef: buttonRef,
       placement: "bottom start",
@@ -248,32 +270,27 @@ const Popper = ({ children }) => {
     {
       isOpen: open,
       setOpen: (val) => {
+        console.log("setOpen");
         setOpen(val);
       },
       close: () => {
+        console.log("close");
         setOpen(false);
       },
       open: () => {
+        console.log("open");
         setOpen(true);
       },
       toggle: () => {
+        console.log("toggle");
         setOpen(!open);
       },
     },
   );
+
   return (
     <>
-      {/* <div
-        // this prevents background scroll
-        {...underlayProps} // what does this even do?
-        // (e)=>{
-        //   // fixes a firefox issue that starts text selection https://bugzilla.mozilla.org/show_bug.cgi?id=1675846
-        //   if (e.target === e.currentTarget) e.preventDefault();
-        // }
-        className="underlay"
-        style={{ position: "fixed", inset: 0 }}
-        // but ∆ doesn't block scroll
-      /> */}
+      <div className="underlay" {...underlayProps} />
       <div
         ref={popperRef}
         className={classes.wrapper}

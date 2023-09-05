@@ -14,6 +14,8 @@ import {
   Text,
 } from "nextjs-components";
 
+import { ThemeSwitcher } from "../theme-switcher";
+
 // import { useState } from "react";
 
 export default async function Page() {
@@ -42,6 +44,16 @@ export default async function Page() {
           <div>
             <Pill href="#" label="Label">
               <Pill.Menu>
+                <Pill.MenuItem>Item 1</Pill.MenuItem>
+                <Pill.MenuItem>Item 1</Pill.MenuItem>
+                <Pill.MenuItem>Item 1</Pill.MenuItem>
+              </Pill.Menu>
+            </Pill>
+          </div>
+
+          <div>
+            <Pill href="#" label="Another pill">
+              <Pill.Menu width={900}>
                 <Pill.MenuItem>Item 1</Pill.MenuItem>
                 <Pill.MenuItem>Item 1</Pill.MenuItem>
                 <Pill.MenuItem>Item 1</Pill.MenuItem>
@@ -83,7 +95,13 @@ export default async function Page() {
         </div>
 
         <Spacer />
+
+        <div>
+          <ThemeSwitcher />
+        </div>
       </Container>
+
+      <Spacer y={40} />
 
       <Footer>
         <Footer.Group title="Company">

@@ -4,8 +4,9 @@ import type { PropsWithChildren, ReactNode } from "react";
 
 import ChevronDown from "../../icons/chevron-down";
 import { Menu as _Menu, MenuWrapper as _MenuWrapper } from "../Menu";
+import { type MenuProps } from "../Menu/Menu";
 import { MenuButton as _MenuButton } from "../Menu/menu-button";
-import { MenuItem as _MenuItem } from "../Menu/menu-item";
+import { type MenuItemProps, MenuItem as _MenuItem } from "../Menu/menu-item";
 import styles from "./pill.module.css";
 
 interface PillProps extends PropsWithChildren {
@@ -57,9 +58,9 @@ const Pill = ({ href, label, prefix, children }: PillProps) => {
   );
 };
 
-interface PillMenuProps extends PropsWithChildren {}
+interface PillMenuProps extends PropsWithChildren<MenuProps> {}
 
-const Menu = ({ children }: PillMenuProps) => {
+const Menu = ({ children, ...rest }: PillMenuProps) => {
   // @ts-expect-error
   const childrenCount = children.length || 0;
   return (
@@ -73,15 +74,17 @@ const Menu = ({ children }: PillMenuProps) => {
         <span className={styles.menuButtonContent}>+{childrenCount}</span>
         <ChevronDown size={16} />
       </_MenuButton>
-      <_Menu>{children}</_Menu>
+      <_Menu {...rest}>{children}</_Menu>
 
       <div aria-hidden={true} className={styles.divider}></div>
     </>
   );
 };
 
-const MenuItem = ({ children }) => {
-  return <_MenuItem>{children}</_MenuItem>;
+export interface PillMenuItemProps extends PropsWithChildren<MenuItemProps> {}
+
+const MenuItem = ({ children, ...rest }: PillMenuItemProps) => {
+  return <_MenuItem {...rest}>{children}</_MenuItem>;
 };
 
 export default Object.assign(Pill, { Menu, MenuItem });
