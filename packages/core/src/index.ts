@@ -31,6 +31,7 @@ export { Menu, MenuButton, MenuContext, MenuItem, MenuLink, MenuWrapper, useMenu
 export { default as Modal } from "./components/Modal"; // breaking 2.0.0
 export { Note } from "./components/Note";
 export { RadioGroup, RadioItem } from "./components/Radio";
+export { Pill } from "./components/pill";
 // export * from "./components/Scroller";
 export { ModeSelect, Select } from "./components/Select";
 export { ShowMore, type ShowMoreProps } from "./components/ShowMore";

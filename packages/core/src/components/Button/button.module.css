@@ -6,14 +6,17 @@
 }
 
 .button {
-  border-radius: var(--geist-radius);
+  display: flex;
+}
+
+.button[data-geist-button] {
+  border-radius: 6px;
   color: var(--themed-fg, var(--ds-background-100));
   background: var(--themed-bg, var(--ds-gray-1000)) none;
-  border: 1px solid var(--themed-border, var(--geist-foreground));
   font-weight: 500;
   padding: 0 var(--geist-gap-half);
+  box-shadow: 0 0 0 1px var(--themed-border, transparent);
   max-width: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
   transition-property: border-color, background, color, transform, box-shadow;
@@ -52,44 +55,67 @@
   margin-left: auto;
 }
 
-.base[data-focus] {
-  box-shadow: 0 0 0 1px var(--geist-background),
-    0 0 0 3px var(--themed-bg, var(--geist-foreground));
+.content.flexGrow {
+  flex-grow: 1;
 }
 
-.button.loading,
-.button[disabled] {
-  background: var(--accents-1);
-  color: var(--accents-3);
-  border-color: var(--accents-2);
+.content.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.base[data-focus][data-geist-button] {
+  transition: none;
+  box-shadow: var(--ds-focus-ring);
+}
+
+.button.loading[data-geist-button],
+.button[disabled][data-geist-button] {
+  background: var(--ds-gray-100);
+  color: var(--ds-gray-700);
+  --themed-border: var(--ds-gray-400) !important;
   cursor: not-allowed;
 }
 
-.circle {
-  border-radius: 100%;
-}
-
-.shape {
+.shape[data-geist-button] {
   padding: 0;
   width: var(--geist-form-height);
 }
 
-.large {
+.rounded.large[data-geist-button],
+.rounded[data-geist-button] {
+  border-radius: 100px;
+}
+
+.large[data-geist-button] {
   height: var(--geist-form-large-height);
   font-size: var(--geist-form-large-font);
   line-height: var(--geist-form-large-line-height);
+  border-radius: 8px;
 }
 
 .large.shape {
   width: var(--geist-form-large-height);
 }
 
-.small {
-  font-size: var(--geist-form-small-font);
-  height: var(--geist-form-small-height);
+.tiny[data-geist-button] {
+  width: 24px;
+  height: 24px;
 }
 
-.small.shape {
+.tiny[data-geist-button] svg {
+  height: 16px;
+  width: 16px;
+}
+
+.small[data-geist-button] {
+  font-size: var(--geist-form-small-font);
+  height: var(--geist-form-small-height);
+  --spinner-size: 16px;
+}
+
+.small.shape[data-geist-button] {
   width: var(--geist-form-small-height);
 }
 
@@ -99,11 +125,18 @@
 }
 
 .prefix {
-  margin-right: var(--geist-gap-quarter);
+  margin-right: 10px;
 }
 
 .suffix {
-  margin-left: var(--geist-gap-quarter);
+  margin-left: 10px;
+}
+
+.invert[data-active][data-geist-button],
+.invert[data-hover][data-geist-button],
+.dark-theme .invert[data-active][data-geist-button],
+.dark-theme .invert[data-hover][data-geist-button] {
+  background: var(--themed-hover-bg, #ccc);
 }
 
 .invert[data-active][data-geist-button],
@@ -112,159 +145,100 @@
   --themed-border: var(--themed-hover-bg, var(--ds-gray-200)) !important;
 }
 
-.invert[data-active] {
-  background: var(--accents-2);
+.shadow[data-geist-button] {
+  box-shadow: var(--ds-shadow-border-small);
 }
 
-.shadow {
-  box-shadow: var(--shadow-small);
-}
-
-:global(.dark-theme) .button.shadow {
+.dark-theme .button.shadow {
   box-shadow: none;
 }
 
-.shadow[data-hover] {
+.shadow[data-hover][data-geist-button] {
   box-shadow: var(--shadow-medium);
   transform: translateY(-2px);
 }
 
-.shadow[data-active] {
-  box-shadow: var(--shadow-small);
+.shadow[data-hover].secondary[data-geist-button] {
+  color: var(--geist-foreground);
+}
+
+.shadow[data-active][data-geist-button] {
+  box-shadow: var(--geist-shadow-small);
   transform: translateY(1px);
 }
 
-.shadow[data-active][data-hover] {
+.shadow[data-active][data-geist-button][data-hover] {
   transform: none;
 }
 
-.ghost {
+.tertiary[data-geist-button] {
   background: none;
-  border-color: transparent;
-  color: var(--themed-bg);
+  color: var(--themed-bg, var(--ds-gray-1000));
+  --themed-border: transparent;
   --lighten-color: hsla(0, 0%, 100%, 0.8);
 }
 
-:global(.dark-theme) .ghost {
-  --lighten-color: rgba(0, 0, 0, 0.75);
+.tertiary[data-hover][data-geist-button],
+.dark-theme .tertiary[data-hover][data-geist-button] {
+  background-color: var(--ds-gray-alpha-200);
+  --themed-border: var(--ds-gray-alpha-200) !important;
 }
 
-.ghost {
-  background-image: linear-gradient(
-    to right,
-    var(--lighten-color),
-    var(--lighten-color)
-  );
-}
-
-.ghost[data-hover] {
-  background-color: var(--themed-bg, var(--accents-4));
-}
-
-.ghost[data-active] {
-  --lighten-color: hsla(0, 0%, 100%, 0.7);
-}
-
-:global(.dark-theme) .ghost[data-active] {
+.dark-theme .tertiary[data-active][data-geist-button] {
   --lighten-color: rgba(0, 0, 0, 0.7);
 }
 
-.secondary {
-  --themed-bg: var(--geist-background);
-  --themed-fg: var(--geist-secondary);
-  --themed-border: var(--accents-2);
+.secondary[data-geist-button] {
+  --themed-bg: var(--ds-background-100);
+  --themed-fg: var(--ds-gray-1000);
+  --themed-border: var(--ds-gray-alpha-400);
 }
 
-.secondary.invert[data-hover] {
-  background: var(--geist-background);
-  color: var(--geist-foreground);
-  border-color: var(--geist-foreground);
-}
-
-.secondary.invert[data-active] {
-  box-shadow: none;
-  color: var(--geist-foreground);
-  background: var(--accents-2);
-}
-
-.secondary[data-focus] {
-  box-shadow: 0 0 0 1px var(--geist-background),
-    0 0 0 3px var(--geist-secondary);
-}
-
-.secondary.shadow {
-  border-color: var(--geist-background);
-}
-
-.secondary.shadow[data-focus][data-active] {
-  box-shadow: var(--shadow-small);
-}
-
-.secondary.ghost {
+.secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button] {
+  background-color: var(--ds-gray-100);
+  --themed-border: rgba(0, 0, 0, 0.12) !important;
   color: var(--themed-fg);
 }
 
-.secondary.ghost[data-hover] {
-  background-color: var(--accents-4);
+.secondary[data-geist-button].invert[data-geist-button][data-active][data-geist-button] {
+  color: var(--geist-foreground);
 }
 
-:global(.dark-theme) .secondary.shadow {
-  border-color: var(--accents-2);
+.secondary[data-geist-button][data-focus][data-geist-button] {
+  transition: none;
+  box-shadow: var(--ds-focus-ring);
 }
 
-.custom_button[data-custom-button]:not([disabled]) {
-  color: var(--button-custom-fg);
-  background: var(--button-custom-bg);
-  border-color: var(--button-custom-border);
+.secondary[data-geist-button].shadow[data-geist-button][data-focus][data-active][data-geist-button] {
+  box-shadow: var(--geist-shadow-small);
 }
 
-.custom_button[data-custom-button][data-focus] {
-  box-shadow: 0 0 0 1px var(--geist-background),
-    0 0 0 3px
-      var(
-        --button-custom-bg-hover,
-        var(--button-custom-bg, var(--geist-foreground))
-      );
+.secondary[data-geist-button].tertiary[data-geist-button] {
+  color: var(--themed-fg);
 }
 
-.custom_button[data-custom-button][data-focus],
-.custom_button[data-custom-button][data-hover] {
-  color: var(--button-custom-fg-hover);
-  background: var(--button-custom-bg-hover);
-  border-color: var(--button-custom-border-hover);
+.secondary[data-geist-button].tertiary[data-geist-button][data-hover][data-geist-button] {
+  background-color: var(--ds-gray-alpha-200);
 }
 
-.custom_button[data-custom-button][data-active] {
-  box-shadow: none;
-  color: var(--button-custom-fg-active);
-  background: var(--button-custom-bg-active);
-  border-color: var(--button-custom-border-active);
+.dark-theme
+  .secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button] {
+  background-color: var(--ds-gray-200);
+  --themed-border: hsla(0, 0%, 100%, 0.17) !important;
 }
 
-.with-git-icon-background_background {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  border-radius: 100%;
-  justify-content: center;
-  background-color: #fff;
-  border: 1px solid #fff;
+.customStyles[data-geist-button] {
+  background-color: var(--custom-bg-color) !important;
+  color: var(--custom-color) !important;
+  --themed-border: var(--custom-border-color) !important;
 }
 
-.with-git-icon-background_background[data-git-type="bitbucket"] {
-  background-color: #0052cc;
+.customHoverStyles[data-hover] {
+  background-color: var(--custom-bg-hover-color) !important;
+  color: var(--custom-hover-color) !important;
+  --themed-border: var(--custom-border-hover-color) !important;
 }
 
-.with-git-icon-background_background[data-git-type="bitbucket"] svg {
-  transform: scale(0.65);
-  color: #fff;
-}
-
-.with-git-icon-background_background[data-git-type="gitlab"] {
-  background-color: #6b4fbb;
-}
-
-.with-git-icon-background_background[data-git-type="gitlab"] svg {
-  transform: scale(0.75);
+.circle[data-geist-button] {
+  border-radius: 100% !important;
 }

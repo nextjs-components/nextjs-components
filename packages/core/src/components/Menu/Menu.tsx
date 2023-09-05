@@ -147,6 +147,10 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
   useEffect(() => {
     if (!listElement) return;
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) {
+        // prevent holding enter from triggering
+        return;
+      }
       switch (e.key) {
         case "Enter":
         case " ":
