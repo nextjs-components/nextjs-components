@@ -1,0 +1,62 @@
+import { Pill } from "nextjs-components";
+import { Twitch } from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Pill
+
+<Spacer y={0.8} />
+
+## A special link, not quite as prominent as a button, and can house multiple links.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ Pill }}
+  code={`<div>
+  <Pill href="/dashboard" label="Label"/>
+</div>`}
+/>
+
+<Spacer y={2} />
+
+### With Prefix
+
+<Editor
+  scope={{ Pill, Twitch }}
+  code={`<div>
+  <Pill prefix={<Twitch />} label="Label" href="/dashboard" />
+</div>`}
+/>
+
+<Spacer y={2} />
+
+### With External Link
+
+<Editor
+  scope={{ Pill, Twitch }}
+  code={`<div>
+  <Pill prefix={<Twitch />} label="Label" href="https://thekevinwang.com" />
+</div>`}
+/>
+
+<Spacer y={2} />
+
+### With Menu Items
+
+<Editor
+  scope={{ Pill, Twitch }}
+  code={`<div>
+<Pill label="Label" href="/dashboard" prefix={<Twitch />}>
+  <Pill.Menu>
+    <Pill.MenuItem>Item 1</Pill.MenuItem>
+    <Pill.MenuItem>Item 1</Pill.MenuItem>
+    <Pill.MenuItem>Item 1</Pill.MenuItem>
+  </Pill.Menu>
+</Pill>
+</div>`}
+/>
+
+<Spacer y={4} />

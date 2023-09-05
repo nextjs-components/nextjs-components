@@ -16,6 +16,7 @@ import LoadingDots from "./loading-dots.mdx";
 import Menu from "./menu.mdx";
 import Modal from "./modal.mdx";
 import Note from "./note.mdx";
+import Pill from "./pill.mdx";
 import Radio from "./radio.mdx";
 import Select from "./select.mdx";
 import ShowMore from "./show-more.mdx";
@@ -64,6 +65,8 @@ export default function Renderer({ slug }: { slug: string }) {
       return <Modal />;
     case "note":
       return <Note />;
+    case "pill":
+      return <Pill />;
     case "radio":
       return <Radio />;
     case "select":

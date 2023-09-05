@@ -1,3 +1,6 @@
+"use client";
+"use client";
+
 import React from "react";
 
 import { useIconSize } from "../contexts/IconSizeContext";
