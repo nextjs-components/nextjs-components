@@ -10,7 +10,7 @@ export const MenuButton: React.FC<ButtonProps> = ({
   onKeyDown,
   ...props
 }) => {
-  const { menuId, buttonId, buttonRef, setOpen, open, listElement } = useMenu();
+  const { menuId, buttonId, buttonRef, setOpen, open } = useMenu();
 
   return (
     <Button
