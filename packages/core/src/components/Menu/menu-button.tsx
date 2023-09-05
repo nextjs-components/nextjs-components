@@ -21,6 +21,10 @@ export const MenuButton: React.FC<ButtonProps> = ({
       aria-expanded={open}
       data-geist-menu-button=""
       ref={buttonRef}
+      onClick={(e) => {
+        setOpen(true);
+        onClick?.(e);
+      }}
       onMouseDown={(e) => {
         setOpen(true);
         onMouseDown?.(e);
