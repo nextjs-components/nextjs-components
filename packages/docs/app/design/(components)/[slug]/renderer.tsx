@@ -1,5 +1,6 @@
 "use client";
 
+import Badge from "./badge.mdx";
 import Breadcrumbs from "./breadcrumbs.mdx";
 import Button from "./button.mdx";
 import Calendar from "./calendar.mdx";
@@ -33,6 +34,8 @@ import Tooltip from "./tooltip.mdx";
 
 export default function Renderer({ slug }: { slug: string }) {
   switch (slug) {
+    case "badge":
+      return <Badge />;
     case "breadcrumbs":
       return <Breadcrumbs />;
     case "button":
