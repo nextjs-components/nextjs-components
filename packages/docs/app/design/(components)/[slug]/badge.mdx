@@ -1,5 +1,5 @@
-import { Badge, Container } from "nextjs-components";
-import { ArrowUp as Up } from "nextjs-components/src/icons";
+import { Badge, Container, Stack } from "nextjs-components";
+import { Shield, ArrowUp as Up } from "nextjs-components/src/icons";
 
 <Spacer y={0.6} />
 
@@ -13,75 +13,44 @@ import { ArrowUp as Up } from "nextjs-components/src/icons";
 
 ### Variants
 
-<Spacer />
-
 <Editor 
-  scope={{Container, Badge}}
-  code={`<Container left>
-  <Container>
-    <Badge variant="blue">1</Badge>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="red">5</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="pink">24</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="amber">50</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="purple">100</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="gray">500</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="blue-subtle">1</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="red-subtle">5</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="amber-subtle">50</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="purple-subtle">100</Badge>
-    </div>
-  </Container>
-
-  <Container>
-    <div>
-      <Badge variant="gray-contrast">500</Badge>
-    </div>
-  </Container>
-
+  scope={{Container, Stack, Badge}}
+  code={`<Stack gap={2}>
+  <Stack direction="row" gap={1}>
+    <Badge variant="gray">gray</Badge>
+    <Badge variant="gray-subtle">gray-subtle</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1}>
+    <Badge variant="blue">blue</Badge>
+    <Badge variant="blue-subtle">blue-subtle</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1}>
+    <Badge variant="purple">purple</Badge>
+    <Badge variant="purple-subtle">purple-subtle</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1}>
+    <Badge variant="amber">amber</Badge>
+    <Badge variant="amber-subtle">amber-subtle</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1}>
+    <Badge variant="red">red</Badge>
+    <Badge variant="red-subtle">red-subtle</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1}>
+    <Badge variant="pink">pink</Badge>
+    <Badge variant="pink-subtle">pink-subtle</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1}>
+    <Badge variant="green">green</Badge>
+    <Badge variant="green-subtle">green-subtle</Badge>
+  </Stack>
+  
   <Container>
     <div>
       <Badge variant="trial">Trial</Badge>
@@ -93,10 +62,10 @@ import { ArrowUp as Up } from "nextjs-components/src/icons";
       <Badge variant="turbo">Turborepo</Badge>
     </div>
   </Container>
-</Container>`}
+</Stack>`}
 />
 
-<Spacer />
+<Spacer y={2} />
 
 ### Sizes
 
@@ -105,19 +74,94 @@ import { ArrowUp as Up } from "nextjs-components/src/icons";
   code={`<Container left>
   <Container>
     <div>
-      <Badge size="small">Small</Badge>
+      <Badge size="sm">Small</Badge>
     </div>
   </Container>
-
+  
   <Container>
     <Badge>Normal</Badge>
   </Container>
-
+  
   <Container>
     <div>
-      <Badge size="large">Large</Badge>
+      <Badge size="lg">Large</Badge>
     </div>
   </Container>
 
 </Container>`}
 />
+
+<Spacer y={2} />
+
+### With Icons
+
+<Editor
+  scope={{ Container, Badge, Shield, Stack }}
+  code={`<Stack gap={2}>
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="gray" icon={<Shield />} size="lg">gray</Badge>
+    <Badge variant="gray" icon={<Shield />} size="md">gray</Badge>
+    <Badge variant="gray" icon={<Shield />} size="sm">gray</Badge>
+    <Badge variant="gray-subtle" icon={<Shield />} size="sm">gray</Badge>
+    <Badge variant="gray-subtle" icon={<Shield />} size="md">gray</Badge>
+    <Badge variant="gray-subtle" icon={<Shield />} size="lg">gray</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="blue" icon={<Shield />} size="lg">blue</Badge>
+    <Badge variant="blue" icon={<Shield />} size="md">blue</Badge>
+    <Badge variant="blue" icon={<Shield />} size="sm">blue</Badge>
+    <Badge variant="blue-subtle" icon={<Shield />} size="sm">blue</Badge>
+    <Badge variant="blue-subtle" icon={<Shield />} size="md">blue</Badge>
+    <Badge variant="blue-subtle" icon={<Shield />} size="lg">blue</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="purple" icon={<Shield />} size="lg">purple</Badge>
+    <Badge variant="purple" icon={<Shield />} size="md">purple</Badge>
+    <Badge variant="purple" icon={<Shield />} size="sm">purple</Badge>
+    <Badge variant="purple-subtle" icon={<Shield />} size="sm">purple</Badge>
+    <Badge variant="purple-subtle" icon={<Shield />} size="md">purple</Badge>
+    <Badge variant="purple-subtle" icon={<Shield />} size="lg">purple</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="amber" icon={<Shield />} size="lg">amber</Badge>
+    <Badge variant="amber" icon={<Shield />} size="md">amber</Badge>
+    <Badge variant="amber" icon={<Shield />} size="sm">amber</Badge>
+    <Badge variant="amber-subtle" icon={<Shield />} size="sm">amber</Badge>
+    <Badge variant="amber-subtle" icon={<Shield />} size="md">amber</Badge>
+    <Badge variant="amber-subtle" icon={<Shield />} size="lg">amber</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="red" icon={<Shield />} size="lg">red</Badge>
+    <Badge variant="red" icon={<Shield />} size="md">red</Badge>
+    <Badge variant="red" icon={<Shield />} size="sm">red</Badge>
+    <Badge variant="red-subtle" icon={<Shield />} size="sm">red</Badge>
+    <Badge variant="red-subtle" icon={<Shield />} size="md">red</Badge>
+    <Badge variant="red-subtle" icon={<Shield />} size="lg">red</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="pink" icon={<Shield />} size="lg">pink</Badge>
+    <Badge variant="pink" icon={<Shield />} size="md">pink</Badge>
+    <Badge variant="pink" icon={<Shield />} size="sm">pink</Badge>
+    <Badge variant="pink-subtle" icon={<Shield />} size="sm">pink</Badge>
+    <Badge variant="pink-subtle" icon={<Shield />} size="md">pink</Badge>
+    <Badge variant="pink-subtle" icon={<Shield />} size="lg">pink</Badge>
+  </Stack>
+	
+  <Stack direction="row" gap={1} align="center">
+    <Badge variant="green" icon={<Shield />} size="lg">green</Badge>
+    <Badge variant="green" icon={<Shield />} size="md">green</Badge>
+    <Badge variant="green" icon={<Shield />} size="sm">green</Badge>
+    <Badge variant="green-subtle" icon={<Shield />} size="sm">green</Badge>
+    <Badge variant="green-subtle" icon={<Shield />} size="md">green</Badge>
+    <Badge variant="green-subtle" icon={<Shield />} size="lg">green</Badge>
+  </Stack>
+	
+</Stack>`}
+/>
+
+<Spacer y={4} />

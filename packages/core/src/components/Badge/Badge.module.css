@@ -1,172 +1,151 @@
 .badge {
-  display: inline-block;
-  vertical-align: middle;
-  color: var(--themed-fg, var(--geist-background));
-  background: var(--themed-bg, var(--geist-foreground));
-  border: 1px solid var(--themed-border, var(--themed-bg, var(--geist-foreground)));
-  border-radius: 16px;
-  padding: 2px 7px;
+  --badge-font-size: 12px;
+  --badge-height: 24px;
+  --badge-padding-x: 10px;
+  --badge-color: #fff;
+  --badge-bg-color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 9999px;
   font-weight: 500;
-  font-size: 14px;
+  text-transform: capitalize;
+  white-space: nowrap;
   line-height: 1;
-  cursor: inherit;
   font-feature-settings: "tnum";
-  font-variant: tabular-nums;
+  font-variant-numeric: tabular-nums;
+  color: var(--badge-color);
+  background-color: var(--badge-bg-color);
+  font-size: var(--badge-font-size);
+  height: var(--badge-height);
+  padding: 0 var(--badge-padding-x);
 }
 
-.success {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-success);
-  --themed-border: var(--geist-success);
+.sm {
+  --badge-font-size: 11px;
+  --badge-height: 20px;
+  --badge-padding-x: 6px;
+  --badge-icon-size: 11px;
+  --badge-icon-spacing: 2px;
 }
 
-.success.contrast {
-  --themed-fg: var(--geist-success-dark);
-  --themed-bg: var(--geist-success-lighter);
-  --themed-border: var(--geist-success);
+.md {
+  --badge-font-size: 12px;
+  --badge-height: 24px;
+  --badge-padding-x: 10px;
+  --badge-icon-size: 14px;
+  --badge-icon-spacing: 4px;
 }
 
-.error {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-error);
-  --themed-border: var(--geist-error);
+.lg {
+  --badge-font-size: 14px;
+  --badge-height: 32px;
+  --badge-padding-x: 12px;
+  --badge-icon-size: 16px;
+  --badge-icon-spacing: 6px;
 }
 
-.error.contrast {
-  --themed-fg: var(--geist-error-dark);
-  --themed-bg: var(--geist-error-lighter);
-  --themed-border: var(--geist-error);
+.numerical {
+  min-width: var(--geist-space-6x);
 }
 
-.warning {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-warning);
-  --themed-border: var(--geist-warning);
-}
-
-.warning.contrast {
-  --themed-fg: var(--geist-warning-dark);
-  --themed-bg: var(--geist-warning-lighter);
-  --themed-border: var(--geist-warning);
-}
-
-.violet {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-violet);
-  --themed-border: var(--geist-violet);
-}
-
-.violet.contrast {
-  --themed-fg: var(--geist-violet-dark);
-  --themed-bg: var(--geist-violet-lighter);
-  --themed-border: var(--geist-violet);
-}
-
-.secondary {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-secondary);
-  --themed-border: var(--geist-secondary);
-}
-
-.secondary.contrast {
-  --themed-fg: var(--geist-secondary-dark);
-  --themed-bg: var(--geist-secondary-lighter);
-  --themed-border: var(--geist-secondary);
-}
-
-.blue {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-success);
-  --themed-border: var(--geist-success);
-}
-
-.red {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-error);
-  --themed-border: var(--geist-error);
-}
-
-.pink {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-highlight-pink);
-  --themed-border: var(--geist-highlight-pink);
+.pill {
+  --badge-color: var(--geist-foreground);
+  --badge-bg-color: var(--geist-background);
+  box-shadow: inset 0 0 0 1px var(--ds-gray-alpha-400);
+  padding: 2px 6px;
 }
 
 .amber {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-error-dark);
-  --themed-border: var(--geist-error-dark);
-}
-
-.purple {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-violet);
-  --themed-border: var(--geist-violet);
-}
-
-.gray {
-  --themed-fg: #fff;
-  --themed-bg: var(--geist-foreground);
-  --themed-border: var(--geist-foreground);
-}
-
-.blue-subtle {
-  --themed-fg: var(--geist-success);
-  --themed-bg: var(--geist-success-lighter);
-  --themed-border: var(--geist-success-lighter);
-}
-
-.red-subtle {
-  --themed-fg: var(--geist-error);
-  --themed-bg: var(--geist-error-lighter);
-  --themed-border: var(--geist-error-lighter);
+  --badge-color: #000;
+  --badge-bg-color: var(--ds-amber-700);
 }
 
 .amber-subtle {
-  --themed-fg: var(--geist-error-dark);
-  --themed-bg: var(--geist-warning-lighter);
-  --themed-border: var(--geist-warning-lighter);
+  --badge-bg-color: var(--ds-amber-200);
+  --badge-color: var(--ds-amber-900);
+}
+
+.blue {
+  --badge-bg-color: var(--ds-blue-700);
+  --badge-color: var(--ds-background-100);
+}
+
+.blue-subtle {
+  --badge-bg-color: var(--ds-blue-200);
+  --badge-color: var(--ds-blue-900);
+}
+
+.pink {
+  --badge-bg-color: var(--ds-pink-700);
+  --badge-color: var(--ds-background-100);
+}
+
+.pink-subtle {
+  --badge-bg-color: var(--ds-pink-200);
+  --badge-color: var(--ds-pink-900);
+}
+
+.green {
+  --badge-bg-color: var(--ds-green-700);
+  --badge-color: var(--ds-background-100);
+}
+
+.green-subtle {
+  --badge-bg-color: var(--ds-green-200);
+  --badge-color: var(--ds-green-900);
+}
+
+.purple {
+  --badge-bg-color: var(--ds-purple-700);
+  --badge-color: var(--ds-background-100);
 }
 
 .purple-subtle {
-  --themed-fg: var(--geist-violet);
-  --themed-bg: var(--geist-violet-lighter);
-  --themed-border: var(--geist-violet-lighter);
+  --badge-bg-color: var(--ds-purple-200);
+  --badge-color: var(--ds-purple-900);
 }
 
-.gray-contrast {
-  --themed-fg: #000;
-  --themed-bg: var(--geist-background);
-  --themed-border: var(--geist-background);
+.red {
+  --badge-bg-color: var(--ds-red-700);
+  --badge-color: var(--ds-background-100);
+}
+
+.red-subtle {
+  --badge-bg-color: var(--ds-red-200);
+  --badge-color: var(--ds-red-900);
+}
+
+.gray {
+  --badge-bg-color: var(--ds-gray-700);
+  --badge-color: var(--ds-background-100);
+}
+
+.gray-subtle {
+  --badge-bg-color: var(--ds-gray-200);
+  --badge-color: var(--ds-gray-1000);
 }
 
 .trial {
-  --themed-fg: #fff;
-  background: linear-gradient(135deg,
-      var(--geist-success),
-      var(--geist-highlight-pink));
-      border: none;
+  color: #fff;
+  background: linear-gradient(135deg, #0070f3, #f81ce5);
 }
 
 .turbo {
-  --themed-fg: #fff;
-  background: linear-gradient(135deg,
-      var(--geist-error),
-      var(--geist-success));
-      border: none;
+  background: linear-gradient(135deg, #ff1e56, #0096ff);
+  color: #fff;
 }
 
-.outline {
-  color: var(--themed-bg, var(--geist-foreground));
-  background: transparent;
+.iconContainer svg {
+  display: block;
+  height: var(--badge-icon-size);
+  width: var(--badge-icon-size);
+  stroke-width: 1.5;
 }
 
-.small {
-  padding: 3px 7px;
-  font-size: 12px;
-}
-
-.large {
-  padding: 3px 10px;
-  font-size: 16px;
+.contentContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--badge-icon-spacing);
 }
