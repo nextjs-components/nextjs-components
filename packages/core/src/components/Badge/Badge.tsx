@@ -6,7 +6,7 @@ import styles from "./Badge.module.css";
 interface Props {
   className?: HTMLAttributes<HTMLSpanElement>["className"];
   type?: "success" | "error" | "warning" | "violet" | "secondary";
-  variant?: "contrast";
+  variant?: "blue" | "red" | "pink" | "amber" | "purple" | "gray" | "blue-subtle" | "red-subtle" | "amber-subtle" | "purple-subtle" | "gray-contrast" | "trial" | "turbo";
   outline?: boolean;
   size?: "small" | "large";
 }

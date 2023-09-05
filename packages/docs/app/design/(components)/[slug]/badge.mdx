@@ -1,0 +1,123 @@
+import { Badge, Container } from "nextjs-components";
+import { ArrowUp as Up } from "nextjs-components/src/icons";
+
+<Spacer y={0.6} />
+
+# Badge
+
+<Spacer y={0.8} />
+
+## A label that shows the status of an object, emphasizes an element that requires attention, or helps categorize with other similar elements.
+
+<Spacer />
+
+### Variants
+
+<Spacer />
+
+<Editor 
+  scope={{Container, Badge}}
+  code={`<Container left>
+  <Container>
+    <Badge variant="blue">1</Badge>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="red">5</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="pink">24</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="amber">50</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="purple">100</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="gray">500</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="blue-subtle">1</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="red-subtle">5</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="amber-subtle">50</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="purple-subtle">100</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="gray-contrast">500</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="trial">Trial</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge variant="turbo">Turborepo</Badge>
+    </div>
+  </Container>
+</Container>`}
+/>
+
+<Spacer />
+
+### Sizes
+
+<Editor 
+  scope={{Container, Badge}}
+  code={`<Container left>
+  <Container>
+    <div>
+      <Badge size="small">Small</Badge>
+    </div>
+  </Container>
+
+  <Container>
+    <Badge>Normal</Badge>
+  </Container>
+
+  <Container>
+    <div>
+      <Badge size="large">Large</Badge>
+    </div>
+  </Container>
+
+</Container>`}
+/>
