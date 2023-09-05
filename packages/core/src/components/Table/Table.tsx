@@ -183,8 +183,8 @@ const Table: React.ComponentType<React.PropsWithChildren<Props>> = ({
                             {!!idsChecked.length && (
                               <Badge
                                 className={styles.count}
-                                type="secondary"
-                                variant="contrast"
+                                size="sm"
+                                variant="gray-subtle"
                               >
                                 {idsChecked.length}
                               </Badge>
