@@ -4,7 +4,7 @@ import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
 import { Children, useEffect, useId, useRef, useState } from "react";
 import type { FC, PropsWithChildren } from "react";
-import { FocusScope, usePopover } from "react-aria";
+import { FocusScope, useFocusManager, usePopover } from "react-aria";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Drawer from "../Drawer";
@@ -169,14 +169,14 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
   useEffect(() => {
     if (!listElement) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.repeat) {
-        // prevent holding enter from triggering
-        return;
-      }
       switch (e.key) {
         case "Enter":
         case " ":
           e.preventDefault();
+          if (e.repeat) {
+            // prevent holding enter from triggering
+            return;
+          }
           // @ts-expect-error TODO: fix .props
           Children.toArray(children)[selected]?.props?.onClick?.();
           setOpen(false);
@@ -184,6 +184,7 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
           break;
         case "ArrowUp": {
           e.preventDefault();
+          e.stopPropagation(); // prevent scrolling
           // prevent selecting a disabled sibling
           let siblings = Children.toArray(children);
           let step = 1;
@@ -200,6 +201,7 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
         }
         case "ArrowDown": {
           e.preventDefault();
+          e.stopPropagation(); // prevent scrolling
           // prevent selecting a disabled sibling
           let siblings = Children.toArray(children);
           let step = 1;
