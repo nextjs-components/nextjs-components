@@ -6,17 +6,20 @@ import styles from "./Badge.module.css";
 interface Props {
   className?: HTMLAttributes<HTMLSpanElement>["className"];
   variant?:
-    | "blue"
-    | "red"
-    | "pink"
-    | "amber"
-    | "purple"
     | "gray"
-    | "blue-subtle"
-    | "red-subtle"
-    | "amber-subtle"
-    | "purple-subtle"
     | "gray-subtle"
+    | "blue"
+    | "blue-subtle"
+    | "purple"
+    | "purple-subtle"
+    | "amber"
+    | "amber-subtle"
+    | "red"
+    | "red-subtle"
+    | "pink"
+    | "pink-subtle"
+    | "green"
+    | "green-subtle"
     | "trial"
     | "turbo";
   size?: "sm" | "md" | "lg";
