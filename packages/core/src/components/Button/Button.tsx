@@ -95,6 +95,7 @@ const Button: React.ComponentType<Props> = forwardRef(
           // and prevent FocusScopes from restoring focus to this button
           if (e.pointerType === "mouse") {
             // https://stackoverflow.com/a/3995570
+            // @ts-expect-error - blur may or may not be defined
             document.activeElement?.blur?.();
             onMouseDown?.(e);
           }
