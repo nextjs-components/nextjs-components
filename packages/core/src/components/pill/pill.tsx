@@ -84,17 +84,4 @@ const MenuItem = ({ children }) => {
   return <_MenuItem>{children}</_MenuItem>;
 };
 
-{
-  /* <MenuWrapper>
-  <MenuButton variant="unstyled">
-    <Avatar size={30} src="https://thekevinwang.com/image/kevin.webp" />
-  </MenuButton>
-  <Menu width={200}>
-    <MenuItem>One</MenuItem>
-    <MenuItem>Two</MenuItem>
-    <MenuItem>Three</MenuItem>
-  </Menu>
-</MenuWrapper> */
-}
-
 export default Object.assign(Pill, { Menu, MenuItem });
