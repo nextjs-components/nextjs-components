@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext } from "react";
 
 const PlaceHolderContext = createContext(true);

@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import React from "react";
-import { HTMLAttributes } from "react";
+import type { HTMLAttributes } from "react";
 
 import styles from "./Badge.module.css";
 

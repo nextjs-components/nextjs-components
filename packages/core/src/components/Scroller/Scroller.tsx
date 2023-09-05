@@ -1,5 +1,6 @@
+"use client";
+
 import clsx from "clsx";
-import React from "react";
 import { useEffect, useRef, useState } from "react";
 
 import { isBrowser } from "../../utils/isBrowser";

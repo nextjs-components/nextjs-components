@@ -1,7 +1,10 @@
+"use client";
+
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
-import React, { useEffect, useId, useRef, useState } from "react";
-import { FocusScope, usePopover } from "react-aria";
+import { Children, useEffect, useId, useRef, useState } from "react";
+import type { FC, PropsWithChildren } from "react";
+import { FocusScope, useFocusManager, usePopover } from "react-aria";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Drawer from "../Drawer";
@@ -30,6 +33,28 @@ export const MenuWrapper = ({ children }) => {
   const [selected, setSelected] = useState(-1);
 
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (!listElement || !buttonRef.current || !popperRef.current) return;
+      if (listElement.contains(e.target as Node)) {
+        return;
+      }
+      if (buttonRef.current.contains(e.target as Node)) {
+        return;
+      }
+      if (popperRef.current.contains(e.target as Node)) {
+        return;
+      }
+      setOpen(false);
+    }
+
+    document.addEventListener("click", (e) => handleClickOutside(e));
+
+    return () => {
+      document.removeEventListener("click", (e) => handleClickOutside(e));
+    };
+  }, [open, listElement, buttonRef.current, popperRef.current]);
 
   const menuId = "menu-" + useId();
   const buttonId = "menu-button-" + useId();
@@ -75,7 +100,7 @@ interface MenuInnerProps {
   divide?: boolean;
 }
 
-const MenuInner: React.FC<React.PropsWithChildren<MenuInnerProps>> = ({
+const MenuInner: FC<PropsWithChildren<MenuInnerProps>> = ({
   divide,
   width,
   children,
@@ -102,17 +127,17 @@ const MenuInner: React.FC<React.PropsWithChildren<MenuInnerProps>> = ({
   );
 };
 
-interface MenuProps {
-  /** default: 150 */
+export interface MenuProps {
+  /** default: 200 */
   width?: number;
   divide?: boolean;
 }
 /**
  * @see {@link MenuWrapper} for code sample usage
  */
-export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
+export const Menu: FC<PropsWithChildren<MenuProps>> = ({
   children,
-  width = 150,
+  width = 200,
   divide,
 }) => {
   const { open, listElement, setOpen, buttonRef, selected, setSelected } =
@@ -148,15 +173,20 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
         case "Enter":
         case " ":
           e.preventDefault();
+          if (e.repeat) {
+            // prevent holding enter from triggering
+            return;
+          }
           // @ts-expect-error TODO: fix .props
-          React.Children.toArray(children)[selected]?.props?.onClick?.();
+          Children.toArray(children)[selected]?.props?.onClick?.();
           setOpen(false);
           setSelected(0);
           break;
         case "ArrowUp": {
           e.preventDefault();
+          e.stopPropagation(); // prevent scrolling
           // prevent selecting a disabled sibling
-          let siblings = React.Children.toArray(children);
+          let siblings = Children.toArray(children);
           let step = 1;
           let curr = selected;
           if (curr <= 0) return;
@@ -171,8 +201,9 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
         }
         case "ArrowDown": {
           e.preventDefault();
+          e.stopPropagation(); // prevent scrolling
           // prevent selecting a disabled sibling
-          let siblings = React.Children.toArray(children);
+          let siblings = Children.toArray(children);
           let step = 1;
           let curr = selected;
           let len = siblings.length;
@@ -223,7 +254,7 @@ export const Menu: React.FC<React.PropsWithChildren<MenuProps>> = ({
 const Popper = ({ children }) => {
   const { popperRef, open, setOpen, buttonRef } = useMenu();
 
-  const { arrowProps, placement, popoverProps } = usePopover(
+  const { arrowProps, placement, popoverProps, underlayProps } = usePopover(
     {
       // "modal": injects "padding-right: 0px; overflow: hidden;" to the html element
       // - prevents scrolling
@@ -232,7 +263,7 @@ const Popper = ({ children }) => {
       // - allows scrolling
       // - doesn't close on outside click
       // ∆ closes on outside click, escape, but allows scrolling too...
-      isNonModal: false,
+      isNonModal: true,
       popoverRef: popperRef,
       triggerRef: buttonRef,
       placement: "bottom start",
@@ -241,32 +272,27 @@ const Popper = ({ children }) => {
     {
       isOpen: open,
       setOpen: (val) => {
+        console.log("setOpen");
         setOpen(val);
       },
       close: () => {
+        console.log("close");
         setOpen(false);
       },
       open: () => {
+        console.log("open");
         setOpen(true);
       },
       toggle: () => {
+        console.log("toggle");
         setOpen(!open);
       },
     },
   );
+
   return (
     <>
-      {/* <div
-        // this prevents background scroll
-        {...underlayProps} // what does this even do?
-        // (e)=>{
-        //   // fixes a firefox issue that starts text selection https://bugzilla.mozilla.org/show_bug.cgi?id=1675846
-        //   if (e.target === e.currentTarget) e.preventDefault();
-        // }
-        className="underlay"
-        style={{ position: "fixed", inset: 0 }}
-        // but ∆ doesn't block scroll
-      /> */}
+      <div className="underlay" {...underlayProps} />
       <div
         ref={popperRef}
         className={classes.wrapper}

@@ -1,5 +1,7 @@
+"use client";
+
 import clsx from "clsx";
-import React, { useId } from "react";
+import { useId } from "react";
 import { useFocusRing } from "react-aria";
 
 import ThemeContext from "../../contexts/IconSizeContext/IconSizeContext";

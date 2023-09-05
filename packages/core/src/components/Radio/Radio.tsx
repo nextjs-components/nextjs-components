@@ -1,5 +1,6 @@
+"use client";
+
 import clsx from "clsx";
-import React from "react";
 import { FC, createContext, useContext, useRef } from "react";
 import { useFocusRing, useRadio, useRadioGroup } from "react-aria";
 import { useRadioGroupState } from "react-stately";

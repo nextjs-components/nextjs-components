@@ -1,65 +1,78 @@
 import clsx from "clsx";
 import type { Property } from "csstype";
-import * as React from "react";
+import type { AriaRole, PropsWithChildren } from "react";
 
 import styles from "./stack.module.css";
 
-type ResponsiveProp<T extends any> =
-  | T
-  | {
-      sm?: T;
-      md?: T;
-      lg?: T;
-    };
+type ResponsiveProp<T extends any> = T | { sm?: T; md?: T; lg?: T };
 type Direction = Property.FlexDirection;
 type Align = Property.AlignItems;
 type Justify = Property.JustifyContent;
+type Space =
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18;
 
-export interface StackProps {
+export interface StackProps extends PropsWithChildren {
   as?: React.ElementType;
-  gap?: ResponsiveProp<
-    | 0
-    | 1
-    | 2
-    | 3
-    | 4
-    | 5
-    | 6
-    | 7
-    | 8
-    | 9
-    | 10
-    | 11
-    | 12
-    | 13
-    | 14
-    | 15
-    | 16
-    | 17
-    | 18
-  >;
   direction?: ResponsiveProp<Direction>;
   align?: ResponsiveProp<Align>;
   justify?: ResponsiveProp<Justify>;
   flex?: string | number;
+  padding?: ResponsiveProp<Space>;
+  paddingX?: ResponsiveProp<Space>;
+  paddingY?: ResponsiveProp<Space>;
+  paddingTop?: ResponsiveProp<Space>;
+  paddingBottom?: ResponsiveProp<Space>;
+  paddingLeft?: ResponsiveProp<Space>;
+  paddingRight?: ResponsiveProp<Space>;
+  gap?: ResponsiveProp<Space>;
   debug?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  role?: AriaRole;
+  "data-testid"?: string;
 }
 
-const Stack: React.FC<React.PropsWithChildren<StackProps>> = (props) => {
+const Stack = (props: StackProps) => {
   const {
-    children,
     as: Component = "div",
-    gap = 0,
+    children,
     direction = "column",
     align = "stretch",
     justify = "flex-start",
     flex = "initial",
+    padding = 0,
+    paddingX = padding,
+    paddingY = padding,
+    paddingTop = paddingY,
+    paddingBottom = paddingY,
+    paddingLeft = paddingX,
+    paddingRight = paddingX,
+    gap = 0,
     debug,
     className,
     style,
+    role,
   } = props;
+
+  const dataTestId = props["data-testid"];
 
   let smDirection: StackProps["direction"];
   let mdDirection: StackProps["direction"];
@@ -103,9 +116,9 @@ const Stack: React.FC<React.PropsWithChildren<StackProps>> = (props) => {
     lgJustify = justify;
   }
 
-  let smGap: number;
-  let mdGap: number;
-  let lgGap: number;
+  let smGap: StackProps["gap"];
+  let mdGap: StackProps["gap"];
+  let lgGap: StackProps["gap"];
 
   if (typeof gap === "object") {
     smGap = gap.sm || 0;
@@ -119,6 +132,8 @@ const Stack: React.FC<React.PropsWithChildren<StackProps>> = (props) => {
 
   return (
     <Component
+      data-testid={dataTestId}
+      role={role}
       className={clsx(
         styles.stack,
         "stack",
@@ -126,70 +141,49 @@ const Stack: React.FC<React.PropsWithChildren<StackProps>> = (props) => {
         className,
       )}
       style={{
-        "--flex": flex,
+        "--stack-flex": flex,
         ...(typeof direction === "object"
           ? {
-              "--sm-direction": smDirection,
-              "--md-direction": mdDirection,
-              "--lg-direction": lgDirection,
+              "--sm-stack-direction": smDirection,
+              "--md-stack-direction": mdDirection,
+              "--lg-stack-direction": lgDirection,
             }
-          : { "--direction": direction }),
+          : { "--stack-direction": direction }),
         ...(typeof align === "object"
           ? {
-              "--sm-align": smAlign,
-              "--md-align": mdAlign,
-              "--lg-align": lgAlign,
+              "--sm-stack-align": smAlign,
+              "--md-stack-align": mdAlign,
+              "--lg-stack-align": lgAlign,
             }
           : {
-              "--align": align,
+              "--stack-align": align,
             }),
         ...(typeof justify === "object"
           ? {
-              "--sm-justify": smJustify,
-              "--md-justify": mdJustify,
-              "--lg-justify": lgJustify,
+              "--sm-stack-justify": smJustify,
+              "--md-stack-justify": mdJustify,
+              "--lg-stack-justify": lgJustify,
             }
-          : { "--justify": justify }),
+          : { "--stack-justify": justify }),
+        ...(typeof gap === "object"
+          ? {
+              "--sm-stack-gap": scalePx(smGap),
+              "--md-stack-gap": scalePx(mdGap),
+              "--lg-stack-gap": scalePx(lgGap),
+            }
+          : { "--stack-gap": scalePx(gap) }),
         ...style,
       }}
     >
       {children}
-      <style jsx>{`
-        @media screen and (min-width: 961px) {
-          .stack {
-            --direction: var(--lg-direction);
-            --align: var(--lg-align);
-            --justify: var(--lg-justify);
-          }
-          .stack > :global(*) + :global(*) {
-            margin-${lgDirection === "row" ? "left" : "top"}: ${lgGap * 4}px;
-          }
-        }
-
-        @media screen and (min-width: 601px) and (max-width: 960px) {
-          .stack {
-            --direction: var(--md-direction);
-            --align: var(--md-align);
-            --justify: var(--md-justify);
-          }
-          .stack > :global(*) + :global(*) {
-            margin-${mdDirection === "row" ? "left" : "top"}: ${mdGap * 4}px;
-          }
-        }
-
-        @media screen and (max-width: 600px) {
-          .stack {
-            --direction: var(--sm-direction);
-            --align: var(--sm-align);
-            --justify: var(--sm-justify);
-          }
-          .stack > :global(*) + :global(*) {
-            margin-${smDirection === "row" ? "left" : "top"}: ${smGap * 4}px;
-          }
-        }
-      `}</style>
     </Component>
   );
 };
+
+// tiny function to dry up string-templating
+// for gap to 4px scale conversion
+function scalePx(value: number, scale = 4) {
+  return `${value * 4}px`;
+}
 
 export default Stack;

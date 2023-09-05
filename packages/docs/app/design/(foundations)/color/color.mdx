@@ -1,6 +1,4 @@
-import styles from "../../design.module.css";
 import ColorCard from "./color-card";
-import colorsStyles from "./colors.module.css";
 
 <Spacer y={0.6} />
 
@@ -14,7 +12,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Primary
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-background"} />
   <ColorCard color={"--accents-1"} />
   <ColorCard color={"--accents-2"} />
@@ -31,7 +29,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Error
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-error-lighter"} />
   <ColorCard color={"--geist-error-light"} />
   <ColorCard color={"--geist-error"} />
@@ -42,7 +40,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Success
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-success-lighter"} />
   <ColorCard color={"--geist-success-light"} />
   <ColorCard color={"--geist-success"} />
@@ -53,7 +51,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Warning
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-warning-lighter"} />
   <ColorCard color={"--geist-warning-light"} />
   <ColorCard color={"--geist-warning"} />
@@ -63,7 +61,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Violet
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-violet-lighter"} />
   <ColorCard color={"--geist-violet-light"} />
   <ColorCard color={"--geist-violet"} />
@@ -74,7 +72,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Cyan
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-cyan-lighter"} />
   <ColorCard color={"--geist-cyan-light"} />
   <ColorCard color={"--geist-cyan"} />
@@ -85,7 +83,7 @@ import colorsStyles from "./colors.module.css";
 
 ### Highlight
 
-<div className={colorsStyles.grid}>
+<div className="relative grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6">
   <ColorCard color={"--geist-highlight-purple"} />
   <ColorCard color={"--geist-highlight-magenta"} />
   <ColorCard color={"--geist-highlight-pink"} />

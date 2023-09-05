@@ -1,27 +1,58 @@
 .stack {
   display: flex;
-  flex-direction: var(--direction, column);
-  align-items: var(--align, stretch);
-  justify-content: var(--justify, flex-start);
-  flex: var(--flex, initial);
+  flex-direction: var(--stack-direction, column);
+  align-items: var(--stack-align, stretch);
+  justify-content: var(--stack-justify, flex-start);
+  flex: var(--stack-flex, initial);
+  gap: var(--stack-gap, 0);
+}
+
+.padding {
+  padding: var(--stack-padding, 0);
+}
+
+@media screen and (max-width: 600px) {
+  .stack {
+    --stack-direction: var(--sm-stack-direction);
+    --stack-align: var(--sm-stack-align);
+    --stack-justify: var(--sm-stack-justify);
+    --stack-padding: var(--sm-stack-padding);
+    --stack-gap: var(--sm-stack-gap);
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 960px) {
+  .stack {
+    --stack-direction: var(--md-stack-direction, var(--sm-stack-direction));
+    --stack-align: var(--md-stack-align, var(--sm-stack-align));
+    --stack-justify: var(--md-stack-justify, var(--sm-stack-justify));
+    --stack-padding: var(--md-stack-padding, var(--sm-stack-padding));
+    --stack-gap: var(--md-stack-gap, var(--sm-stack-gap));
+  }
+}
+
+@media screen and (min-width: 961px) {
+  .stack {
+    --stack-direction: var(
+      --lg-stack-direction,
+      var(--md-stack-direction, var(--sm-stack-direction))
+    );
+    --stack-align: var(
+      --lg-stack-align,
+      var(--md-stack-align, var(--sm-stack-align))
+    );
+    --stack-justify: var(
+      --lg-stack-justify,
+      var(--md-stack-justify, var(--sm-stack-justify))
+    );
+    --stack-padding: var(
+      --lg-stack-padding,
+      var(--md-stack-padding, var(--sm-stack-padding))
+    );
+    --stack-gap: var(--lg-stack-gap, var(--md-stack-gap, var(--sm-stack-gap)));
+  }
 }
 
 .debug {
-  background-color: var(--geist-success-lighter);
-}
-
-.debug .debug {
-  background-color: var(--geist-error-lighter);
-}
-
-.debug .debug .debug {
-  background-color: var(--geist-warning-lighter);
-}
-
-.debug .debug .debug .debug {
-  background-color: var(--geist-violet-lighter);
-}
-
-.debug .debug .debug .debug .debug {
-  background-color: var(--geist-cyan-lighter);
+  background-color: #00ffe033;
 }

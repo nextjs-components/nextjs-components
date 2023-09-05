@@ -1,11 +1,12 @@
-import styles from "./example.module.css";
-
 interface ExampleProps extends React.PropsWithChildren {
   style?: React.CSSProperties;
 }
 const Example = ({ children, style }: ExampleProps) => {
   return (
-    <div className={styles.example} style={style}>
+    <div
+      style={style}
+      className="mx-0 my-10 flex min-h-[240px] w-full items-center justify-center rounded-md bg-example p-10 dark:bg-example-dark [&>*]:w-[--width]"
+    >
       {children}
     </div>
   );

@@ -1,6 +1,8 @@
+"use client";
+
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
-import React, {
+import {
   type ContextType,
   type Dispatch,
   type FC,
@@ -12,11 +14,13 @@ import React, {
   type SetStateAction,
   createContext,
   forwardRef,
+  isValidElement,
   useCallback,
   useContext,
   useEffect,
   useId,
   useImperativeHandle,
+  useLayoutEffect as useLayoutEffect$1,
   useMemo,
   useReducer,
   useRef,
@@ -34,7 +38,7 @@ import { Dialog } from "./dialog";
 import iconButton from "./icon-button.module.css";
 
 const useLayoutEffect =
-  typeof window === "undefined" ? React.useEffect : React.useLayoutEffect;
+  typeof window === "undefined" ? useEffect : useLayoutEffect$1;
 
 /**
  * queries a <ul> for all its [data-descendant] items and returns them
@@ -1055,7 +1059,7 @@ const List: FC<PWC<ListProps>> = (props) => {
 
   let M = null;
   if (ListFooterComponent) {
-    M = React.isValidElement(ListFooterComponent) ? (
+    M = isValidElement(ListFooterComponent) ? (
       ListFooterComponent
     ) : (
       // @ts-ignore

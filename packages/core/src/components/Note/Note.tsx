@@ -1,6 +1,9 @@
 import clsx from "clsx";
-import React from "react";
 
+import AlertOctagon from "../../icons/alert-octagon";
+import AlertTriangle from "../../icons/alert-triangle";
+import CheckInCircle from "../../icons/check-in-circle";
+import Info from "../../icons/info";
 import styles from "./Note.module.css";
 
 interface Props {
@@ -9,26 +12,38 @@ interface Props {
    * action={<Button size="small">Upgrade</Button>}
    */
   action?: React.ReactNode;
-  type?: "secondary" | "success" | "error" | "warning";
+  type?: "secondary" | "success" | "error" | "warning" | "violet" | "cyan";
   label?: false | string;
+  /** @deprecated */
   small?: boolean;
   fill?: boolean;
-  variant?: "contrast";
   style?: React.CSSProperties;
 }
 
-const labelMap = {
-  secondary: "Note: ",
-  success: "Success: ",
-  error: "Error: ",
-  warning: "Warning: ",
-};
-
-const getLabel = (label?: false | string, type?: Props["type"]) => {
-  if (label === false) return null;
-  if (typeof label === "undefined" && !type) return "Note: ";
-  if (label) return label;
-  if (type) return labelMap[type];
+const Icon = ({ type }: { type?: Props["type"] }) => {
+  let icon = null;
+  if (!type || type === "secondary" || type === "violet" || type === "cyan") {
+    icon = <Info size={16} />;
+  }
+  if (type === "success") {
+    icon = <CheckInCircle size={16} />;
+  }
+  if (type === "warning") {
+    icon = <AlertTriangle size={16} />;
+  }
+  if (type === "error") {
+    icon = <AlertOctagon size={16} />;
+  }
+  return (
+    <span
+      style={{
+        transform: `translateY(3px)`,
+        display: `inline-block`,
+      }}
+    >
+      {icon}
+    </span>
+  );
 };
 
 const Note: React.FC<React.PropsWithChildren<Props>> = ({
@@ -38,41 +53,49 @@ const Note: React.FC<React.PropsWithChildren<Props>> = ({
   action,
   type,
   fill,
-  variant,
   style, // for mdx
 }) => {
   return (
     <div
       {...{ style }}
-      className={clsx(styles.note, {
-        [styles.small]: size === "small",
-        [styles.large]: size === "large",
-        ["geist-themed"]: !!type,
-        ["geist-secondary"]: type === "secondary",
-        ["geist-success"]: type === "success",
-        ["geist-error"]: type === "error",
-        ["geist-warning"]: type === "warning",
-        [styles.fill]: fill,
-        ["geist-secondary-fill"]: fill && type === "secondary",
-        ["geist-success-fill"]: fill && type === "success",
-        ["geist-error-fill"]: fill && type === "error",
-        ["geist-warning-fill"]: fill && type === "warning",
-        ["geist-secondary-contrast"]:
-          variant === "contrast" && type === "secondary",
-        ["geist-success-contrast"]:
-          variant === "contrast" && type === "success",
-        ["geist-error-contrast"]: variant === "contrast" && type === "error",
-        ["geist-warning-contrast"]:
-          variant === "contrast" && type === "warning",
-      })}
+      className={clsx(
+        styles.note,
+        // - .v3-colors replaces .geist-themed
+        "v3-colors",
+        {
+          [styles.small]: size === "small",
+          [styles.large]: size === "large",
+          ["geist-secondary"]: type === "secondary",
+          ["geist-success"]: type === "success",
+          ["geist-error"]: type === "error",
+          ["geist-warning"]: type === "warning",
+          ["geist-cyan"]: type === "cyan",
+          ["geist-violet"]: type === "violet",
+          ["geist-secondary-fill"]: fill && type === "secondary",
+          ["geist-success-fill"]: fill && type === "success",
+          ["geist-error-fill"]: fill && type === "error",
+          ["geist-warning-fill"]: fill && type === "warning",
+          ["geist-cyan-fill"]: fill && type === "cyan",
+          ["geist-violet-fill"]: fill && type === "violet",
+        },
+      )}
     >
-      <span>
-        <span className={"geist-text span"}>
-          <b>{getLabel(label, type)}</b>
-        </span>
-        {children}
+      <span
+        style={{
+          display: "flex",
+          gap: label ? 4 : 8,
+        }}
+      >
+        {typeof label === "string" ? (
+          <span className={"geist-text span"}>
+            <b>{label}</b>
+          </span>
+        ) : null}
+        {label === false ? undefined : null}
+        {label === undefined ? <Icon type={type} /> : null}
+        <span>{children}</span>
       </span>
-      {action && <div className={styles.action}>{action}</div>}
+      {action && <div>{action}</div>}
     </div>
   );
 };

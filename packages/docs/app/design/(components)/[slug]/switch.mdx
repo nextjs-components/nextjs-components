@@ -1,4 +1,5 @@
-import { Container, Switch } from "nextjs-components";
+import { Container } from "nextjs-components";
+import Switch from "nextjs-components/src/components/Switch/switch-control";
 import { Grid, List } from "nextjs-components/src/icons";
 
 <Spacer y={0.6} />
@@ -25,22 +26,12 @@ Ensure the width of each item is wide enough to prevent jumping when active.
 return (
 
     <Container left>
-      <Switch
-        items={[
-          {
-            name: 'Source',
-            value: 'source',
-            width: 80
-          },
-          {
-            name: 'Output',
-            value: 'output',
-            width: 90,
-          }
-        ]}
-        active={active}
-        onChange={v => setActive(v)}
-      />
+      Active: {active}
+      <Switch name="default" >
+        <Switch.Control label="Source" defaultChecked value="source" onChange={e => setActive(e.target.value)}/>
+        <Switch.Control label="Output" value="output" onChange={e => setActive(e.target.value)}/>
+        <Switch.Control label="Other" value="other" onChange={e => setActive(e.target.value)}/>
+      </Switch>
     </Container>
 
 )
@@ -89,47 +80,28 @@ return (
 <Editor
   scope={{Container,Switch}}
   code={`() => {
-  const [active, setActive] = React.useState('source')
-  const items = [
-    {
-      name: 'Source',
-      value: 'source',
-      width: 80
-    },
-    {
-      name: 'Output',
-      value: 'output',
-      width: 100
-    }
-  ]
-
-return (
-
+  
+  return (
     <Container top direction={['column', 'column', 'row']}>
       <Container left>
-        <Switch
-          items={items}
-          active={active}
-          onChange={v => setActive(v)}
-          size="small"
-        />
+        <Switch name="sizes-small" size="small">
+          <Switch.Control label="Source" defaultChecked value="source" />
+          <Switch.Control label="Output" value="output" />
+        </Switch>
       </Container>
 
       <Container left>
-        <Switch
-          items={items}
-          active={active}
-          onChange={v => setActive(v)}
-        />
+        <Switch name="sizes-default">
+          <Switch.Control label="Source" defaultChecked value="source" />
+          <Switch.Control label="Output" value="output" />
+        </Switch>
       </Container>
 
       <Container left>
-        <Switch
-          items={items}
-          active={active}
-          onChange={v => setActive(v)}
-          size="large"
-        />
+        <Switch name="sizes-large" size="large">
+          <Switch.Control label="Source" defaultChecked value="source" />
+          <Switch.Control label="Output" value="output" />
+        </Switch>
       </Container>
     </Container>
 
@@ -147,50 +119,30 @@ return (
 <Editor 
   scope={{Container,Switch, Grid, List}}
   code={`() => {
-  const [active, setActive] = React.useState('source')
-  const items = [
-    {
-      name: <Grid />,
-      value: 'source',
-      width: 80
-    },
-    {
-      name: <List />,
-      value: 'list',
-      width: 100
-    }
-  ]
-
-return (
-
-      <Container top direction={['column', 'column', 'row']}>
-        <Container left>
-          <Switch
-            items={items}
-            active={active}
-            onChange={v => setActive(v)}
-            size="small"
-    	    icon
-           />
-    	</Container>
-    	<Container left>
-    	  <Switch
-    	    items={items}
-    	    active={active}
-    	    onChange={v => setActive(v)}
-    	    icon
-        />
-    	</Container>
-    	<Container left>
-    	  <Switch
-          items={items}
-          active={active}
-          onChange={v => setActive(v)}
-          size="large"
-          icon
-        />
-    	</Container>
+    
+  return (
+	  <Container top direction={['column', 'column', 'row']}>
+      <Container left>
+        <Switch name="icons-small" size="small">
+          <Switch.Control icon={<Grid />} defaultChecked value="source" />
+          <Switch.Control icon={<List />} value="output" />
+        </Switch>
       </Container>
+
+      <Container left>
+        <Switch name="icons-default" >
+          <Switch.Control icon={<Grid />} defaultChecked value="source" />
+          <Switch.Control icon={<List />} value="output" />
+        </Switch>
+      </Container>
+
+      <Container left>
+        <Switch name="icons-large" size="large">
+          <Switch.Control icon={<Grid />} defaultChecked value="source" />
+          <Switch.Control icon={<List />} value="output" />
+        </Switch>
+      </Container>
+    </Container>
 
 )
 }`}/>

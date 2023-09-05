@@ -4,7 +4,9 @@ export { ThemeContextProvider, useTheme } from "./contexts/ThemeContext";
 
 export { Avatar } from "./components/Avatar";
 export { Badge } from "./components/Badge";
+export { Breadcrumbs } from "./components/breadcrumbs";
 export { Button, type ButtonProps } from "./components/Button";
+export { Calendar } from "./components/calendar";
 export { Capacity } from "./components/Capacity";
 export { Checkbox } from "./components/Checkbox";
 export { Collapse, CollapseGroup } from "./components/Collapse";
@@ -18,6 +20,7 @@ export { Entity, EntityField, EntityThumbnail, PlaceHolderContext } from "./comp
 export { Error } from "./components/Error";
 export { fs } from "./components/Fieldset";
 export { File, Folder, Tree } from "./components/FileTree";
+export { Footer } from "./components/footer";
 // export * from "./components/Image";
 export { Input, SearchInput } from "./components/Input";
 export { KBD } from "./components/KeyboardInput";
@@ -28,6 +31,7 @@ export { Menu, MenuButton, MenuContext, MenuItem, MenuLink, MenuWrapper, useMenu
 export { default as Modal } from "./components/Modal"; // breaking 2.0.0
 export { Note } from "./components/Note";
 export { RadioGroup, RadioItem } from "./components/Radio";
+export { Pill } from "./components/pill";
 // export * from "./components/Scroller";
 export { ModeSelect, Select } from "./components/Select";
 export { ShowMore, type ShowMoreProps } from "./components/ShowMore";

@@ -1,5 +1,7 @@
+"use client";
+
+// client-only because styled-jsx
 import clsx from "clsx";
-import React from "react";
 
 import Chevron from "../../icons/chevron-down";
 

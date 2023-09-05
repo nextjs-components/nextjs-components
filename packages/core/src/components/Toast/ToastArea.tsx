@@ -1,3 +1,5 @@
+"use client";
+
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
 import React from "react";

@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 
 import { Button, ButtonProps } from "../Button";
 import { useMenu } from "./menu-context";
@@ -6,12 +6,15 @@ import { useMenu } from "./menu-context";
 export const MenuButton: React.FC<ButtonProps> = ({
   children,
   onClick,
+  onMouseDown,
+  onKeyDown,
   ...props
 }) => {
   const { menuId, buttonId, buttonRef, setOpen, open } = useMenu();
 
   return (
     <Button
+      {...props}
       id={buttonId}
       aria-haspopup={true}
       aria-describedby={menuId}
@@ -19,8 +22,19 @@ export const MenuButton: React.FC<ButtonProps> = ({
       data-geist-menu-button=""
       ref={buttonRef}
       onClick={(e) => {
-        onClick?.(e);
         setOpen(true);
+        onClick?.(e);
+      }}
+      onMouseDown={(e) => {
+        setOpen(true);
+        onMouseDown?.(e);
+      }}
+      onKeyDown={(e) => {
+        // spacebar or enter
+        if (e.key === " " || e.key === "Enter") {
+          setOpen(true);
+          onKeyDown?.(e);
+        }
       }}
       {...props}
     >

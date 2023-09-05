@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import React from "react";
 
 import AlertCircle from "../../icons/alert-circle";
 import styles from "./error.module.css";

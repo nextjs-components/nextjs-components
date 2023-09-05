@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import React from "react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";

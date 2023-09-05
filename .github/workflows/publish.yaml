@@ -15,7 +15,8 @@ jobs:
           ref: ${{ github.ref }}
       - name: Set tag
         id: set_tag
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/v}
+        # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
+        run: echo "tag=${GITHUB_REF#refs/*/v}" >> "$GITHUB_OUTPUT"
 
       # https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
       - name: Setup Node

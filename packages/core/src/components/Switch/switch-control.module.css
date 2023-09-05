@@ -1,0 +1,72 @@
+.container {
+  display: flex;
+  align-self: stretch;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  color: var(--ds-gray-900);
+  transition: color 0.15s;
+  cursor: pointer;
+}
+
+input:focus-visible + .control {
+  box-shadow: var(--ds-focus-ring);
+}
+
+.checked,
+input:checked + .control {
+  color: var(--ds-gray-1000);
+  background: var(--ds-gray-100);
+  border-radius: 2px;
+}
+
+input:checked + .control.large {
+  border-radius: 4px;
+}
+
+.disabled,
+input:disabled + .control {
+  color: var(--ds-gray-800);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+input:disabled + .control > * {
+  cursor: not-allowed;
+}
+
+.icon {
+  padding: var(--geist-gap-quarter) var(--geist-space-3x);
+}
+
+.icon.small {
+  padding: var(--geist-space) var(--geist-space-2x);
+}
+
+.icon.large {
+  padding: var(--geist-space-3x) var(--geist-space-3x);
+}
+
+.text {
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.text,
+.text.small {
+  padding: 0 var(--geist-space-3x);
+}
+
+.text.large {
+  font-size: 16px;
+  padding: 0 var(--geist-space-4x);
+}
+
+@media (hover: hover) {
+  .control:hover {
+    color: var(--ds-gray-1000);
+  }
+}

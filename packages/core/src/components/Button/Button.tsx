@@ -1,7 +1,8 @@
-import type { PressEvent } from "@react-types/shared";
+"use client";
+
+import type { KeyboardEvent, PressEvent } from "@react-types/shared";
 import clsx from "clsx";
-import React from "react";
-import { forwardRef, useContext, useRef, useState } from "react";
+import { ElementType, forwardRef, useContext, useRef, useState } from "react";
 import { useButton, useHover } from "react-aria";
 
 import { DisabledContext } from "../../contexts/DisabledContext";
@@ -16,19 +17,28 @@ type IntrinsicProps = React.DetailedHTMLProps<
   HTMLButtonElement
 >;
 export interface Props
-  extends Omit<IntrinsicProps, "prefix" | "type" | "onClick"> {
+  extends Omit<
+    IntrinsicProps,
+    "prefix" | "type" | "onClick" | "onKeyDown" | "onMouseDown"
+  > {
   size?: "small" | "large";
   prefix?: JSX.Element | string;
   suffix?: JSX.Element | string;
-  align?: "start" | "grow";
+  align?: "start" | "grow" | "center";
   type?: "secondary" | "success" | "error" | "warning" | "alert" | "violet";
   shape?: "square" | "circle";
   variant?: "shadow" | "ghost" | "unstyled";
   loading?: boolean;
   onClick?: (e: PressEvent) => void;
+  onKeyDown?: (e: KeyboardEvent) => void;
+  onMouseDown?: (e: PressEvent) => void;
   svgOnly?: boolean;
+  Component?: ElementType;
   typeName?: IntrinsicProps["type"];
 }
+
+// let {Component: n="button", typeName: h="submit", className: g, href: b, as: w, target: E, rel: C, disabled: A, loading: j, width: S, type: k, size: T, prefix: O, normalStyle: D, hoverStyle: L, suffix: I, onClick: R, variant: P="invert", shape: N, align: M, children: V, onMouseDown: F, onMouseUp: B, svgOnly: H, passthroughOnClick: $, passthroughOnMouseEnter: U, touchEventWorkaround: z=!1, ...W} =
+
 const Button: React.ComponentType<Props> = forwardRef(
   (
     {
@@ -46,7 +56,10 @@ const Button: React.ComponentType<Props> = forwardRef(
       disabled,
       loading,
       onClick,
+      onKeyDown,
+      onMouseDown,
       svgOnly,
+      Component = "button",
       typeName = "submit",
       ...props
     },
@@ -61,17 +74,30 @@ const Button: React.ComponentType<Props> = forwardRef(
     const { buttonProps, isPressed } = useButton(
       {
         ...props,
+        elementType: Component,
         type: "submit",
         isDisabled: isDisabled || loading,
         onFocusChange: setFocused,
+        onKeyDown: (e) => {
+          // prevent holding down from rapid firing
+          // https://stackoverflow.com/a/38241109
+          if (e.repeat) return null;
+
+          onKeyDown?.(e);
+          return e;
+        },
         onPress: (e) => {
           onClick?.(e);
           return e;
         },
         onPressStart(e) {
-          // prevent focus ring on mouse click
+          // prevent focus ring on mouse click.
+          // and prevent FocusScopes from restoring focus to this button
           if (e.pointerType === "mouse") {
-            setFocused(false);
+            // https://stackoverflow.com/a/3995570
+            // @ts-expect-error - blur may or may not be defined
+            document.activeElement?.blur?.();
+            onMouseDown?.(e);
           }
           return e;
         },
@@ -88,7 +114,8 @@ const Button: React.ComponentType<Props> = forwardRef(
     });
 
     return (
-      <button
+      <Component
+        ref={mergeRefs([ref, externalRef])}
         data-geist-button=""
         {...props}
         {...hoverProps}
@@ -142,7 +169,6 @@ const Button: React.ComponentType<Props> = forwardRef(
           ],
           className,
         ])}
-        ref={mergeRefs([ref, externalRef])}
       >
         <IconSizeContext.Provider value={iconSizeContextValue}>
           {prefix && (
@@ -158,6 +184,7 @@ const Button: React.ComponentType<Props> = forwardRef(
             className={clsx(styles.content, {
               [styles.grow]: align === "grow",
               [styles.start]: align === "start",
+              [styles.center]: align === "center",
               [styles.flex]: svgOnly,
             })}
           >
@@ -165,7 +192,7 @@ const Button: React.ComponentType<Props> = forwardRef(
           </span>
           {suffix && <span className={styles.suffix}>{suffix}</span>}
         </IconSizeContext.Provider>
-      </button>
+      </Component>
     );
   },
 );
