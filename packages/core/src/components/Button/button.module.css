@@ -134,8 +134,8 @@
 
 .invert[data-active][data-geist-button],
 .invert[data-hover][data-geist-button],
-.dark-theme .invert[data-active][data-geist-button],
-.dark-theme .invert[data-hover][data-geist-button] {
+:global(.dark-theme) .invert[data-active][data-geist-button],
+:global(.dark-theme) .invert[data-hover][data-geist-button] {
   background: var(--themed-hover-bg, #ccc);
 }
 
@@ -149,7 +149,7 @@
   box-shadow: var(--ds-shadow-border-small);
 }
 
-.dark-theme .button.shadow {
+:global(.dark-theme) .button.shadow {
   box-shadow: none;
 }
 
@@ -179,12 +179,12 @@
 }
 
 .tertiary[data-hover][data-geist-button],
-.dark-theme .tertiary[data-hover][data-geist-button] {
+:global(.dark-theme) .tertiary[data-hover][data-geist-button] {
   background-color: var(--ds-gray-alpha-200);
   --themed-border: var(--ds-gray-alpha-200) !important;
 }
 
-.dark-theme .tertiary[data-active][data-geist-button] {
+:global(.dark-theme) .tertiary[data-active][data-geist-button] {
   --lighten-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -221,7 +221,7 @@
   background-color: var(--ds-gray-alpha-200);
 }
 
-.dark-theme
+:global(.dark-theme)
   .secondary[data-geist-button].invert[data-geist-button][data-hover][data-geist-button] {
   background-color: var(--ds-gray-200);
   --themed-border: hsla(0, 0%, 100%, 0.17) !important;
