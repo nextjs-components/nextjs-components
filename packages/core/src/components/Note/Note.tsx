@@ -18,6 +18,7 @@ interface Props {
   small?: boolean;
   fill?: boolean;
   style?: React.CSSProperties;
+  disabled?: boolean;
 }
 
 const Icon = ({ type }: { type?: Props["type"] }) => {
@@ -54,17 +55,19 @@ const Note: React.FC<React.PropsWithChildren<Props>> = ({
   type,
   fill,
   style, // for mdx
+  disabled,
 }) => {
   return (
     <div
+      data-geist-note=""
+      data-version="v1"
       {...{ style }}
       className={clsx(
         styles.note,
-        // - .v3-colors replaces .geist-themed
-        "v3-colors",
         {
           [styles.small]: size === "small",
           [styles.large]: size === "large",
+          [styles.disabled]: disabled,
           ["geist-secondary"]: type === "secondary",
           ["geist-success"]: type === "success",
           ["geist-error"]: type === "error",
@@ -78,6 +81,7 @@ const Note: React.FC<React.PropsWithChildren<Props>> = ({
           ["geist-cyan-fill"]: fill && type === "cyan",
           ["geist-violet-fill"]: fill && type === "violet",
         },
+        "v3-colors", // - .v3-colors replaces .geist-themed
       )}
     >
       <span

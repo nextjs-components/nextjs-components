@@ -126,4 +126,31 @@ import { Button, Container, Note, Stack } from "nextjs-components";
 
 <Spacer y={2} />
 
+### Disabled
+
+<Editor
+  scope={{ Container, Note, Stack, Button }}
+  code={`<Container>
+  <Container>
+    <Note fill disabled>This note details something important.</Note>
+  </Container>
+  
+  <Container>
+    <Note type="secondary" disabled fill>This note details some information.</Note>
+  </Container>
+  
+  <Container>
+    <Note fill disabled>This note details a success.</Note>
+  </Container>
+  
+  <Container>
+    <Note type="error" disabled fill>This note details an error.</Note>
+  </Container>
+  
+  <Container>
+    <Note type="warning" disabled fill action={<Button size="small">Upgrade</Button>}>This note details a warning.</Note>
+  </Container>
+</Container>`}
+/>
+
 <Spacer y={4} />

@@ -7,6 +7,7 @@ import {
   MenuButton,
   MenuItem,
   MenuWrapper,
+  Note,
   Pill,
   Spacer,
   Stack,
@@ -82,6 +83,25 @@ export default async function Page() {
               <MenuItem>Three</MenuItem>
             </Menu>
           </MenuWrapper>
+        </Stack>
+
+        <Spacer />
+
+        <Stack gap={2}>
+          <Note type="error">This note details some error information.</Note>
+          <Note type="error" action={<Button size="small">Upgrade</Button>}>
+            This note details some error information.
+          </Note>
+          <Note type="error" fill>
+            This filled note details some error information.
+          </Note>
+          <Note
+            type="error"
+            fill
+            action={<Button size="small">Upgrade</Button>}
+          >
+            This filled note details some error information.
+          </Note>
         </Stack>
 
         <Spacer />
