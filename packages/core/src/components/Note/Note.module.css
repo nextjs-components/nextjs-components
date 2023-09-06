@@ -1,22 +1,41 @@
 .note {
-  padding: 7px var(--geist-gap-half);
-  display: flex;
-  flex-grow: 1;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--geist-gap-half);
   min-height: var(--geist-form-height);
-  border-radius: var(--geist-radius);
+  display: flex;
+  align-items: center;
+
+  padding: 7px var(--geist-gap-half);
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 12px;
+  border-radius: 10px;
   font-size: 14px;
   line-height: 1.5;
   word-break: break-word;
   box-sizing: border-box;
 }
 
+.note.disabled {
+  background: transparent !important;
+  border: 1px solid var(--ds-gray-alpha-200) !important;
+  color: var(--ds-gray-700) !important;
+}
+
+.note.disabled button {
+  border: 1px solid var(--ds-gray-alpha-400) !important;
+  background: var(--ds-gray-100) !important;
+  color: var(--ds-gray-700) !important;
+  pointer-events: none;
+}
+
+.note.disabled svg {
+  color: var(--ds-gray-700) !important;
+}
+
 @media screen and (max-width: 600px) {
   .note {
     flex-direction: column;
     align-items: flex-start;
+    gap: 4px;
   }
 }
 
@@ -34,7 +53,3 @@
 .center {
   text-align: center;
 }
-
-/* --- */
-
-/* todo: move to global scope? */
