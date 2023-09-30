@@ -50,7 +50,7 @@ const Control = ({
   }
 
   return (
-    <label className={styles.container}>
+    <label className={styles.container} aria-label={label}>
       <input
         {...rest}
         name={name}
