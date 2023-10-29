@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { FocusScope, usePreventScroll } from "react-aria";
 
+import Button, { Props as ButtonProps } from "../Button/Button";
 import { Text } from "../Text";
 import styles from "./Modal.module.css";
 
@@ -22,18 +23,21 @@ export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 export interface SubtitleProps
   extends React.HTMLAttributes<HTMLHeadingElement> {}
 export interface ActionsProps extends React.HTMLAttributes<HTMLElement> {}
-export interface ActionProps
-  extends React.DetailedHTMLProps<
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {}
+export interface ActionProps extends ButtonProps {}
 
 /**
  * https://vercel.com/design/modal
  * https://react-spectrum.adobe.com/react-aria/useDialog.html#example
  */
 export const Modal = (props) => {
-  const { children, disableBackdropClick, active, onClickOutside } = props;
+  const {
+    children,
+    disableBackdropClick,
+    active,
+    onClickOutside,
+    style,
+    ...rest
+  } = props;
 
   const [mounted, setMounted] = useState(() => active);
   useEffect(() => {
@@ -65,15 +69,17 @@ export const Modal = (props) => {
           onClick={onClickOutside}
         />
         <div
+          data-geist-modal=""
           className={clsx(styles.wrapper, {
             [styles.active]: active && mounted,
           })}
+          style={{
+            width: 540,
+            ...style,
+          }}
         >
           <FocusScope contain restoreFocus autoFocus>
-            <div aria-hidden="true" className="focus-trap-backdrop"></div>
-            <div tabIndex={0} className="focus-trap">
-              {children}
-            </div>
+            {children}
           </FocusScope>
         </div>
       </div>
@@ -82,10 +88,14 @@ export const Modal = (props) => {
 };
 
 export const Body = (props) => {
-  const { children, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   return (
-    <div {...rest} className={clsx(styles.modalBody, styles.padding)}>
+    <div
+      data-geist-modal-body=""
+      {...rest}
+      className={clsx(styles.modalBody, styles.padding, className)}
+    >
       {children}
     </div>
   );
@@ -96,33 +106,38 @@ export const Header = ({ children, ...props }) => (
   </header>
 );
 export const Title = ({ children, ...props }) => (
-  <Text as="h3" weight={600} size={24} {...props} className={styles.title}>
-    {children}
-  </Text>
-);
-export const Subtitle = ({ children, ...props }) => (
   <Text
-    align="center"
+    data-geist-modal-title=""
+    as="h3"
+    weight={600}
+    size={24}
     {...props}
-    color="geist-secondary"
-    className={clsx(styles.subtitle, "geist-themed", "geist-secondary")}
+    className={styles.title}
   >
     {children}
   </Text>
 );
-export const Actions = ({ children, ...props }: ActionsProps) => (
-  <footer {...props} className={styles.actions}>
+
+export const Subtitle = ({ children, ...props }) => (
+  <Text data-geist-modal-subtitle="" {...props} size={16}>
+    {children}
+  </Text>
+);
+
+export const Actions = ({ children, className, ...props }: ActionsProps) => (
+  <footer
+    data-geist-modal-actions=""
+    className={clsx(styles.actions, className)}
+    {...props}
+  >
     {children}
   </footer>
 );
-export const Action = ({
-  children,
-  type = "button",
-  ...props
-}: ActionProps) => {
+
+export const Action = ({ children, className, ...props }: ActionProps) => {
   return (
-    <button type={type} {...props} className={styles.action}>
+    <Button className={clsx(styles.action, className)} {...props}>
       {children}
-    </button>
+    </Button>
   );
 };
