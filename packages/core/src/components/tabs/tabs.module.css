@@ -27,14 +27,15 @@
   outline: 0;
 }
 
+.tabContainer[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 .tabs.tabs.noBorder > .tabContainer {
   margin-bottom: 0;
   border-bottom: none;
 }
 
-.disabled .tabContainer {
-  cursor: default;
-}
 
 .tabContainer:first-child {
   padding-left: 0;
