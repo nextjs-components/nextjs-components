@@ -20,6 +20,7 @@ export const MenuButton: React.FC<ButtonProps> = ({
       aria-describedby={menuId}
       aria-expanded={open}
       data-geist-menu-button=""
+      // @ts-expect-error - TODO(kevinwang) type ref properly
       ref={buttonRef}
       onClick={(e) => {
         setOpen(true);

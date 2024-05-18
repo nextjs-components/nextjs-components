@@ -14,7 +14,11 @@ function clamp(val: number, min: number, max: number) {
   return Math.min(Math.max(val, min), max);
 }
 
-const Capacity: React.ComponentType<Props> = ({ value, limit, color }) => {
+const Capacity: React.ComponentType<Props> = ({
+  value = 0,
+  limit = 1,
+  color,
+}) => {
   const percentage = value / limit;
   const width = clamp(percentage * 50, 8, 50);
 

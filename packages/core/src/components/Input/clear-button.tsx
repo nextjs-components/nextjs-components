@@ -7,7 +7,7 @@ import XCircle from "../../icons/x-circle";
 import reset from "../../styles/reset/reset.module.css";
 import clearableStyles from "./clearable.module.css";
 
-export const ClearButton = ({ onClick }) => {
+export const ClearButton = (({ onClick }) => {
   const { focusProps, isFocusVisible } = useFocusRing();
   return (
     <button
@@ -24,4 +24,4 @@ export const ClearButton = ({ onClick }) => {
       </span>
     </button>
   );
-};
+}) satisfies React.FC<{ onClick?: React.MouseEventHandler<HTMLButtonElement> }>;

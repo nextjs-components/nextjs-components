@@ -1,6 +1,6 @@
 "use client";
 
-const Tags = ({ children }) => {
+const Tags = (({ children }) => {
   return (
     <ul>
       <style jsx>{`
@@ -22,6 +22,6 @@ const Tags = ({ children }) => {
       {children}
     </ul>
   );
-};
+}) satisfies React.ComponentType<React.PropsWithChildren>;
 
 export default Tags;

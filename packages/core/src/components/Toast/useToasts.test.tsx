@@ -1,3 +1,4 @@
+// @ts-nocheck TODO(kevinwang) type me
 import { act, renderHook } from "@testing-library/react";
 
 import ToastsProvider from "./ToastsProvider";

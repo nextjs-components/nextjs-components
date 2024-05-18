@@ -39,7 +39,10 @@ const Tabs: React.ComponentType<TabsProps> = ({
 
 export default Tabs;
 
-const Tab = ({ title, value, selected, setSelected, icon, disabled }) => {
+const Tab = (
+  // @ts-expect-error - TODO(kevinwang) fixme
+  { title, value, selected, setSelected, icon, disabled },
+) => {
   let { focusProps, isFocusVisible } = useFocusRing();
   return (
     <div

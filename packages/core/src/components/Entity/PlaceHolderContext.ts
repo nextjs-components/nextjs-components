@@ -2,5 +2,5 @@
 
 import { createContext } from "react";
 
-const PlaceHolderContext = createContext(true);
+const PlaceHolderContext = createContext<boolean | undefined>(true);
 export default PlaceHolderContext;

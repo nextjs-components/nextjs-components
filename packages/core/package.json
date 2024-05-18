@@ -41,8 +41,9 @@
     "react-use-measure": "2.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.7",
-    "@babel/core": "7.16.7",
+    "@babel/cli": "7.24.5",
+    "@babel/core": "7.24.5",
+    "@babel/preset-typescript": "^7.24.1",
     "@swc/cli": "0.1.55",
     "@swc/core": "1.2.124",
     "@testing-library/jest-dom": "5.16.5",
@@ -58,7 +59,7 @@
     "source-map-support": "0.5.21",
     "ts-jest": "29.0.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.0.2"
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "next": ">=12.x | >=13.x",

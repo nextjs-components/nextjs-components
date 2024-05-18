@@ -13,6 +13,7 @@ import {
 import { CalendarButton } from "./button";
 import { CalendarGrid } from "./calendar-grid";
 
+// @ts-expect-error - TODO(kevinwang) type CalendarProps
 export default function Calendar(props) {
   let { locale } = useLocale();
   let state = useCalendarState({
@@ -21,7 +22,7 @@ export default function Calendar(props) {
     createCalendar,
   });
 
-  let ref = useRef();
+  let ref = useRef(null);
   let { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(
     props,
     state,

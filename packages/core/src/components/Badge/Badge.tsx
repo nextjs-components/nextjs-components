@@ -39,8 +39,8 @@ const Badge: React.FC<React.PropsWithChildren<Props>> = ({
       data-version="v2"
       className={clsx(
         styles.badge,
+        variant ? styles[variant] : undefined,
         {
-          [styles[variant]]: !!variant,
           [styles.lg]: size === "lg",
           [styles.md]: size === "md",
           [styles.sm]: size === "sm",
