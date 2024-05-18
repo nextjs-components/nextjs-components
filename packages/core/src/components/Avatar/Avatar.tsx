@@ -1,6 +1,12 @@
+import type { FC } from "react";
+
 import styles from "./Avatar.module.css";
 
-const Avatar = ({ size, src }) => {
+export interface AvatarProps {
+  size?: string | number;
+  src?: string;
+}
+const Avatar: FC<AvatarProps> = ({ size, src }) => {
   return (
     <span className={styles.avatar} style={{ "--size": `${size}px` } as any}>
       <img

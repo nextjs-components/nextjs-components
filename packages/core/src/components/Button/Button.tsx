@@ -39,7 +39,7 @@ export interface Props
 
 // let {Component: n="button", typeName: h="submit", className: g, href: b, as: w, target: E, rel: C, disabled: A, loading: j, width: S, type: k, size: T, prefix: O, normalStyle: D, hoverStyle: L, suffix: I, onClick: R, variant: P="invert", shape: N, align: M, children: V, onMouseDown: F, onMouseUp: B, svgOnly: H, passthroughOnClick: $, passthroughOnMouseEnter: U, touchEventWorkaround: z=!1, ...W} =
 
-const Button: React.ComponentType<Props> = forwardRef(
+const Button = forwardRef<HTMLButtonElement, Props>(
   (
     {
       // custom props
@@ -72,6 +72,7 @@ const Button: React.ComponentType<Props> = forwardRef(
 
     const ref = useRef<HTMLButtonElement>();
     const { buttonProps, isPressed } = useButton(
+      // @ts-expect-error - TOOD(kevinwang): handle spread props type
       {
         ...props,
         elementType: Component,
@@ -132,14 +133,11 @@ const Button: React.ComponentType<Props> = forwardRef(
           {
             [styles.ghost]: variant === "ghost",
             [styles.shadow]: variant === "shadow",
-          },
-          {
-            [styles.shape]: !!shape,
+            [styles.shape]: typeof shape != "undefined",
             [styles.circle]: shape === "circle",
-          },
-          {
             [styles.secondary]: type === "secondary",
-            [styles[size]]: !!size,
+            [styles.small]: size === "small",
+            [styles.large]: size === "large",
             [styles.disabled]: isDisabled,
           },
           type === "success" && [

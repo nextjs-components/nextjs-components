@@ -7,15 +7,15 @@ import { isBrowser } from "../../utils/isBrowser";
 import styles from "./Scroller.module.css";
 
 interface Props {
-  width?: React.HTMLAttributes<HTMLDivElement>["style"]["width"];
-  height?: React.HTMLAttributes<HTMLDivElement>["style"]["height"];
+  width?: React.CSSProperties["width"];
+  height?: React.CSSProperties["height"];
 }
 const Scroller: React.ComponentType<React.PropsWithChildren<Props>> = ({
   width,
   height,
   children,
 }) => {
-  const ref = useRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(null);
 
   const [top, setTop] = useState(false);
   const [right, setRight] = useState(false);
@@ -23,7 +23,7 @@ const Scroller: React.ComponentType<React.PropsWithChildren<Props>> = ({
   const [left, setLeft] = useState(false);
 
   useEffect(() => {
-    const handleScroll = (e) => {
+    const handleScroll = () => {
       if (!ref.current) return;
       const visibleWidth = ref.current.clientWidth;
       const scrollableWidth = ref.current.scrollWidth;

@@ -74,7 +74,7 @@ interface Fs {
   Footer: typeof Footer;
 }
 
-const Tabs = ({ children, tabs, ...props }) => {
+const Tabs = (({ children, tabs, ...props }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className={styles.tabs} {...props}>
@@ -93,11 +93,13 @@ const Tabs = ({ children, tabs, ...props }) => {
       {Children.toArray(children)[activeIndex]}
     </div>
   );
-};
+}) satisfies React.FC<
+  PropsWithChildren<{ tabs: string[] }> & HTMLAttributes<HTMLDivElement>
+>;
 
-const ErrorText = ({ children }) => {
+const ErrorText = (({ children }) => {
   return <span className={styles.error}>{children}</span>;
-};
+}) satisfies FC<PropsWithChildren>;
 
 /**
  * # fs

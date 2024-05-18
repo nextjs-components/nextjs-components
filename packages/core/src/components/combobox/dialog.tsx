@@ -75,7 +75,7 @@ export const Dialog: FC<PropsWithChildren<DialogProps>> = ({
   // click handler for closing the dialog
   useLayoutEffect(() => {
     // https://stackoverflow.com/questions/25864259/how-to-close-the-new-html-dialog-tag-by-clicking-on-its-backdrop
-    const _handleClickOutside = (event) => {
+    const _handleClickOutside = (event: HTMLElementEventMap["click"]) => {
       if (ref.current?.open) {
         const rect = ref.current.getBoundingClientRect();
         const isInDialog =
@@ -89,9 +89,9 @@ export const Dialog: FC<PropsWithChildren<DialogProps>> = ({
         }
       }
     };
-    ref.current.addEventListener("click", _handleClickOutside);
+    ref.current?.addEventListener("click", _handleClickOutside);
     return () => {
-      ref.current.removeEventListener("click", _handleClickOutside);
+      ref.current?.removeEventListener("click", _handleClickOutside);
     };
   }, [handleClickOutside]);
 

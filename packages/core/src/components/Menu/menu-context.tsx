@@ -6,12 +6,12 @@ export interface IMenuContext {
   popperRef: React.RefObject<HTMLDivElement>;
   buttonRef: React.RefObject<HTMLButtonElement>;
   listElement: HTMLUListElement | null;
-  setListElement: React.Dispatch<React.SetStateAction<HTMLUListElement>>;
+  setListElement: React.Dispatch<React.SetStateAction<HTMLUListElement | null>>;
   menuId: string;
   buttonId: string;
   open: boolean;
   setOpen: (val: boolean) => void;
-  selected: number;
+  selected: number | null;
   setSelected: React.Dispatch<React.SetStateAction<number>>;
   typeahead: string;
   afterSelect: () => void;
@@ -24,13 +24,13 @@ const MenuContext = createContext<IMenuContext>({
   popperRef: { current: null },
   buttonRef: { current: null },
   listElement: null as HTMLUListElement | null,
-  setListElement: (val: HTMLUListElement) => {},
+  setListElement: (val) => {},
   menuId: "menu-:r1:",
   buttonId: "menu-button-:r2:",
   open: false,
   setOpen: (val: boolean) => {},
   selected: null,
-  setSelected: (val: number) => {},
+  setSelected: (val) => {},
   typeahead: "",
   afterSelect: () => {},
   selectFirstNonDisabled: () => {},

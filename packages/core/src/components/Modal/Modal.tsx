@@ -29,7 +29,10 @@ export interface ActionProps extends ButtonProps {}
  * https://vercel.com/design/modal
  * https://react-spectrum.adobe.com/react-aria/useDialog.html#example
  */
-export const Modal = (props) => {
+export const Modal = (
+  // @ts-expect-error - TODO(kevinwang) type ModalProps
+  props,
+) => {
   const {
     children,
     disableBackdropClick,
@@ -87,7 +90,7 @@ export const Modal = (props) => {
   ) : null;
 };
 
-export const Body = (props) => {
+export const Body = ((props) => {
   const { children, className, ...rest } = props;
 
   return (
@@ -99,13 +102,16 @@ export const Body = (props) => {
       {children}
     </div>
   );
-};
-export const Header = ({ children, ...props }) => (
+}) satisfies React.FC<React.PropsWithChildren<BodyProps>>;
+
+export const Header = (({ children, ...props }) => (
   <header {...props} className={styles.header}>
     <h3>{children}</h3>
   </header>
-);
-export const Title = ({ children, ...props }) => (
+)) satisfies React.FC<React.PropsWithChildren<HeaderProps>>;
+
+export const Title = (({ children, ...props }) => (
+  // @ts-expect-error - TODO(kevinwang): handle props typing
   <Text
     data-geist-modal-title=""
     as="h3"
@@ -116,13 +122,14 @@ export const Title = ({ children, ...props }) => (
   >
     {children}
   </Text>
-);
+)) satisfies React.FC<React.PropsWithChildren<TitleProps>>;
 
-export const Subtitle = ({ children, ...props }) => (
+export const Subtitle = (({ children, ...props }) => (
+  // @ts-expect-error - TODO(kevinwang): handle props typing
   <Text data-geist-modal-subtitle="" {...props} size={16}>
     {children}
   </Text>
-);
+)) satisfies React.FC<React.PropsWithChildren<SubtitleProps>>;
 
 export const Actions = ({ children, className, ...props }: ActionsProps) => (
   <footer
@@ -136,6 +143,7 @@ export const Actions = ({ children, className, ...props }: ActionsProps) => (
 
 export const Action = ({ children, className, ...props }: ActionProps) => {
   return (
+    // @ts-expect-error - TODO(kevinwang): handle props typing
     <Button className={clsx(styles.action, className)} {...props}>
       {children}
     </Button>
