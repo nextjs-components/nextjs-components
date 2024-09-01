@@ -1,14 +1,11 @@
+> [!WARNING]
+> This project is not actively maintained.
+
 # nextjs-components
 
 A collection of React components, transcribed from https://vercel.com/design. [^1]
 
 [^1]: This is not affiliated with [Vercel](https://vercel.com)
-
-[![npm latest package](https://img.shields.io/npm/v/nextjs-components/latest.svg)](https://www.npmjs.com/package/nextjs-components) [![npm next package](https://img.shields.io/npm/v/nextjs-components/next.svg)](https://www.npmjs.com/package/nextjs-components)
-
-![](https://badgen.net/bundlephobia/min/nextjs-components) ![](https://badgen.net/bundlephobia/minzip/nextjs-components)
-
-![](https://badgen.net/bundlephobia/dependency-count/nextjs-components) ![](https://badgen.net/bundlephobia/tree-shaking/nextjs-components)
 
 ![nextjs-components](https://user-images.githubusercontent.com/26389321/187589104-77ce2ff9-ecbd-47a6-98d2-0e809930b648.jpg)
 
@@ -95,6 +92,7 @@ export default App;
 
 Check out the [documentation site](https://nextjs-components-thekevinwang.vercel.app/) for more examples!
 
-> **Warning**: Dropped `create-react-app` support.
+> [!WARNING]
+> Dropped `create-react-app` support.
 >
 > In older versions, usage with `create-react-app` was supported. However, from `>=v1.0.0`, the pre-built `/dist` folder was dropped.
