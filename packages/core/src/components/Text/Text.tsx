@@ -111,7 +111,10 @@ const Text = forwardRef<unknown, Props>(
           [styles[lh]]: !!lh,
           [styles.truncate]: truncate === true,
           [styles.clamp]: typeof truncate === "number",
-          [styles[transform]]: !!transform,
+          [styles.capitalize]: transform === "capitalize",
+          [styles.uppercase]: transform === "uppercase",
+          [styles.lowercase]: transform === "lowercase",
+          [styles.initial]: transform === "initial",
           [styles.nowrap]: wrap === false,
           [styles.monospace]: !!monospace,
         })}

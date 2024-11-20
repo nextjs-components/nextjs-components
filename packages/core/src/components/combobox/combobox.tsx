@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 
 import * as Popover from "@radix-ui/react-popover";
@@ -36,6 +37,8 @@ import { Text } from "../Text";
 import styles from "./combobox.module.css";
 import { Dialog } from "./dialog";
 import iconButton from "./icon-button.module.css";
+
+// @ts-nocheck
 
 const useLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect$1;

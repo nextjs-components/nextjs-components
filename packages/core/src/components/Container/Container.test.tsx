@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO(kevinwang) type me
 import { render } from "@testing-library/react";
 import clsx from "clsx";
 

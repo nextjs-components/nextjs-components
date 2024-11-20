@@ -21,7 +21,7 @@ export function DateField(props: AriaDatePickerProps<DateValue>) {
     createCalendar,
   });
 
-  let ref = useRef();
+  let ref = useRef(null);
   let { fieldProps } = useDateField(props, state, ref);
 
   const [focusWithin, setFocusWithin] = useState(false);
@@ -65,7 +65,7 @@ interface DateSegmentProps {
 }
 
 function DateSegment({ segment, state }: DateSegmentProps) {
-  let ref = useRef();
+  let ref = useRef(null);
   let { segmentProps } = useDateSegment(segment, state, ref);
   let { focusProps, isFocused } = useFocusRing();
 
@@ -77,7 +77,9 @@ function DateSegment({ segment, state }: DateSegmentProps) {
       style={{
         ...segmentProps.style,
         minWidth:
-          segment.maxValue != null && String(segment.maxValue).length + "ch",
+          segment.maxValue != null
+            ? String(segment.maxValue).length + "ch"
+            : undefined,
         paddingLeft: "0.25ch",
         paddingRight: "0.25ch",
         paddingTop: 4,

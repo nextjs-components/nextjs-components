@@ -62,8 +62,8 @@ export function DateRangePicker({
     hideTimeZone: false,
   });
 
-  let ref = useRef();
-  let overlayRef = useRef();
+  let ref = useRef(null);
+  let overlayRef = useRef(null);
 
   let {
     groupProps,
@@ -76,7 +76,7 @@ export function DateRangePicker({
   } = useDateRangePicker({ ...props, granularity, hideTimeZone }, state, ref);
 
   // Get popover positioning props relative to the trigger
-  let triggerRef = useRef();
+  let triggerRef = useRef(null);
   let { overlayProps: positionProps } = useOverlayPosition({
     targetRef: triggerRef,
     overlayRef,
@@ -96,7 +96,7 @@ export function DateRangePicker({
         <Button
           prefix={<CalendarIcon />}
           {...buttonProps}
-          onClick={(e) => buttonProps.onPress(e)}
+          onClick={(e) => buttonProps.onPress?.(e)}
           type="secondary"
           typeName="button"
           style={{

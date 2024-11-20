@@ -15,8 +15,8 @@ describe("Select", () => {
 
   it.each([["foo"], [undefined]])("should be labelled correctly", (label) => {
     const { container } = render(<Select label={label} />);
-    const labelFor = container.querySelector("label").getAttribute("for");
-    const selectId = container.querySelector("select").getAttribute("id");
+    const labelFor = container.querySelector("label")?.getAttribute("for");
+    const selectId = container.querySelector("select")?.getAttribute("id");
 
     expect(labelFor).toEqual(selectId);
   });

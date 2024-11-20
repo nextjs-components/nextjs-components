@@ -24,11 +24,11 @@ import MenuContext, { useMenu } from "./menu-context";
  *   </Menu>
  * </MenuWrapper>
  */
-export const MenuWrapper = ({ children }) => {
-  const [listElement, setListElement] = useState<HTMLUListElement>(null);
+export const MenuWrapper = (({ children }) => {
+  const [listElement, setListElement] = useState<HTMLUListElement | null>(null);
 
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const popperRef = useRef<HTMLDivElement>();
+  const popperRef = useRef<HTMLDivElement>(null);
 
   const [selected, setSelected] = useState(-1);
 
@@ -91,7 +91,7 @@ export const MenuWrapper = ({ children }) => {
       {children}
     </MenuContext.Provider>
   );
-};
+}) satisfies FC<PropsWithChildren>;
 
 interface MenuInnerProps {
   "aria-labelledby"?: string;
@@ -188,7 +188,7 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
           // prevent selecting a disabled sibling
           let siblings = Children.toArray(children);
           let step = 1;
-          let curr = selected;
+          let curr = selected!;
           if (curr <= 0) return;
 
           // @ts-expect-error .props
@@ -205,7 +205,7 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
           // prevent selecting a disabled sibling
           let siblings = Children.toArray(children);
           let step = 1;
-          let curr = selected;
+          let curr = selected!;
           let len = siblings.length;
           if (curr >= len - 1) return;
 
@@ -251,7 +251,7 @@ export const Menu: FC<PropsWithChildren<MenuProps>> = ({
   ) : null;
 };
 
-const Popper = ({ children }) => {
+const Popper = (({ children }) => {
   const { popperRef, open, setOpen, buttonRef } = useMenu();
 
   const { arrowProps, placement, popoverProps, underlayProps } = usePopover(
@@ -309,4 +309,4 @@ const Popper = ({ children }) => {
       </div>
     </>
   );
-};
+}) satisfies FC<PropsWithChildren>;

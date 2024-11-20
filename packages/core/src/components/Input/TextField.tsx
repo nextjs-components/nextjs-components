@@ -44,7 +44,8 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
     ref,
   ) => {
     const containerClassName = clsx(styles.container, {
-      [styles[size]]: !!size,
+      [styles.small]: size === "small",
+      [styles.large]: size === "large",
       [styles.prefix]: !!prefix,
       [styles.suffix]: !!suffix,
       [styles.noPrefixStyle]: !prefixStyling,
@@ -55,7 +56,8 @@ export const TextField = forwardRef<HTMLInputElement, Props>(
     });
 
     const inputClassName = clsx(styles.input, className, {
-      [styles[size]]: !!size,
+      [styles.small]: size === "small",
+      [styles.large]: size === "large",
     });
 
     const _prefix = prefixContainer ? <span>{prefix}</span> : prefix;

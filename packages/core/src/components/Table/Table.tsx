@@ -51,8 +51,8 @@ interface Props {
   fixed?: boolean;
   headerActions?: (params: HeaderActionParams) => JSX.Element;
   rowActions?: (params: RowActionParams) => JSX.Element;
-  width?: React.HTMLAttributes<HTMLDivElement>["style"]["width"];
-  height?: React.HTMLAttributes<HTMLDivElement>["style"]["height"];
+  width?: React.CSSProperties["width"];
+  height?: React.CSSProperties["height"];
   empty?: JSX.Element;
 }
 
@@ -269,7 +269,7 @@ const Table: React.ComponentType<React.PropsWithChildren<Props>> = ({
                         }
                         return (
                           <td role="cell" className={cn} key={key}>
-                            {row[accessor]}
+                            {accessor ? row[accessor] : null}
                           </td>
                         );
                       })}

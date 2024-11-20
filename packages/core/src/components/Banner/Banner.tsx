@@ -21,7 +21,7 @@ const Banner: React.ComponentType<Props> = ({
   title,
   subtitle,
   linkText,
-  localStorageKey,
+  localStorageKey = "banner",
 }) => {
   const [showBanner, handleClose] = useBanner(localStorageKey);
   return showBanner ? (

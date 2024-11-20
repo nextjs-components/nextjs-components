@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO(kevinwang) type me
 import { act, render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { mocked } from "jest-mock";

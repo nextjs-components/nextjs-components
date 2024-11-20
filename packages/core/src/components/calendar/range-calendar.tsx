@@ -16,6 +16,7 @@ import { CalendarButton } from "./button";
 import { CalendarGrid } from "./calendar-grid";
 import styles from "./calendar.module.css";
 
+// @ts-expect-error - TODO(kevinwang) type RangeCalendar
 export function RangeCalendar(props) {
   let { locale } = useLocale();
   let state = useRangeCalendarState({
@@ -24,7 +25,7 @@ export function RangeCalendar(props) {
     createCalendar,
   });
 
-  let ref = useRef();
+  let ref = useRef(null);
   let { calendarProps, prevButtonProps, nextButtonProps, title } =
     useRangeCalendar(props, state, ref);
 

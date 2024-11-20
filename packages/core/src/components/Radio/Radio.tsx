@@ -22,7 +22,9 @@ export const RadioGroup: FC<React.PropsWithChildren<RadioGroupProps>> = (
   props,
 ) => {
   const { children, label } = props;
+  // @ts-expect-error - TODO(kevinwang): fixme
   const state = useRadioGroupState({ ...props, isDisabled: props.disabled });
+  // @ts-expect-error - TODO(kevinwang): fixme
   const { radioGroupProps, labelProps } = useRadioGroup(props, state);
 
   return (
@@ -30,7 +32,13 @@ export const RadioGroup: FC<React.PropsWithChildren<RadioGroupProps>> = (
       <span className="geist-sr-only" {...labelProps}>
         {label || "Default Radio Example"}
       </span>
-      <RadioContext.Provider value={state}>{children}</RadioContext.Provider>
+
+      <RadioContext.Provider
+        // @ts-expect-error - TODO(kevinwang): fixme
+        value={state}
+      >
+        {children}
+      </RadioContext.Provider>
     </div>
   );
 };
@@ -47,6 +55,7 @@ export const RadioItem: FC<React.PropsWithChildren<RadioItemProps>> = (
   const { children } = props;
   const state = useContext(RadioContext);
   const ref = useRef(null);
+  // @ts-expect-error - TODO(kevinwang): fixme
   const { inputProps, isDisabled } = useRadio(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
 

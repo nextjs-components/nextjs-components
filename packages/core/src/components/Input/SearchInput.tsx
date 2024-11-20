@@ -32,7 +32,11 @@ const SearchInput = forwardRef<HTMLInputElement, Props>(
         typeName="search"
         prefix={
           loading ? (
-            <Spinner size={{ small: 16, large: 24 }[props.size]} />
+            <Spinner
+              size={
+                props.size ? { small: 16, large: 24 }[props.size] : undefined
+              }
+            />
           ) : (
             <Search />
           )
@@ -51,7 +55,7 @@ const SearchInput = forwardRef<HTMLInputElement, Props>(
                 }
               }}
             />
-          ) : null
+          ) : undefined
         }
         suffixContainer={false}
         suffixStyling={false}

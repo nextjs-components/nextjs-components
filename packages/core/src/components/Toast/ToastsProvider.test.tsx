@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO(kevinwang) type me
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { UserEvent } from "@testing-library/user-event/setup/setup";

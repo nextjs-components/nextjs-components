@@ -52,7 +52,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
     ref,
   ) => {
     const containerClassName = clsx(styles.container, {
-      [styles[size]]: !!size,
+      [styles.small]: size === "small",
+      [styles.large]: size === "large",
       [styles.prefix]: !!prefix,
       [styles.suffix]: !!suffix,
       [styles.noPrefixStyle]: !prefixStyling,
@@ -65,7 +66,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
     });
 
     const inputClassName = clsx(styles.input, className, {
-      [styles[size]]: !!size,
+      [styles.small]: size === "small",
+      [styles.large]: size === "large",
     });
 
     const _prefix = prefixContainer ? (
@@ -85,7 +87,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
     const iconSize = size === "small" ? 16 : size === "large" ? 24 : 20;
 
     const LabelOrFragment = useCallback(
-      ({ children }) => {
+      ({ children }: { children: React.ReactNode }) => {
         if (label) {
           return (
             <Label

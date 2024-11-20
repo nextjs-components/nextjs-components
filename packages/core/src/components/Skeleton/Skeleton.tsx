@@ -16,7 +16,7 @@ interface Props {
   show?: boolean;
 }
 
-const isChildNull = (children) => {
+const isChildNull = (children: React.ReactNode) => {
   return !Children.count(children);
 };
 
@@ -24,7 +24,7 @@ const Skeleton: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   width = 24,
   height = 24,
-  boxHeight,
+  boxHeight = 0,
   vcenter,
   show,
   ...props

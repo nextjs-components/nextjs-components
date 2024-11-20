@@ -84,11 +84,13 @@ const EntityField = ({
         [styles.avatarWrap]: thumbnailWrapOnMobile,
       })}
       style={
-        width && {
-          flexShrink: 0,
-          flexGrow: 0,
-          flexBasis: width,
-        }
+        width
+          ? {
+              flexShrink: 0,
+              flexGrow: 0,
+              flexBasis: width,
+            }
+          : undefined
       }
     >
       {checkbox && (

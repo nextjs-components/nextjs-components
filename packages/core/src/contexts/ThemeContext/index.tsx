@@ -4,7 +4,7 @@ import { ThemeProvider, useTheme } from "next-themes";
 
 const STORAGE_KEY = "mode";
 
-export const ThemeContextProvider = ({ children }) => {
+export const ThemeContextProvider = (({ children }) => {
   return (
     <ThemeProvider
       storageKey={STORAGE_KEY}
@@ -19,6 +19,6 @@ export const ThemeContextProvider = ({ children }) => {
       {children}
     </ThemeProvider>
   );
-};
+}) satisfies React.ComponentType<React.PropsWithChildren>;
 
 export { useTheme };

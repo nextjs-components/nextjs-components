@@ -30,7 +30,7 @@ const ClearableInput = forwardRef<HTMLInputElement, Props>(
                 }
               }}
             />
-          ) : null
+          ) : undefined
         }
         suffixContainer={false}
         suffixStyling={false}

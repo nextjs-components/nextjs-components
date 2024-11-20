@@ -14,13 +14,13 @@ import {
 import { DepthContextProvider, useDepth } from "./DepthContext";
 import styles from "./file-tree.module.css";
 
-export const Tree = ({ children, style }) => {
+export const Tree = (({ children, style }) => {
   return (
     <div className={styles.tree} style={style}>
       {children}
     </div>
   );
-};
+}) satisfies React.FC<React.PropsWithChildren<{ style?: CSSProperties }>>;
 
 interface Props {
   style?: CSSProperties;

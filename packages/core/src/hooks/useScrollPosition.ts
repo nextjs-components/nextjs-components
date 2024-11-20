@@ -19,7 +19,7 @@ const useScrollPosition = (): ScrollPosition => {
   );
 
   useEffect(() => {
-    let requestRunning: number = null;
+    let requestRunning: number | null = null;
 
     function handleScroll() {
       if (isBrowser && requestRunning === null) {

@@ -1,13 +1,15 @@
 "use client";
 
+import type { AriaButtonProps } from "@react-types/button";
 import { useRef } from "react";
 
 import { Button } from "../Button";
 import styles from "./calendar.module.css";
 
-export function CalendarButton(props) {
-  let ref = useRef();
+export function CalendarButton(props: AriaButtonProps) {
+  let ref = useRef<HTMLButtonElement>(null);
   return (
+    // @ts-expect-error - AriaButtonProps does not conform to ButtonProps
     <Button
       {...props}
       ref={ref}
@@ -18,7 +20,7 @@ export function CalendarButton(props) {
       onBlur={props.onBlur}
       onFocus={props.onFocus}
       onClick={(e) => {
-        props.onPress(e);
+        props.onPress?.(e);
       }}
     >
       {props.children}

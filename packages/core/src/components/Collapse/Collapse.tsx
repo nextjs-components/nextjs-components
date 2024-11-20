@@ -2,6 +2,9 @@
 
 import clsx from "clsx";
 import {
+  type FC,
+  type PropsWithChildren,
+  type ReactNode,
   createContext,
   memo,
   useCallback,
@@ -17,22 +20,25 @@ import { Text } from "../Text";
 import styles from "./Collapse.module.css";
 
 interface ICollapseContext {
-  onChange?: (val: string | React.ReactNode) => void;
-  selected?: string;
+  onChange?: (val: string | ReactNode) => void;
+  selected?: string | React.ReactNode;
 }
-const CollapseContext = createContext<ICollapseContext>(undefined);
+const CollapseContext = createContext<ICollapseContext>({});
 
-export const CollapseGroup = ({ children }) => {
-  const [selected, setSelected] = useState("");
-  const onChange = useCallback((val) => {
-    setSelected(val);
-  }, []);
+export const CollapseGroup = (({ children }) => {
+  const [selected, setSelected] = useState<string | React.ReactNode>("");
+  const onChange = useCallback<(val: string | React.ReactNode) => void>(
+    (val) => {
+      setSelected(val);
+    },
+    [],
+  );
   return (
     <CollapseContext.Provider value={{ selected, onChange }}>
       <div className={styles.collapseGroup}>{children}</div>
     </CollapseContext.Provider>
   );
-};
+}) satisfies FC<PropsWithChildren>;
 
 interface Props {
   title?: string | React.ReactNode;
@@ -53,9 +59,9 @@ const Collapse: React.ComponentType<React.PropsWithChildren<Props>> = memo(
       (title: string | React.ReactNode) => {
         if (context) {
           if (title === context.selected) {
-            context.onChange(undefined);
+            context.onChange?.(undefined);
           } else {
-            context.onChange(title);
+            context.onChange?.(title);
           }
         } else {
           setOpen((s) => !s);
