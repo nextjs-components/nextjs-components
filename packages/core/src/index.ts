@@ -1,6 +1,6 @@
 export { DisabledContext } from "./contexts/DisabledContext";
 export { IconSizeContext, useIconSize } from "./contexts/IconSizeContext";
-export { ThemeContextProvider, useTheme } from "./contexts/ThemeContext";
+export { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 
 export { Avatar } from "./components/Avatar";
 export { Badge } from "./components/Badge";
@@ -30,8 +30,8 @@ export { LoadingDots } from "./components/LoadingDots";
 export { Menu, MenuButton, MenuContext, MenuItem, MenuLink, MenuWrapper, useMenu } from "./components/Menu";
 export { default as Modal } from "./components/Modal"; // breaking 2.0.0
 export { Note } from "./components/Note";
-export { RadioGroup, RadioItem } from "./components/Radio";
 export { Pill } from "./components/pill";
+export { RadioGroup, RadioItem } from "./components/Radio";
 // export * from "./components/Scroller";
 export { ModeSelect, Select } from "./components/Select";
 export { ShowMore, type ShowMoreProps } from "./components/ShowMore";

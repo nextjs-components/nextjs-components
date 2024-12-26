@@ -1,23 +1,33 @@
 "use client";
 
-import { ThemeProvider, useTheme } from "next-themes";
+import {
+  ThemeProvider as ThemeProviderPrimitive,
+  type ThemeProviderProps,
+  useTheme,
+} from "next-themes";
+import { PropsWithChildren } from "react";
 
 const STORAGE_KEY = "mode";
 
-export const ThemeContextProvider = ({ children }) => {
+export const ThemeProvider = ({
+  children,
+  ...props
+}: PropsWithChildren<ThemeProviderProps>) => {
   return (
-    <ThemeProvider
+    <ThemeProviderPrimitive
       storageKey={STORAGE_KEY}
       attribute="class"
+      defaultTheme="system"
       enableSystem
       value={{
         dark: "dark-theme", // specific html tag class used by all components' css
         system: "system", // arbitrary
         light: "light-theme", // arbitrary
       }}
+      {...props}
     >
       {children}
-    </ThemeProvider>
+    </ThemeProviderPrimitive>
   );
 };
 
