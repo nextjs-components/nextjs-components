@@ -51,5 +51,3 @@ export { ToastArea, ToastsProvider, useToasts } from "./components/Toast";
 export { Toggle } from "./components/Toggle";
 export { Tooltip } from "./components/tooltip";
 export { default as Window } from "./components/Window"; // breaking 2.0.0
-
-export * as Icons from "./icons";
