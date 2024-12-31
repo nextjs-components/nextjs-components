@@ -7,7 +7,7 @@ import { Text } from "nextjs-components/src/components/Text";
 import { useToasts } from "nextjs-components/src/components/Toast";
 import ChevronRight from "nextjs-components/src/icons/chevron-right";
 import CopyIcon from "nextjs-components/src/icons/copy";
-import RotateCW from "nextjs-components/src/icons/rotate-cw";
+import RotateCW from "nextjs-components/src/icons/rotate-clockwise";
 import React from "react";
 import { useState } from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";

@@ -1,11 +1,8 @@
 import { Container, Tabs } from "nextjs-components";
-import {
-  Facebook,
-  Figma,
-  Instagram,
-  Linkedin,
-  Twitter,
-} from "nextjs-components/src/icons";
+
+import Facebook from "nextjs-components/src/icons/logo-facebook";
+import Figma from "nextjs-components/src/icons/logo-figma";
+import Google from "nextjs-components/src/icons/logo-google";
 
 <Spacer y={0.6} />
 
@@ -63,7 +60,7 @@ import {
 ### With Icons
 
 <Editor
-  scope={{ Tabs, Facebook, Figma, Instagram, Linkedin, Twitter }}
+  scope={{ Tabs, Facebook, Figma, Google }}
   code={`() => {
   const [selected, setSelected] = React.useState('facebook')
   
@@ -71,7 +68,7 @@ import {
     tabs={[
       { title: 'Facebook', value: 'facebook', icon: <Facebook size={20} /> },
       { title: 'Figma', value: 'figma', icon: <Figma size={20} /> },
-      { title: 'Instagram', value: 'instagram', icon: <Instagram size={20} /> }
+      { title: 'Google', value: 'google', icon: <Google size={20} /> }
     ]}
     selected={selected}
     setSelected={setSelected}

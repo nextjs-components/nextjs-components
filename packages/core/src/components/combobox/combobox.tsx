@@ -29,13 +29,24 @@ import {
 import { useFocusRing } from "react-aria";
 
 import { useMediaQuery } from "../../hooks";
-import { ChevronDown, Search, X } from "../../icons";
+import ChevronDown from "../../icons/chevron-down";
+import MagnifyingGlass from "../../icons/magnifying-glass";
 import reset from "../../styles/reset/reset.module.css";
 import { Spinner } from "../Spinner";
 import { Text } from "../Text";
 import styles from "./combobox.module.css";
 import { Dialog } from "./dialog";
 import iconButton from "./icon-button.module.css";
+
+const X = () => {
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: `<svg data-testid="geist-icon" height="16" stroke-linejoin="round" viewBox="0 0 16 16" width="16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.4697 13.5303L13 14.0607L14.0607 13L13.5303 12.4697L9.06065 7.99999L13.5303 3.53032L14.0607 2.99999L13 1.93933L12.4697 2.46966L7.99999 6.93933L3.53032 2.46966L2.99999 1.93933L1.93933 2.99999L2.46966 3.53032L6.93933 7.99999L2.46966 12.4697L1.93933 13L2.99999 14.0607L3.53032 13.5303L7.99999 9.06065L12.4697 13.5303Z" fill="currentColor"></path></svg>`,
+      }}
+    />
+  );
+};
 
 const useLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect$1;
@@ -777,7 +788,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
       })}
     >
       <div aria-hidden="true" className={styles.prefix}>
-        {loading ? <Spinner size={18} /> : <Search size={18} />}
+        {loading ? <Spinner size={18} /> : <MagnifyingGlass size={18} />}
       </div>
 
       <input

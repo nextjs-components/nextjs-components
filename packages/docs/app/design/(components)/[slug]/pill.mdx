@@ -1,5 +1,5 @@
 import { Pill } from "nextjs-components";
-import { Twitch } from "nextjs-components/src/icons";
+import Linear from "nextjs-components/src/icons/logo-linear";
 
 <Spacer y={0.6} />
 
@@ -25,9 +25,9 @@ import { Twitch } from "nextjs-components/src/icons";
 ### With Prefix
 
 <Editor
-  scope={{ Pill, Twitch }}
+  scope={{ Pill, Linear }}
   code={`<div>
-  <Pill prefix={<Twitch />} label="Label" href="/dashboard" />
+  <Pill prefix={<Linear />} label="Label" href="/dashboard" />
 </div>`}
 />
 
@@ -36,9 +36,9 @@ import { Twitch } from "nextjs-components/src/icons";
 ### With External Link
 
 <Editor
-  scope={{ Pill, Twitch }}
+  scope={{ Pill, Linear }}
   code={`<div>
-  <Pill prefix={<Twitch />} label="Label" href="https://thekevinwang.com" />
+  <Pill prefix={<Linear />} label="Label" href="https://thekevinwang.com" />
 </div>`}
 />
 
@@ -47,9 +47,9 @@ import { Twitch } from "nextjs-components/src/icons";
 ### With Menu Items
 
 <Editor
-  scope={{ Pill, Twitch }}
+  scope={{ Pill, Linear }}
   code={`<div>
-<Pill label="Label" href="/dashboard" prefix={<Twitch />}>
+<Pill label="Label" href="/dashboard" prefix={<Linear />}>
   <Pill.Menu>
     <Pill.MenuItem>Item 1</Pill.MenuItem>
     <Pill.MenuItem>Item 1</Pill.MenuItem>

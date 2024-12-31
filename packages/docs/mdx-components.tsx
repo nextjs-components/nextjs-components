@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Spacer } from "nextjs-components";
 import { Stack } from "nextjs-components/src/components/Stack";
 import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
-import { Link as LinkIcon } from "nextjs-components/src/icons";
+import LinkIcon from "nextjs-components/src/icons/link";
 import React from "react";
 import { useFocusRing } from "react-aria";
 

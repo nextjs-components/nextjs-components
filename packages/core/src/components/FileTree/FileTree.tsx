@@ -4,13 +4,11 @@ import clsx from "clsx";
 import type { CSSProperties } from "react";
 import { memo, useState } from "react";
 
-import {
-  File as FileIcon,
-  Folder as FolderIcon,
-  FileLambda as LambdaIcon,
-  MinusSquare as MinusIcon,
-  PlusSquare as PlusIcon,
-} from "../../icons";
+import FileIcon from "../../icons/file";
+import FolderIcon from "../../icons/folder-closed";
+import LambdaIcon from "../../icons/lambda-rectangle";
+import MinusIcon from "../../icons/minus";
+import PlusIcon from "../../icons/plus";
 import { DepthContextProvider, useDepth } from "./DepthContext";
 import styles from "./file-tree.module.css";
 

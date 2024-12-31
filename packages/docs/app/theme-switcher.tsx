@@ -1,7 +1,9 @@
 "use client";
 
 import { useTheme } from "nextjs-components/src/contexts/ThemeContext";
-import { Monitor, Moon, Sun } from "nextjs-components/src/icons";
+import Device from "nextjs-components/src/icons/device-alternate";
+import Moon from "nextjs-components/src/icons/moon";
+import Sun from "nextjs-components/src/icons/sun";
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = useTheme();
@@ -38,7 +40,7 @@ export const ThemeSwitcher = () => {
           aria-label="Switch to system mode"
           title="Switch to system mode"
         >
-          <Monitor size={16} />
+          <Device size={16} />
         </label>
       </span>
       <span style={{ height: "100%" }}>
