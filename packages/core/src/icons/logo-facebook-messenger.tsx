@@ -51,7 +51,6 @@ export default function LogoFacebookMessenger({
             stopColor="#0099FF"
             style={{
               stopColor: "#0099ff",
-              stopColor: "color(display-p3 0 0.6 1)",
               stopOpacity: "1",
             }}
           />
@@ -60,7 +59,6 @@ export default function LogoFacebookMessenger({
             stopColor="#A033FF"
             style={{
               stopColor: "#a033ff",
-              stopColor: "color(display-p3 0.6275 0.2 1)",
               stopOpacity: "1",
             }}
           />
@@ -69,7 +67,6 @@ export default function LogoFacebookMessenger({
             stopColor="#FF5280"
             style={{
               stopColor: "#ff5280",
-              stopColor: "color(display-p3 1 0.3216 0.502)",
               stopOpacity: "1",
             }}
           />
@@ -78,7 +75,6 @@ export default function LogoFacebookMessenger({
             stopColor="#FF7061"
             style={{
               stopColor: "#ff7061",
-              stopColor: "color(display-p3 1 0.4392 0.3804)",
               stopOpacity: "1",
             }}
           />

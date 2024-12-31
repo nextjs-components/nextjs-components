@@ -41,7 +41,6 @@ export default function LogoMastercard({
           fill="#EB001B"
           style={{
             fill: "#eb001b",
-            fill: "color(display-p3 0.9216 0 0.1059)",
             fillOpacity: "1",
           }}
         />
@@ -50,7 +49,6 @@ export default function LogoMastercard({
           fill="#F79E1B"
           style={{
             fill: "#f79e1b",
-            fill: "color(display-p3 0.9686 0.6196 0.1059)",
             fillOpacity: "1",
           }}
         />
@@ -59,7 +57,6 @@ export default function LogoMastercard({
           fill="#FF5F00"
           style={{
             fill: "#ff5f00",
-            fill: "color(display-p3 1 0.3725 0)",
             fillOpacity: "1",
           }}
         />

@@ -35,7 +35,6 @@ export default function LogoGoogleCloudPlatform({
         fill="#EA4335"
         style={{
           fill: "#ea4335",
-          fill: "color(display-p3 0.9176 0.2627 0.2078)",
           fillOpacity: "1",
         }}
       />

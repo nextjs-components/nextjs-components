@@ -36,7 +36,6 @@ export default function LogoVisa({
           fill="#1434CB"
           style={{
             fill: "#1434cb",
-            fill: "color(display-p3 0.0784 0.2039 0.7961)",
             fillOpacity: "1",
           }}
         />

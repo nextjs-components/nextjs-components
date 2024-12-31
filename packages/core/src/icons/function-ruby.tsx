@@ -55,7 +55,6 @@ export default function FunctionRuby({
         fill="#CA2A30"
         style={{
           fill: "#ca2a30",
-          fill: "color(display-p3 0.7922 0.1647 0.1882)",
           fillOpacity: "1",
         }}
       />
@@ -66,7 +65,6 @@ export default function FunctionRuby({
         fill="#F87274"
         style={{
           fill: "#f87274",
-          fill: "color(display-p3 0.9725 0.4471 0.4549)",
           fillOpacity: "1",
         }}
       />

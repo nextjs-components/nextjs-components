@@ -56,7 +56,6 @@ export default function FunctionGo({
           fill="#00ACD7"
           style={{
             fill: "#00acd7",
-            fill: "color(display-p3 0 0.6745 0.8431)",
             fillOpacity: "1",
           }}
         />

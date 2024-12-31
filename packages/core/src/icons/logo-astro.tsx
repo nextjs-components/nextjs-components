@@ -52,7 +52,6 @@ export default function LogoAstro({
             stopColor="#D83333"
             style={{
               stopColor: "#d83333",
-              stopColor: "color(display-p3 0.8471 0.2 0.2)",
               stopOpacity: "1",
             }}
           />
@@ -61,7 +60,6 @@ export default function LogoAstro({
             stopColor="#F041FF"
             style={{
               stopColor: "#f041ff",
-              stopColor: "color(display-p3 0.9412 0.2549 1)",
               stopOpacity: "1",
             }}
           />

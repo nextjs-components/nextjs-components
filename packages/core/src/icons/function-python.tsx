@@ -56,7 +56,6 @@ export default function FunctionPython({
           fill="#FFC700"
           style={{
             fill: "#ffc700",
-            fill: "color(display-p3 1 0.7804 0)",
             fillOpacity: "1",
           }}
         />
@@ -65,7 +64,6 @@ export default function FunctionPython({
           fill="#338ED8"
           style={{
             fill: "#338ed8",
-            fill: "color(display-p3 0.2009 0.5579 0.8458)",
             fillOpacity: "1",
           }}
         />

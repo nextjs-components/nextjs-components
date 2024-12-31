@@ -37,7 +37,6 @@ export default function LogoDataDog({
         fill="#632CA6"
         style={{
           fill: "#632ca6",
-          fill: "color(display-p3 0.3882 0.1725 0.651)",
           fillOpacity: "1",
         }}
       />

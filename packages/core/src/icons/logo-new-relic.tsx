@@ -35,7 +35,6 @@ export default function LogoNewRelic({
         fill="#00AC69"
         style={{
           fill: "#00ac69",
-          fill: "color(display-p3 0 0.6745 0.4118)",
           fillOpacity: "1",
         }}
       />
@@ -44,7 +43,6 @@ export default function LogoNewRelic({
         fill="#1CE783"
         style={{
           fill: "#1ce783",
-          fill: "color(display-p3 0.1098 0.9059 0.5137)",
           fillOpacity: "1",
         }}
       />
@@ -53,7 +51,6 @@ export default function LogoNewRelic({
         fill="#1D252C"
         style={{
           fill: "#1d252c",
-          fill: "color(display-p3 0.1137 0.1451 0.1725)",
           fillOpacity: "1",
         }}
       />

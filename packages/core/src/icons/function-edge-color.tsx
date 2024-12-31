@@ -43,7 +43,6 @@ export default function FunctionEdgeColor({
         fill="#8E4EC6"
         style={{
           fill: "#8e4ec6",
-          fill: "color(display-p3 0.5569 0.3059 0.7765)",
           fillOpacity: "1",
         }}
       />

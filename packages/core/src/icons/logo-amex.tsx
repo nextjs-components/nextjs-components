@@ -38,7 +38,6 @@ export default function LogoAmex({
           fill="#016FD0"
           style={{
             fill: "#016fd0",
-            fill: "color(display-p3 0.0039 0.4353 0.8157)",
             fillOpacity: "1",
           }}
         />
@@ -54,7 +53,6 @@ export default function LogoAmex({
           fill="#016FD0"
           style={{
             fill: "#016fd0",
-            fill: "color(display-p3 0.0039 0.4353 0.8157)",
             fillOpacity: "1",
           }}
         />

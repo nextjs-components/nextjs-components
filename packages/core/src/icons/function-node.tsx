@@ -57,7 +57,6 @@ export default function FunctionNode({
           fill="#46A758"
           style={{
             fill: "#46a758",
-            fill: "color(display-p3 0.2745 0.6549 0.3451)",
             fillOpacity: "1",
           }}
         />

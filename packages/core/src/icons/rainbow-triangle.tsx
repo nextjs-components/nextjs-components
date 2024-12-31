@@ -35,7 +35,6 @@ export default function RainbowTriangle({
         stroke="#E5484D"
         style={{
           stroke: "#e5484d",
-          stroke: "color(display-p3 0.898 0.2824 0.302)",
           strokeOpacity: "1",
         }}
         strokeWidth={1.5}
@@ -45,7 +44,6 @@ export default function RainbowTriangle({
         stroke="#52AEFF"
         style={{
           stroke: "#52aeff",
-          stroke: "color(display-p3 0.3216 0.6824 1)",
           strokeOpacity: "1",
         }}
         strokeWidth={1.5}
@@ -55,7 +53,6 @@ export default function RainbowTriangle({
         stroke="#45DEC4"
         style={{
           stroke: "#45dec4",
-          stroke: "color(display-p3 0.2706 0.8706 0.7686)",
           strokeOpacity: "1",
         }}
         strokeWidth={1.5}
