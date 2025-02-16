@@ -14,8 +14,7 @@ import rehypeStarryNight from "./rehype-starry-night.mjs";
  */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ["tsx", "ts"],
-  swcMinify: true,
+  pageExtensions: ["tsx", "ts", "mdx"],
   transpilePackages: ["nextjs-components", "../core"],
   experimental: {},
   typescript: {

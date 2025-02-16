@@ -1,8 +1,5 @@
 import { type ResolvingMetadata } from "next";
-import { notFound } from "next/navigation";
 import { type PropsWithChildren } from "react";
-
-import Renderer from "./renderer";
 
 interface Props extends PropsWithChildren {
   params: {
@@ -19,6 +16,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function Slug({ params: { slug } }) {
-  return <Renderer slug={slug} />;
+export default async function Slug({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const slug = (await params).slug;
+  const { default: Post } = await import(`./${slug}.mdx`);
+
+  return <Post />;
 }
