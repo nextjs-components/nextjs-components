@@ -34,15 +34,15 @@
   "dependencies": {
     "@radix-ui/react-popover": "^1.0.5",
     "@radix-ui/react-portal": "^1.0.0",
-    "clsx": "1.1.1",
-    "next-themes": "^0.2.1",
+    "clsx": "2.1.1",
+    "next-themes": "^0.4.4",
     "react-aria": "^3.27.0",
     "react-stately": "^3.25.0",
     "react-use-measure": "2.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.16.7",
-    "@babel/core": "7.16.7",
+    "@babel/cli": "7.26.4",
+    "@babel/core": "7.26.0",
     "@swc/cli": "0.1.55",
     "@swc/core": "1.2.124",
     "@testing-library/jest-dom": "5.16.5",
@@ -61,10 +61,10 @@
     "typescript": "^5.0.2"
   },
   "peerDependencies": {
-    "next": ">=12.x | >=13.x",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-is": "^18.0.0",
+    "next": ">=15.x",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-is": "^19.0.0",
     "styled-jsx": ">=5.x"
   }
 }

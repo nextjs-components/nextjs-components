@@ -1,9 +1,15 @@
 "use client";
 
 import React from "react";
+import type { CSSProperties } from "react";
 
 import { useIconSize } from "../contexts/IconSizeContext";
-import { Props } from "./props";
+
+type Props = {
+  size?: number;
+  color?: string;
+  style?: CSSProperties;
+};
 
 export default function Function({
   color = "currentcolor",
@@ -11,21 +17,25 @@ export default function Function({
   ...props
 }: Props) {
   const iconSize = useIconSize();
+  const height = size || iconSize.size;
+  const width = size || iconSize.size;
+  const style = { color, ...props.style };
   return (
     <svg
       {...props}
-      fill="none"
-      height={size || iconSize.size}
-      shapeRendering="geometricPrecision"
-      stroke="currentColor"
-      strokeLinecap="round"
+      data-testid="geist-icon"
+      height={height}
       strokeLinejoin="round"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
-      style={{ ...props.style, color }}
+      style={style}
+      viewBox="0 0 16 16"
+      width={width}
     >
-      <path d="M8 10.854h3.798M8 21c2.578 0 3.798-1.494 3.798-4.19v-5.956m0 0h3.75m-3.75 0V7.476c0-2.906 1.379-4.898 4.202-4.4"></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M8.75 4C8.75 2.61929 9.86929 1.5 11.25 1.5H12V0H11.25C9.04086 0 7.25 1.79086 7.25 4V6H4.75H4V7.5H4.75H7.25V12C7.25 13.3807 6.13071 14.5 4.75 14.5H4V16H4.75C6.95914 16 8.75 14.2091 8.75 12V7.5H11.25H12V6H11.25H8.75V4Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }

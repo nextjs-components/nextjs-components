@@ -10,7 +10,7 @@ import { PropsWithChildren, useRef } from "react";
 import { OverlayContainer, useOverlayPosition } from "react-aria";
 import { useDateFormatter } from "react-aria";
 
-import { Calendar as CalendarIcon } from "../../icons";
+import CalendarIcon from "../../icons/calendar";
 import { Button } from "../Button";
 import { Label } from "../Label";
 import { Spacer } from "../Spacer";

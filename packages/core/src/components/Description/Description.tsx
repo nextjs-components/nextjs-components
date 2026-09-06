@@ -1,4 +1,4 @@
-import InfoFill from "../../icons/info-fill";
+import InfoFill from "../../icons/information-fill-small";
 import { Tooltip } from "../tooltip";
 import styles from "./description.module.css";
 
@@ -23,16 +23,7 @@ const Description = ({ title, content, tooltip }: Props) => {
           <span className={styles.icon}>
             {
               <Tooltip text={tooltip}>
-                <InfoFill
-                  size={14}
-                  color="var(--accents-2)"
-                  style={
-                    {
-                      fill: "currentColor",
-                      "--geist-stroke": "var(--geist-foreground)",
-                    } as React.CSSProperties
-                  }
-                />
+                <InfoFill size={16} />
               </Tooltip>
             }
           </span>

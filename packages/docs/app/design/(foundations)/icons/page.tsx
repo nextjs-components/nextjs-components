@@ -63,7 +63,7 @@ export default function IconsPage() {
           {entries.map(({ key, Icon }) => {
             return (
               <ClickableIcon key={key} name={key}>
-                <Icon />
+                <Icon size={16} />
               </ClickableIcon>
             );
           })}

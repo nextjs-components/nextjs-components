@@ -1,11 +1,10 @@
 import { Badge, Combobox, Container } from "nextjs-components";
-import {
-  Facebook,
-  Figma,
-  Instagram,
-  Linkedin,
-  Twitter,
-} from "nextjs-components/src/icons";
+
+import Facebook from "nextjs-components/src/icons/logo-facebook";
+import Figma from "nextjs-components/src/icons/logo-figma";
+import Google from "nextjs-components/src/icons/logo-google";
+import Twitter from  "nextjs-components/src/icons/logo-twitter-x";
+import Linear from  "nextjs-components/src/icons/logo-linear";
 
 <Spacer y={0.6} />
 
@@ -189,13 +188,13 @@ import {
 ### Prefix & Suffix
 
 <Editor
-  scope={{ Combobox, Facebook, Twitter, Instagram, Badge, Linkedin, Figma }}
+  scope={{ Combobox, Facebook, Twitter, Google, Badge, Linear, Figma }}
   code={`() => {
   const options = [
     { value: 'a', label: 'Facebook', prefix: <Facebook size={16} /> },
     { value: 'b', label: 'Twitter', prefix: <Twitter size={16} /> },
-    { value: 'c', label: 'Instagram', prefix: <Instagram size={16} /> },
-    { value: 'd', label: 'LinkedIn', prefix: <Linkedin size={16} /> },
+    { value: 'c', label: 'Google', prefix: <Google size={16} /> },
+    { value: 'd', label: 'Linear', prefix: <Linear size={16} /> },
     { value: 'e', label: 'Figma', prefix: <Figma size={16} /> }
   ]
   

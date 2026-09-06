@@ -1,9 +1,15 @@
 "use client";
 
 import React from "react";
+import type { CSSProperties } from "react";
 
 import { useIconSize } from "../contexts/IconSizeContext";
-import { Props } from "./props";
+
+type Props = {
+  size?: number;
+  color?: string;
+  style?: CSSProperties;
+};
 
 export default function ArrowDownLeft({
   color = "currentcolor",
@@ -11,22 +17,25 @@ export default function ArrowDownLeft({
   ...props
 }: Props) {
   const iconSize = useIconSize();
+  const height = size || iconSize.size;
+  const width = size || iconSize.size;
+  const style = { color, ...props.style };
   return (
     <svg
       {...props}
-      fill="none"
-      height={size || iconSize.size}
-      shapeRendering="geometricPrecision"
-      stroke="currentColor"
-      strokeLinecap="round"
+      data-testid="geist-icon"
+      height={height}
       strokeLinejoin="round"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
-      style={{ ...props.style, color }}
+      style={style}
+      viewBox="0 0 16 16"
+      width={width}
     >
-      <path d="M17 7L7 17"></path>
-      <path d="M17 17H7V7"></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4.5595 12.5H10.25H11V14H10.25H3C2.44772 14 2 13.5523 2 13V5.75001V5.00001H3.5V5.75001V11.4382L12.7185 2.21968L13.2488 1.68935L14.3095 2.75001L13.7792 3.28034L4.5595 12.5Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }

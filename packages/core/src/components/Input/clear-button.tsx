@@ -3,8 +3,8 @@
 import clsx from "clsx";
 import { useFocusRing } from "react-aria";
 
-import XCircle from "../../icons/x-circle";
 import reset from "../../styles/reset/reset.module.css";
+import KBD from "../KeyboardInput/kbd";
 import clearableStyles from "./clearable.module.css";
 
 export const ClearButton = ({ onClick }) => {
@@ -19,9 +19,7 @@ export const ClearButton = ({ onClick }) => {
       onClick={onClick}
       {...focusProps}
     >
-      <span>
-        <XCircle />
-      </span>
+      <KBD>Esc</KBD>
     </button>
   );
 };

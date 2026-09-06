@@ -1,3 +1,5 @@
+"use client";
+
 import clsx from "clsx";
 import dynamic from "next/dynamic";
 import { ToastsProvider } from "nextjs-components/src/components/Toast";

@@ -2,7 +2,7 @@
 
 import { forwardRef, useRef } from "react";
 
-import Search from "../../icons/search";
+import MagnifyingGlass from "../../icons/magnifying-glass";
 import { mergeRefs } from "../../utils/merge-refs";
 import { Spinner } from "../Spinner";
 import { Props as BaseProps, default as Input } from "./Input";
@@ -34,7 +34,7 @@ const SearchInput = forwardRef<HTMLInputElement, Props>(
           loading ? (
             <Spinner size={{ small: 16, large: 24 }[props.size]} />
           ) : (
-            <Search />
+            <MagnifyingGlass />
           )
         }
         prefixStyling={false}

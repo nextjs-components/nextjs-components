@@ -1,9 +1,15 @@
 "use client";
 
 import React from "react";
+import type { CSSProperties } from "react";
 
 import { useIconSize } from "../contexts/IconSizeContext";
-import { Props } from "./props";
+
+type Props = {
+  size?: number;
+  color?: string;
+  style?: CSSProperties;
+};
 
 export default function CornerDownLeft({
   color = "currentcolor",
@@ -11,22 +17,25 @@ export default function CornerDownLeft({
   ...props
 }: Props) {
   const iconSize = useIconSize();
+  const height = size || iconSize.size;
+  const width = size || iconSize.size;
+  const style = { color, ...props.style };
   return (
     <svg
       {...props}
-      fill="none"
-      height={size || iconSize.size}
-      shapeRendering="geometricPrecision"
-      stroke="currentColor"
-      strokeLinecap="round"
+      data-testid="geist-icon"
+      height={height}
       strokeLinejoin="round"
-      strokeWidth="1.5"
-      viewBox="0 0 24 24"
-      width={size || iconSize.size}
-      style={{ ...props.style, color }}
+      style={style}
+      viewBox="0 0 16 16"
+      width={width}
     >
-      <path d="M9 10l-5 5 5 5"></path>
-      <path d="M20 4v7a4 4 0 01-4 4H4"></path>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M13.5 3V2.25H15V3V10C15 10.5523 14.5523 11 14 11H3.56068L5.53035 12.9697L6.06068 13.5L5.00002 14.5607L4.46969 14.0303L1.39647 10.9571C1.00595 10.5666 1.00595 9.93342 1.39647 9.54289L4.46969 6.46967L5.00002 5.93934L6.06068 7L5.53035 7.53033L3.56068 9.5H13.5V3Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }

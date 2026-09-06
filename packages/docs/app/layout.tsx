@@ -1,4 +1,4 @@
-import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
+import { ThemeProvider } from "nextjs-components/src/contexts/ThemeContext";
 import "nextjs-components/src/styles/globals.css";
 
 import "./globals.css";
@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>{/* <script src="https://cdn.tailwindcss.com"></script> */}</head>
       <body>
-        <ThemeContextProvider>{children}</ThemeContextProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

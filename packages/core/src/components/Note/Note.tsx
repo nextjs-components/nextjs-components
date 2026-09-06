@@ -1,9 +1,9 @@
 import clsx from "clsx";
 
-import AlertOctagon from "../../icons/alert-octagon";
-import AlertTriangle from "../../icons/alert-triangle";
-import CheckInCircle from "../../icons/check-in-circle";
-import Info from "../../icons/info";
+import CheckCircle from "../../icons/check-circle";
+import Information from "../../icons/information";
+import Stop from "../../icons/stop";
+import Warning from "../../icons/warning";
 import styles from "./Note.module.css";
 
 interface Props {
@@ -24,16 +24,16 @@ interface Props {
 const Icon = ({ type }: { type?: Props["type"] }) => {
   let icon = null;
   if (!type || type === "secondary" || type === "violet" || type === "cyan") {
-    icon = <Info size={16} />;
+    icon = <Information size={16} />;
   }
   if (type === "success") {
-    icon = <CheckInCircle size={16} />;
+    icon = <CheckCircle size={16} />;
   }
   if (type === "warning") {
-    icon = <AlertTriangle size={16} />;
+    icon = <Warning size={16} />;
   }
   if (type === "error") {
-    icon = <AlertOctagon size={16} />;
+    icon = <Stop size={16} />;
   }
   return (
     <span

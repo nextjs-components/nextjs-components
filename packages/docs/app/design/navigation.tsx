@@ -7,7 +7,9 @@ import { Avatar } from "nextjs-components/src/components/Avatar";
 import { Input } from "nextjs-components/src/components/Input";
 import { KBD } from "nextjs-components/src/components/KeyboardInput";
 import { Text } from "nextjs-components/src/components/Text";
-import * as Icons from "nextjs-components/src/icons";
+import ChevronLeft from "nextjs-components/src/icons/chevron-left";
+import ChevronRight from "nextjs-components/src/icons/chevron-right";
+import MagnifyingGlass from "nextjs-components/src/icons/magnifying-glass";
 import React from "react";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
@@ -129,7 +131,7 @@ export const Sidebar = () => {
       className={clsx(
         "fixed bottom-0 top-0 flex w-[296px] flex-col overflow-hidden rounded-[--geist-space-gap-half]",
         // @media screen and (max-width: 960px) {
-        "max-[960px]:position-unset max-[960px]:w-[calc(100vw_-_(100vw_-_100%))] max-[960px]:h-[unset] max-[960px]:block max-[960px]:py-6 max-[960px]:px-0 max-[960px]:bg-[--geist-background]",
+        "max-[960px]:position-unset max-[960px]:block max-[960px]:h-[unset] max-[960px]:w-[calc(100vw_-_(100vw_-_100%))] max-[960px]:bg-[--geist-background] max-[960px]:px-0 max-[960px]:py-6",
       )}
     >
       <div
@@ -188,7 +190,7 @@ export const Sidebar = () => {
               const value = e.target.value;
               setSearch(value);
             }}
-            prefix={<Icons.Search size={16} />}
+            prefix={<MagnifyingGlass size={16} />}
             prefixStyling={false}
             placeholder="Search..."
             suffix={<KBD small>/</KBD>}
@@ -255,7 +257,7 @@ const Prev = () => {
         "pr-[--geist-space-4x] text-left",
       )}
     >
-      <Icons.ChevronLeft size={16} /> {prevNode.name}
+      <ChevronLeft size={16} /> {prevNode.name}
     </Link>
   );
 };
@@ -274,7 +276,7 @@ const Next = () => {
         "text-right] ml-auto pl-[--geist-space-4x]",
       )}
     >
-      {nextNode.name} <Icons.ChevronRight size={16} />
+      {nextNode.name} <ChevronRight size={16} />
     </Link>
   );
 };

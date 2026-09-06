@@ -51,14 +51,14 @@ Using Next 13's `app` directory
 "use client";
 
 // ./app/layout.tsx
-import { ThemeContextProvider } from "nextjs-components/src/contexts/ThemeContext";
+import { ThemeProvider } from "nextjs-components/src/contexts/ThemeContext";
 import "nextjs-components/src/styles/globals.css";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ThemeContextProvider>{children}</ThemeContextProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
@@ -69,21 +69,17 @@ Using the _traditional_ custom `_app.tsx`
 
 ```tsx
 // ./pages/_app.tsx
-import {
-  ThemeContextProvider,
-  ToastArea,
-  ToastsProvider,
-} from "nextjs-components";
+import { ThemeProvider, ToastArea, ToastsProvider } from "nextjs-components";
 import "nextjs-components/src/styles/globals.css";
 
 function App({ Component, pageProps }) {
   return (
-    <ThemeContextProvider>
+    <ThemeProvider>
       <ToastsProvider>
         <Component {...pageProps} />
         <ToastArea />
       </ToastsProvider>
-    </ThemeContextProvider>
+    </ThemeProvider>
   );
 }
 

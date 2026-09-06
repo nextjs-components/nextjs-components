@@ -6,10 +6,8 @@ import { useLocale } from "@react-aria/i18n";
 import { useCalendarState } from "@react-stately/calendar";
 import { useRef } from "react";
 
-import {
-  ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon,
-} from "../../icons";
+import ChevronLeft from "../../icons/chevron-left";
+import ChevronRight from "../../icons/chevron-right";
 import { CalendarButton } from "./button";
 import { CalendarGrid } from "./calendar-grid";
 
@@ -32,10 +30,10 @@ export default function Calendar(props) {
       <div>
         <h2>{title}</h2>
         <CalendarButton {...prevButtonProps}>
-          <ChevronLeftIcon />
+          <ChevronLeft />
         </CalendarButton>
         <CalendarButton {...nextButtonProps}>
-          <ChevronRightIcon />
+          <ChevronRight />
         </CalendarButton>
       </div>
       {/* <CalendarGrid state={state} /> */}

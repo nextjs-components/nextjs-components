@@ -6,10 +6,8 @@ import { useLocale } from "@react-aria/i18n";
 import { useRangeCalendarState } from "@react-stately/calendar";
 import { useRef } from "react";
 
-import {
-  ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon,
-} from "../../icons";
+import ChevronLeft from "../../icons/chevron-left";
+import ChevronRight from "../../icons/chevron-right";
 import { Container } from "../Container";
 import { Spacer } from "../Spacer";
 import { CalendarButton } from "./button";
@@ -48,10 +46,10 @@ export function RangeCalendar(props) {
           <h2 className={styles.currentMonth}>{title}</h2>
         </div>
         <CalendarButton {...prevButtonProps}>
-          <ChevronLeftIcon />
+          <ChevronLeft />
         </CalendarButton>
         <CalendarButton {...nextButtonProps}>
-          <ChevronRightIcon />
+          <ChevronRight />
         </CalendarButton>
       </Container>
 

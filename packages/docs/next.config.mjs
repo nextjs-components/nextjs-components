@@ -14,18 +14,9 @@ import rehypeStarryNight from "./rehype-starry-night.mjs";
  */
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ["tsx", "ts"],
-  swcMinify: true,
+  pageExtensions: ["tsx", "ts", "mdx"],
   transpilePackages: ["nextjs-components", "../core"],
-  experimental: {
-    appDir: true,
-    // mdxRs: true,
-    // Error: file-tree.mdx:Error: "16:49: Could not parse expression with swc: Unexpected eof"
-
-    // Import trace for requested module:
-    // ./app/design/(components)/[slug]/file-tree.mdx
-    // ./app/design/(components)/[slug]/page.tsx
-  },
+  experimental: {},
   typescript: {
     ignoreBuildErrors: true,
   },
