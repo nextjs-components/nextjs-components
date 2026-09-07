@@ -18,13 +18,9 @@ A collection of React components, transcribed from https://vercel.com/design. [^
 ## Installation
 
 ```bash
-# with npm
 npm i nextjs-components
-```
-
-```bash
-# with yarn
-yarn add nextjs-components
+pnpm i nextjs-components
+bun i nextjs-components
 ```
 
 This project needs to be transpiled to work with your Next.js application. It is recommended to use Next.js `13.1.0`’s [built-in module tranpilation](https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable). (Up until Next.js `13.1.0`, [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) handled this use case.)

@@ -9,5 +9,5 @@
   "updateInternalDependencies": "patch",
   "privatePackages": { "version": false, "tag": false },
   "ignore": [],
-  "format": false
+  "format": "oxfmt"
 }
