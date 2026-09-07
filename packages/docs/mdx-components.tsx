@@ -4,14 +4,15 @@ import Link from "next/link";
 import { Spacer } from "nextjs-components";
 import { Stack } from "nextjs-components/src/components/Stack";
 import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
-// import LinkIcon from "nextjs-components/src/icons/link";
+import LinkIcon from "nextjs-components/src/icons/link";
 import React from "react";
+import { useFocusRing } from "react-aria";
 
-// import { useFocusRing } from "react-aria";
 import { Editor } from "@/components/editor";
 import { Example } from "@/components/example";
+import link from "@/components/link/link.module.css";
 
-// import link from "@/components/link/link.module.css";
+import styles from "./mdx-components.module.css";
 
 const mdxComponents = {
   blockquote: ({ children, ...props }) => {
@@ -160,47 +161,45 @@ const mdxComponents = {
   //   );
   // },
   Text,
-  // h1: (props) => <Text as="h1" size={32} weight={600} {...props} />,
-  // h2: (props) => (
-  //   <Text as="h2" color="accents-5" size={16} weight={400} {...props} />
-  // ),
-  // // Strange situation going on here... but this
-  // // is what I transcribed from the Vercel design site.
-  // h3: function H3({ children, ...props }) {
-  //   // props are provided by a mix of
-  //   // - rehype-autolink-headings
-  //   // - rehype-slug
-  //   const { id } = props;
-  //   const text = children.props.children;
-  //   const { focusProps, isFocusVisible } = useFocusRing();
-  //   const newChild = React.cloneElement(children, {
-  //     id,
-  //     "data-focus-visible-added": isFocusVisible ? "" : undefined,
-  //     ...focusProps,
-  //     className: clsx(link.link, link["fragment-link"]),
-  //     children: (
-  //       <>
-  //         <i className={link.anchor}>
-  //           <LinkIcon size={16} />
-  //         </i>
-  //         <Text as="h3" size={20} weight={600}>
-  //           {text}
-  //         </Text>
-  //       </>
-  //     ),
-  //   });
-  //   return (
-  //     <div
-  //       style={{ marginBottom: "1.25rem" }}
-  //       className="flex items-center justify-between"
-  //     >
-  //       {newChild}
-  //     </div>
-  //   );
-  // },
-  // h4: (props) => <Text as="h4" {...props} />,
-  // h5: (props) => <Text as="h5" {...props} />,
-  // h6: (props) => <Text as="h6" {...props} />,
+  h1: (props) => <Text as="h1" size={32} weight={600} {...props} />,
+  h2: (props) => (
+    <Text as="h2" color="accents-5" size={16} weight={400} {...props} />
+  ),
+  h3: function H3({ children, ...props }) {
+    // props are provided by a mix of
+    // - rehype-autolink-headings
+    // - rehype-slug
+    const { id } = props;
+    const text = children.props.children;
+    const { focusProps, isFocusVisible } = useFocusRing();
+    const newChild = React.cloneElement(children, {
+      id,
+      "data-focus-visible-added": isFocusVisible ? "" : undefined,
+      ...focusProps,
+      className: clsx(link.link, link["fragment-link"]),
+      children: (
+        <>
+          <i className={link.anchor}>
+            <LinkIcon size={16} />
+          </i>
+          <Text as="h3" size={20} weight={600}>
+            {text}
+          </Text>
+        </>
+      ),
+    });
+    return (
+      <div
+        style={{ marginBottom: "1.25rem" }}
+        className="flex items-center justify-between"
+      >
+        {newChild}
+      </div>
+    );
+  },
+  h4: (props) => <Text as="h4" {...props} />,
+  h5: (props) => <Text as="h5" {...props} />,
+  h6: (props) => <Text as="h6" {...props} />,
   // p: (props) => <Text as="p" size={16} color="accents-6" {...props} />,
   code: (props) => {
     // Check if content of an MDX ```codeblock```. This code tags will likely have a language-* className added.
@@ -213,7 +212,7 @@ const mdxComponents = {
   pre: Code,
   a: ({ children, ...props }) => {
     // anchor link
-    if (props.id) {
+    if (props.id || props.href?.startsWith("#")) {
       return <a {...props}>{children}</a>;
     }
     // internal link
@@ -222,16 +221,8 @@ const mdxComponents = {
     }
     // external link
     return (
-      <a rel="noopener" target="_blank" {...props} className="external">
+      <a rel="noopener" target="_blank" {...props} className={styles.external}>
         {children}
-        <style jsx>{`
-          .external {
-            color: var(--geist-success);
-          }
-          .external:hover {
-            color: var(--geist-foreground);
-          }
-        `}</style>
       </a>
     );
   },

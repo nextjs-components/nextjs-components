@@ -1,28 +1,28 @@
-import { type ResolvingMetadata } from "next";
-import { type PropsWithChildren } from "react";
+import { notFound } from "next/navigation";
 
-interface Props extends PropsWithChildren {
-  params: {
+import nodes from "../nodes.json";
+import Post from "./post";
+
+interface Props {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent?: ResolvingMetadata,
-) {
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+
   return {
-    title: `${params.slug} | Nextjs Components`,
+    title: `${slug} | Nextjs Components`,
   };
 }
 
-export default async function Slug({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function Slug({ params }: Props) {
   const slug = (await params).slug;
-  const { default: Post } = await import(`./${slug}.mdx`);
 
-  return <Post />;
+  if (!nodes.some(({ path }) => path === `/design/${slug}`)) {
+    notFound();
+  }
+
+  return <Post slug={slug} />;
 }
