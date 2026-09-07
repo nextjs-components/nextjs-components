@@ -61,10 +61,13 @@ const Snippet: React.ComponentType<Props> = ({
         })}
         data-focus-visible-added={focused ? "" : undefined}
         onClick={() => {
-          navigator.clipboard.writeText(
-            Array.isArray(text) ? text.join("\n") : text,
-          );
-          toasts.current?.message({ text: "Copied to clipboard!" });
+          navigator.clipboard
+            .writeText(Array.isArray(text) ? text.join("\n") : text)
+            .then(
+              () => toasts.current?.message({ text: "Copied to clipboard!" }),
+              () =>
+                toasts.current?.error({ text: "Could not copy to clipboard." }),
+            );
         }}
       >
         <CopyIcon size={22} />

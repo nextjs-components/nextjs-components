@@ -13,6 +13,8 @@ import React from "react";
 import { useState } from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 
+import { editorScope } from "@/app/design/(foundations)/icons/icon-map";
+
 // import { editorScope } from "../../app/design/(foundations)/icons/icon-map";
 import styles from "./editor.module.css";
 
@@ -54,8 +56,10 @@ const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    toast.current?.success({ text: "Copied to clipboard!" });
+    navigator.clipboard.writeText(code).then(
+      () => toast.current?.success({ text: "Copied to clipboard!" }),
+      () => toast.current?.error({ text: "Could not copy to clipboard." }),
+    );
   };
 
   const [open, setOpen] = useState(false);

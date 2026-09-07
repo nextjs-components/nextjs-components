@@ -548,11 +548,11 @@ const Combobox = forwardRef<unknown, PWC<ComboboxProps>>(
             e.preventDefault();
             onClear?.(); // E
             onChange?.(null);
-            inputRef.current?.focus(),
+            (inputRef.current?.focus(),
               isMobile ||
                 dispatch({
                   type: "CLOSE",
-                });
+                }));
             open
               ? K(() => {
                   dispatch({
@@ -709,7 +709,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
             // s = list
             // r = selectedIndex
             let e = P(selectedIndex, list.current);
-            for (; e !== selectedIndex && list.current[e].disabled; )
+            for (; e !== selectedIndex && list.current[e].disabled;)
               e = P(e, list.current);
             dispatch({
               type: "NAVIGATE",
@@ -743,7 +743,7 @@ const Input: FC<PWC<InputProps>> = (props) => {
             // s = list
             // r = selectedIndex
             let e = L(selectedIndex, list.current);
-            for (; e !== selectedIndex && list.current[e].disabled; )
+            for (; e !== selectedIndex && list.current[e].disabled;)
               e = L(e, list.current);
             dispatch({
               type: "NAVIGATE",
@@ -816,7 +816,6 @@ const Input: FC<PWC<InputProps>> = (props) => {
             ;
             // @ts-expect-error — TODO: Figure out what's going on here
             null !== t && ("FOOTER" !== t.tagName || !t.dataset.listFooter);
-
           ) {
             t = t.parentElement;
           }

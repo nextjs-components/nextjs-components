@@ -58,7 +58,10 @@
   height: var(--geist-form-height);
   order: 2;
   padding: 0 var(--geist-gap-half);
-  transition: color 0.15s ease, box-shadow 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s ease,
+    box-shadow 0.15s,
+    border-color 0.15s;
   width: auto;
 }
 
@@ -181,7 +184,10 @@
   border-radius: var(--geist-radius);
   z-index: 101;
   transform: translateY(-8px);
-  transition: opacity 0.1s ease, transform 0.15s ease, height 0.1s ease;
+  transition:
+    opacity 0.1s ease,
+    transform 0.15s ease,
+    height 0.1s ease;
 }
 
 .list.open {

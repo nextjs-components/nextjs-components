@@ -17,6 +17,10 @@ const nextConfig = {
   pageExtensions: ["tsx", "ts", "mdx"],
   transpilePackages: ["nextjs-components", "../core"],
   experimental: {},
+  eslint: {
+    // Oxlint runs in CI through the root lint script.
+    ignoreDuringBuilds: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

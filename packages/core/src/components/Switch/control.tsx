@@ -8,8 +8,7 @@ import { useSwitchControlContext } from "./switch-control-context";
 import styles from "./switch-control.module.css";
 
 export interface ControlProps
-  extends PropsWithChildren,
-    HtmlHTMLAttributes<HTMLInputElement> {
+  extends PropsWithChildren, HtmlHTMLAttributes<HTMLInputElement> {
   label: string;
   value: string;
   checked?: boolean;

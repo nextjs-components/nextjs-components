@@ -174,12 +174,14 @@
 }
 
 .table td span.highlight.focused {
-  box-shadow: 0 0 0 1px var(--geist-background),
+  box-shadow:
+    0 0 0 1px var(--geist-background),
     0 0 0 2.5px var(--geist-success);
 }
 
 .table td span.focused {
-  box-shadow: 0 0 0 1px var(--geist-background),
+  box-shadow:
+    0 0 0 1px var(--geist-background),
     0 0 0 2.5px var(--geist-foreground);
 }
 
@@ -231,7 +233,9 @@
   position: absolute;
   height: var(--icon-size);
   width: var(--icon-size);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
   color: var(--accents-5) !important;
   left: 12px;
   top: 50%;
@@ -271,7 +275,8 @@
   padding: var(--padding);
   position: relative;
   border-radius: 6px;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       to right,
       var(--geist-background),
       transparent var(--padding),
@@ -438,7 +443,9 @@
 
 .comboboxInput ~ .svg {
   color: var(--accents-5) !important;
-  transition: color 0.15s, transform 0.15s;
+  transition:
+    color 0.15s,
+    transform 0.15s;
 }
 
 .comboboxInput.hasValue {

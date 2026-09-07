@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "*": ["src/*"]
-    },
     "outDir": "dist",
-    "target": "es5",
+    "target": "es2015",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -15,8 +11,8 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -24,5 +20,5 @@
     "types": ["node", "jest", "@testing-library/jest-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist", "**/.scratch/**"]
 }

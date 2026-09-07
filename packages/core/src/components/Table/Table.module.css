@@ -132,7 +132,8 @@ th.center > .container {
   [data-geist-scroller-overflowing]
   .table.selectable
   [data-geist-table-header="original"][data-sticky] {
-  --sticky-shadow: 0 12px 12px -12px rgba(0, 0, 0, 0.08),
+  --sticky-shadow:
+    0 12px 12px -12px rgba(0, 0, 0, 0.08),
     38px 12px 12px -12px rgba(0, 0, 0, 0.08);
 }
 
@@ -209,7 +210,9 @@ th.center > .container {
 
 .sortButton:focus.focus-visible {
   border-radius: 1px;
-  box-shadow: 0 0 0 4px var(--accents-1), 0 0 0 6px var(--accents-3);
+  box-shadow:
+    0 0 0 4px var(--accents-1),
+    0 0 0 6px var(--accents-3);
 }
 
 .filter {
@@ -269,7 +272,9 @@ th.center > .container {
 
 .expander:focus.focus-visible {
   border-radius: 1px;
-  box-shadow: 0 0 0 4px var(--geist-background), 0 0 0 6px var(--accents-3);
+  box-shadow:
+    0 0 0 4px var(--geist-background),
+    0 0 0 6px var(--accents-3);
 }
 
 .expander svg {

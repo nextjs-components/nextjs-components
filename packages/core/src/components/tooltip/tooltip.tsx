@@ -98,12 +98,12 @@ const Tooltip = ({
     position === "top"
       ? `translate(calc(-50% + ${x}px), calc(-100% - ${y}px))`
       : position === "bottom"
-      ? `translate(calc(-50% + ${x}px), calc(${y * 3}px))`
-      : position === "left"
-      ? `translate(calc(-100% - ${x}px), calc(-50% + ${y}px))`
-      : position === "right"
-      ? `translate(calc(${x * 3}px), calc(-50% + ${y}px))`
-      : undefined;
+        ? `translate(calc(-50% + ${x}px), calc(${y * 3}px))`
+        : position === "left"
+          ? `translate(calc(-100% - ${x}px), calc(-50% + ${y}px))`
+          : position === "right"
+            ? `translate(calc(${x * 3}px), calc(-50% + ${y}px))`
+            : undefined;
 
   const Component = as || "span";
   return (

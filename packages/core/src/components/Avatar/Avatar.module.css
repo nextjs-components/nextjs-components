@@ -10,7 +10,9 @@
   vertical-align: top;
   -webkit-mask-image: -webkit-radial-gradient(circle, #fff, #000);
   background: var(--geist-background);
-  transition: border 0.2s ease, background 0.2s ease;
+  transition:
+    border 0.2s ease,
+    background 0.2s ease;
   box-sizing: border-box;
 }
 

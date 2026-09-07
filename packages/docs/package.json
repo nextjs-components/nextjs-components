@@ -5,9 +5,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "oxlint -c ../../.oxlintrc.json .",
     "preinstall": "",
-    "plop": "plop"
+    "plop": "plop",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint:fix": "oxlint -c ../../.oxlintrc.json --fix ."
   },
   "dependencies": {
     "@mdx-js/loader": "^2.3.0",
@@ -23,7 +26,6 @@
     "postcss": "^8.4.23",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^8.3.2",
-    "prettier": "^2.8.8",
     "react": "19.0.0",
     "react-aria": "^3.36.0",
     "react-dom": "19.0.0",
@@ -35,19 +37,15 @@
   },
   "overrides": {},
   "devDependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "^20.1.0",
     "@types/react": "^18.2.5",
     "autoprefixer": "^10.4.14",
-    "eslint": "8.40.0",
-    "eslint-config-next": "^13.4.1",
     "plop": "^3.1.2",
-    "prettier-plugin-tailwindcss": "^0.2.4",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.4"
   },
   "engines": {
-    "node": ">=20",
+    "node": "^22.12 || ^24 || >=26",
     "npm": ">=8"
   }
 }

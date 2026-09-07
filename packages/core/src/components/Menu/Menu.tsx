@@ -8,8 +8,8 @@ import { FocusScope, useFocusManager, usePopover } from "react-aria";
 
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Drawer from "../Drawer";
-import classes from "./Menu.module.css";
 import MenuContext, { useMenu } from "./menu-context";
+import classes from "./Menu.module.css";
 
 /**
  *

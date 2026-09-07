@@ -18,32 +18,35 @@
   z-index: 2;
   transform: scale3d(1.01, 1.01, 1);
   overflow: hidden;
-  --scroller-gradient: #fff 0, hsla(0, 0%, 100%, 0.7) 8px,
-    hsla(0, 0%, 100%, 0.45) 14px, hsla(0, 0%, 100%, 0.3) 19px,
-    hsla(0, 0%, 100%, 0.26) 21px, hsla(0, 0%, 100%, 0.19) 25px,
-    hsla(0, 0%, 100%, 0.12) 29px, hsla(0, 0%, 100%, 0.06) 32px,
-    hsla(0, 0%, 100%, 0.03) 34px, hsla(0, 0%, 100%, 0.02) 36px,
-    hsla(0, 0%, 100%, 0.008) 38px, hsla(0, 0%, 100%, 0.002) 39px,
-    hsla(0, 0%, 100%, 0) 40px;
+  --scroller-gradient:
+    #fff 0, hsla(0, 0%, 100%, 0.7) 8px, hsla(0, 0%, 100%, 0.45) 14px,
+    hsla(0, 0%, 100%, 0.3) 19px, hsla(0, 0%, 100%, 0.26) 21px,
+    hsla(0, 0%, 100%, 0.19) 25px, hsla(0, 0%, 100%, 0.12) 29px,
+    hsla(0, 0%, 100%, 0.06) 32px, hsla(0, 0%, 100%, 0.03) 34px,
+    hsla(0, 0%, 100%, 0.02) 36px, hsla(0, 0%, 100%, 0.008) 38px,
+    hsla(0, 0%, 100%, 0.002) 39px, hsla(0, 0%, 100%, 0) 40px;
 }
 
 :global(.dark-theme) .overlay {
-  --scroller-gradient: #000 0, rgba(0, 0, 0, 0.7) 8px, rgba(0, 0, 0, 0.45) 14px,
+  --scroller-gradient:
+    #000 0, rgba(0, 0, 0, 0.7) 8px, rgba(0, 0, 0, 0.45) 14px,
     rgba(0, 0, 0, 0.3) 19px, rgba(0, 0, 0, 0.26) 21px, rgba(0, 0, 0, 0.19) 25px,
-    rgba(0, 0, 0, 0.12) 29px, rgba(0, 0, 0, 0.06) 32px, rgba(0, 0, 0, 0.03) 34px,
-    rgba(0, 0, 0, 0.02) 36px, rgba(0, 0, 0, 0.008) 38px,
-    rgba(0, 0, 0, 0.002) 39px, transparent 40px;
+    rgba(0, 0, 0, 0.12) 29px, rgba(0, 0, 0, 0.06) 32px,
+    rgba(0, 0, 0, 0.03) 34px, rgba(0, 0, 0, 0.02) 36px,
+    rgba(0, 0, 0, 0.008) 38px, rgba(0, 0, 0, 0.002) 39px, transparent 40px;
 }
 
 /* Must come before */
 .overlay:after {
-  background: linear-gradient(to top, var(--scroller-gradient)),
+  background:
+    linear-gradient(to top, var(--scroller-gradient)),
     linear-gradient(to left, var(--scroller-gradient));
   background-position-x: calc(100% + 40px);
   background-position-y: calc(100% + 40px);
 }
 .overlay:before {
-  background: linear-gradient(to bottom, var(--scroller-gradient)),
+  background:
+    linear-gradient(to bottom, var(--scroller-gradient)),
     linear-gradient(to right, var(--scroller-gradient));
   background-position-x: -40px;
   background-position-y: -40px;

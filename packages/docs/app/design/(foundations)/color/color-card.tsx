@@ -36,8 +36,10 @@ const ColorCard = ({ color }: { color: string }) => {
       )}
       style={{ "--color": hex }}
       onClick={() => {
-        setClicked(true);
-        navigator.clipboard.writeText(hex.toUpperCase());
+        navigator.clipboard.writeText(hex.toUpperCase()).then(
+          () => setClicked(true),
+          () => setClicked(false),
+        );
       }}
     >
       <div

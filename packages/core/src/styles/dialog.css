@@ -102,9 +102,11 @@ dialog.geist-dialog + .backdrop {
 }
 
 dialog.geist-dialog[open] {
-  -webkit-animation: show 0.4s var(--dialog-open-cubic-bezier) normal,
+  -webkit-animation:
+    show 0.4s var(--dialog-open-cubic-bezier) normal,
     content-fade-in 0.3s ease normal;
-  animation: show 0.4s var(--dialog-open-cubic-bezier) normal,
+  animation:
+    show 0.4s var(--dialog-open-cubic-bezier) normal,
     content-fade-in 0.3s ease normal;
 }
 
@@ -158,10 +160,10 @@ dialog.geist-dialog.modal {
 dialog.geist-dialog.modal[open] {
   -webkit-animation-duration: 0.35s, 0.35s;
   animation-duration: 0.35s, 0.35s;
-  -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
-    cubic-bezier(0.4, 0, 0.2, 1);
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
-    cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation-timing-function:
+    cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
+  animation-timing-function:
+    cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (min-width: 601px) {
@@ -180,10 +182,10 @@ dialog.geist-dialog.modal[open] {
   dialog.geist-dialog[open] {
     -webkit-animation-duration: 0.35s, 0.35s;
     animation-duration: 0.35s, 0.35s;
-    -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
-      cubic-bezier(0.4, 0, 0.2, 1);
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
-      cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-animation-timing-function:
+      cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
+    animation-timing-function:
+      cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 

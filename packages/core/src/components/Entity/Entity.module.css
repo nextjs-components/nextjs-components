@@ -98,7 +98,9 @@
   left: 0;
   top: -4px;
   background: var(--geist-background);
-  box-shadow: -1px 0 0 var(--accents-2), 1px 0 0 var(--accents-2);
+  box-shadow:
+    -1px 0 0 var(--accents-2),
+    1px 0 0 var(--accents-2);
 }
 
 .disabled + .entity:before,

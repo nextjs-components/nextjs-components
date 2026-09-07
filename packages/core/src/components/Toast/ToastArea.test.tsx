@@ -99,7 +99,7 @@ describe("ToastArea", () => {
 
   // GIVEN;
   describe("hovering", () => {
-    it("should result in ToastContainer children having hovered styles", () => {
+    it("should result in ToastContainer children having hovered styles", async () => {
       useHoverMock.mockImplementation(() => ({
         hoverProps: {},
         isHovered: true,
@@ -111,9 +111,10 @@ describe("ToastArea", () => {
       });
 
       const { container } = render(<ToastArea />);
+      const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
 
-      act(() => {
-        userEvent.hover(container);
+      await act(async () => {
+        await user.hover(container);
       });
 
       // @ts-ignore

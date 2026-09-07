@@ -16,11 +16,10 @@ type IntrinsicProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 >;
-export interface Props
-  extends Omit<
-    IntrinsicProps,
-    "prefix" | "type" | "onClick" | "onKeyDown" | "onMouseDown"
-  > {
+export interface Props extends Omit<
+  IntrinsicProps,
+  "prefix" | "type" | "onClick" | "onKeyDown" | "onMouseDown"
+> {
   size?: "small" | "large";
   prefix?: JSX.Element | string;
   suffix?: JSX.Element | string;

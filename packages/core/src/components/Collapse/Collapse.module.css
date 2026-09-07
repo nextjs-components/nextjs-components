@@ -31,7 +31,9 @@
 
 .button:focus:global(.focus-visible) {
   border-radius: var(--geist-radius);
-  box-shadow: 0 0 0 2px var(--geist-background), 0 0 0 4px var(--accents-3);
+  box-shadow:
+    0 0 0 2px var(--geist-background),
+    0 0 0 4px var(--accents-3);
 }
 
 .icon {

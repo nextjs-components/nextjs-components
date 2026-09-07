@@ -65,7 +65,9 @@
 }
 
 .input[data-focus-visible-added] + .icon {
-  box-shadow: 0 0 0 2px var(--geist-background), 0 0 0 4px var(--accents-5);
+  box-shadow:
+    0 0 0 2px var(--geist-background),
+    0 0 0 4px var(--accents-5);
 }
 
 .input:checked + .icon:after {
