@@ -8,7 +8,6 @@
   "version": "0.0.0",
   "description": "React components transcribed from the Vercel design system.",
   "scripts": {
-    "build:core-swc": "npm run build:swc --workspace=nextjs-components",
     "build:core-babel": "npm run build:babel --workspace=nextjs-components",
     "clean": "npm run clean --workspace=nextjs-components",
     "docs": "npm run dev --workspace=docs",
