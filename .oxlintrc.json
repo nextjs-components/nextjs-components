@@ -1,0 +1,32 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "nextjs", "jsx-a11y"],
+  "categories": {
+    "correctness": "warn"
+  },
+  "options": {
+    "typeAware": true
+  },
+  "rules": {
+    "typescript/await-thenable": "error",
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error"
+  },
+  "overrides": [
+    {
+      "files": ["packages/core/**"],
+      "rules": {
+        // This rule requires strictNullChecks, which core does not enable.
+        "typescript/no-useless-default-assignment": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "**/.scratch/**",
+    "**/dist/**",
+    "**/.next/**",
+    "**/out/**",
+    "**/coverage/**",
+    "**/next-env.d.ts"
+  ]
+}

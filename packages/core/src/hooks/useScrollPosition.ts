@@ -14,9 +14,8 @@ function getScrollPosition(): ScrollPosition {
 }
 
 const useScrollPosition = (): ScrollPosition => {
-  const [position, setScrollPosition] = useState<ScrollPosition>(
-    getScrollPosition(),
-  );
+  const [position, setScrollPosition] =
+    useState<ScrollPosition>(getScrollPosition());
 
   useEffect(() => {
     let requestRunning: number = null;

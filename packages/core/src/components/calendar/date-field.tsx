@@ -39,8 +39,8 @@ export function DateField(props: AriaDatePickerProps<DateValue>) {
           state.validationState === "invalid"
             ? "var(--geist-error)"
             : focusWithin
-            ? "var(--geist-foreground)"
-            : "var(--accents-2)",
+              ? "var(--geist-foreground)"
+              : "var(--accents-2)",
         display: "inline-flex",
         flexDirection: "row",
         alignItems: "center",

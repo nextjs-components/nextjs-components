@@ -33,7 +33,8 @@ Docs and CI-only changes do not need a package release. For changes inside the
 library that need no release, such as test changes, use `npm run changeset -- --empty`.
 
 PR checks validate the Changesets configuration and pending release plan,
-run unit tests, build the library and declarations, and check the package contents.
+check formatting, run linting and unit tests, build the library and
+declarations, and check the package contents.
 Library PRs require a changeset, including an empty changeset when no release is
 needed. Generated release PRs skip this presence check because versioning has
 already consumed their changesets; their tests, build, and package checks still run.
@@ -81,6 +82,8 @@ release repair; inspect npm and the failed run before retrying.
 
 ```sh
 npm run changeset -- status
+npm run format:check
+npm run lint
 npm test
 npm run build:core-babel
 npm run prune-dist --workspace=nextjs-components

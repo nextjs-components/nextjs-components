@@ -67,7 +67,9 @@
   transition: transform var(--duration) cubic-bezier(0, 0, 0.2, 1);
   width: 12px;
   background: var(--geist-background);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .thumb.checked {
@@ -79,7 +81,9 @@
 }
 
 .input:focus:global(.focus-visible) ~ .toggle {
-  box-shadow: 0 0 0 2px var(--geist-background), 0 0 0 4px var(--accents-3);
+  box-shadow:
+    0 0 0 2px var(--geist-background),
+    0 0 0 4px var(--accents-3);
 }
 
 .large .toggle {

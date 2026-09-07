@@ -5,19 +5,18 @@ import { forwardRef, useRef } from "react";
 import MagnifyingGlass from "../../icons/magnifying-glass";
 import { mergeRefs } from "../../utils/merge-refs";
 import { Spinner } from "../Spinner";
-import { Props as BaseProps, default as Input } from "./Input";
 import { ClearButton } from "./clear-button";
+import { Props as BaseProps, default as Input } from "./Input";
 
-interface Props
-  extends Omit<
-    BaseProps,
-    | "prefix"
-    | "prefixStyling"
-    | "prefixContainer"
-    | "suffix"
-    | "suffixStyling"
-    | "suffixContainer"
-  > {
+interface Props extends Omit<
+  BaseProps,
+  | "prefix"
+  | "prefixStyling"
+  | "prefixContainer"
+  | "suffix"
+  | "suffixStyling"
+  | "suffixContainer"
+> {
   loading?: boolean;
 }
 

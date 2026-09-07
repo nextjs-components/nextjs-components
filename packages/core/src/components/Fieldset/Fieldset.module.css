@@ -129,7 +129,10 @@
   color: #999;
   font-size: 14px;
   overflow: hidden;
-  transition: border 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition:
+    border 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
   border-radius: 0;
   border: 1px solid var(--accents-2);
   white-space: nowrap;
@@ -183,7 +186,9 @@
   border: 0;
   border-bottom: 3px solid transparent;
   background: transparent;
-  transition: border 0.2s ease, color 0.2s ease;
+  transition:
+    border 0.2s ease,
+    color 0.2s ease;
   padding: 0;
   margin-right: 25px;
 }

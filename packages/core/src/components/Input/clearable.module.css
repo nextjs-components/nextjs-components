@@ -1,6 +1,9 @@
 .button {
   cursor: pointer;
-  transition: color 0.15s ease, box-shadow 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s ease,
+    box-shadow 0.15s,
+    border-color 0.15s;
 }
 
 .button:not(.disabled):hover {

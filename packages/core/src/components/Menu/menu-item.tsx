@@ -4,8 +4,8 @@ import clsx from "clsx";
 import { PointerEventHandler, forwardRef, useId, useRef } from "react";
 
 import { IconSizeContext } from "../../contexts/IconSizeContext";
-import classes from "./Menu.module.css";
 import { useMenu } from "./menu-context";
+import classes from "./Menu.module.css";
 
 interface MenuItemInnerProps {
   children?: any;

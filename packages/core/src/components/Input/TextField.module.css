@@ -37,7 +37,9 @@
   padding: 0 var(--geist-gap-half);
   display: flex;
   align-items: center;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .prefix > :nth-child(2) {

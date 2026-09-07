@@ -15,6 +15,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 
 // import { editorScope } from "../../app/design/(foundations)/icons/icon-map";
 import styles from "./editor.module.css";
+import { editorScope } from "@/app/design/(foundations)/icons/icon-map";
 
 const DEFAULT_CODE = `
 <div>Hello, world!</div>
@@ -54,8 +55,10 @@ const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    toast.current?.success({ text: "Copied to clipboard!" });
+    navigator.clipboard.writeText(code).then(
+      () => toast.current?.success({ text: "Copied to clipboard!" }),
+      () => toast.current?.error({ text: "Could not copy to clipboard." }),
+    );
   };
 
   const [open, setOpen] = useState(false);

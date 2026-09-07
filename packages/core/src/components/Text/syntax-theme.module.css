@@ -18,7 +18,7 @@
 .code :global(.token.cdata),
 .code :global(.token.comment),
 .code :global(.token.doctype),
-.code :global(.token.prolog){
+.code :global(.token.prolog) {
   color: #999;
 }
 
@@ -140,7 +140,11 @@
   color: #fafbfc;
 }
 
-:global(.dark-theme) .code :global(.language-json) :global(.dark) :global(.token.boolean),
+:global(.dark-theme)
+  .code
+  :global(.language-json)
+  :global(.dark)
+  :global(.token.boolean),
 :global(.dark-theme) .code :global(.language-json) :global(.token.boolean) {
   color: var(--geist-success);
 }
@@ -177,14 +181,26 @@
   color: #fac863;
 }
 
-:global(.dark-theme) .code :global(.language-json) :global(.dark) :global(.token.property),
+:global(.dark-theme)
+  .code
+  :global(.language-json)
+  :global(.dark)
+  :global(.token.property),
 :global(.dark-theme) .code :global(.language-json) :global(.token.property),
-:global(.dark-theme) .code :global(.language-markdown) .dark :global(.token.title),
+:global(.dark-theme)
+  .code
+  :global(.language-markdown)
+  .dark
+  :global(.token.title),
 :global(.dark-theme) .code :global(.language-markdown) :global(.token.title) {
   color: #fff;
 }
 
-:global(.dark-theme) .code :global(.language-markdown) :global(.dark) :global(.token.code),
+:global(.dark-theme)
+  .code
+  :global(.language-markdown)
+  :global(.dark)
+  :global(.token.code),
 :global(.dark-theme) .code :global(.language-markdown) :global(.token.code) {
   color: #50e3c2;
 }

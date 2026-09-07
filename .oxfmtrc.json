@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "singleQuote": false,
+  "semi": true,
+  "sortPackageJson": false,
+  "sortImports": {
+    "groups": [
+      ["builtin", "external"],
+      "internal",
+      ["parent", "sibling", "index"],
+      "unknown"
+    ],
+    "internalPattern": ["@/"],
+    "newlinesBetween": true
+  },
+  "overrides": [
+    {
+      "files": ["packages/docs/**"],
+      "options": {
+        "sortTailwindcss": {
+          "config": "./packages/docs/tailwind.config.js"
+        }
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "**/.scratch/**",
+    "**/dist/**",
+    "**/.next/**",
+    "**/out/**",
+    "**/coverage/**",
+    "**/next-env.d.ts",
+    "package-lock.json"
+  ]
+}

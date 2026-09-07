@@ -1,6 +1,5 @@
 import { act, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import type { UserEvent } from "@testing-library/user-event/setup/setup";
 import React from "react";
 
 import ToastArea from "./ToastArea";
@@ -15,7 +14,7 @@ jest.mock("components/Button", () => ({
 }));
 
 describe("ToastConsumer", () => {
-  let user: UserEvent;
+  let user: ReturnType<typeof userEvent.setup>;
   let ToastConsumer: React.ComponentType;
   let wrapper: React.ComponentType<React.PropsWithChildren>;
 

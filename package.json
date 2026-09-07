@@ -16,7 +16,11 @@
     "test": "npm run test --workspace=nextjs-components -- --runInBand --watchman=false",
     "changeset": "changeset",
     "version-packages": "changeset version && npm install --package-lock-only --ignore-scripts --no-audit --no-fund",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "repository": {
     "type": "git",
@@ -40,6 +44,9 @@
     "hast-util-to-html": "^9.0.4",
     "hast-util-to-string": "^3.0.1",
     "html-to-jsx-transform": "^1.2.0",
+    "oxfmt": "0.65.0",
+    "oxlint": "1.80.0",
+    "oxlint-tsgolint": "7.0.2001",
     "react": "^19.0.0",
     "rehype-parse": "^9.0.1",
     "rehype-react": "^8.0.0",
@@ -48,7 +55,7 @@
     "unified": "^11.0.5"
   },
   "engines": {
-    "node": "^22.11 || ^24 || >=26",
+    "node": "^22.12 || ^24 || >=26",
     "npm": ">=11.5.1"
   }
 }

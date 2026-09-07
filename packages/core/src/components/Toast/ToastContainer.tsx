@@ -5,8 +5,8 @@ import React from "react";
 import { useCallback, useEffect, useReducer, useRef, useState } from "react";
 
 import { Button } from "../Button";
-import type { IToast } from "./ToastsProvider";
 import styles from "./toasts.module.css";
+import type { IToast } from "./ToastsProvider";
 
 interface ToastContainerProps extends IToast {
   height: number;

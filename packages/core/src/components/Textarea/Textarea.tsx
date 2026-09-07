@@ -32,7 +32,9 @@ const Textarea = forwardRef<HTMLTextAreaElement, Props>(
             border: 1px solid var(--accents-2);
             display: flex;
             position: relative;
-            transition: border 0.2s ease 0s, color 0.2s ease 0s;
+            transition:
+              border 0.2s ease 0s,
+              color 0.2s ease 0s;
             vertical-align: middle;
             background: var(--geist-background);
           }

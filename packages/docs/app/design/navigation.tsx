@@ -99,13 +99,16 @@ export const Sidebar = () => {
         const nodes = navigationNodes[next as "foundations" | "components"];
 
         acc[next] = nodes
-          .reduce((acc, next) => {
-            const score = commandScore(next.name, search);
-            if (score > 0) {
-              acc.push({ ...next, score });
-            }
-            return acc;
-          }, [] as ((typeof nodes)[number] & { score: number })[])
+          .reduce(
+            (acc, next) => {
+              const score = commandScore(next.name, search);
+              if (score > 0) {
+                acc.push({ ...next, score });
+              }
+              return acc;
+            },
+            [] as ((typeof nodes)[number] & { score: number })[],
+          )
           .sort((a, b) => {
             if (a.score === b.score) {
               return a.name.localeCompare(b.name);

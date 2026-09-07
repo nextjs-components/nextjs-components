@@ -9,8 +9,8 @@ import MoreVertical from "../../icons/more-vertical";
 import reset from "../../styles/reset/reset.module.css";
 import button from "../Button/button.module.css";
 import { Spacer } from "../Spacer";
-import styles from "./Entity.module.css";
 import dotsMenu from "./dots-menu.module.css";
+import styles from "./Entity.module.css";
 import { PlaceHolderContext } from "./index";
 
 interface EntityFieldProps {

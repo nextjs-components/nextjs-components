@@ -5,7 +5,9 @@
   right: var(--geist-gap);
   max-width: 420px;
   z-index: 5000;
-  transition: transform 0.4s ease, bottom 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    bottom 0.4s ease;
 }
 .toastArea.center {
   right: calc(50% - 210px);

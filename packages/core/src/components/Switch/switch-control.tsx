@@ -3,9 +3,9 @@ import type { PropsWithChildren } from "react";
 
 import { IconSizeContextProvider } from "../../contexts/IconSizeContext/IconSizeContext";
 import { Stack } from "../Stack";
-import switchStyles from "./Switch.module.css";
 import Control from "./control";
 import { SwitchControlContextProvider } from "./switch-control-context";
+import switchStyles from "./Switch.module.css";
 
 export interface SwitchProps extends PropsWithChildren {
   name: string;

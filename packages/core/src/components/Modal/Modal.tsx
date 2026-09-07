@@ -20,8 +20,7 @@ export interface ModalProps {
 export interface BodyProps extends React.HTMLAttributes<HTMLDivElement> {}
 export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {}
 export interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
-export interface SubtitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {}
+export interface SubtitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}
 export interface ActionsProps extends React.HTMLAttributes<HTMLElement> {}
 export interface ActionProps extends ButtonProps {}
 

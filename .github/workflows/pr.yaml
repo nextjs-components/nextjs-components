@@ -33,6 +33,12 @@ jobs:
       - name: Install
         run: npm ci --ignore-scripts --no-audit --no-fund
 
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Lint with type information
+        run: npm run lint
+
       - name: Validate changesets
         # Release PRs have already consumed their changesets.
         if: github.event_name != 'pull_request' || !startsWith(github.head_ref, 'changeset-release/')

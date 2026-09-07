@@ -2,11 +2,10 @@ import clsx from "clsx";
 
 import styles from "./Label.module.css";
 
-interface Props
-  extends React.DetailedHTMLProps<
-    React.LabelHTMLAttributes<HTMLLabelElement>,
-    HTMLLabelElement
-  > {
+interface Props extends React.DetailedHTMLProps<
+  React.LabelHTMLAttributes<HTMLLabelElement>,
+  HTMLLabelElement
+> {
   label?: React.ReactNode;
   capitalize?: boolean;
   withInput?: boolean;

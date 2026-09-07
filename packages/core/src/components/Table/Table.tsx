@@ -9,10 +9,9 @@ import { Checkbox } from "../Checkbox";
 import { Scroller } from "../Scroller";
 import styles from "./Table.module.css";
 
-interface Cell<T extends any = any>
-  extends React.FC<{
-    value: any; // FIXME
-  }> {}
+interface Cell<T extends any = any> extends React.FC<{
+  value: any; // FIXME
+}> {}
 
 type Column = {
   Header: string;

@@ -3,11 +3,13 @@
 import { forwardRef, useRef } from "react";
 
 import { mergeRefs } from "../../utils/merge-refs";
-import { Props as BaseProps, default as Input } from "./Input";
 import { ClearButton } from "./clear-button";
+import { Props as BaseProps, default as Input } from "./Input";
 
-interface Props
-  extends Omit<BaseProps, "suffix" | "suffixStyling" | "suffixContainer"> {}
+interface Props extends Omit<
+  BaseProps,
+  "suffix" | "suffixStyling" | "suffixContainer"
+> {}
 
 const ClearableInput = forwardRef<HTMLInputElement, Props>(
   (props, externalRef) => {
