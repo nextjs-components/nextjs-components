@@ -33,11 +33,11 @@ Docs and CI-only changes do not need a package release. For changes inside the
 library that need no release, such as test changes, use `npm run changeset -- --empty`.
 
 PR checks validate the Changesets configuration and pending release plan,
-check formatting, run linting and unit tests, build the library and
-declarations, and check the package contents.
+check formatting, run linting and unit tests, typecheck the library,
+and check the package contents.
 Library PRs require a changeset, including an empty changeset when no release is
 needed. Generated release PRs skip this presence check because versioning has
-already consumed their changesets; their tests, build, and package checks still run.
+already consumed their changesets; their tests, typecheck, and package checks still run.
 
 ## Release
 
@@ -61,17 +61,15 @@ for this stable release. Future release candidates must use Changesets
 [prerelease mode](https://changesets.dev/guide/prereleases) and a separate npm
 dist-tag, rather than publishing prereleases as `latest`.
 
-## Credentials
+## Publishing
 
-The workflow reuses these repository secrets:
+The Release workflow uses npm Trusted Publishing through GitHub Actions OIDC.
+The release job has `id-token: write` permission to authenticate with npm.
 
-- `ELEVATED_GITHUB_TOKEN`: access to repository contents and pull requests.
-  Using this token lets release PRs trigger the normal PR checks.
-- `NPM_TOKEN`: npm publish access for `nextjs-components`, with the required
-  noninteractive publish permissions. Keep the token valid and rotate it before expiry.
+`ELEVATED_GITHUB_TOKEN` provides access to repository contents and pull requests.
+Using this token lets release PRs trigger the normal PR checks.
 
-The npm token is supplied only to the release action. PR checks have read-only
-repository access and receive no release secrets.
+PR checks have read-only repository access and receive no release secrets.
 
 ## Retry and local checks
 
@@ -85,15 +83,16 @@ npm run changeset -- status
 npm run format:check
 npm run lint
 npm test
-npm run build:core-babel
-npm run prune-dist --workspace=nextjs-components
+npm run typecheck
 npm pack --workspace=nextjs-components --dry-run --ignore-scripts
 ```
 
 To inspect generated versions locally, run `npm run version-packages` in a
 temporary checkout. It consumes changesets and changes package files.
 `npm run release` publishes to npm and is intended for CI.
-The library's `prepublishOnly` hook builds declarations and removes test files
-from `dist` before npm publishes it.
+The library publishes TypeScript/TSX source and CSS. No build or declaration
+output is required before publishing. Consumers compile the source with Next.js
+`transpilePackages: ["nextjs-components"]`. Package checks exclude tests, local
+scratch files, and any old `dist` output.
 
 See the [Changesets automation guide](https://changesets.dev/guide/automating).

@@ -12,11 +12,7 @@
   "types": "src/index.ts",
   "scripts": {
     "test": "jest",
-    "emit-types": "tsc -p tsconfig.build.json",
-    "build:babel": "npm run clean && babel src --extensions '.ts','.tsx' --copy-files --no-copy-ignored -d dist --ignore '**/*.test.*' && npm run emit-types",
-    "prune-dist": "find dist -type f -name '*.test.*' -delete",
-    "clean": "rm -rf dist/",
-    "prepublishOnly": "npm run build:babel && npm run prune-dist",
+    "typecheck": "tsc --noEmit",
     "publish:local": "npx yalc publish",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
@@ -43,7 +39,6 @@
     "react-use-measure": "2.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.26.4",
     "@babel/core": "7.26.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "^13.4.0",

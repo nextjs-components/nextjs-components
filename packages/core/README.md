@@ -34,7 +34,6 @@ This project needs to be transpiled to work with your Next.js application. It is
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["tsx", "ts"],
-  swcMinify: true,
   transpilePackages: ["nextjs-components"],
 };
 
@@ -43,7 +42,9 @@ module.exports = nextConfig;
 
 ## Usage
 
-Using Next 13's `app` directory
+Using the [Next.js App Router](https://nextjs.org/docs/app/glossary#app-router)
+
+Configure the [styled-jsx registry](https://nextjs.org/docs/15/app/guides/css-in-js#styled-jsx), since `styled-jsx` is used in a few of the components.
 
 ```tsx
 "use client";
@@ -63,7 +64,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-Using the _traditional_ custom `_app.tsx`
+Using the [Pages router](https://nextjs.org/docs/pages)
 
 ```tsx
 // ./pages/_app.tsx
