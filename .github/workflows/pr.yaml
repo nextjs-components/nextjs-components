@@ -47,10 +47,8 @@ jobs:
       - name: Test
         run: npm run test
 
-      - name: Build package and declarations
-        run: npm run build:core-babel
+      - name: Typecheck package
+        run: npm run typecheck
 
       - name: Check package contents
-        run: |
-          npm run prune-dist --workspace=nextjs-components
-          npm pack --workspace=nextjs-components --dry-run --ignore-scripts
+        run: npm pack --workspace=nextjs-components --dry-run --ignore-scripts

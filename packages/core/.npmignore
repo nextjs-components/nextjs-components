@@ -1,4 +1,6 @@
 node_modules
+dist
+**/.scratch/**
 *.test.ts
 *.test.tsx
 *.text.ts.snap
@@ -6,12 +8,10 @@ node_modules
 __snapshots__
 jest.config.ts
 jest.setup.ts
-.babelrc
 .gitignore
 # --
 docs
 tsconfig.tsbuildinfo
 tsconfig.json
-tsconfig.build.json
 declaration.d.ts
 package-lock.json
