@@ -1,13 +1,5 @@
-// `rehype-slug` is ESM-only, so next.config needs to be
-// a `.mjs` file. https://github.com/vercel/next.js/issues/9607#issuecomment-944156493
-//
-// if using `.js`, you may see "SyntaxError: Cannot use import statement outside a module"
 import withMDX from "@next/mdx";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
-
-import rehypeStarryNight from "./rehype-starry-night.mjs";
+import { fileURLToPath } from "node:url";
 
 /**
  * @type {import('next').NextConfig}
@@ -16,11 +8,6 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["tsx", "ts", "mdx"],
   transpilePackages: ["nextjs-components", "../core"],
-  experimental: {},
-  eslint: {
-    // Oxlint runs in CI through the root lint script.
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -29,13 +16,13 @@ const nextConfig = {
 export default withMDX({
   extension: /\.mdx?$/,
   options: {
-    // remarkGfm is required to process syntax like tables
-    remarkPlugins: [remarkGfm],
+    // Use plugin paths so Turbopack can serialize the MDX options.
+    remarkPlugins: ["remark-gfm"],
     rehypePlugins: [
-      rehypeStarryNight,
-      rehypeSlug, // inject `id` into headings
+      fileURLToPath(new URL("./rehype-starry-night.mjs", import.meta.url)),
+      "rehype-slug", // inject `id` into headings
       [
-        rehypeAutolinkHeadings,
+        "rehype-autolink-headings",
         { behavior: "wrap", test: ["h3", "h4", "h5", "h6"] },
       ],
     ],

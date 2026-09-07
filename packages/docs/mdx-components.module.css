@@ -1,0 +1,7 @@
+.external {
+  color: var(--geist-success);
+}
+
+.external:hover {
+  color: var(--geist-foreground);
+}

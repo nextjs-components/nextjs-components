@@ -8,7 +8,7 @@ import "./pretty-lights.css";
 // Uncaught Error: invariant expected app router to be mounted
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>{/* <script src="https://cdn.tailwindcss.com"></script> */}</head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
