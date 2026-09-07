@@ -1,5 +1,15 @@
 # nextjs-components
 
+## 6.1.0
+
+### Minor Changes
+
+- 783ce15: Remove babel generated output.
+
+### Patch Changes
+
+- cc6cbf0: Handle clipboard copy failures in Snippet and report success only after the copy completes.
+
 ## 6.0.0
 
 ### Major Changes
