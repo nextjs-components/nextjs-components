@@ -13,9 +13,10 @@ import React from "react";
 import { useState } from "react";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 
+import { editorScope } from "@/app/design/(foundations)/icons/icon-map";
+
 // import { editorScope } from "../../app/design/(foundations)/icons/icon-map";
 import styles from "./editor.module.css";
-import { editorScope } from "@/app/design/(foundations)/icons/icon-map";
 
 const DEFAULT_CODE = `
 <div>Hello, world!</div>
