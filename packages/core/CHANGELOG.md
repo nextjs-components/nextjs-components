@@ -1,5 +1,11 @@
 # nextjs-components
 
+## 6.1.0
+
+### Minor Changes
+
+- 783ce15: Remove babel generated output.
+
 ## 6.0.0
 
 ### Major Changes
