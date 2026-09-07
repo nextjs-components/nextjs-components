@@ -6,7 +6,6 @@ node_modules
 __snapshots__
 jest.config.ts
 jest.setup.ts
-.swcrc
 .babelrc
 .gitignore
 # --
