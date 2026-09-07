@@ -3,6 +3,8 @@
 
 # nextjs-components
 
+For package changes and release steps, see [the release guide](https://github.com/nextjs-components/nextjs-components/blob/main/.changeset/README.md).
+
 A collection of React components, transcribed from https://vercel.com/design. [^1]
 
 [^1]: This is not affiliated with [Vercel](https://vercel.com)
