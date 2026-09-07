@@ -3,34 +3,48 @@ on:
   pull_request:
     branches:
       - main
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   test:
-    name: Run Unit Tests
+    name: Validate package
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Restore cache
-        id: restore-cache
-        uses: actions/cache@v4
+        uses: actions/checkout@v7.0.1
         with:
-          path: |
-            node_modules
-            */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7.0.0
         with:
-          node-version: "20.x"
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Setup npm
+        run: npm install --global npm@11.5.1 --ignore-scripts --no-audit --no-fund
 
       - name: Install
-        if: steps.restore-cache.outputs.cache-hit != 'true'
-        working-directory: packages/core
-        run: npm i
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Validate changesets
+        # Release PRs have already consumed their changesets.
+        if: github.event_name != 'pull_request' || !startsWith(github.head_ref, 'changeset-release/')
+        run: npm run changeset -- status --since origin/main
 
       - name: Test
-        working-directory: packages/core
         run: npm run test
+
+      - name: Build package and declarations
+        run: npm run build:core-babel
+
+      - name: Check package contents
+        run: |
+          npm run prune-dist --workspace=nextjs-components
+          npm pack --workspace=nextjs-components --dry-run --ignore-scripts

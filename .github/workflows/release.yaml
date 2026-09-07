@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/pr.yaml
+
+  release:
+    name: Version or publish
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v7.0.0
+        with:
+          node-version-file: .nvmrc
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - name: Setup npm
+        run: npm install --global npm@11.5.1 --ignore-scripts --no-audit --no-fund
+
+      - name: Install
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Create release PR or publish to npm
+        uses: changesets/action@8488615a623b1b9c987934bb89eae8af6a946ac1 # v2.1.1
+        with:
+          github-token: ${{ secrets.ELEVATED_GITHUB_TOKEN }}
+          version-script: npm run version-packages
+          publish-script: npm run release
+          commit-message: "chore: release packages"
+          pr-title: "chore: release packages"
+          create-github-releases: true
