@@ -29,6 +29,7 @@
     "react": "19.0.0",
     "react-aria": "^3.36.0",
     "react-dom": "19.0.0",
+    "react-is": "19.0.0",
     "react-live": "4.1.8",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.1.0",
