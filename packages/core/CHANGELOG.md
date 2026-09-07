@@ -6,10 +6,6 @@
 
 - 783ce15: Remove babel generated output.
 
-### Patch Changes
-
-- cc6cbf0: Handle clipboard copy failures in Snippet and report success only after the copy completes.
-
 ## 6.0.0
 
 ### Major Changes
