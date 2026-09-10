@@ -1,0 +1,277 @@
+import { CodeBlock } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Code Block
+
+<Spacer y={0.8} />
+
+## Code Block component used across Vercel and Next.js.
+
+<Spacer y={2} />
+
+### Default
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock aria-label="Hello world" filename="Table.jsx" language="jsx">
+  {\`// Usage:
+//   enabled by \\\`--debug-prerender\\\`
+//   route patterns: [id...] or [...id]
+//   NODE_OPTIONS='--debug-prerender' node
+function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### No filename
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock language="jsx">
+  {\`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### Highlighted lines
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock
+  filename="highlighted.jsx"
+  language="jsx"
+  highlightedLinesNumbers={[1, 4]}
+>
+  {\`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### Added and removed lines
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock
+  filename="next.config.js"
+  language="jsx"
+  addedLinesNumbers={[5]}
+  removedLinesNumbers={[2, 3, 4]}
+>
+  {\`module.exports = {
+  experimental: {
+    appDir: true,
+  },
+  appDir: true,
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### Language switcher
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`() => {
+  const [language, setLanguage] = React.useState("js");
+  const code = \`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`;
+  const switcher = {
+    value: language,
+    onChange: setLanguage,
+    options: [
+      { label: "JavaScript", value: "js" },
+      { label: "TypeScript", value: "ts" },
+      { label: "Next.js", value: "next" },
+      { label: "JSON", value: "json" },
+    ],
+  };
+  return (
+    <CodeBlock
+      filename={
+        language === "json"
+          ? "package.json"
+          : "example." + (language === "js" ? "jsx" : "tsx")
+      }
+      language={
+        language === "js" ? "jsx" : language === "json" ? "json" : "tsx"
+      }
+      switcher={switcher}
+    >
+      {language === "json"
+        ? '{ "name": "example", "private": true }'
+        : language === "js"
+          ? code
+          : code.replace("props)", "props: { name: string })")}
+    </CodeBlock>
+  );
+}`}
+/>
+
+<Spacer y={2} />
+
+### Language tabs
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`() => {
+  const [language, setLanguage] = React.useState("js");
+  const code = \`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`;
+  const tabs = {
+    value: language,
+    onChange: setLanguage,
+    options: [
+      { label: "JavaScript", value: "js" },
+      { label: "TypeScript", value: "ts" },
+      { label: "Next.js", value: "next" },
+      { label: "JSON", value: "json" },
+    ],
+  };
+  return (
+    <CodeBlock
+      filename={
+        language === "json"
+          ? "package.json"
+          : "example." + (language === "js" ? "jsx" : "tsx")
+      }
+      language={
+        language === "js" ? "jsx" : language === "json" ? "json" : "tsx"
+      }
+      tabs={tabs}
+    >
+      {language === "json"
+        ? '{ "name": "example", "private": true }'
+        : language === "js"
+          ? code
+          : code.replace("props)", "props: { name: string })")}
+    </CodeBlock>
+  );
+}`}
+/>
+
+<Spacer y={2} />
+
+### Hidden line numbers
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock filename="hidden-line-numbers.jsx" language="jsx" hideLineNumbers>
+  {\`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### Scrollable content
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock filename="output.txt" language="text" maxHeight={120}>
+  {Array.from(
+    { length: 20 },
+    (_, index) => \`Line \${index + 1}: \${"Long output. ".repeat(12)}\`,
+  ).join("\\n")}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### Open in v0
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock filename="Table.jsx" language="jsx" v0="ask">
+  {\`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+<Editor
+  scope={{ CodeBlock }}
+  code={`<CodeBlock filename="Table.jsx" language="jsx" v0="build">
+  {\`function MyComponent(props) {
+  return (
+    <div>
+      <h1>Hello, {props.name}!</h1>
+      <p>This is an example React component.</p>
+    </div>
+  );
+}\`}
+</CodeBlock>`}
+/>
+
+<Spacer y={2} />
+
+### Props
+
+| Prop                    | Type                                       | Default  |
+| ----------------------- | ------------------------------------------ | -------- |
+| children                | string                                     | Required |
+| language                | string                                     | Required |
+| filename                | string                                     | None     |
+| hideLineNumbers         | boolean                                    | false    |
+| highlightedLinesNumbers | number[]                                   | None     |
+| addedLinesNumbers       | number[]                                   | None     |
+| removedLinesNumbers     | number[]                                   | None     |
+| switcher / tabs         | `{ options, value, onChange, ariaLabel? }` | None     |
+| textToCopy              | string                                     | children |
+| maxHeight               | CSS height                                 | None     |
+| headerActions           | ReactNode                                  | None     |
+| copyButtonPlacement     | header / overlay                           | header   |
+| pure                    | boolean                                    | false    |
+| v0                      | ask / build                                | None     |
+
+Line lists use numbers that start at 1. Click a line number to add its link to the URL. Below 600 px, line numbers are hidden. Language selection is controlled by the caller. More than four tabs use a select control. Unknown languages display plain text. `pure` renders only the code surface.

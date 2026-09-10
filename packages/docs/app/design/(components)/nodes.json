@@ -4,6 +4,7 @@
   { "name": "Button", "path": "/design/button" },
   { "name": "Calendar", "path": "/design/calendar" },
   { "name": "Capacity", "path": "/design/capacity" },
+  { "name": "Code Block", "path": "/design/code-block" },
   { "name": "Combobox", "path": "/design/combobox" },
   { "name": "Description", "path": "/design/description" },
   { "name": "Entity", "path": "/design/entity" },
