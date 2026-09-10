@@ -9,6 +9,11 @@ export { Button, type ButtonProps } from "./components/Button";
 export { Calendar } from "./components/calendar";
 export { Capacity } from "./components/Capacity";
 export { Checkbox } from "./components/Checkbox";
+export {
+  CodeBlock,
+  type CodeBlockProps,
+  type CodeBlockSwitcher,
+} from "./components/CodeBlock";
 export { Collapse, CollapseGroup } from "./components/Collapse";
 export { Combobox } from "./components/combobox";
 export { Container } from "./components/Container";

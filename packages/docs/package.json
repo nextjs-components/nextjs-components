@@ -22,7 +22,7 @@
     "framer-motion": "^10.12.8",
     "hast-util-to-string": "^2.0.0",
     "next": "16.3.3",
-    "nextjs-components": "*",
+    "nextjs-components": "file:../core",
     "postcss": "^8.4.23",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^8.3.2",

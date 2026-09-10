@@ -1,147 +1,61 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import * as All from "nextjs-components";
-import { Button } from "nextjs-components/src/components/Button";
+import { CodeBlock } from "nextjs-components/src/components/CodeBlock";
 import { Container } from "nextjs-components/src/components/Container";
-import { Text } from "nextjs-components/src/components/Text";
-import { useToasts } from "nextjs-components/src/components/Toast";
 import ChevronRight from "nextjs-components/src/icons/chevron-right";
-import CopyIcon from "nextjs-components/src/icons/copy";
-import RotateCW from "nextjs-components/src/icons/rotate-clockwise";
-import React from "react";
-import { useState } from "react";
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
+import { useId, useState } from "react";
+import { LiveError, LivePreview, LiveProvider } from "react-live";
 
 import { editorScope } from "@/app/design/(foundations)/icons/icon-map";
 
-// import { editorScope } from "../../app/design/(foundations)/icons/icon-map";
 import styles from "./editor.module.css";
 
-const DEFAULT_CODE = `
-<div>Hello, world!</div>
-`;
+const DEFAULT_CODE = `<div>Hello, world!</div>`;
+type EditorProps = { scope?: Record<string, unknown>; code?: string };
 
-const THEME = {
-  plain: {
-    backgroundColor: "var(--geist-background)",
-    color: "var(--geist-foreground)",
-  },
-  styles: [
-    {
-      style: { color: "var(--accents-5)" },
-      types: [
-        "comment",
-        "string",
-        "number",
-        "builtin",
-        "variable",
-        "attr-name",
-        "punctuation",
-      ],
-    },
-    {
-      style: { color: "var(--geist-foreground)" },
-      types: ["class-name", "function", "tag"],
-    },
-  ],
-};
-const Editor = ({ scope, code: codeInit = DEFAULT_CODE }) => {
-  const toast = useToasts();
-  const [code, setCode] = useState(codeInit);
-
-  const handleReset = () => {
-    setCode(codeInit);
-    toast.current?.message({ text: "The editor has been reset." });
-  };
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code).then(
-      () => toast.current?.success({ text: "Copied to clipboard!" }),
-      () => toast.current?.error({ text: "Could not copy to clipboard." }),
-    );
-  };
-
+const Editor = ({ scope, code = DEFAULT_CODE }: EditorProps) => {
   const [open, setOpen] = useState(false);
+  const editorId = useId();
   return (
-    <LiveProvider scope={{ ...All, ...editorScope, ...scope }} code={code}>
+    <LiveProvider
+      scope={{ ...All, ...editorScope, ...scope }}
+      code={code}
+      language="tsx"
+    >
       <div className={styles.live}>
         <Container wrapper>
           <Container className={styles.preview}>
             <LivePreview />
           </Container>
         </Container>
-
-        <div className={styles.editor}>
-          <div className={styles.editorTrigger} onClick={() => setOpen(!open)}>
-            <ChevronRight
-              size={16}
-              color="var(--accents-6)"
-              style={{
-                transition: "transform 200ms",
-                transform: `rotate(${open ? 90 : 0}deg)`,
-              }}
-            />
-            <Text color="accents-6" style={{ marginLeft: 6 }}>
-              Code Editor
-            </Text>
-
-            <AnimatePresence>
-              {open ? (
-                <motion.div
-                  className={styles.actions}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <Button
-                    shape="square"
-                    type="secondary"
-                    className={styles.reset}
-                    onClick={handleReset}
-                  >
-                    <RotateCW size={16} />
-                  </Button>
-
-                  <Button
-                    shape="square"
-                    type="secondary"
-                    className={styles.copy}
-                    onClick={handleCopy}
-                  >
-                    <CopyIcon size={16} />
-                  </Button>
-                </motion.div>
-              ) : null}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        <AnimatePresence>
-          {open ? (
-            <motion.div
-              className={styles.editorArea}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+        <button
+          type="button"
+          className={styles.trigger}
+          aria-expanded={open}
+          aria-controls={editorId}
+          onClick={() => setOpen(!open)}
+        >
+          <ChevronRight
+            size={16}
+            style={{ transform: `rotate(${open ? 90 : 0}deg)` }}
+          />
+          <span>Code</span>
+        </button>
+        <div id={editorId} hidden={!open}>
+          {open && (
+            <CodeBlock
+              id={editorId + "-code"}
+              className={styles.codeBlock}
+              language="tsx"
             >
-              <LiveEditor
-                theme={THEME}
-                onChange={setCode}
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "1em",
-                  // 14 + inner 10 = var(--geist-gap) (24)
-                  padding: 14,
-                }}
-              />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+              {code}
+            </CodeBlock>
+          )}
+        </div>
         <LiveError className={styles.error} />
       </div>
     </LiveProvider>
   );
 };
-
 export default Editor;
