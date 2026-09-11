@@ -1,3 +1,13 @@
+# Docs page rules
+
+- Use the matching page at `https://vercel.com/geist/` as the reference.
+- Match the reference page's example sections and order.
+- Copy most of the reference text verbatim, including the introduction and short descriptions. Do not rewrite it only to make it shorter.
+- Keep copy to a minimum. Do not add setup notes, API explanations, keyboard guides, or extra examples that are absent from the reference.
+- Omit props tables.
+- Omit the Best Practices section, even when the reference includes it.
+- Use the local package components in working `Editor` examples.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

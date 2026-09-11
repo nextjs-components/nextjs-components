@@ -1,0 +1,37 @@
+import { Checkbox, Stack } from "nextjs-components";
+
+<Spacer y={0.6} />
+
+# Checkbox
+
+<Spacer y={0.8} />
+
+A control that toggles between two options, checked or unchecked.
+
+<Spacer />
+
+### Default
+
+<Editor scope={{ Checkbox }} code={`<Checkbox>Option 1</Checkbox>`} />
+
+<Spacer y={2} />
+
+### Disabled
+
+<Editor
+  scope={{ Checkbox, Stack }}
+  code={`<Stack gap={4}>
+  <Checkbox disabled>Disabled</Checkbox>
+  <Checkbox disabled checked>Disabled Checked</Checkbox>
+  <Checkbox disabled indeterminate>Disabled Indeterminate</Checkbox>
+</Stack>`}
+/>
+
+<Spacer y={2} />
+
+### Indeterminate
+
+<Editor
+  scope={{ Checkbox }}
+  code={`<Checkbox indeterminate>Option 1</Checkbox>`}
+/>
