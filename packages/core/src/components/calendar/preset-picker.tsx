@@ -268,7 +268,7 @@ export function PresetPicker({
               typeName="button"
               type="secondary"
               size="small"
-              className="njc:w-full"
+              className="w-full"
               onClick={dismiss}
             >
               Done

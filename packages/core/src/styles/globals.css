@@ -2,7 +2,6 @@
 @import url("./geist-text.css");
 @import url("./geist-globals.css");
 @import url("./dialog.css");
-@import url("./utilities.css");
 
 a {
   color: var(--geist-secondary);

@@ -4,6 +4,10 @@
 @source ".";
 @source "../components";
 @source "../mdx-components.tsx";
+/* npm workspaces installs the local package in the root node_modules. */
+@source "../../../node_modules/nextjs-components/src";
+@source not "../../../node_modules/nextjs-components/src/**/*.test.{ts,tsx}";
+@source not "../../../node_modules/nextjs-components/src/**/__snapshots__";
 
 @custom-variant dark (&:where(.dark-theme, .dark-theme *));
 

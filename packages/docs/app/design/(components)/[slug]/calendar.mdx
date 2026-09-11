@@ -8,7 +8,7 @@ import { Calendar } from "nextjs-components";
 
 Select a date or date range. Choose two days to commit a range, or type dates and times and select Apply.
 
-Calendar uses the library's shared Tailwind styles and design tokens. Tailwind CSS 4 or later is required. Load `nextjs-components/src/styles/globals.css` and configure the theme provider as shown in the [installation guide](/design/introduction). The package includes compiled utilities; no package source scanning is required.
+Calendar uses Tailwind CSS 4 or later. Configure the application's Tailwind build to scan `nextjs-components/src`, import the shared theme, and load the package's global styles as shown in the [installation guide](/design/introduction). This page consumes the local package and generates its utilities through the docs build.
 
 ```tsx
 import { Calendar, type DateValue, type RangeValue } from "nextjs-components";

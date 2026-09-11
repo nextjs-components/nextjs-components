@@ -54,7 +54,7 @@ function DrawerContent({
           {...underlayProps}
           className={clsx(
             styles.overlay,
-            "njc:fixed njc:inset-0 njc:bg-background-200/50",
+            "fixed inset-0 bg-geist-background-200/50",
           )}
         />
         <FocusScope contain={show} restoreFocus autoFocus>
@@ -84,7 +84,7 @@ function DrawerContent({
             data-geist-drawer=""
             className={clsx(
               styles.panel,
-              "njc:relative njc:w-full njc:max-h-[90dvh] njc:overflow-y-auto njc:rounded-t-xl njc:border-t njc:border-gray-alpha-400 njc:bg-background-100 njc:font-sans njc:text-gray-1000",
+              "relative w-full max-h-[90dvh] overflow-y-auto rounded-t-geist-xl border-t border-geist-gray-alpha-400 bg-geist-background-100 font-geist-sans text-geist-gray-1000",
               className,
             )}
           >
@@ -94,7 +94,7 @@ function DrawerContent({
               <footer
                 className={clsx(
                   styles.footer,
-                  "njc:sticky njc:bottom-0 njc:p-3 njc:bg-background-200",
+                  "sticky bottom-0 p-3 bg-geist-background-200",
                 )}
               >
                 {footer}

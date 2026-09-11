@@ -1,5 +1,22 @@
 # nextjs-components
 
+## 7.0.0-rc.2
+
+### Patch Changes
+
+- Generate component utilities with the application's Tailwind CSS 4 build. Remove the core CSS build, generated stylesheet, and utility prefix. Expose Geist theme names without replacing the application's Tailwind theme. Consumers must import the shared theme and register the package source with `@source`; the README and docs site show this setup.
+
+## 7.0.0-rc.1
+
+### Major Changes
+
+- f6e3382: Require Tailwind CSS 4 or later as a peer dependency. Add a shared Tailwind build and theme for the component library, and migrate Calendar layout utilities to it. Ship compiled, prefixed CSS through the existing global stylesheet. Align shared gray and blue tokens and the font stack with Geist, removing Calendar-specific theme overrides.
+
+### Patch Changes
+
+- f6e3382: Use the shared animated Drawer for the mobile Calendar date picker. Match the preset drawer's slide transition and theme overlay, preserve swipe dismissal and focus restoration, and keep the trigger linked to its dialog.
+- f6e3382: Use the shared Drawer for mobile Calendar presets, with search, compact option rows, a Done footer, theme-aware overlay, and focus management. Center the Compact preset button across sizes.
+
 ## 6.2.0-rc.0
 
 ### Minor Changes

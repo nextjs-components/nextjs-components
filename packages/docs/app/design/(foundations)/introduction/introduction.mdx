@@ -57,6 +57,7 @@ Using Next 13's `app` directory.
 // ./app/layout.tsx
 import { ThemeProvider } from "nextjs-components/src/contexts/ThemeContext";
 import "nextjs-components/src/styles/globals.css";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
@@ -75,6 +76,7 @@ Using the _traditional_ custom `_app.tsx`
 // ./pages/_app.tsx
 import { ThemeProvider, ToastArea, ToastsProvider } from "nextjs-components";
 import "nextjs-components/src/styles/globals.css";
+import "../styles/globals.css";
 
 function App({ Component, pageProps }) {
   return (
@@ -92,17 +94,37 @@ export default App;
 
 ### Styles and themes
 
-Import `nextjs-components/src/styles/globals.css` once in the root layout or custom app. It includes the library's design tokens and compiled Tailwind utilities. The theme provider selects the light or dark token values.
+The application must generate the package's utilities with Tailwind CSS 4 or later. Install the PostCSS plugin for Next.js:
 
-Tailwind CSS 4 or later is a required peer dependency. Library utilities use the `njc:` prefix and include compiled CSS, so no package source scanning is required. The library keeps its existing reset and does not add Tailwind Preflight.
-
-To use the same design tokens in your application's Tailwind utilities, import the shared theme after Tailwind:
-
-```css
-@import "tailwindcss";
-@import "nextjs-components/styles/theme.css";
+```bash
+npm install -D @tailwindcss/postcss@^4
 ```
 
-For Next.js, install `@tailwindcss/postcss` and add it to the PostCSS configuration. The docs site uses this Tailwind 4 setup.
+```js
+// postcss.config.mjs
+export default {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+```
+
+Import the shared theme and tell Tailwind to scan the installed package:
+
+```css
+/* app/globals.css */
+@import "tailwindcss";
+@import "nextjs-components/styles/theme.css";
+
+@source "../node_modules/nextjs-components/src";
+```
+
+Tailwind skips `node_modules` by default. The `@source` path is relative to the CSS file. For `src/app/globals.css`, use `../../node_modules/nextjs-components/src`. Keep any existing app sources.
+
+This docs site uses `../../../node_modules/nextjs-components/src` from `packages/docs/app/globals.css`, because npm workspaces installs the package in the repository's root `node_modules`. Its `file:../core` dependency supplies the local library. The docs build generates the library utilities.
+
+The shared theme adds names such as `text-geist-gray-900` and `bg-geist-background-100` while preserving the application's Tailwind theme. Components use ordinary utilities without a prefix.
+
+Import the application's Tailwind stylesheet and `nextjs-components/src/styles/globals.css` once in the root layout or custom app, as shown above. The package's global CSS provides runtime design tokens and base styles. The theme provider selects light or dark values. Component CSS Modules load with their components.
 
 <Spacer y={4} />
