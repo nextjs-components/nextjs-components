@@ -1,5 +1,11 @@
 # nextjs-components
 
+## 6.2.0-rc.0
+
+### Minor Changes
+
+- calendar component updates
+
 ## 6.1.0
 
 ### Minor Changes

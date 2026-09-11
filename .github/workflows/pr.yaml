@@ -36,6 +36,11 @@ jobs:
       - name: Check formatting
         run: npm run format:check
 
+      - name: Check generated package CSS
+        run: |
+          npm run build:styles
+          git diff --exit-code -- packages/core/src/styles/utilities.css
+
       - name: Lint with type information
         run: npm run lint
 

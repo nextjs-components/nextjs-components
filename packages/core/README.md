@@ -18,9 +18,9 @@ A collection of React components, transcribed from https://vercel.com/design. [^
 ## Installation
 
 ```bash
-npm i nextjs-components
-pnpm i nextjs-components
-bun i nextjs-components
+npm i nextjs-components tailwindcss@^4
+pnpm i nextjs-components tailwindcss@^4
+bun i nextjs-components tailwindcss@^4
 ```
 
 This project needs to be transpiled to work with your Next.js application. It is recommended to use Next.js `13.1.0`’s [built-in module tranpilation](https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable). (Up until Next.js `13.1.0`, [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) handled this use case.)
@@ -86,6 +86,16 @@ export default App;
 ```
 
 Check out the [documentation site](https://nextjs-components-thekevinwang.vercel.app/) for more examples!
+
+## Styling components
+
+The library builds Tailwind utilities with the `njc:` prefix. Its shared Tailwind theme maps colors, spacing, fonts, and shadows to the existing design tokens. Calendar uses these utilities with scoped CSS for compound states and mobile portals.
+
+Tailwind CSS 4 or later is a required peer dependency. Consumers load the compiled utilities through `nextjs-components/src/styles/globals.css`, as shown above. The library's compiled styles do not require package source scanning. The build omits Tailwind Preflight; the package's existing global styles own the reset.
+
+Apps that compile their own Tailwind utilities can import `nextjs-components/styles/theme.css` after `tailwindcss` in their CSS entry to use the shared design tokens. Next.js apps use the `@tailwindcss/postcss` plugin. The docs site uses this setup with Tailwind 4.
+
+For library development, use complete utility names, such as `njc:flex njc:gap-2 njc:text-gray-900`. All files under `packages/core/src` are scanned, except tests and snapshots. Run `npm run build:styles`, or keep `npm run dev:styles` running while editing utility classes. Commit the generated `packages/core/src/styles/utilities.css` with source changes. Packing rebuilds it, and CI checks that it is current.
 
 > [!WARNING]
 > Dropped `create-react-app` support.

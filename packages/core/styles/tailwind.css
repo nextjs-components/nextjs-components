@@ -1,0 +1,10 @@
+/* Build all library utilities. The existing globals.css owns the reset. */
+@import "tailwindcss/theme.css" prefix(njc) theme(inline);
+@import "tailwindcss/utilities.css" prefix(njc) source(none);
+@import "./theme.css";
+
+@custom-variant dark (&:where(.dark, .dark *, .dark-theme, .dark-theme *));
+
+@source "../src";
+@source not "../src/**/*.test.{ts,tsx}";
+@source not "../src/**/__snapshots__";

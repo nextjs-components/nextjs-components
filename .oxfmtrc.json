@@ -33,6 +33,7 @@
     "**/out/**",
     "**/coverage/**",
     "**/next-env.d.ts",
+    "packages/core/src/styles/utilities.css",
     "package-lock.json"
   ]
 }

@@ -8,6 +8,8 @@
   "version": "0.0.0",
   "description": "React components transcribed from the Vercel design system.",
   "scripts": {
+    "build:styles": "npm run build:styles --workspace=nextjs-components",
+    "dev:styles": "npm run dev:styles --workspace=nextjs-components",
     "typecheck": "npm run typecheck --workspace=nextjs-components",
     "docs": "npm run dev --workspace=docs",
     "docs:plop": "npm run plop --workspace=docs",

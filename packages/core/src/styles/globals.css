@@ -2,6 +2,7 @@
 @import url("./geist-text.css");
 @import url("./geist-globals.css");
 @import url("./dialog.css");
+@import url("./utilities.css");
 
 a {
   color: var(--geist-secondary);
@@ -140,9 +141,9 @@ svg rect {
   --geist-radius: 5px;
   --geist-marketing-radius: 8px;
   --font-sans:
-    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   --font-mono:
     Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
@@ -337,7 +338,7 @@ svg rect {
 
 /* MARK: ds colors (default and dark) */
 .dark .invert-theme,
-.dark-atheme .invert-theme,
+.dark-theme .invert-theme,
 :host,
 :root {
   --ds-gray-100-value: 0, 0%, 95%;
@@ -348,7 +349,7 @@ svg rect {
   --ds-gray-600-value: 0, 0%, 66%;
   --ds-gray-700-value: 0, 0%, 56%;
   --ds-gray-800-value: 0, 0%, 49%;
-  --ds-gray-900-value: 0, 0%, 40%;
+  --ds-gray-900-value: 0, 0%, 30%;
   --ds-gray-1000-value: 0, 0%, 9%;
   --ds-blue-100-value: 212, 100%, 97%;
   --ds-blue-200-value: 210, 100%, 96%;
@@ -359,6 +360,7 @@ svg rect {
   --ds-blue-700-value: 212, 100%, 48%;
   --ds-blue-800-value: 212, 100%, 41%;
   --ds-blue-900-value: 211, 100%, 42%;
+  --ds-blue-900: oklch(53.18% 0.2399 256.99);
   --ds-blue-1000-value: 211, 100%, 15%;
   --ds-red-100-value: 0, 100%, 97%;
   --ds-red-200-value: 0, 100%, 96%;
@@ -464,7 +466,6 @@ svg rect {
   --ds-blue-600: hsla(var(--ds-blue-600-value), 1);
   --ds-blue-700: hsla(var(--ds-blue-700-value), 1);
   --ds-blue-800: hsla(var(--ds-blue-800-value), 1);
-  --ds-blue-900: hsla(var(--ds-blue-900-value), 1);
   --ds-blue-1000: hsla(var(--ds-blue-1000-value), 1);
   --ds-amber-100: hsla(var(--ds-amber-100-value), 1);
   --ds-amber-200: hsla(var(--ds-amber-200-value), 1);
@@ -552,6 +553,7 @@ svg rect {
   --ds-blue-700-value: 212, 100%, 48%;
   --ds-blue-800-value: 212, 100%, 41%;
   --ds-blue-900-value: 210, 100%, 66%;
+  --ds-blue-900: oklch(71.7% 0.1648 250.794);
   --ds-blue-1000-value: 206, 100%, 96%;
   --ds-red-100-value: 357, 37%, 12%;
   --ds-red-200-value: 357, 46%, 16%;
@@ -805,73 +807,6 @@ html:not(.dark-theme) .geist-themed.geist-error-fill.geist-error-contrast {
 .geist-spacer.inline {
   display: inline-block;
   margin-top: 0;
-}
-
-.geist-drawer {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  pointer-events: none;
-}
-
-.geist-drawer.show {
-  pointer-events: auto;
-}
-
-.geist-drawer-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 4000;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateZ(101px);
-  transition: opacity 0.2s cubic-bezier(0.05, 0.86, 0.47, 1.02);
-  background: rgba(0, 0, 0, 0.7);
-  will-change: opacity;
-}
-
-.geist-drawer.show .geist-drawer-overlay {
-  opacity: 1;
-  pointer-events: all;
-  transition: opacity 0.2s cubic-bezier(0.05, 0.86, 0.47, 1.02);
-}
-
-.geist-drawer-container {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  opacity: 0;
-  padding-bottom: 0;
-  z-index: 4001;
-  overflow-y: auto;
-  box-shadow: var(--shadow-medium);
-  background: var(--geist-background);
-  border-top-left-radius: var(--geist-marketing-radius);
-  border-top-right-radius: var(--geist-marketing-radius);
-  -webkit-overflow-scrolling: touch;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  transition:
-    transform 0.15s cubic-bezier(0.6, 0.04, 0.98, 0.335),
-    opacity 0.2s ease 0.1s,
-    height 0.2s ease;
-  transform: translate3d(0, 100%, 102px);
-  will-change: transform, opacity;
-}
-
-.geist-drawer.show .geist-drawer-container {
-  opacity: 1;
-  transition:
-    transform 0.2s cubic-bezier(0.05, 0.86, 0.47, 1.02),
-    opacity 0.2s ease,
-    height 0.2s ease;
 }
 
 .geist-overflow-scroll-y {
