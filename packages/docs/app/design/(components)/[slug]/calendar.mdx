@@ -1,24 +1,4 @@
-import { parseDate } from "@internationalized/date";
 import { Calendar } from "nextjs-components";
-
-export const presets = {
-  "last-3-days": {
-    start: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-    text: "Last 3 days",
-  },
-  "last-7-days": {
-    start: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-    text: "Last 7 days",
-  },
-  "last-14-days": {
-    start: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-    text: "Last 14 days",
-  },
-  "last-month": {
-    start: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-    text: "Last month",
-  },
-};
 
 <Spacer y={0.6} />
 
@@ -33,17 +13,173 @@ Displays a calendar from which users can select a date or range of dates.
 ### Default
 
 <Editor
-  scope={{ Calendar, presets, parseDate }}
+  scope={{ Calendar }}
   code={`() => {
-  const [range, setRange] = React.useState(null)
-  
-  return <Calendar 
-    value={range}
-    onChange={setRange}
-    // minValue={parseDate("2023-02-07")}
-    // maxValue={parseDate("2023-05-20")}
-  />
+  const [value, setValue] = React.useState(null);
+  const now = new Date();
+  return <Calendar allowClear value={value} onChange={setValue}
+    minValue={new Date(now.getFullYear(), now.getMonth() - 2, now.getDate())}
+    maxValue={new Date(now.getFullYear(), now.getMonth() + 2, now.getDate())} />;
 }`}
 />
 
-<Spacer y={4} />
+<Spacer y={2} />
+
+### Horizontal Layout
+
+Use `horizontalLayout` to align content horizontally within the calendar popover.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <Calendar value={value} onChange={setValue} allowClear horizontalLayout showTimeInput={false} popoverAlignment="center" />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Sizes
+
+Choose between `medium` (default) and `small` for size.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <div style={{ display: "flex", flexWrap: "wrap", gap: 24 }}>
+    <Calendar size="small" value={value} onChange={setValue} />
+    <Calendar size="medium" value={value} onChange={setValue} />
+  </div>;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Presets
+
+Provide common date ranges.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar presets={presets} value={value} onChange={setValue} allowClear />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Compact
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar compact presets={presets} value={value} onChange={setValue} allowClear />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Stacked
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar stacked presets={presets} value={value} onChange={setValue} />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Presets with default value
+
+Use `presetIndex` to select the initial preset.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar stacked presets={presets} presetIndex={2} onChange={setValue} />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Min and max dates
+
+Set the earliest and latest allowed dates.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const min = new Date(); min.setDate(min.getDate() - 1); min.setHours(5, 0, 0, 0);
+  const max = new Date(); max.setDate(max.getDate() + 1);
+  return <Calendar value={value} onChange={setValue} minValue={min} maxValue={max} />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Pinned timezone
+
+Use `pinnedTimezone` to fix the timezone and show it as text.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <Calendar value={value} onChange={setValue} pinnedTimezone="America/Los_Angeles" popoverAlignment="center" />;
+}`}
+/>

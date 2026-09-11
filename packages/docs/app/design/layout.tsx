@@ -28,7 +28,7 @@ const DesignLayout: React.FC<Props> = ({ children }) => {
         <div
           id="design-page" // see globals.css
           className={clsx(
-            "mx-auto my-0 min-h-screen max-w-[1250px] px-[--geist-gap] py-0",
+            "mx-auto my-0 min-h-screen max-w-[1250px] px-(--geist-gap) py-0",
           )}
         >
           <Sidebar />

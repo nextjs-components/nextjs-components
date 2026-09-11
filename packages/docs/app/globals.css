@@ -1,6 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" source(none);
+@import "nextjs-components/styles/theme.css";
+
+@source ".";
+@source "../components";
+@source "../mdx-components.tsx";
+/* npm workspaces installs the local package in the root node_modules. */
+@source "../../../node_modules/nextjs-components/src";
+@source not "../../../node_modules/nextjs-components/src/**/*.test.{ts,tsx}";
+@source not "../../../node_modules/nextjs-components/src/**/__snapshots__";
+
+@custom-variant dark (&:where(.dark-theme, .dark-theme *));
+
+@theme {
+  --background-image-gradient-radial:
+    radial-gradient(ellipse at 10% 90%, #f5a62333, #7b26c940, transparent),
+    linear-gradient(to bottom right, #ee989020, #ff008030, #7d28cc40, #6b66ff10);
+  --background-image-example: linear-gradient(
+    330deg,
+    var(--accents-2) 0,
+    var(--accents-1) 100%
+  );
+  --background-image-example-dark: linear-gradient(0deg, #1c1c1c 0, #282828);
+  --shadow-theme-switcher-label:
+    0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
 
 @layer base {
   html {
@@ -18,19 +41,17 @@
   --inset-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, 0.1);
 }
 
-@layer utilities {
-  .design-mask-image {
-    mask-image: linear-gradient(
-      #000,
-      #000,
-      transparent 0,
-      #000 40px,
-      #000 calc(100% - 40px),
-      transparent
-    );
-  }
+@utility design-mask-image {
+  mask-image: linear-gradient(
+    #000,
+    #000,
+    transparent 0,
+    #000 40px,
+    #000 calc(100% - 40px),
+    transparent
+  );
+}
 
-  .position-unset {
-    position: unset;
-  }
+@utility position-unset {
+  position: unset;
 }

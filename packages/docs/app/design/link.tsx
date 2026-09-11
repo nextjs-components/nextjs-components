@@ -10,16 +10,16 @@ export default function Link({ children, href, className = "" }) {
   return (
     <NextLink
       className={clsx(
-        "cursor-pointer text-inherit no-underline outline-none",
+        "cursor-pointer text-inherit no-underline outline-hidden",
         className,
       )}
       href={href}
     >
       <span
         className={clsx(
-          "-mx-4 flex h-10 items-center rounded-md px-4 py-2 text-[--accents-5] transition-all duration-100",
-          "hover:bg-[--accents-1] hover:text-[--geist-foreground]",
-          { ["bg-[--hover] text-[--geist-foreground]"]: active },
+          "-mx-4 flex h-10 items-center rounded-md px-4 py-2 text-(--accents-5) transition-all duration-100",
+          "hover:bg-(--accents-1) hover:text-(--geist-foreground)",
+          { ["bg-(--hover) text-(--geist-foreground)"]: active },
           "text-sm font-normal leading-5",
         )}
       >

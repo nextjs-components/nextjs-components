@@ -2,47 +2,120 @@
 
 import { Portal } from "@radix-ui/react-portal";
 import clsx from "clsx";
-import { usePreventScroll } from "react-aria";
-import useMeasure from "react-use-measure";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type PropsWithChildren,
+  type ReactNode,
+  type HTMLAttributes,
+} from "react";
+import { FocusScope, mergeProps, useDialog, useModalOverlay } from "react-aria";
+import { useOverlayTriggerState } from "react-stately";
 
-interface Props {
+import styles from "./drawer.module.css";
+
+interface Props extends Omit<HTMLAttributes<HTMLDivElement>, "role"> {
+  role?: "dialog" | "alertdialog";
   show: boolean;
   onDismiss?: () => void;
+  header?: ReactNode;
+  footer?: ReactNode;
 }
 
-const Drawer: React.ComponentType<React.PropsWithChildren<Props>> = ({
+function DrawerContent({
   children,
   show,
   onDismiss,
-}) => {
-  usePreventScroll({ isDisabled: !show });
-
-  // useMeasure will update through window resize
-  const [ref2, bounds] = useMeasure();
+  header,
+  footer,
+  className,
+  ...props
+}: PropsWithChildren<Props>) {
+  const ref = useRef<HTMLDivElement>(null);
+  const touchStart = useRef<number | null>(null);
+  const state = useOverlayTriggerState({
+    isOpen: show,
+    onOpenChange: (open) => {
+      if (!open) onDismiss?.();
+    },
+  });
+  const { modalProps, underlayProps } = useModalOverlay(
+    { isDismissable: true },
+    state,
+    ref,
+  );
+  const { dialogProps } = useDialog(props, ref);
 
   return (
     <Portal>
-      <div className={clsx("geist-drawer", { show: show })}>
+      <div className={styles.layer} data-open={show || undefined}>
         <div
-          className={clsx("geist-drawer-overlay")}
-          onClick={() => {
-            onDismiss?.();
-          }}
+          {...underlayProps}
+          className={clsx(
+            styles.overlay,
+            "fixed inset-0 bg-geist-background-200/50",
+          )}
         />
-        <div
-          className={clsx("geist-drawer-container")}
-          style={{
-            height: bounds.height + 20,
-            transform: `translate3d(0px, ${show ? "0px" : "100%"}, 102px)`,
-          }}
-        >
-          <div>
-            <div ref={ref2}>{children}</div>
+        <FocusScope contain={show} restoreFocus autoFocus>
+          <div
+            {...mergeProps(props, modalProps, dialogProps, {
+              onTouchStart: (event: React.TouchEvent<HTMLDivElement>) => {
+                touchStart.current =
+                  event.currentTarget.scrollTop === 0
+                    ? event.touches[0].clientY
+                    : null;
+              },
+              onTouchEnd: (event: React.TouchEvent<HTMLDivElement>) => {
+                if (
+                  touchStart.current !== null &&
+                  event.changedTouches[0].clientY - touchStart.current > 100
+                ) {
+                  onDismiss?.();
+                }
+                touchStart.current = null;
+              },
+              onTouchCancel: () => {
+                touchStart.current = null;
+              },
+            })}
+            ref={ref}
+            aria-hidden={!show || undefined}
+            data-geist-drawer=""
+            className={clsx(
+              styles.panel,
+              "relative w-full max-h-[90dvh] overflow-y-auto rounded-t-geist-xl border-t border-geist-gray-alpha-400 bg-geist-background-100 font-geist-sans text-geist-gray-1000",
+              className,
+            )}
+          >
+            {header && <div className={styles.header}>{header}</div>}
+            {children}
+            {footer && (
+              <footer
+                className={clsx(
+                  styles.footer,
+                  "sticky bottom-0 p-3 bg-geist-background-200",
+                )}
+              >
+                {footer}
+              </footer>
+            )}
           </div>
-        </div>
+        </FocusScope>
       </div>
     </Portal>
   );
-};
+}
 
-export default Drawer;
+export default function Drawer(props: PropsWithChildren<Props>) {
+  const [present, setPresent] = useState(props.show);
+  useEffect(() => {
+    if (props.show) {
+      setPresent(true);
+      return;
+    }
+    const timeout = setTimeout(() => setPresent(false), 400);
+    return () => clearTimeout(timeout);
+  }, [props.show]);
+  return props.show || present ? <DrawerContent {...props} /> : null;
+}

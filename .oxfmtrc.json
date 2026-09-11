@@ -21,7 +21,7 @@
       "files": ["packages/docs/**"],
       "options": {
         "sortTailwindcss": {
-          "config": "./packages/docs/tailwind.config.js"
+          "stylesheet": "./packages/docs/app/globals.css"
         }
       }
     }

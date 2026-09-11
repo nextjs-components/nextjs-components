@@ -1,167 +1,345 @@
 "use client";
 
-import { type DateValue, getLocalTimeZone, now } from "@internationalized/date";
-import { useDateRangePicker } from "@react-aria/datepicker";
-import { useDateRangePickerState } from "@react-stately/datepicker";
-import type { Granularity } from "@react-types/datepicker";
-import type { RangeValue } from "@react-types/shared";
+import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
-import { PropsWithChildren, useRef } from "react";
-import { OverlayContainer, useOverlayPosition } from "react-aria";
-import { useDateFormatter } from "react-aria";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+  type MouseEventHandler,
+} from "react";
 
+import useMediaQuery from "../../hooks/useMediaQuery";
 import CalendarIcon from "../../icons/calendar";
-import { Button } from "../Button";
-import { Label } from "../Label";
-import { Spacer } from "../Spacer";
-import styles from "./calendar.module.css";
-import { DateField } from "./date-field";
-import { Popover } from "./popover";
-import { RangeCalendar } from "./range-calendar";
+import Cross from "../../icons/cross";
+import Drawer from "../Drawer";
+import styles from "./calendar-styles";
+import {
+  asDate,
+  dayEnd,
+  dayStart,
+  rangeLabel,
+  type DateInput,
+  type DateRange,
+  type RangeValue,
+} from "./date-utils";
+import { MonthGrid } from "./month-grid";
+import { PresetPicker } from "./preset-picker";
+import { RangeInputs } from "./range-inputs";
 
-export { type DateValue };
-export { type RangeValue };
+export type { DateValue, DateInput, RangeValue } from "./date-utils";
+export interface CalendarPreset {
+  text: string;
+  start: DateInput;
+  end?: DateInput;
+}
 export interface DateRangePickerProps {
-  minValue?: DateValue;
-  maxValue?: DateValue;
-  isDateUnavailable?: (date: DateValue) => boolean;
-  placeholderValue?: DateValue;
-  hourCycle?: 12 | 24;
-  granularity?: Granularity;
-  hideTimeZone?: boolean;
+  value?: RangeValue<DateInput> | null;
+  defaultValue?: RangeValue<DateInput> | null;
+  onChange?: (value: DateRange | null, presetKey?: string) => void;
+  minValue?: DateInput;
+  maxValue?: DateInput;
+  presets?: Record<string, CalendarPreset>;
+  presetIndex?: number;
+  size?: "small" | "medium";
+  compact?: boolean;
+  stacked?: boolean;
+  hideDateButton?: boolean;
+  horizontalLayout?: boolean;
+  showTimeInput?: boolean;
+  pinnedTimezone?: string;
+  popoverAlignment?: "start" | "center" | "end";
+  allowClear?: boolean;
+  selectionMode?: "range" | "single";
+  width?: string | number;
+  disabled?: boolean;
   isDisabled?: boolean;
   isReadOnly?: boolean;
+  defaultOpen?: boolean;
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  autoFocus?: boolean;
+  label?: string;
+  className?: string;
+  buttonClassName?: string;
+  buttonTypeName?: "button" | "submit" | "reset";
+  buttonSuffix?: ReactNode;
+  dataTestId?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onLockedClick?: MouseEventHandler<HTMLButtonElement>;
+  "aria-label"?: string;
+  granularity?: "day" | "hour" | "minute" | "second";
+  hideTimeZone?: boolean;
+  hourCycle?: 12 | 24;
+  placeholderValue?: DateInput;
   validationState?: "valid" | "invalid";
   isRequired?: boolean;
-  autoFocus?: boolean;
-  isOpen?: boolean;
-  defaultOpen?: boolean;
   allowsNonContiguousRanges?: boolean;
-  value?: RangeValue<DateValue> | null;
-  defaultValue?: RangeValue<DateValue> | null;
-  //
-  label?: string;
+  isDateUnavailable?: (date: Date) => boolean;
+}
+export type CalendarProps = DateRangePickerProps;
+
+function nativeRange(value?: RangeValue<DateInput> | null): DateRange | null {
+  return value ? { start: asDate(value.start), end: asDate(value.end) } : null;
 }
 
-export function DateRangePicker({
-  granularity = "minute", // This causes DateField to render a TimeField
-  hideTimeZone = false,
-  ...props
-}: DateRangePickerProps) {
-  let formatter = useDateFormatter({
-    month: "numeric",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-
-  let state = useDateRangePickerState({
-    ...props,
+export const DateRangePicker = forwardRef<
+  HTMLButtonElement,
+  DateRangePickerProps
+>(function Calendar(
+  {
+    value,
+    defaultValue,
+    onChange,
+    minValue,
+    maxValue,
+    presets,
+    presetIndex,
+    size = "medium",
+    compact = false,
+    stacked = false,
+    hideDateButton = false,
+    horizontalLayout = false,
+    showTimeInput = true,
+    pinnedTimezone,
+    popoverAlignment = "start",
+    allowClear = false,
+    selectionMode = "range",
+    width,
+    disabled = false,
+    isDisabled = false,
+    isReadOnly = false,
+    defaultOpen = false,
+    isOpen,
+    onOpenChange,
+    autoFocus,
+    label,
+    className,
+    buttonClassName,
+    buttonTypeName = "button",
+    buttonSuffix,
+    dataTestId,
+    onClick,
+    onLockedClick,
     granularity,
-    hideTimeZone: false,
+    hideTimeZone,
+    hourCycle,
+    isDateUnavailable,
+    "aria-label": ariaLabel,
+  },
+  ref,
+) {
+  const presetRange = (key: string) =>
+    presets?.[key]
+      ? {
+          start: asDate(presets[key].start),
+          end: presets[key].end ? asDate(presets[key].end) : dayEnd(new Date()),
+        }
+      : null;
+  const [internalValue, setInternalValue] = useState(
+    () =>
+      nativeRange(defaultValue) ??
+      presetRange(Object.keys(presets ?? {})[presetIndex]),
+  );
+  const selected = value !== undefined ? nativeRange(value) : internalValue;
+  const [open, setOpen] = useState(defaultOpen);
+  const isShown = isOpen ?? open;
+  const [anchor, setAnchor] = useState<Date | null>(null);
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const dialogId = useId();
+  const min = minValue ? asDate(minValue) : undefined;
+  const max = maxValue ? asDate(maxValue) : undefined;
+  const locked = disabled || isDisabled;
+  const selectedKey = Object.keys(presets ?? {}).find((key) => {
+    const range = presetRange(key);
+    return (
+      selected &&
+      +range.start === +selected.start &&
+      +range.end === +selected.end
+    );
   });
-
-  let ref = useRef();
-  let overlayRef = useRef();
-
-  let {
-    groupProps,
-    labelProps,
-    startFieldProps,
-    endFieldProps,
-    buttonProps,
-    dialogProps,
-    calendarProps,
-  } = useDateRangePicker({ ...props, granularity, hideTimeZone }, state, ref);
-
-  // Get popover positioning props relative to the trigger
-  let triggerRef = useRef();
-  let { overlayProps: positionProps } = useOverlayPosition({
-    targetRef: triggerRef,
-    overlayRef,
-    placement: "bottom start",
-    offset: 8,
-    isOpen: state.isOpen,
-  });
-
-  return (
+  const changeOpen = useCallback(
+    (next: boolean) => {
+      if (next && locked) return;
+      setOpen(next);
+      setAnchor(null);
+      onOpenChange?.(next);
+    },
+    [locked, onOpenChange],
+  );
+  function commit(next: DateRange | null, key?: string) {
+    if (locked || isReadOnly) return;
+    setInternalValue(next);
+    onChange?.(next, key);
+    changeOpen(false);
+  }
+  useEffect(() => {
+    if (!isShown) return;
+    const close = () => {
+      if (window.innerWidth > 600) changeOpen(false);
+    };
+    window.addEventListener("scroll", close);
+    return () => window.removeEventListener("scroll", close);
+  }, [isShown, changeOpen]);
+  const compactPreset = compact && !!selectedKey;
+  const trigger = (
     <div
-      className={clsx(styles.calendar)}
-      style={{ minWidth: 280, maxWidth: 280 }}
+      className={styles.triggerWrapper}
+      data-hidden={hideDateButton || undefined}
+      data-minimized={compactPreset || undefined}
     >
-      <span {...labelProps}>{props.label}</span>
-
-      <div ref={triggerRef} style={{ display: "flex", flexDirection: "row" }}>
-        <Button
-          prefix={<CalendarIcon />}
-          {...buttonProps}
-          onClick={(e) => buttonProps.onPress(e)}
-          type="secondary"
-          typeName="button"
-          style={{
-            textTransform: "initial",
-            justifyContent: "flex-start",
-            minWidth: 280,
-            maxWidth: 280,
-          }}
-          children={
-            state.value.start && state.value.end
-              ? formatter.formatRange(
-                  state.value.start.toDate(getLocalTimeZone()),
-                  state.value.end?.toDate(getLocalTimeZone()),
-                )
-              : "Select Date Range"
+      <Popover.Trigger asChild>
+        <button
+          ref={ref}
+          type={buttonTypeName}
+          data-geist-button=""
+          autoFocus={autoFocus}
+          aria-controls={isShown ? dialogId : undefined}
+          aria-label={
+            ariaLabel ?? (compactPreset ? "Open calendar" : undefined)
           }
-        />
-      </div>
-
-      {state.isOpen && (
-        <OverlayContainer>
-          <Popover
-            {...dialogProps}
-            {...positionProps}
-            ref={overlayRef}
-            isOpen={state.isOpen}
-            onOpenChange={state.setOpen}
-          >
-            <div className={clsx(styles.contentWrapper)}>
-              <div
-                // groupProps and ref must wrap the DateFields
-                // in order for Left/Right arrow nav to work
-                // see: https://react-spectrum.adobe.com/react-aria/useDateRangePicker.html#anatomy
-                {...groupProps}
-                ref={ref}
-                className={styles.inputsWrapper}
-              >
-                <Label htmlFor="start-date" label="Start" capitalize />
-                <div
-                // className={styles.inputRow}
-                >
-                  <DateField
-                    {...startFieldProps}
-                    placeholderValue={now(getLocalTimeZone())}
-                  />
-                </div>
-
-                <Spacer y={0.5} />
-
-                <Label htmlFor="end-date" label="End" capitalize />
-                <div
-                // className={styles.inputRow}
-                >
-                  <DateField
-                    {...endFieldProps}
-                    placeholderValue={now(getLocalTimeZone())}
-                  />
-                </div>
-              </div>
-
-              <RangeCalendar {...calendarProps} />
-            </div>
-          </Popover>
-        </OverlayContainer>
+          disabled={locked}
+          className={clsx(styles.trigger, buttonClassName)}
+          data-selected={!!selected || undefined}
+          onClick={(event) => {
+            if (isReadOnly) {
+              event.preventDefault();
+              onLockedClick?.(event);
+            } else onClick?.(event);
+          }}
+        >
+          <CalendarIcon size={16} />
+          <span>
+            {selected
+              ? rangeLabel(selected, selectionMode === "single")
+              : selectionMode === "single"
+                ? "Select Date"
+                : "Select Date Range"}
+          </span>
+          {buttonSuffix}
+        </button>
+      </Popover.Trigger>
+      {allowClear && selected && !compact && (
+        <button
+          type="button"
+          className={styles.clear}
+          aria-label="Clear selected dates"
+          disabled={locked || isReadOnly}
+          onClick={() => commit(null)}
+        >
+          <Cross size={12} />
+        </button>
       )}
     </div>
   );
-}
+  const content = (
+    <div className={styles.content}>
+      <div className={styles.layout}>
+        {selectionMode === "range" && (
+          <div className={styles.inputs}>
+            <RangeInputs
+              value={
+                selected ?? {
+                  start: anchor ?? dayStart(new Date()),
+                  end: dayEnd(new Date()),
+                }
+              }
+              min={min}
+              max={max}
+              showTime={showTimeInput && granularity !== "day"}
+              pinnedTimezone={pinnedTimezone}
+              hideTimeZone={hideTimeZone}
+              hourCycle={hourCycle}
+              readOnly={isReadOnly}
+              onChange={commit}
+            />
+          </div>
+        )}
+        <MonthGrid
+          value={selected}
+          min={min}
+          max={max}
+          single={selectionMode === "single"}
+          readOnly={isReadOnly}
+          unavailable={isDateUnavailable}
+          onChange={commit}
+          onAnchor={setAnchor}
+        />
+      </div>
+    </div>
+  );
+  return (
+    <div
+      className={clsx(styles.calendar, className)}
+      data-size={size}
+      data-stacked={stacked || undefined}
+      data-compact={compact || undefined}
+      data-presets={!!presets || undefined}
+      data-testid={dataTestId}
+      data-geist-calendar=""
+      style={
+        {
+          "--calendar-width":
+            typeof width === "number"
+              ? `${width}px`
+              : (width ?? (compact ? "180px" : "250px")),
+        } as CSSProperties
+      }
+    >
+      {label && <span className={styles.label}>{label}</span>}
+      <Popover.Root open={isShown} onOpenChange={changeOpen} modal>
+        <div className={styles.controls}>
+          {presets && (
+            <PresetPicker
+              presets={presets}
+              selectedKey={selectedKey}
+              minimized={compact && !compactPreset}
+              disabled={locked || isReadOnly}
+              allowClear={allowClear}
+              min={min}
+              max={max}
+              onChange={commit}
+            />
+          )}
+          {trigger}
+        </div>
+        {isMobile ? (
+          <Drawer
+            show={isShown}
+            onDismiss={() => changeOpen(false)}
+            id={dialogId}
+            aria-label={label ?? "Choose dates"}
+            className={styles.drawer}
+            data-compact={compact || undefined}
+          >
+            {content}
+          </Drawer>
+        ) : (
+          <Popover.Portal>
+            <Popover.Content
+              id={dialogId}
+              className={styles.popover}
+              align={popoverAlignment}
+              sideOffset={8}
+              collisionPadding={16}
+              data-horizontal={horizontalLayout || undefined}
+              data-compact={compact || undefined}
+              data-time={(showTimeInput && granularity !== "day") || undefined}
+              aria-label={label ?? "Choose dates"}
+              onOpenAutoFocus={(event) => event.preventDefault()}
+            >
+              {content}
+            </Popover.Content>
+          </Popover.Portal>
+        )}
+      </Popover.Root>
+      <span className={styles.srOnly} aria-live="polite">
+        {selected ? `Selected ${rangeLabel(selected)}` : ""}
+      </span>
+    </div>
+  );
+});

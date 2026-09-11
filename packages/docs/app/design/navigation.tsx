@@ -132,15 +132,15 @@ export const Sidebar = () => {
     <aside
       // .aside
       className={clsx(
-        "fixed bottom-0 top-0 flex w-[296px] flex-col overflow-hidden rounded-[--geist-space-gap-half]",
+        "fixed bottom-0 top-0 flex w-[296px] flex-col overflow-hidden rounded-(--geist-space-gap-half)",
         // @media screen and (max-width: 960px) {
-        "max-[960px]:position-unset max-[960px]:block max-[960px]:h-[unset] max-[960px]:w-[calc(100vw_-_(100vw_-_100%))] max-[960px]:bg-[--geist-background] max-[960px]:px-0 max-[960px]:py-6",
+        "max-[960px]:position-unset max-[960px]:block max-[960px]:h-[unset] max-[960px]:w-[calc(100vw_-_(100vw_-_100%))] max-[960px]:bg-(--geist-background) max-[960px]:px-0 max-[960px]:py-6",
       )}
     >
       <div
         // .asideInner
         className={clsx(
-          "flex h-full flex-col px-[--geist-space-small] pb-0 pt-[--geist-space-small]",
+          "flex h-full flex-col px-(--geist-space-small) pb-0 pt-(--geist-space-small)",
           // @media screen and (max-width: 960px) {
           "max-[960px]:p-0",
         )}
@@ -148,7 +148,7 @@ export const Sidebar = () => {
         <div
           // logo-container
           className={clsx(
-            "flex w-[calc(100%_-_16px)] items-center justify-between pt-[--geist-space-small]",
+            "flex w-[calc(100%_-_16px)] items-center justify-between pt-(--geist-space-small)",
             "max-[960px]:pt-0",
           )}
         >
@@ -206,7 +206,7 @@ export const Sidebar = () => {
             "relative z-[100] -ml-4 h-full overflow-y-auto overflow-x-visible px-4 pb-8 pt-0",
             !expanded && "max-[960px]:hidden",
             expanded &&
-              "max-[960px]:fixed max-[960px]:bottom-0 max-[960px]:left-0 max-[960px]:right-0 max-[960px]:top-[150px] max-[960px]:z-[105] max-[960px]:m-[unset] max-[960px]:flex max-[960px]:max-h-[calc(100vh_-_150px)] max-[960px]:w-full max-[960px]:overflow-y-scroll max-[960px]:bg-[--geist-background] max-[960px]:p-[--geist-gap] max-[960px]:pt-0",
+              "max-[960px]:fixed max-[960px]:bottom-0 max-[960px]:left-0 max-[960px]:right-0 max-[960px]:top-[150px] max-[960px]:z-[105] max-[960px]:m-[unset] max-[960px]:flex max-[960px]:max-h-[calc(100vh_-_150px)] max-[960px]:w-full max-[960px]:overflow-y-scroll max-[960px]:bg-(--geist-background) max-[960px]:p-(--geist-gap) max-[960px]:pt-0",
             "design-mask-image",
           )}
         >
@@ -255,9 +255,9 @@ const Prev = () => {
     <Link
       href={prevNode.path}
       className={clsx(
-        "flex items-center gap-[--geist-space-2x] rounded-lg p-[--geist-space-2x] transition-[background]",
+        "flex items-center gap-(--geist-space-2x) rounded-lg p-(--geist-space-2x) transition-[background]",
         // prev styles
-        "pr-[--geist-space-4x] text-left",
+        "pr-(--geist-space-4x) text-left",
       )}
     >
       <ChevronLeft size={16} /> {prevNode.name}
@@ -274,9 +274,9 @@ const Next = () => {
     <Link
       href={nextNode.path}
       className={clsx(
-        "flex items-center gap-[--geist-space-2x] rounded-lg p-[--geist-space-2x] transition-[background]",
+        "flex items-center gap-(--geist-space-2x) rounded-lg p-(--geist-space-2x) transition-[background]",
         // next styles
-        "text-right] ml-auto pl-[--geist-space-4x]",
+        "text-right] ml-auto pl-(--geist-space-4x)",
       )}
     >
       {nextNode.name} <ChevronRight size={16} />
@@ -286,7 +286,7 @@ const Next = () => {
 
 export const SiblingLinks = () => {
   return (
-    <nav className="mt-auto flex content-between border-t border-solid border-t-[--accents-2] px-0 py-[--geist-space-8x]">
+    <nav className="mt-auto flex content-between border-t border-solid border-t-(--accents-2) px-0 py-(--geist-space-8x)">
       <Prev />
       <Next />
     </nav>

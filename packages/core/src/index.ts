@@ -6,7 +6,16 @@ export { Avatar } from "./components/Avatar";
 export { Badge } from "./components/Badge";
 export { Breadcrumbs } from "./components/breadcrumbs";
 export { Button, type ButtonProps } from "./components/Button";
-export { Calendar } from "./components/calendar";
+export {
+  Calendar,
+  DateRangePicker,
+  type CalendarProps,
+  type CalendarPreset,
+  type DateRangePickerProps,
+  type DateValue,
+  type DateInput,
+  type RangeValue,
+} from "./components/calendar";
 export { Capacity } from "./components/Capacity";
 export { Checkbox } from "./components/Checkbox";
 export { Collapse, CollapseGroup } from "./components/Collapse";

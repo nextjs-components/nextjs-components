@@ -50,5 +50,8 @@ jobs:
       - name: Typecheck package
         run: npm run typecheck
 
+      - name: Build docs with the local package
+        run: npm run build --workspace=docs
+
       - name: Check package contents
         run: npm pack --workspace=nextjs-components --dry-run --ignore-scripts
