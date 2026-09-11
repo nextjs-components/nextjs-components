@@ -14,10 +14,10 @@ export const ThemeSwitcher = () => {
   const isChecked = (value: string) => theme === value;
 
   return (
-    <div className="flex h-9 rounded-full border-[1px] border-solid border-[--accents-2] bg-[--accents-1] p-[3px]">
+    <div className="flex h-9 rounded-full border-[1px] border-solid border-(--accents-2) bg-(--accents-1) p-[3px]">
       <span style={{ height: "100%" }}>
         <input
-          className="peer/system absolute m-0 appearance-none p-0 outline-none"
+          className="peer/system absolute m-0 appearance-none p-0 outline-hidden"
           type="radio"
           id="theme-switcher-system"
           value="system"
@@ -28,13 +28,13 @@ export const ThemeSwitcher = () => {
           className={
             "relative m-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-none transition-all duration-100 ease-in-out" +
             " " +
-            "hover:bg-[--accents-1]" +
+            "hover:bg-(--accents-1)" +
             " " +
-            "peer-checked/system:bg-[#fff] peer-checked/system:shadow-theme-switcher-label dark:peer-checked/system:bg-[--accents-2]" +
+            "peer-checked/system:bg-[#fff] peer-checked/system:shadow-theme-switcher-label dark:peer-checked/system:bg-(--accents-2)" +
             " " +
-            "[&_svg]:relative [&_svg]:z-[1] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:!text-[--accents-5] [&_svg]:transition-colors [&_svg]:duration-100 [&_svg]:ease-in-out" +
+            "[&_svg]:relative [&_svg]:z-[1] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:text-(--accents-5)! [&_svg]:transition-colors [&_svg]:duration-100 [&_svg]:ease-in-out" +
             " " +
-            "hover:[&_svg]:!text-[--accents-8] peer-checked/system:[&_svg]:!text-[--accents-8]"
+            "peer-checked/system:[&_svg]:text-(--accents-8)! hover:[&_svg]:text-(--accents-8)!"
           }
           htmlFor="theme-switcher-system"
           aria-label="Switch to system mode"
@@ -45,7 +45,7 @@ export const ThemeSwitcher = () => {
       </span>
       <span style={{ height: "100%" }}>
         <input
-          className="peer/dark absolute m-0 appearance-none p-0 outline-none"
+          className="peer/dark absolute m-0 appearance-none p-0 outline-hidden"
           type="radio"
           id="theme-switcher-dark"
           value="dark"
@@ -56,13 +56,13 @@ export const ThemeSwitcher = () => {
           className={
             "relative m-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-none transition-all duration-100 ease-in-out" +
             " " +
-            "hover:bg-[--accents-1]" +
+            "hover:bg-(--accents-1)" +
             " " +
-            "peer-checked/dark:bg-[#fff] peer-checked/dark:shadow-theme-switcher-label dark:peer-checked/dark:bg-[--accents-2]" +
+            "peer-checked/dark:bg-[#fff] peer-checked/dark:shadow-theme-switcher-label dark:peer-checked/dark:bg-(--accents-2)" +
             " " +
-            "[&_svg]:relative [&_svg]:z-[1] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:!text-[--accents-5] [&_svg]:transition-colors [&_svg]:duration-100 [&_svg]:ease-in-out" +
+            "[&_svg]:relative [&_svg]:z-[1] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:text-(--accents-5)! [&_svg]:transition-colors [&_svg]:duration-100 [&_svg]:ease-in-out" +
             " " +
-            "hover:[&_svg]:!text-[--accents-8] peer-checked/dark:[&_svg]:!text-[--accents-8]"
+            "peer-checked/dark:[&_svg]:text-(--accents-8)! hover:[&_svg]:text-(--accents-8)!"
           }
           htmlFor="theme-switcher-dark"
           aria-label="Switch to dark mode"
@@ -73,7 +73,7 @@ export const ThemeSwitcher = () => {
       </span>
       <span style={{ height: "100%" }}>
         <input
-          className="peer/light absolute m-0 appearance-none p-0 outline-none"
+          className="peer/light absolute m-0 appearance-none p-0 outline-hidden"
           type="radio"
           id="theme-switcher-light"
           value="light"
@@ -84,13 +84,13 @@ export const ThemeSwitcher = () => {
           className={
             "relative m-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-none transition-all duration-100 ease-in-out" +
             " " +
-            "hover:bg-[--accents-1]" +
+            "hover:bg-(--accents-1)" +
             " " +
-            "peer-checked/light:bg-[#fff] peer-checked/light:shadow-theme-switcher-label dark:peer-checked/light:bg-[--accents-2]" +
+            "peer-checked/light:bg-[#fff] peer-checked/light:shadow-theme-switcher-label dark:peer-checked/light:bg-(--accents-2)" +
             " " +
-            "[&_svg]:relative [&_svg]:z-[1] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:!text-[--accents-5] [&_svg]:transition-colors [&_svg]:duration-100 [&_svg]:ease-in-out" +
+            "[&_svg]:relative [&_svg]:z-[1] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:text-(--accents-5)! [&_svg]:transition-colors [&_svg]:duration-100 [&_svg]:ease-in-out" +
             " " +
-            "hover:[&_svg]:!text-[--accents-8] peer-checked/light:[&_svg]:!text-[--accents-8]"
+            "peer-checked/light:[&_svg]:text-(--accents-8)! hover:[&_svg]:text-(--accents-8)!"
           }
           htmlFor="theme-switcher-light"
           aria-label="Switch to light mode"

@@ -32,7 +32,7 @@ const ColorCard = ({ color }: { color: string }) => {
     <button
       className={clsx(
         "-m-2 flex cursor-pointer items-center justify-between gap-4 rounded-md border-none bg-transparent p-2 text-left transition-[background]",
-        "hover:bg-[--hover]",
+        "hover:bg-(--hover)",
       )}
       style={{ "--color": hex }}
       onClick={() => {
@@ -43,9 +43,9 @@ const ColorCard = ({ color }: { color: string }) => {
       }}
     >
       <div
-        // TODO(kevin): Taiwind `shadow-[--inset-shadow]` doesn't appear to be working
+        // TODO(kevin): Taiwind `shadow-(--inset-shadow)` doesn't appear to be working
         style={{ boxShadow: "var(--inset-shadow)" }}
-        className="h-[60px] w-[60px] shrink-0 rounded-md bg-[--color] shadow-[--inset-shadow]"
+        className="h-[60px] w-[60px] shrink-0 rounded-md bg-(--color) shadow-(--inset-shadow)"
       />
       <div className="mr-auto flex flex-col">
         <Text className="flex items-center gap-[6px]">

@@ -43,7 +43,7 @@ export default function IconsPage() {
       <div
         // .module
         className={clsx(
-          "relative w-full rounded-[--geist-radius] border border-solid border-[--accents-2] p-4",
+          "relative w-full rounded-(--geist-radius) border border-solid border-(--accents-2) p-4",
         )}
         // overwrites above styles... but why?
         style={{
@@ -59,7 +59,7 @@ export default function IconsPage() {
         />
         <Spacer />
 
-        <div className="m-[--geist-gap-half-negative] box-border flex flex-wrap">
+        <div className="m-(--geist-gap-half-negative) box-border flex flex-wrap">
           {entries.map(({ key, Icon }) => {
             return (
               <ClickableIcon key={key} name={key}>
@@ -92,15 +92,15 @@ const ClickableIcon = ({ children, name }) => {
   return (
     <div
       // geistListItem
-      className="min-w-0 grow-0 basis-1/4 p-[--geist-gap-half]"
+      className="min-w-0 grow-0 basis-1/4 p-(--geist-gap-half)"
     >
       <Container style={{ height: 100 }}>
         <AnimatePresence>
           <button
             style={{ "--icon-color": "var(--geist-secondary)" }}
             className={clsx(
-              "h-full w-full cursor-pointer select-none rounded-[var(--geist-radius)] border-none bg-[--geist-background] p-0 text-[--geist-foreground] transition-colors duration-200",
-              "hover:bg-[--hover]",
+              "h-full w-full cursor-pointer select-none rounded-[var(--geist-radius)] border-none bg-(--geist-background) p-0 text-(--geist-foreground) transition-colors duration-200",
+              "hover:bg-(--hover)",
             )}
             onClick={() => {
               setClicked(true);

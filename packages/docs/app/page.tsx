@@ -16,14 +16,14 @@ const Page = () => {
           <Container>
             <Spacer y={4} />
             <div className="max-w-[500px]">
-              <h1 className="m-0 text-[80px] font-bold leading-[0.85] tracking-[max(min(-0.055em,-0.66vw),-0.07em)] text-[--geist-foreground] max-[960px]:text-[min(11.2vw,80px)]">
+              <h1 className="m-0 text-[80px] leading-[0.85] font-bold tracking-[max(min(-0.055em,-0.66vw),-0.07em)] text-(--geist-foreground) max-[960px]:text-[min(11.2vw,80px)]">
                 Nextjs components
               </h1>
               <Spacer y={1} />
             </div>
 
             <div className="max-w-[500px]">
-              <p className="m-0 text-[21px] font-normal leading-[30px] tracking-[-0.016em] text-[--geist-secondary]">
+              <p className="m-0 text-[21px] leading-[30px] font-normal tracking-[-0.016em] text-(--geist-secondary)">
                 A collection of components, transcribed from Vercel’s design
                 system.
               </p>
@@ -33,7 +33,7 @@ const Page = () => {
             <div>
               <Link
                 href="/design/introduction"
-                className="box-border inline-flex h-[--geist-space-medium] cursor-pointer select-none items-center rounded-[--geist-radius] bg-[--geist-background] px-[--geist-space-4x] font-medium text-[--geist-foreground] shadow-[--shadow-medium]"
+                className="box-border inline-flex h-(--geist-space-medium) cursor-pointer items-center rounded-(--geist-radius) bg-(--geist-background) px-(--geist-space-4x) font-medium text-(--geist-foreground) shadow-(--shadow-medium) select-none"
               >
                 Go to the docs →
               </Link>
@@ -90,7 +90,7 @@ const Page = () => {
           <Stack align={"center"}>
             <Link
               href="/design/introduction"
-              className="box-border inline-flex h-[--geist-space-medium] cursor-pointer select-none items-center rounded-[--geist-radius] bg-[--geist-background] px-[--geist-space-4x] font-medium text-[--geist-foreground] shadow-[--shadow-medium]"
+              className="box-border inline-flex h-(--geist-space-medium) cursor-pointer items-center rounded-(--geist-radius) bg-(--geist-background) px-(--geist-space-4x) font-medium text-(--geist-foreground) shadow-(--shadow-medium) select-none"
             >
               Go to the docs →
             </Link>
@@ -106,6 +106,6 @@ export default Page;
 
 const Box = () => {
   return (
-    <div className="h-[50px] w-[50px] rounded-[4px] bg-[--geist-success]" />
+    <div className="h-[50px] w-[50px] rounded-[4px] bg-(--geist-success)" />
   );
 };

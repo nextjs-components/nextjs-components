@@ -3,7 +3,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { Spacer } from "nextjs-components";
 import { Stack } from "nextjs-components/src/components/Stack";
-import { Code, InlineCode, Text } from "nextjs-components/src/components/Text";
+import { Code, Text } from "nextjs-components/src/components/Text";
 import LinkIcon from "nextjs-components/src/icons/link";
 import React from "react";
 import { useFocusRing } from "react-aria";
@@ -19,8 +19,8 @@ const mdxComponents = {
     return (
       <blockquote
         className={clsx(
-          "bg-[--geist-background] p-3 text-sm",
-          "rounded-[--geist-radius] border border-[--accents-2]",
+          "bg-(--geist-background) p-3 text-sm",
+          "rounded-(--geist-radius) border border-(--accents-2)",
           "my-[1.6em]",
         )}
         {...props}
@@ -207,7 +207,12 @@ const mdxComponents = {
       return <code {...props} />;
     }
     /// Plain `code` MDX will have no className added.
-    return <InlineCode {...props} />;
+    return (
+      <code
+        className="rounded-md border border-[var(--ds-gray-300)] bg-[var(--ds-gray-100)] px-[2px] py-[3.6px] text-[.857143em] whitespace-nowrap"
+        {...props}
+      />
+    );
   },
   pre: Code,
   a: ({ children, ...props }) => {

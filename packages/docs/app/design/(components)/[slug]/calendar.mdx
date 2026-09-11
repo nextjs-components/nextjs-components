@@ -1,24 +1,4 @@
-import { parseDate } from "@internationalized/date";
 import { Calendar } from "nextjs-components";
-
-export const presets = {
-  "last-3-days": {
-    start: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-    text: "Last 3 days",
-  },
-  "last-7-days": {
-    start: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-    text: "Last 7 days",
-  },
-  "last-14-days": {
-    start: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-    text: "Last 14 days",
-  },
-  "last-month": {
-    start: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
-    text: "Last month",
-  },
-};
 
 <Spacer y={0.6} />
 
@@ -26,24 +6,255 @@ export const presets = {
 
 <Spacer y={0.8} />
 
-Displays a calendar from which users can select a date or range of dates.
+Select a date or date range. Choose two days to commit a range, or type dates and times and select Apply.
+
+Calendar uses the library's shared Tailwind styles and design tokens. Tailwind CSS 4 or later is required. Load `nextjs-components/src/styles/globals.css` and configure the theme provider as shown in the [installation guide](/design/introduction). The package includes compiled utilities; no package source scanning is required.
+
+```tsx
+import { Calendar, type DateValue, type RangeValue } from "nextjs-components";
+
+const [value, setValue] = React.useState<RangeValue<DateValue> | null>(null);
+<Calendar value={value} onChange={setValue} allowClear />;
+```
 
 <Spacer />
 
 ### Default
 
 <Editor
-  scope={{ Calendar, presets, parseDate }}
+  scope={{ Calendar }}
   code={`() => {
-  const [range, setRange] = React.useState(null)
-  
-  return <Calendar 
-    value={range}
-    onChange={setRange}
-    // minValue={parseDate("2023-02-07")}
-    // maxValue={parseDate("2023-05-20")}
-  />
+  const [value, setValue] = React.useState(null);
+  const now = new Date();
+  return <Calendar allowClear value={value} onChange={setValue}
+    minValue={new Date(now.getFullYear(), now.getMonth() - 2, now.getDate())}
+    maxValue={new Date(now.getFullYear(), now.getMonth() + 2, now.getDate())} />;
 }`}
 />
 
-<Spacer y={4} />
+<Spacer y={2} />
+
+### Horizontal Layout
+
+Use `horizontalLayout` to place the fields beside the month. Use `showTimeInput={false}` for dates only.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <Calendar value={value} onChange={setValue} allowClear horizontalLayout showTimeInput={false} popoverAlignment="center" />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Sizes
+
+Choose `small` (32 px) or `medium` (default).
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <div style={{ display: "flex", flexWrap: "wrap", gap: 24 }}>
+    <Calendar size="small" value={value} onChange={setValue} />
+    <Calendar size="medium" value={value} onChange={setValue} />
+  </div>;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Presets
+
+Provide a record of named ranges. The callback also receives the selected preset key.
+
+On small screens, presets open in a drawer with search and a Done button. Select a range to apply it. Done closes the drawer without changing the selection.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar presets={presets} value={value} onChange={setValue} allowClear />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Compact
+
+Keep the active date or preset control visible in a smaller space.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar compact presets={presets} value={value} onChange={setValue} allowClear />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Stacked
+
+Place the preset control above the date button.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar stacked presets={presets} value={value} onChange={setValue} />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Presets with default value
+
+Use `presetIndex` to select the initial preset. The index starts at zero.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const end = new Date();
+  end.setHours(23, 59, 59, 999);
+  const presets = Object.fromEntries([3, 7, 14].map(days => {
+    const start = new Date();
+    start.setDate(start.getDate() - days);
+    start.setHours(0, 0, 0, 0);
+    return [\`last-\${days}-days\`, { text: \`Last \${days} Days\`, start, end }];
+  }));
+  const lastMonth = new Date();
+  lastMonth.setMonth(lastMonth.getMonth() - 1);
+  lastMonth.setHours(0, 0, 0, 0);
+  presets["last-month"] = { text: "Last Month", start: lastMonth, end };
+  return <Calendar stacked presets={presets} presetIndex={2} onChange={setValue} />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Min and max dates
+
+Both day selection and typed input obey the allowed date range.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  const min = new Date(); min.setDate(min.getDate() - 1); min.setHours(5, 0, 0, 0);
+  const max = new Date(); max.setDate(max.getDate() + 1);
+  return <Calendar value={value} onChange={setValue} minValue={min} maxValue={max} />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Pinned timezone
+
+Lock the input timezone. The timezone appears as text.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <Calendar value={value} onChange={setValue} pinnedTimezone="America/Los_Angeles" popoverAlignment="center" />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Single date
+
+Choose one day. The callback receives the start and end of that day.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <Calendar selectionMode="single" value={value} onChange={setValue} allowClear />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### Disabled
+
+Disable all selection controls.
+
+<Editor
+  scope={{ Calendar }}
+  code={`() => {
+  const [value, setValue] = React.useState(null);
+  return <Calendar disabled />;
+}`}
+/>
+
+<Spacer y={2} />
+
+### API
+
+| Prop                                    | Type                                    | Default / behavior                                 |
+| --------------------------------------- | --------------------------------------- | -------------------------------------------------- |
+| `value`, `defaultValue`                 | `{ start: Date, end: Date } \| null`    | Controlled or initial range                        |
+| `onChange`                              | `(range, presetKey?) => void`           | Receives native `Date` values; `null` when cleared |
+| `minValue`, `maxValue`                  | `Date`                                  | Inclusive date and time limits                     |
+| `presets`                               | `Record<string, { text, start, end? }>` | Common ranges; omitted end uses today              |
+| `presetIndex`                           | `number`                                | Initial preset index                               |
+| `size`                                  | `"small" \| "medium"`                   | `"medium"`                                         |
+| `compact`, `stacked`, `hideDateButton`  | `boolean`                               | `false`                                            |
+| `horizontalLayout`                      | `boolean`                               | `false`; fields beside the month on wide screens   |
+| `showTimeInput`                         | `boolean`                               | `true`                                             |
+| `pinnedTimezone`                        | IANA timezone string                    | Local timezone, with a UTC switch                  |
+| `popoverAlignment`                      | `"start" \| "center" \| "end"`          | `"start"`                                          |
+| `selectionMode`                         | `"range" \| "single"`                   | `"range"`                                          |
+| `allowClear`, `disabled`                | `boolean`                               | `false`                                            |
+| `width`                                 | `number \| string`                      | `250px`; `180px` when compact                      |
+| `defaultOpen`, `isOpen`, `onOpenChange` | Open state controls                     | Closed                                             |
+| `buttonClassName`, `className`          | `string`                                | Trigger and outer wrapper classes                  |
+| `ref`                                   | `Ref<HTMLButtonElement>`                | Date trigger                                       |
+
+`DateRangePicker` is also exported. Existing internationalized date values remain accepted as inputs. New change callbacks return native JavaScript dates.
+
+### Keyboard
+
+Use arrow keys to move by a day or week. Home and End move to month boundaries. Page Up and Page Down change the month; add Shift to change the year. Enter or Space selects the focused day. Escape closes the popover and returns focus to its trigger.
+
+Typed fields accept `Sep 9, 2026`, `2026-09-09`, or `9/9/2026`, with 12-hour or 24-hour times. Invalid dates, times, and ranges show an error and remain open.

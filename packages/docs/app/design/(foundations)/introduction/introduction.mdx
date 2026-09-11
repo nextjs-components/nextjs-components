@@ -26,7 +26,7 @@ I wanted to use nice-looking components on my website, https://thekevinwang.com.
 Start by installing the package.
 
 ```bash
-npm i nextjs-components
+npm i nextjs-components tailwindcss@^4
 ```
 
 This project needs to be transpiled to work with your Next.js application. It is recommended to use Next.js `13.1.0`’s [built-in module tranpilation](https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable). (Up until Next.js `13.1.0`, [`next-transpile-modules`](https://github.com/martpie/next-transpile-modules) handled this use case.)
@@ -89,5 +89,20 @@ function App({ Component, pageProps }) {
 
 export default App;
 ```
+
+### Styles and themes
+
+Import `nextjs-components/src/styles/globals.css` once in the root layout or custom app. It includes the library's design tokens and compiled Tailwind utilities. The theme provider selects the light or dark token values.
+
+Tailwind CSS 4 or later is a required peer dependency. Library utilities use the `njc:` prefix and include compiled CSS, so no package source scanning is required. The library keeps its existing reset and does not add Tailwind Preflight.
+
+To use the same design tokens in your application's Tailwind utilities, import the shared theme after Tailwind:
+
+```css
+@import "tailwindcss";
+@import "nextjs-components/styles/theme.css";
+```
+
+For Next.js, install `@tailwindcss/postcss` and add it to the PostCSS configuration. The docs site uses this Tailwind 4 setup.
 
 <Spacer y={4} />
